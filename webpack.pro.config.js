@@ -2,12 +2,12 @@ const webpack = require('webpack');
 const ExtractPlugin = require('extract-text-webpack-plugin');
 const config = require('./webpack.base.config');
 const path = require('path');
-const {merge} = require('lodash');
+const { merge } = require('lodash');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-
-
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin;
+console.log(process.env.NODE_ENV);
 module.exports = function() {
   return merge(config, {
     output: {
@@ -17,14 +17,15 @@ module.exports = function() {
       publicPath: './'
     },
     cache: false,
-    module:{
-      rules:[
+    module: {
+      rules: [
         ...config.module.rules,
         {
           test: /\.css$/,
           use: ExtractPlugin.extract({
-            fallback: "style-loader",
-            use: "css-loader?minimize&modules&importLoaders=1&localIdentName=[path]__[local]-[hash:base64:5]!autoprefixer-loader"
+            fallback: 'style-loader',
+            use:
+              'css-loader?minimize&modules&importLoaders=1&localIdentName=[path]__[local]-[hash:base64:5]!autoprefixer-loader'
           })
         }
       ]
@@ -35,16 +36,16 @@ module.exports = function() {
       new webpack.DefinePlugin({
         process: {
           env: {
-            NODE_ENV: JSON.stringify('production'),
+            NODE_ENV: JSON.stringify('production')
           }
         }
       }),
       new HtmlWebpackPlugin({
         template: './index.ejs',
-        filename: './index.html',
+        filename: './index.html'
       }),
       new ParallelUglifyPlugin({
-        uglifyJS:{
+        uglifyJS: {
           output: {
             comments: false
           },
@@ -53,8 +54,9 @@ module.exports = function() {
           }
         }
       }),
-      new webpack.optimize.ModuleConcatenationPlugin(),
-      new BundleAnalyzerPlugin()
-    ]
+      new webpack.optimize.ModuleConcatenationPlugin()
+    ].concat(
+      process.env.NODE_ENV == 'analysis' ? new BundleAnalyzerPlugin() : []
+    )
   });
 };

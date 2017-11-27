@@ -1,12 +1,12 @@
 {
-  "name": "FRONTEND",
+  "name": "frontend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.config.js",
     "build": "webpack --config webpack.pro.config.js",
-    "analysis": "env=analysis webpack --config webpack.pro.config.js"
+    "analysis": "NODE_ENV=analysis webpack --config webpack.pro.config.js"
   },
   "keywords": [],
   "author": "stoney",
