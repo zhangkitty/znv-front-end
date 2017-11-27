@@ -1,0 +1,8 @@
+{
+    "presets": [["env", {
+      "modules": false
+    }], "react"],
+    "plugins": [
+      "syntax-dynamic-import", "syntax-class-properties", "transform-class-properties"
+    ]
+  }
