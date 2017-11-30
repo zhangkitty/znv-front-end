@@ -4,7 +4,12 @@
 import * as types from './types';
 import { makeActionCreator } from '../../../../lib/dealFunc';
 
-export const init = makeActionCreator(types.init, 'props');
+export const init = (obj) => {
+  // 此处处理数据 强化action功能
+  obj;
+  makeActionCreator(types.init, obj);
+};
+
 export const initSet = makeActionCreator(types.initSet, 'data');
 export const changeValue = makeActionCreator(types.changeValue, 'key', 'value');
 export const search = makeActionCreator(types.search, 'props');

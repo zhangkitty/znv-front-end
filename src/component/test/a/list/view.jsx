@@ -12,15 +12,15 @@ import { defaultState } from './reducers';
 
 class Container extends React.Component {
   componentWillMount() {
-    this.props.dispatch(init(defaultState));
+    this.props.dispatch(init({ defaultState }));
   }
   render() {
-    const props = this.props;
-    if (!props.ready) {
+    const { ready } = this.props;
+    if (!ready) {
       return (
         <div>
-          <Header {...props} />
-          <List {...props}/>
+          <Header {...this.props} />
+          <List {...this.props} />
         </div>
       );
     }
@@ -34,6 +34,7 @@ class Container extends React.Component {
 
 Container.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  ready: PropTypes.bool.isRequired,
 };
 
 const stateToProp = state => state['test/a/list'];
