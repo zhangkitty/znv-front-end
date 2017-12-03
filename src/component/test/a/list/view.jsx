@@ -1,6 +1,3 @@
-/**
- * Created by zhanyaqi on 2017/9/7.
- */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Spin } from 'antd';

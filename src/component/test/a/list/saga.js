@@ -1,6 +1,3 @@
-/**
- * Created by zhanyaqi on 2017/7/17.
- */
 import { Modal } from 'antd';
 import { take, put, fork, takeLatest } from 'redux-saga/effects';
 import { initSet, searchSet, handleSet } from './action';

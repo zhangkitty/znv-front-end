@@ -1,6 +1,3 @@
-/**
- * Created by yeyangmei on 2017/8/28.
- */
 import { takeLatest, put } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import * as types from './types';

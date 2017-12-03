@@ -3,7 +3,8 @@
     "parser": "babel-eslint",
     "rules": {
       "react/jsx-max-props-per-line": "off",
-      "import/no-mutable-exports": "off"
+      "import/no-mutable-exports": "off",
+      "react/prefer-stateless-function" : "off"
     },
     "env": {
       "browser": true

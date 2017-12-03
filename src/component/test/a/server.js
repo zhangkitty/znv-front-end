@@ -1,6 +1,6 @@
-import fetch from '../../../../lib/fetch';
-import { toQueryString } from '../../../../lib/query-string';
-import { under2Camal, camel2Under } from '../../../../lib/camal-case-convertor';
+import fetch from '../../../lib/fetch';
+import { toQueryString } from '../../../lib/query-string';
+import { under2Camal, camel2Under } from '../../../lib/camal-case-convertor';
 
 export const pickingList = (argObj = {}) => {
   const keys = [

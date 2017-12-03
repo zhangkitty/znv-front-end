@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { Breadcrumb, Icon, Button, BackTop } from 'antd';
-import { getNavList, logout, expand } from './actions';
+import { BackTop } from 'antd';
+import { logout } from './actions';
 import Sider from './components/sider';
 import styles from './style.css';
 import Welcome from './components/welcome';

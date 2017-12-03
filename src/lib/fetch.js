@@ -1,14 +1,8 @@
 import { message } from 'antd';
 import assign from 'object-assign';
-import { hashHistory } from 'react-router';
 import 'whatwg-fetch';
 
-let fetch;
-if (process.env.NODE_ENV === 'test') {
-  fetch = global.fetch;
-} else {
-  fetch = window.fetch;
-}
+const fetch = process.env.NODE_ENV === 'test' ? global.fetch : window.fetch;
 let messageShowed = false;
 
 function showMessage(msg, fn = () => {}) {
@@ -22,33 +16,47 @@ function showMessage(msg, fn = () => {}) {
   }
 }
 
-export default (url, options = {}) => {
-  const urlWithCredential = url;
-  return fetch(urlWithCredential, assign({
-    credentials: 'include',
-  }, options)).then((res) => {
-    const { headers, status } = res;
-    if (process.env.NODE_ENV !== 'test') {
-      const error = headers.get('XErrorInfo');
-      if (error) {
-        showMessage(decodeURIComponent(error));
-      }
-      if (status === 302 && res.url.indexOf(`${process.env.BASE_URI}/Sign`) === -1) {
-        // showMessage('我们认为您应该登录一下', () => {});
-        // const err = Error('Login needed');
-        // err.loginNeeded = true;
-        // throw err;
-        hashHistory.push('/login');
-      }
-      if (status === 404) {
-        // console.log(res);
-        // hashHistory.push('/error-pages/404');
-        showMessage('服务器响应出错,请刷新页面', () => {});
-      }
-      if (status === 500) {
-        showMessage('服务器响应超时,请刷新页面', () => {});
-      }
-    }
-    return res;
-  });
+const relogin = {
+  230102: 'user status is wrong',
+  230103: 'user not exist',
+  230104: 'IP not allowed',
+  230105: 'system not allowed',
+  230106: 'token not valid',
+  800005: 'token error',
 };
+
+export default (url, args = {}, header) => (
+  fetch(`${process.env.BASE_URI}${url}`, assign({
+    credentials: 'include',
+    headers: header || {
+      'content-type': 'application/json',
+      token: localStorage.getItem('token'),
+    },
+  }, args))
+)
+  .then((res) => {
+    const { status } = res;
+    if (status > 300) {
+      showMessage('服务器响应出错,请尝试 刷新 重试,或者联系开发人员需求帮助  _(:3 」∠)_');
+      throw new Error(status);
+    }
+    const code = res.headers.get('x-code');
+    const msg = res.headers.get('x-err-msg');
+    if (relogin[code]) {
+      const e = new Error();
+      e.loginNeeded = true;
+      throw e;
+    }
+    if (res.headers.get('content-type') === 'application/vnd.ms-excel;charset=UTF-8') {
+      return res.blob();
+    }
+
+    if (code === '0') {
+      return res.json().catch(() => ({
+        code,
+      }));
+    }
+    return res.text().then(() => ({
+      error: decodeURIComponent(msg),
+    }));
+  });

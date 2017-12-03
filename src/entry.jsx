@@ -1,8 +1,6 @@
 /**
  * Created by zhanyaqi on 2017/8/30.
  */
-import 'babel-polyfill';
-import 'lodash';
 import 'classnames';
 import React from 'react';
 import { render } from 'react-dom';
@@ -20,7 +18,6 @@ import RootView from './component/root';
 
 const sagaMiddleware = createSagaMiddleware();
 
-// Add the reducer to your store on the `routing` key
 const reducers = combineReducers(rootReducers);
 
 const routeMiddleware = routerMiddleware(hashHistory);

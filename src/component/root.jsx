@@ -6,9 +6,8 @@ import Nav from './nav/view';
 import Login from './login/view';
 import './root.css';
 
-// alert!! for loader
-
 import reducers from './index';
+
 let store;
 const Loading = () => <Spin />;
 

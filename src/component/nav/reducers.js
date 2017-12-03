@@ -7,12 +7,12 @@ const menus = [
       {
         link: '/test/a',
         title: '项目名称2',
-        icon: 'mail'
-      }
+        icon: 'mail',
+      },
     ],
     title: '项目名称1',
-    icon: 'mail'
-  }
+    icon: 'mail',
+  },
 ];
 
 const defaultState = {
@@ -20,14 +20,14 @@ const defaultState = {
   menus,
   userName: '',
   expandable: true,
-  list: []
+  list: [],
 };
 
 export default (state = defaultState, action) => {
   switch (action.type) {
     case types.CHANGE_VALUE:
       return assign({}, state, {
-        [action.key]: action.value
+        [action.key]: action.value,
       });
     default:
       return state;

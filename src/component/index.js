@@ -1,5 +1,5 @@
 import assign from 'object-assign';
-import { fork, call, take } from 'redux-saga/effects';
+import { fork, call, take, all } from 'redux-saga/effects';
 import { routerReducer } from 'react-router-redux';
 
 const UPDATE_SAGA = '@@INNER/UPDATE_SAGA';
@@ -29,5 +29,5 @@ function* waitingAwakeSaga(saga) {
 
 export function* rootSaga() {
   const sagas = __ROOT_SAGA__.map(saga => fork(waitingAwakeSaga, saga));
-  yield sagas;
+  yield all(sagas);
 }

@@ -3,11 +3,12 @@ import { Icon, Menu } from 'antd';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 
-const SubMenu = Menu.SubMenu;
+const { SubMenu } = Menu;
 
-const Sider = ({ current, menus }) => {
-
-  function CustomSubMenu({ title, icon, children, link }) {
+const Sider = ({ menus }) => {
+  function CustomSubMenu({
+    title, icon, children, link,
+  }) {
     if (children && children.length) {
       return (
         <SubMenu
@@ -29,8 +30,8 @@ const Sider = ({ current, menus }) => {
   }
 
   CustomSubMenu.propTypes = {
-    name: PropTypes.string.isRequired,
     icon: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
     children: PropTypes.arrayOf(PropTypes.shape(CustomSubMenu.propTypes)).isRequired,
     link: PropTypes.string.isRequired,
   };

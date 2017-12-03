@@ -1,5 +1,4 @@
 import { push } from 'react-router-redux';
-
 import { Modal } from 'antd';
 
 export const POST_REDIRECT = Symbol('post');
@@ -13,7 +12,9 @@ export const postRedirect = (status, target, modalTime = 5000) => ({
 
 export default ({ dispatch }) => next => (action) => {
   if (action.type === POST_REDIRECT) {
-    const { status, target, noRedirect, modalTime = 5000, cb = () => {} } = action;
+    const {
+      status, target, noRedirect, modalTime = 5000, cb = () => {},
+    } = action;
     let modalAlive = true;
     if (status === 200) {
       const modal = Modal.success({

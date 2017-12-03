@@ -1,6 +1,3 @@
-/**
- * Created by zhanyaqi on 2017/9/12.
- */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Input } from 'antd';
@@ -11,7 +8,6 @@ const Header = (props) => {
   const {
     dispatch,
     secondaryProcess,
-    produceOrderId,
     dataLoading,
   } = props;
   return (
@@ -44,7 +40,6 @@ const Header = (props) => {
 Header.propTypes = {
   dispatch: PropTypes.func.isRequired,
   secondaryProcess: PropTypes.string.isRequired,
-  produceOrderId: PropTypes.string.isRequired,
   dataLoading: PropTypes.bool.isRequired,
 };
 

@@ -1,5 +1,3 @@
-import assign from 'object-assign';
-
 export function makeActionCreator(type, ...argNames) {
   return function (...args) {
     const action = { type };

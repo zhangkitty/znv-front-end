@@ -1,12 +1,9 @@
-/**
- * Created by yeyangmei on 2017/6/7.
- */
 import _ from 'lodash';
 /**
  * @param obj: 修改之前的对象
  * @param objori: 部分修改之后的对象
  * result 修改过的内容组成的对象
- **/
+ * */
 export default function getField(obj, objori, objTittle) {
   const res = Object.keys(obj)
     .map(key => ({ [key]: obj[key] }));

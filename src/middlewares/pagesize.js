@@ -1,6 +1,3 @@
-/**
- * Created by fed on 16/7/25.
- */
 import jsCookie from 'js-cookie';
 
 let pageSize = jsCookie.get('site[\'page_size\']') || '50';

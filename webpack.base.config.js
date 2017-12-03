@@ -1,5 +1,4 @@
 const webpack = require('webpack');
-const path = require('path');
 
 module.exports = {
   entry: {
@@ -11,12 +10,13 @@ module.exports = {
       'react-router-redux',
       'redux-saga',
       'object-assign',
-      'classnames'
-    ]
+      'classnames',
+      'whatwg-fetch',
+    ],
   },
   resolve: {
     modules: ['lib', 'node_modules'],
-    extensions: ['.js', '.jsx', 'css', '.json']
+    extensions: ['.js', '.jsx', 'css', '.json'],
   },
   externals: {
     lodash: 'window._',
@@ -24,7 +24,7 @@ module.exports = {
     'react-dom': 'window.ReactDOM',
     antd: 'window.antd',
     moment: 'window.moment',
-    'babel-polyfill': 'undefined'
+    'babel-polyfill': 'undefined',
   },
   module: {
     rules: [
@@ -41,14 +41,14 @@ module.exports = {
               loading: 'Loading',
               reducerName: 'reducers',
               componentDir: 'component',
-            }
-          }
-        ]
+            },
+          },
+        ],
       },
       {
         test: /component\/([^\/]+\/)*type[s]?.js$/,
         exclude: /node_modules/,
-        loaders: ['react-redux-types-loader']
+        loaders: ['react-redux-types-loader'],
       },
       {
         test: /\/me\.json$/,
@@ -58,25 +58,25 @@ module.exports = {
             loader: 'react-redux-component-loader',
             options: {
               bundle: true,
-              reducerName: 'reducers'
-            }
-          }
+              reducerName: 'reducers',
+            },
+          },
         ],
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.ejs$/,
-        use: ['ejs-loader']
+        use: ['ejs-loader'],
       },
       {
         test: /\.(png|jpg|jpeg|gif|eot|svg|ttf|woff)$/,
-        use: ['file-loader?name=[hash:base64:7].[ext]']
-      }
-    ]
+        use: ['file-loader?name=[hash:base64:7].[ext]'],
+      },
+    ],
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       name: ['vendor', 'manifest'],
-    })
-  ]
+    }),
+  ],
 };

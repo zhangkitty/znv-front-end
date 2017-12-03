@@ -1,6 +1,3 @@
-/**
- * Created by zhanyaqi on 2017/9/7.
- */
 import assign from 'object-assign';
 import * as types from './types';
 import { getSize } from '../../../../middlewares/pagesize';
