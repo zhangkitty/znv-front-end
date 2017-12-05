@@ -15,7 +15,7 @@ module.exports = {
     ],
   },
   resolve: {
-    modules: ['lib', 'node_modules'],
+    // modules: ['node_modules', 'lib'],
     extensions: ['.js', '.jsx', 'css', '.json'],
   },
   externals: {

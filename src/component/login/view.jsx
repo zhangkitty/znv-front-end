@@ -1,7 +1,3 @@
-/**
- * Created by yeyangmei on 2017/5/15.
- */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -24,10 +20,10 @@ class View extends React.Component {
     } = this.props;
     return (
       <div style={{ height: `${window.innerHeight}px` }}>
-        <canvas/>
+        <canvas />
         <article>
           <div>
-            <span/>
+            <span />
             领添SHEIN-WMS管理系统
           </div>
           <form action="#" method="POST">

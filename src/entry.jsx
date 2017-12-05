@@ -5,12 +5,13 @@ import 'classnames';
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { hashHistory } from 'react-router';
 import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
+import { routerReducer, routerMiddleware } from 'react-router-redux';
+import assign from 'object-assign';
 import postRedirectMiddleware from './middlewares/post-redirect';
 import pageSizeMiddleware from './middlewares/pagesize';
+import hashHistory from './lib/history';
 
 import rootReducers, { rootSaga } from './component/index';
 
@@ -18,7 +19,9 @@ import RootView from './component/root';
 
 const sagaMiddleware = createSagaMiddleware();
 
-const reducers = combineReducers(rootReducers);
+const reducers = combineReducers(assign({
+  routing: routerReducer,
+}, rootReducers));
 
 const routeMiddleware = routerMiddleware(hashHistory);
 
@@ -27,12 +30,10 @@ const store = createStore(reducers, compose(
   window.devToolsExtension ? window.devToolsExtension() : f => f,
 ));
 
-const history = syncHistoryWithStore(hashHistory, store);
-
 sagaMiddleware.run(rootSaga);
 const root = (
   <Provider store={store}>
-    <RootView history={history} innerStore={store} />
+    <RootView history={hashHistory} innerStore={store} />
   </Provider>
 );
 

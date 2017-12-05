@@ -1,6 +1,3 @@
-/**
- * Created by yeyangmei on 2017/5/16.
- */
 import { takeLatest, put } from 'redux-saga/effects';
 import * as types from './types';
 import { changeValue } from './actions';

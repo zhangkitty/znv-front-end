@@ -1,7 +1,3 @@
-/**
- * Created by yeyangmei on 2017/5/15.
- */
-
 import assign from 'object-assign';
 import * as types from './types';
 
