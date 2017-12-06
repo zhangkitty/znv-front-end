@@ -1,4 +1,8 @@
 const webpack = require('webpack');
+const HappyPack = require('happypack');
+const cpuCount = require('os').cpus().length;
+
+const happyPackPool = HappyPack.ThreadPool({ size: cpuCount - 1 });
 
 module.exports = {
   entry: {
@@ -32,7 +36,7 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         loaders: [
-          'babel-loader?cacheDirectory=true',
+          'happypack/loader?id=js',
           {
             loader: 'react-redux-component-loader',
             options: {
@@ -46,7 +50,7 @@ module.exports = {
         ],
       },
       {
-        test: /component\/([^\/]+\/)*type[s]?.js$/,
+        test: /component\/([^/]+\/)*type[s]?.js$/,
         exclude: /node_modules/,
         loaders: ['react-redux-types-loader'],
       },
@@ -77,6 +81,19 @@ module.exports = {
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       name: ['vendor', 'manifest'],
+    }),
+    new HappyPack({
+      id: 'js',
+      threadPool: happyPackPool,
+      loaders: ['babel-loader?cacheDirectory=true'],
+    }),
+    new HappyPack({
+      id: 'styles',
+      threadPool: happyPackPool,
+      loaders: ['style-loader',
+        'css-loader?modules&importLoaders=1&localIdentName=[path]__[local]-[hash:base64:5]',
+        'postcss-loader',
+      ],
     }),
   ],
 };

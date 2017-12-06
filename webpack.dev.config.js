@@ -17,8 +17,7 @@ module.exports = merge(config, {
       {
         test: /\.css$/,
         loaders: [
-          'style-loader',
-          'css-loader?modules&importLoaders=1&localIdentName=[path]__[local]-[hash:base64:5]!autoprefixer-loader',
+          'happypack/loader?id=styles',
         ],
       },
     ],
@@ -43,8 +42,8 @@ module.exports = merge(config, {
       'Access-Control-Allow-Origin': '*',
     },
     proxy: {
-      '/ssr': {
-        target: 'http://192.168.20.66',
+      '[as you wish]': {
+        target: 'http://[as you wish]',
         // pathRewrite: { '^/mpphp': '' },
         secure: false,
         changeOrigin: true,

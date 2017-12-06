@@ -1,18 +1,18 @@
+const path = require('path');
 const webpack = require('webpack');
 const ExtractPlugin = require('extract-text-webpack-plugin');
-const config = require('./webpack.base.config');
-const path = require('path');
-const { merge } = require('lodash');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
-module.exports = merge(config, {
+const config = require('./webpack.base.config');
+
+module.exports = Object.assign({}, config, {
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name][chunkhash].js',
-    chunkFilename: '[name][chunkhash].js',
-    publicPath: './',
+    filename: '[name].[chunkhash].js',
+    chunkFilename: '[name].[chunkhash].js',
+    publicPath: 'dist/',
   },
   cache: false,
   module: {
@@ -23,7 +23,8 @@ module.exports = merge(config, {
         use: ExtractPlugin.extract({
           fallback: 'style-loader',
           use:
-              'css-loader?minimize&modules&importLoaders=1&localIdentName=[path]__[local]-[hash:base64:5]!autoprefixer-loader',
+              ['css-loader?minimize&modules&importLoaders=1&localIdentName=[path]__[local]-[hash:base64:5]',
+                'postcss-loader'],
         }),
       },
     ],
