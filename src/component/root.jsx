@@ -51,7 +51,7 @@ const Routes = ({ history, innerStore }) => {
     </ConnectedRouter>
   );
 };
-
+/* eslint-disable */
 Routes.propTypes = {
   history: Proptypes.shape(),
   innerStore: Proptypes.shape(),
