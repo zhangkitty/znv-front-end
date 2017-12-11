@@ -1,7 +1,7 @@
 export const under2Camal = (obj) => {
   const str = JSON.stringify(obj)
     .replace(/"([^"]+)":/g, (_, catched) =>
-      `"${catched.replace(/_+(.)/g, (__, letter) => letter.toUpperCase())}":` );
+      `"${catched.replace(/_+(.)/g, (__, letter) => letter.toUpperCase())}":`);
   return JSON.parse(str);
 };
 
