@@ -5,6 +5,7 @@ const ExtractPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const config = require('./webpack.base.config');
 
@@ -31,6 +32,7 @@ module.exports = Object.assign({}, config, {
     ],
   },
   plugins: [
+    new CleanWebpackPlugin(['dist']),
     ...config.plugins,
     new ExtractPlugin('[contenthash].css'),
     new webpack.DefinePlugin({
