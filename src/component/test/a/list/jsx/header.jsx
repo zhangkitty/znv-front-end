@@ -9,17 +9,18 @@ const Header = (props) => {
     dispatch,
     secondaryProcess,
     dataLoading,
+    formData,
   } = props;
   return (
     <div className={style.flexBox} style={{ paddingTop: 0 }}>
       <div className={style.inputItem}>
         <span className={style.itemTitle}>
-          二次工艺：{secondaryProcess}
+          二次工艺：{formData.kkk}
         </span>
         <Input
           className={style.inputBox}
           size="large"
-          data-bind="secondaryProcess"
+          data-bind="formData.kkk"
         />
       </div>
       <div className={style.inputItem}>

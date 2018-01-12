@@ -5,6 +5,9 @@ import { getSize } from '../../../../middlewares/pagesize';
 export const defaultState = {
   ready: true,
   list: [],
+  formData: {
+    kkk: 3,
+  },
   secondaryProcess: '',
   produceOrderId: '',
   handleLoading1: '',
