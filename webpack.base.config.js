@@ -1,3 +1,4 @@
+/* eslint-disable */
 const webpack = require('webpack');
 const HappyPack = require('happypack');
 const cpuCount = require('os').cpus().length;

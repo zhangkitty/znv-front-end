@@ -1,3 +1,12 @@
+## 项目启动方式
+npm start --开发环境
+
+npm run build --生产环境
+
+npm run analysis --分析资源
+
+## 配置文件
+
 webpack.base.config.js --通用配置文件
 
 webpack.dev.config.js --开发环境配置文件

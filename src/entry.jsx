@@ -1,6 +1,3 @@
-/**
- * Created by zhanyaqi on 2017/8/30.
- */
 import 'classnames';
 import React from 'react';
 import { render } from 'react-dom';

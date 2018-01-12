@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Spin } from 'antd';
 import { connect } from 'react-redux';
 import { init } from './action';
-import Header from './components/header';
-import List from './components/list';
+import Header from './jsx/header';
+import List from './jsx/list';
 import { defaultState } from './reducers';
 
 class Container extends React.Component {
