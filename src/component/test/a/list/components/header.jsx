@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Input } from 'antd';
-import { changeValue, search } from '../action';
+import { search } from '../action';
 import style from '../style.css';
 
 const Header = (props) => {
@@ -14,13 +14,12 @@ const Header = (props) => {
     <div className={style.flexBox} style={{ paddingTop: 0 }}>
       <div className={style.inputItem}>
         <span className={style.itemTitle}>
-          二次工艺：
+          二次工艺：{secondaryProcess}
         </span>
         <Input
           className={style.inputBox}
           size="large"
-          value={secondaryProcess}
-          onChange={e => dispatch(changeValue('secondaryProcess', e.target.value))}
+          data-bind="secondaryProcess"
         />
       </div>
       <div className={style.inputItem}>

@@ -2,6 +2,8 @@ import React from 'react';
 import Proptypes from 'prop-types';
 import { ConnectedRouter } from 'react-router-redux';
 import { Route as RawRoute, Switch } from 'react-router-dom';
+import injectStore from 'rrc-loader-helper/lib/inj-dispatch';
+
 
 import Nav from './nav/view';
 import Login from './login/view';
@@ -42,6 +44,7 @@ const NavWrapper = props => (
 
 const Routes = ({ history, innerStore }) => {
   store = innerStore;
+  injectStore(innerStore);
   return (
     <ConnectedRouter history={history}>
       <Switch>

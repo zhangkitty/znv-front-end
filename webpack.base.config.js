@@ -45,6 +45,7 @@ module.exports = {
               loading: 'Loading',
               reducerName: 'reducers',
               componentDir: 'component',
+              reducerDecorator: 'reducerDecorator',
             },
           },
         ],
