@@ -37,9 +37,7 @@ export const pickingList = (argObj = {}) => {
   const uri = `${process.env.BASE_URI}/summaryPickingList/pickingList?${queryString}`;
   return fetch(uri, {
     method: 'GET',
-    credentials: 'include',
   })
-    .then(data => data.json())
     .then(under2Camal);
 };
 
@@ -52,13 +50,8 @@ export const pickingListDelete = (argObj = {}) => {
   const uri = `${process.env.BASE_URI}/summaryPickingList/pickingListDelete?${queryString}`;
   return fetch(uri, {
     method: 'POST',
-    credentials: 'include',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(camel2Under(argObj)),
+    body: camel2Under(argObj),
   })
-    .then(data => data.json())
     .then(under2Camal);
 };
 
@@ -72,12 +65,7 @@ export const generate = (argObj = {}) => {
   const uri = `${process.env.BASE_URI}/summaryPickingList/generate?${queryString}`;
   return fetch(uri, {
     method: 'POST',
-    credentials: 'include',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(camel2Under(argObj)),
+    body: camel2Under(argObj),
   })
-    .then(data => data.json())
     .then(under2Camal);
 };
