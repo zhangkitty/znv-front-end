@@ -1,62 +1,68 @@
-import { message } from 'antd';
+import fetch from 'whatwg-fetch';
+import { notification } from 'antd';
 import assign from 'object-assign';
-import 'whatwg-fetch';
 
-const fetch = process.env.NODE_ENV === 'test' ? global.fetch : window.fetch;
-let messageShowed = false;
-
-function showMessage(msg, fn = () => {}) {
-  if (!messageShowed) {
-    messageShowed = true;
-    message.error(msg, 3);
-    setTimeout(() => {
-      messageShowed = false;
-      fn();
-    }, 3000);
+const codeMessage = {
+  200: '服务器成功返回请求的数据',
+  201: '新建或修改数据成功。',
+  202: '一个请求已经进入后台排队（异步任务）',
+  204: '删除数据成功。',
+  400: '发出的请求有错误，服务器没有进行新建或修改数据,的操作。',
+  401: '用户没有权限（令牌、用户名、密码错误）。',
+  403: '用户得到授权，但是访问是被禁止的。',
+  404: '发出的请求针对的是不存在的记录，服务器没有进行操作',
+  406: '请求的格式不可得。',
+  410: '请求的资源被永久删除，且不会再得到的。',
+  422: '当创建一个对象时，发生一个验证错误。',
+  500: '服务器发生错误，请检查服务器',
+  502: '网关错误',
+  503: '服务不可用，服务器暂时过载或维护',
+  504: '网关超时',
+};
+function checkStatus(response) {
+  if (response.status >= 200 && response.status < 300) {
+    return response;
   }
+  const errortext = codeMessage[response.status] || response.statusText;
+  notification.error({
+    message: `请求错误 ${response.status}: ${response.url}`,
+    description: errortext,
+  });
+  const error = new Error(errortext);
+  error.name = response.status;
+  error.response = response;
+  throw error;
 }
 
-const relogin = {
-  230102: 'user status is wrong',
-  230103: 'user not exist',
-  230104: 'IP not allowed',
-  230105: 'system not allowed',
-  230106: 'token not valid',
-  800005: 'token error',
-};
-
-export default (url, args = {}, header) => (
-  fetch(`${process.env.BASE_URI}${url}`, assign({
+/**
+ * Requests a URL, returning a promise.
+ *
+ * @param  {string} url       The URL we want to request
+ * @param  {object} [options] The options we want to pass to "fetch"
+ * @return {object}           An object containing either "data" or "err"
+ */
+export default function request(url, options) {
+  const defaultOptions = {
     credentials: 'include',
-    headers: header || {
-      'content-type': 'application/json',
-      token: localStorage.getItem('token'),
-    },
-  }, args))
-)
-  .then((res) => {
-    const { status } = res;
-    if (status > 300) {
-      showMessage('服务器响应出错,请尝试 刷新 重试,或者联系开发人员需求帮助  _(:3 」∠)_');
-      throw new Error(status);
-    }
-    const code = res.headers.get('x-code');
-    const msg = res.headers.get('x-err-msg');
-    if (relogin[code]) {
-      const e = new Error();
-      e.loginNeeded = true;
-      throw e;
-    }
-    if (res.headers.get('content-type') === 'application/vnd.ms-excel;charset=UTF-8') {
-      return res.blob();
-    }
+  };
+  const newOptions = assign({}, defaultOptions, options);
+  if (newOptions.method === 'POST' || newOptions.method === 'PUT') {
+    newOptions.headers = assign({}, {
+      Accept: 'application/json',
+      'Content-Type': 'application/json; charset=utf-8',
+    }, newOptions.headers);
+    newOptions.body = JSON.stringify(newOptions.body);
+  }
 
-    if (code === '0') {
-      return res.json().catch(() => ({
-        code,
-      }));
-    }
-    return res.text().then(() => ({
-      error: decodeURIComponent(msg),
-    }));
-  });
+  return fetch(url, newOptions)
+    .then(checkStatus)
+    .then((response) => {
+      if (newOptions.method === 'DELETE' || response.status === 204) {
+        return response.text();
+      }
+      return response.json();
+    })
+    .catch((e) => {
+      throw e;
+    });
+}

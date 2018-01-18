@@ -3,6 +3,8 @@ import * as types from './types';
 
 const menus = [
   {
+    title: '项目名称1',
+    icon: 'mail',
     children: [
       {
         link: '/test/a',
@@ -10,8 +12,6 @@ const menus = [
         icon: 'mail',
       },
     ],
-    title: '项目名称1',
-    icon: 'mail',
   },
 ];
 
