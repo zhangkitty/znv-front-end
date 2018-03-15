@@ -14,7 +14,7 @@ module.exports = Object.assign({}, config, {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[chunkhash].js',
     chunkFilename: '[name].[chunkhash].js',
-    publicPath: 'dist/',
+    publicPath: './',
   },
   cache: false,
   module: {
@@ -43,6 +43,7 @@ module.exports = Object.assign({}, config, {
     new HtmlWebpackPlugin({
       template: './index.ejs',
       filename: './index.html',
+      publicPath:'/'
     }),
     new ParallelUglifyPlugin({
       uglifyJS: {
