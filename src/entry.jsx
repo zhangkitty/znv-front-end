@@ -2,7 +2,7 @@ import 'classnames';
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import hashHistory from './lib/history';
+import hashHistory from 'shein-lib/history';
 
 import store from './createStore';
 

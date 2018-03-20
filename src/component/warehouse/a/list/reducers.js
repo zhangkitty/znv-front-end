@@ -1,12 +1,12 @@
 import assign from 'object-assign';
+import { getSize } from 'shein-middlewares/pagesize';
 import * as types from './types';
-import { getSize } from '../../../../middlewares/pagesize';
 
 export const defaultState = {
   ready: true,
   list: [],
   formData: {
-    kkk: 3,
+    kkk: '',
   },
   secondaryProcess: '',
   produceOrderId: '',

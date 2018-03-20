@@ -20,7 +20,7 @@ module.exports = {
     ],
   },
   resolve: {
-    // modules: ['node_modules', 'lib'],
+    modules: ['node_modules', 'web_modules'],
     extensions: ['.js', '.jsx', 'css', '.json'],
   },
   externals: {

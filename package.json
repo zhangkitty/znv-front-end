@@ -14,7 +14,8 @@
     "test": "NODE_ENV=test ava",
     "start": "webpack-dev-server --config webpack.dev.config.js",
     "build": "webpack --config webpack.pro.config.js",
-    "analysis": "NODE_ENV=analysis webpack --config webpack.pro.config.js"
+    "analysis": "NODE_ENV=analysis webpack --config webpack.pro.config.js",
+    "lint": "eslint --ext .js --ext .jsx ."
   },
   "keywords": [],
   "author": "stoney",
@@ -22,7 +23,6 @@
   "dependencies": {
     "antd": "^3.1.0",
     "classnames": "^2.2.5",
-    "clean-webpack-plugin": "^0.1.17",
     "history": "^4.7.2",
     "js-cookie": "^2.2.0",
     "lodash": "^4.17.4",
@@ -40,6 +40,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^7.2.1",
+    "clean-webpack-plugin": "^0.1.17",
     "ava": "^0.24.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.2",

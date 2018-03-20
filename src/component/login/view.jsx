@@ -36,7 +36,6 @@ class View extends React.Component {
                 name="admintoken"
                 value={admintoken}
                 onChange={e => dispatch(changeValue('admintoken', e.target.value))}
-                ref={input => (this.userNameInput = input)}
                 onPressEnter={() => {
                   dispatch(commitLogin({ admintoken }, from || '%2F'));
                 }}
@@ -62,9 +61,7 @@ class View extends React.Component {
 }
 
 View.propTypes = {
-  params: PropTypes.shape({
-    from: PropTypes.string,
-  }).isRequired,
+  from: PropTypes.string,
   admintoken: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired,

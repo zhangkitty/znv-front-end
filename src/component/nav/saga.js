@@ -1,8 +1,9 @@
 import { takeLatest, put } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
+import showMessage from 'shein-lib/modal';
+
 import * as types from './types';
 import { changeValue } from './actions';
-import showMessage from '../../lib/modal';
 import logout from './server';
 
 function* logoutWorker() {

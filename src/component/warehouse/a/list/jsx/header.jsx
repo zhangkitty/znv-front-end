@@ -7,7 +7,6 @@ import style from '../style.css';
 const Header = (props) => {
   const {
     dispatch,
-    secondaryProcess,
     dataLoading,
     formData,
   } = props;
@@ -39,7 +38,9 @@ const Header = (props) => {
 
 Header.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  secondaryProcess: PropTypes.string.isRequired,
+  formData: PropTypes.shape({
+    kkk: PropTypes.string,
+  }).isRequired,
   dataLoading: PropTypes.bool.isRequired,
 };
 

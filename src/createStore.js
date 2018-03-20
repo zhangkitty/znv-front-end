@@ -2,9 +2,11 @@ import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { routerReducer, routerMiddleware } from 'react-router-redux';
 import assign from 'object-assign';
-import postRedirectMiddleware from './middlewares/post-redirect';
-import pageSizeMiddleware from './middlewares/pagesize';
-import hashHistory from './lib/history';
+
+import hashHistory from 'shein-lib/history';
+import postRedirectMiddleware from 'shein-middlewares/post-redirect';
+import pageSizeMiddleware from 'shein-middlewares/pagesize';
+
 import rootReducers, { rootSaga } from './component/index';
 
 

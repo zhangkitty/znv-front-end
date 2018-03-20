@@ -9,20 +9,23 @@ export default assign({
 }, __ROOT_REDUCER__);
 const runningSaga = [];
 
-function* waitingAwakeSaga(saga) {
-  while (!saga) {
+function* waitingAwakeSaga(s) {
+  let currentSaga = s;
+  while (!currentSaga) {
     const action = yield take(UPDATE_SAGA);
     if (runningSaga.indexOf(action.saga) === -1) {
       runningSaga.push(action.saga);
-      saga = action.saga;
+      currentSaga = action.saga;
       break;
     }
   }
   for (let i = 0; i < 100; i++) {
     try {
-      yield call(saga);
+      yield call(currentSaga);
     } catch (e) {
+      /* eslint-disable no-console */
       console.error(e);
+      /* eslint-enable  no-console */
     }
   }
 }

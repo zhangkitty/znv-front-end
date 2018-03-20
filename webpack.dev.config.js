@@ -34,7 +34,7 @@ module.exports = Object.assign({},config, {
     })
   ],
   devServer: {
-    host: '0.0.0.0',
+    host: '127.0.0.1',
     contentBase: [path.join(__dirname, './')],
     // port: 8080,
     headers: {

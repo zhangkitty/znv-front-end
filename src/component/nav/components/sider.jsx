@@ -5,23 +5,27 @@ import { Link } from 'react-router-dom';
 
 const { SubMenu } = Menu;
 
-const Sider = ({ menus }) => {
-  function CustomSubMenu({
+const Sider = ({ menus, current }) => {
+  const defaultSelectedKeys = [];
+  function TreeMenu({
     title, icon, children, link,
   }) {
+    if (current.indexOf(link) === 0) {
+      defaultSelectedKeys.push(link);
+    }
     if (children && children.length) {
       return (
         <SubMenu
-          key={title}
-          title={<span><Icon type={icon} /><span>{title}</span></span>}
+          key={link}
+          title={<div><Icon type={icon} /><span>{title}</span></div>}
         >
-          {children.map(prop => CustomSubMenu(prop))}
+          {children.map(prop => TreeMenu(prop))}
         </SubMenu>
       );
     } return (
       <Menu.Item key={link}>
         {
-          <Link to={link}>
+          <Link href={link} to={link}>
             <Icon type={icon} /> {title}
           </Link>
         }
@@ -29,22 +33,24 @@ const Sider = ({ menus }) => {
     );
   }
 
-  CustomSubMenu.propTypes = {
+  TreeMenu.propTypes = {
     icon: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    children: PropTypes.arrayOf(PropTypes.shape(CustomSubMenu.propTypes)).isRequired,
+    children: PropTypes.arrayOf(PropTypes.shape(TreeMenu.propTypes)).isRequired,
     link: PropTypes.string.isRequired,
   };
 
   return (
     <Menu
-      style={{ overflowY: 'auto', width: 180, height: window.innerHeight - 48 }}
+      style={{ overflowY: 'auto', width: 180, height: window.innerHeight - 40 }}
       mode="inline"
       theme="dark"
       inlineIndent={12}
+      defaultSelectedKeys={defaultSelectedKeys}
+      defaultOpenKeys={defaultSelectedKeys}
     >
       {
-        menus.map(CustomSubMenu)
+        menus.map(TreeMenu)
       }
     </Menu>
   );

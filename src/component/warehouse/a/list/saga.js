@@ -26,7 +26,10 @@ function* search(action) {
 function* handle(action) {
   let data;
   if (action.types === '1') {
-    data = yield generate({ handle_list: action.idList, processing_plant: action.processing_plant });
+    data = yield generate({
+      handle_list: action.idList,
+      processing_plant: action.processing_plant,
+    });
   } else {
     data = yield pickingListDelete({ handle_list: action.idList });
   }

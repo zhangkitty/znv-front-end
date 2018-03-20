@@ -1,5 +1,5 @@
+import { makeActionCreator } from 'shein-lib/dealFunc';
 import * as types from './types';
-import { makeActionCreator } from '../../lib/dealFunc';
 
 export const logout = makeActionCreator(types.LOGOUT);
 export const setNavList = makeActionCreator(types.SET_NAV_LIST, 'data');

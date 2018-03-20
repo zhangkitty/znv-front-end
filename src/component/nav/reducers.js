@@ -3,12 +3,13 @@ import * as types from './types';
 
 const menus = [
   {
-    title: '项目名称1',
-    icon: 'mail',
+    title: '功能组1',
+    icon: 'bars',
+    link: '/warehouse',
     children: [
       {
-        link: '/test/a',
-        title: '项目名称2',
+        link: '/warehouse/a',
+        title: '子功能1',
         icon: 'mail',
       },
     ],
