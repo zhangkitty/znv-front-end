@@ -40,7 +40,6 @@
 }
 .logout{
     margin-right:10px;
-    color: #fff;
 }
 
 .top_margin {
@@ -49,9 +48,9 @@
     align-items: center;
 }
 .antLayouttop{
-    padding: 8px 0;
+    /*padding: 8px 0;*/
     display: flex;
-    background-color: #404040;
+    background-color: white;
     border-bottom: 1px solid #efefef;
 }
 a.linkcolor{
@@ -88,4 +87,18 @@ a:focus{
     .mobileBack {
         display: none;
     }
+}
+
+.logo {
+    height: 32px;
+    background: rgba(255,255,255,.2);
+    margin: 16px;
+}
+
+.trigger {
+    font-size: 18px;
+    line-height: 64px;
+    padding: 0 24px;
+    cursor: pointer;
+    transition: color .3s;
 }

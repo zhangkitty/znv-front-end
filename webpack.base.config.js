@@ -2,6 +2,7 @@
 const webpack = require('webpack');
 const HappyPack = require('happypack');
 const cpuCount = require('os').cpus().length;
+const theme  = require('./theme/index.json')
 
 const happyPackPool = HappyPack.ThreadPool({ size: cpuCount - 1 });
 
@@ -14,6 +15,7 @@ module.exports = {
       'react-router',
       'react-router-redux',
       'redux-saga',
+      'shineout',
       'object-assign',
       'classnames',
       'whatwg-fetch',
@@ -50,6 +52,29 @@ module.exports = {
             },
           },
         ],
+      },
+      {
+        test: /\.js$/,
+        include: /node_modules\/shineout/,
+        loaders: ['babel-loader'],
+      },
+      {
+        test: /\.less$/,
+        // include: /node_modules\/shineout/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'less-loader',
+            options: {
+              modifyVars: {
+                'so-theme': 'antd',
+                "@primary-color": "#001529",
+                "@font-size-base": "12px"
+              }
+            }
+          }
+        ]
       },
       {
         test: /component\/([^/]+\/)*type[s]?.js$/,

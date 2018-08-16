@@ -1,9 +1,11 @@
 import React from 'react';
 import Proptypes from 'prop-types';
 import { ConnectedRouter } from 'react-router-redux';
-import { Route as RawRoute, Switch } from 'react-router-dom';
+import { Route as RawRoute, Switch, Redirect } from 'react-router-dom';
 import injectStore from 'rrc-loader-helper/lib/inj-dispatch';
-
+import Cookie from 'utils/js.cookie';
+import 'style/index.less';
+import 'style/lib/animate.css';
 
 import Nav from './nav/view';
 import Login from './login/view';
@@ -42,6 +44,17 @@ const NavWrapper = props => (
   </Nav>
 );
 
+const AuthorizedRoute = (props) => {
+  const isLogged = Cookie.get('SESSION_TOKEN') && Cookie.get('SESSION_NP');
+  return (
+    isLogged ?
+      <NavWrapper {...props} />
+      :
+      <Redirect to="/login" />
+  );
+};
+
+
 const Routes = ({ history, innerStore }) => {
   store = innerStore;
   injectStore(innerStore);
@@ -49,7 +62,7 @@ const Routes = ({ history, innerStore }) => {
     <ConnectedRouter history={history}>
       <Switch>
         <Route path="/login" component={Login} />
-        <Route path="/" component={NavWrapper} />
+        <Route path="/" component={AuthorizedRoute} />
       </Switch>
     </ConnectedRouter>
   );

@@ -36,13 +36,15 @@ module.exports = Object.assign({},config, {
   devServer: {
     host: '127.0.0.1',
     contentBase: [path.join(__dirname, './')],
-    // port: 8080,
+    // port: 7001,
+    disableHostCheck: true,
     headers: {
-      'Access-Control-Allow-Origin': '*'
+      'Access-Control-Allow-Origin': '*',
+      "Access-Control-Allow-Headers":"Authorization,Origin, X-Requested-With, Content-Type, Accept"
     },
     proxy: {
-      '[as you wish]': {
-        target: 'http://[as you wish]',
+      '/': {
+        target: 'http://127.0.0.1:7001',
         // pathRewrite: { '^/mpphp': '' },
         secure: false,
         changeOrigin: true

@@ -1,18 +1,20 @@
+// import hashHistory from 'shein-lib/history';
+import { push } from 'react-router-redux';
 import { takeLatest, put } from 'redux-saga/effects';
 import * as types from './types';
 import { changeValue } from './actions';
+import { submitSer } from './server';
+import { message } from 'antd';
 
-
-import login from './server';
-
-function* loginWorker(action) {
-  const data = yield login(action.data);
-  if (data.code === 0) {
-    window.location.href = '/';
+function* submitSaga(action) {
+  const data = yield submitSer(action.data);
+  if (data.success !== true) {
+    return message.error(data.message);
   }
-  yield put(changeValue('message', data.msg));
+  // hashHistory.replace('/');
+  return yield put(push('/'));
 }
 
 export default function* () {
-  yield takeLatest(types.LOGIN, loginWorker);
+  yield takeLatest(types.SUBMIT, submitSaga);
 }

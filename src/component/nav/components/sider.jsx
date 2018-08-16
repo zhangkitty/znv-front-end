@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 const { SubMenu } = Menu;
 
+
 const Sider = ({ menus, current }) => {
   const defaultSelectedKeys = [];
   function TreeMenu({
@@ -17,7 +18,7 @@ const Sider = ({ menus, current }) => {
       return (
         <SubMenu
           key={link}
-          title={<div><Icon type={icon} /><span>{title}</span></div>}
+          title={<div><Icon type={icon} /><span className="nav-text">{title}</span></div>}
         >
           {children.map(prop => TreeMenu(prop))}
         </SubMenu>
@@ -26,7 +27,7 @@ const Sider = ({ menus, current }) => {
       <Menu.Item key={link}>
         {
           <Link href={link} to={link}>
-            <Icon type={icon} /> {title}
+            <Icon type={icon} /><span className="nav-text">{title}</span>
           </Link>
         }
       </Menu.Item>
@@ -42,10 +43,9 @@ const Sider = ({ menus, current }) => {
 
   return (
     <Menu
-      style={{ overflowY: 'auto', width: 180, height: window.innerHeight - 40 }}
+      style={{ height: window.innerHeight - 40 }}
       mode="inline"
       theme="dark"
-      inlineIndent={12}
       defaultSelectedKeys={defaultSelectedKeys}
       defaultOpenKeys={defaultSelectedKeys}
     >

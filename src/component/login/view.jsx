@@ -1,71 +1,79 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-import { Button, Input, Icon } from 'antd';
-
-import { commitLogin, changeValue } from './actions';
+import { Form, Icon, Input, Button } from 'antd';
+import { submit } from './actions';
 
 
-class View extends React.Component {
+const FormItem = Form.Item;
+
+function hasErrors(fieldsError) {
+  return Object.keys(fieldsError).some(field => fieldsError[field]);
+}
+
+class HorizontalLoginForm extends Component {
   componentDidMount() {
-    document.title = '登录窗口';
+    // To disabled submit button at the beginning.
+    this.props.form.validateFields();
   }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log(1);
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        console.log('Received values of form: ', values);
+        this.props.dispatch(submit(values));
+      }
+    });
+    console.log(2);
+  }
+
   render() {
     const {
-      from = '/',
-      dispatch,
-      admintoken,
-      message,
-    } = this.props;
+      getFieldDecorator, getFieldsError, getFieldError, isFieldTouched,
+    } = this.props.form;
+    console.log(this.props);
+
+    // Only show error after a field is touched.
+    const userNameError = isFieldTouched('userName') && getFieldError('userName');
+    const passwordError = isFieldTouched('password') && getFieldError('password');
     return (
-      <div style={{ height: `${window.innerHeight}px` }}>
-        <canvas />
-        <article>
-          <div>
-            <span />
-            领添SHEIN-WMS管理系统
-          </div>
-          <form action="#" method="POST">
-            <div>
-              <Input
-                placeholder="Enter your admintoken"
-                prefix={<Icon size="large" type="user" />}
-                size="large"
-                type="text"
-                name="admintoken"
-                value={admintoken}
-                onChange={e => dispatch(changeValue('admintoken', e.target.value))}
-                onPressEnter={() => {
-                  dispatch(commitLogin({ admintoken }, from || '%2F'));
-                }}
-              />
-            </div>
-            <div style={{ marginTop: '10px' }} >
-              <Button
-                type="primary"
-                size="large"
-                onClick={() => {
-                  dispatch(commitLogin({ admintoken }, from || '%2F'));
-                }}
-              >
-                登录
-              </Button>
-              <p>{message}</p>
-            </div>
-          </form>
-        </article>
-      </div>
+      <Form
+        layout="inline"
+        onSubmit={e => this.handleSubmit(e)}
+      >
+        <FormItem
+          validateStatus={userNameError ? 'error' : ''}
+          help={userNameError || ''}
+        >
+          {getFieldDecorator('userName', {
+              rules: [{ required: true, message: 'Please input your username!' }],
+            })(<Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />)}
+        </FormItem>
+        <FormItem
+          validateStatus={passwordError ? 'error' : ''}
+          help={passwordError || ''}
+        >
+          {getFieldDecorator('password', {
+              rules: [{ required: true, message: 'Please input your Password!' }],
+            })(<Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />)}
+        </FormItem>
+        <FormItem>
+          <Button
+            type="primary"
+            htmlType="submit"
+            disabled={hasErrors(getFieldsError())}
+          >
+              Log in
+          </Button>
+        </FormItem>
+      </Form>
     );
   }
 }
 
-View.propTypes = {
-  from: PropTypes.string,
-  admintoken: PropTypes.string.isRequired,
-  message: PropTypes.string.isRequired,
-  dispatch: PropTypes.func.isRequired,
-};
+const WrappedHorizontalLoginForm = Form.create()(HorizontalLoginForm);
+
 
 const mapStateToProps = state => state.login;
-export default connect(mapStateToProps)(View);
+export default connect(mapStateToProps)(WrappedHorizontalLoginForm);
