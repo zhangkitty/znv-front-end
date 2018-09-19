@@ -29,3 +29,6 @@ coverage
 
 # Yarn Integrity file
 .yarn-integrity
+
+.etc.tar.gz
+.favicon.ico
