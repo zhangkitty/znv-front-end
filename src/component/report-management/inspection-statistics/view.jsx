@@ -1,0 +1,73 @@
+import React from 'react';
+import Page from 'shein-lib/pagination';
+import PropTypes from 'prop-types';
+import { Spin } from 'antd';
+import { connect } from 'react-redux';
+import { changePage, changePageSize, changeValue, init } from './action';
+import Header from './jsx/header';
+import List1 from './jsx/list1';
+import List2 from './jsx/list2';
+
+class Container extends React.Component {
+  componentWillMount() {
+    this.props.dispatch(init(this.props));
+  }
+  render() {
+    const {
+      ready,
+      chooseValue,
+      total,
+      page,
+      pageSize,
+      dispatch,
+    } = this.props;
+    if (ready) {
+      return (
+        <div>
+          <Header {...this.props} />
+          {
+            (+chooseValue === 1) && <List1 {...this.props} />
+          }
+          {
+            (+chooseValue === 2) && <List2 {...this.props} />
+          }
+          <Page
+            total={total}
+            onChange={(pageValue) => {
+              dispatch(changeValue('page', pageValue));
+              dispatch(changePage(Object.assign({}, this.props, {
+                page: pageValue,
+                pageSize,
+              })));
+            }}
+            onShowSizeChange={(current, size) => {
+              dispatch(changeValue('pageSize', size));
+              dispatch(changePageSize(Object.assign({}, this.props, {
+                page: current,
+                pageSize: size,
+              })));
+            }}
+            current={page}
+            pageSize={pageSize}
+          />
+
+
+        </div>
+      );
+    }
+    return (
+      <div style={{ textAlign: 'center' }}>
+        <Spin size="large" />
+      </div>
+    );
+  }
+}
+
+Container.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  ready: PropTypes.bool.isRequired,
+  chooseValue: PropTypes.number,
+};
+
+const stateToProp = state => state['report-management/inspection-statistics'];
+export default connect(stateToProp)(Container);

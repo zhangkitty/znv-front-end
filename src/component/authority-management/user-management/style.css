@@ -1,0 +1,104 @@
+.left{
+    flex-basis:200px;
+    height: 100%;
+}
+
+.right{
+    width: 100%;
+    margin-left: 20px;
+    height: 100%;
+}
+
+.all{
+    display: flex;
+    height: 100%;
+    margin-top: 20px;
+}
+
+.addCustomer{
+    height: 50px;
+    line-height: 50px;
+}
+
+.deptName{
+    display: flex;
+}
+
+.deptName div{
+    flex-basis: 100px;
+    line-height: 32px;
+}
+
+.menuTitle {
+
+}
+
+.menuTitle + {
+    display: none;
+}
+
+.province{
+    display: flex;
+}
+.province div{
+    flex-basis: 100px;
+    line-height: 32px;
+}
+
+.city{
+    margin-top: 5px;
+    display: flex;
+}
+
+.city div{
+    flex-basis: 100px;
+    line-height: 32px;
+}
+
+.userFrom{
+    display: flex;
+}
+
+.userFrom div{
+    flex-basis: 100px;
+    line-height: 32px;
+}
+
+.treeSelect{
+    width: 200px;
+}
+
+.userName{
+    display: flex;
+    margin-top: 10px;
+}
+
+.userName div{
+    flex-basis: 100px;
+    line-height: 32px;
+}
+
+.userTelephone{
+    display: flex;
+    margin-top: 10px;
+}
+.userTelephone div{
+    flex-basis: 100px;
+    line-height: 32px;
+}
+
+.userEmail{
+    display: flex;
+    margin-top: 10px;
+}
+.userEmail div{
+    flex-basis: 100px;
+    line-height: 32px;
+}
+
+.addUser{
+    height: 50px;
+    line-height: 50px;
+}
+
+

@@ -10,7 +10,7 @@ import 'style/lib/animate.css';
 import Nav from './nav/view';
 import Login from './login/view';
 
-const Home = () => <div>首页</div>;
+// const Home = () => <div>首页</div>;
 
 /* eslint-disable */
 const WrapperComponent = Component => props => <Component {...props} params={props.match.params} />;
@@ -38,14 +38,15 @@ const Loading = () => <div />;
 const NavWrapper = props => (
   <Nav {...props}>
     <Switch>
-      <Route exact path="/" component={Home} />
+      {/* <Route exact path="/" component={Home} /> */}
       __ROOT_ROUTE__
     </Switch>
   </Nav>
 );
 
 const AuthorizedRoute = (props) => {
-  const isLogged = Cookie.get('SESSION_TOKEN') && Cookie.get('SESSION_NP');
+  const isLogged = true;
+  // const isLogged = Cookie.get('SESSION_TOKEN') && Cookie.get('SESSION_NP');
   return (
     isLogged ?
       <NavWrapper {...props} />

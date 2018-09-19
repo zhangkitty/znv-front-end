@@ -1,0 +1,57 @@
+.head{
+}
+
+.month{
+  display: flex;
+}
+
+.month div{
+  flex-basis: 80px;
+  line-height: 32px;
+}
+
+.monthSelect{
+  width: 200px;
+}
+
+.dimension{
+  display: flex;
+  height: 34px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.dimension div{
+  flex-basis: 80px;
+  line-height: 34px;
+}
+
+.radioGroup{
+  display: flex;
+}
+.radio{
+  line-height: 34px;
+}
+
+.radioFontSize{
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.assessment{
+  display: flex;
+}
+
+.label{
+  line-height: 32px;
+  flex-basis: 80px;
+}
+
+.team{
+  margin-left: 200px;
+}
+
+.button{
+  margin-top: 20px;
+}
+

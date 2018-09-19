@@ -55,12 +55,13 @@ const fetch = async (options) => {
   } else {
     Cookie.remove('SESSION_NP');
     Cookie.remove('SESSION_TOKEN');
-    const href = window.location.href.split('#')[0];
-    window.open(`${href}#/login`, '_self');
+    // const href = window.location.href.split('#')[0];
+    // window.open(`${href}#/login`, '_self');
   }
   switch (method.toLowerCase()) {
     case 'get':
-      return axios.get(url, { params: data, ...authHeader });
+      return axios.get(url);
+      // return axios.get(url, { params: data, ...authHeader });
     case 'delete':
       return axios.delete(url, { data, ...authHeader });
     case 'head':
@@ -129,13 +130,6 @@ function refleshToken(pdata) {
 }
 
 export default function request(options) {
-  // if (options.url.indexOf('//') > -1) {
-  //   const origin = `${options.url.split('//')[0]}//${options.url.split('//')[1].split('/')[0]}`
-  //   if (window.location.origin !== origin && config.devBaseURL.indexOf(origin) < 0) {
-  //     options.url = `http://query.yahooapis.com/v1/public/yql?q=select * from json where url='${options.url}?${qs.stringify(options.data)}'&format=json`
-  //     delete options.data
-  //   }
-  // }
   if (options.url.indexOf('//') == -1) {
     options.url = config.devBaseURL + options.url;
   }
@@ -143,12 +137,15 @@ export default function request(options) {
   if (options.url.indexOf('?') != -1) {
     const search = options.url.split('?')[0];
     if (search.length > 0) {
-      options.url = `${options.url}&t=${t}`;
+      // options.url = `${options.url}&t=${t}`;
+      options.url = `${options.url}`;
     } else {
-      options.url = `${options.url}t=${t}`;
+      // options.url = `${options.url}&t=${t}`;
+      options.url = `${options.url}`;
     }
   } else {
-    options.url = `${options.url}?t=${t}`;
+    // options.url = `${options.url}&t=${t}`;
+    options.url = `${options.url}`;
   }
 
   return fetch(options)

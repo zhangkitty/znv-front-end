@@ -3,7 +3,8 @@
     "parser": "babel-eslint",
     "rules": {
       "no-plusplus": "off",
-      "react/require-default-props": "off"
+      "react/require-default-props": "off",
+      "no-debugger":"off"
     },
     "overrides": [
       {

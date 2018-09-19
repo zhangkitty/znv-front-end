@@ -24,7 +24,10 @@ module.exports = Object.assign({},config, {
     ...config.plugins,
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('development')
+        NODE_ENV: JSON.stringify('development'),
+        // BASE_URI: JSON.stringify('http://127.0.0.1:8081'),
+        BASE_URI: JSON.stringify('http://127.0.0.1:8081'),
+
       }
     }),
     new HtmlWebpackPlugin({
@@ -36,7 +39,7 @@ module.exports = Object.assign({},config, {
   devServer: {
     host: '127.0.0.1',
     contentBase: [path.join(__dirname, './')],
-    // port: 7001,
+    port: 8081,
     disableHostCheck: true,
     headers: {
       'Access-Control-Allow-Origin': '*',
@@ -44,8 +47,8 @@ module.exports = Object.assign({},config, {
     },
     proxy: {
       '/': {
-        target: 'http://127.0.0.1:7001',
-        // pathRewrite: { '^/mpphp': '' },
+        target: 'http://10.45.148.66:9001',
+        // pathRewrite: { '^/rqs': '' },
         secure: false,
         changeOrigin: true
       }

@@ -12,7 +12,7 @@ function* submitSaga(action) {
     return message.error(data.message);
   }
   // hashHistory.replace('/');
-  return yield put(push('/'));
+  return yield put(push('/dashboard/a'));
 }
 
 export default function* () {

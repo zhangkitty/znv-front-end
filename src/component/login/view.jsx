@@ -18,21 +18,17 @@ class HorizontalLoginForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(1);
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
         this.props.dispatch(submit(values));
       }
     });
-    console.log(2);
   }
 
   render() {
     const {
       getFieldDecorator, getFieldsError, getFieldError, isFieldTouched,
     } = this.props.form;
-    console.log(this.props);
 
     // Only show error after a field is touched.
     const userNameError = isFieldTouched('userName') && getFieldError('userName');

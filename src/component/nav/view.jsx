@@ -20,7 +20,6 @@ const UserLand = ({ dispatch, userName }) => (
         // dispatch(logout)
         Cookie.remove('SESSION_NP');
         Cookie.remove('SESSION_TOKEN');
-        console.log(window.location);
         window.open(`${window.location.href}login`, '_self');
       }}
     >
@@ -53,43 +52,38 @@ class MainPage extends React.PureComponent {
         pathname: current,
       },
     } = this.props;
-    console.log(linkList, 'linklist');
-    console.log(pathList, 'pathlist');
 
 
     const routerMatchList = linkList.filter(({ link }) => (link === '/' || `${current}/`.startsWith(`${link}/`)))
       .sort((item1, item2) => item1.link.length > item2.link.length);
 
-    console.log(routerMatchList, 'routerMatchList');
 
     document.title = [...routerMatchList].reverse()[0]
       ?
       [...routerMatchList].reverse()[0].title : '';
-    console.log(document.title, document);
-    // const crumbList = pathList.map((v, i) => (
-    //   <span key={i} style={{ fontSize: '13px' }}>
-    //     <Link
-    //       key={v.link}
-    //       style={i === pathList.length - 1 ? { color: 'rgba(0,0,0,.8)' } : { color: 'rgba(0,0,0,1)' }}
-    //       // className={styles.tabActive}
-    //       to={i === pathList.length - 1 ? null : v.link}
-    //     >{v.crumbName}
-    //     </Link>
-    //     {
-    //       i !== pathList.length - 1 && ' / '
-    //     }
-    //   </span>
-    // ));
+
 
     const crumbList = pathList.map((v, i) => (
       <span key={i} style={{ fontSize: '13px' }}>
-        <Link
-          key={v.link}
-          to={v.link}
-          style={i === pathList.length - 1 ? { color: 'rgba(0,0,0,.8)' } : { color: 'rgba(0,0,0,1)' }}
-        >
-          {v.title}
-        </Link>
+        {
+          v.children ?
+            <span
+              key={v.link}
+              style={i === pathList.length - 1 ? { color: 'rgba(0,0,0,.8)' } : { color: 'rgba(0,0,0,1)' }}
+
+            >
+              {v.title}
+
+            </span>
+            :
+            <Link
+              key={v.link}
+              to={v.link}
+              style={i === pathList.length - 1 ? { color: 'rgba(0,0,0,.8)' } : { color: 'rgba(0,0,0,1)' }}
+            >
+              {v.title}
+            </Link>
+        }
         {
             i !== pathList.length - 1 && ' / '
         }
@@ -109,7 +103,7 @@ class MainPage extends React.PureComponent {
             menus={menus}
           />
         </Sider>
-        <Layout>
+        <Layout className={styles.layout}>
           <Header style={{ padding: 0 }}>
             <div className={styles.antLayouttop}>
               <Icon
