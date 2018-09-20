@@ -4,6 +4,9 @@ export let initSuccess;
 export let changePage;
 export let changePageSize;
 
+export let submit;
+export let submitSuccess;
+
 
 export let initSet;
 export let changeValue;

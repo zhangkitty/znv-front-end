@@ -30,6 +30,7 @@ export const defaultState = {
   page: 1,
   pageSize: 10,
   total: 0,
+  dataSource: [],
 };
 
 const reducer = (state = defaultState, action) => {

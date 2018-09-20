@@ -46,8 +46,14 @@ module.exports = Object.assign({},config, {
       "Access-Control-Allow-Headers":"Authorization,Origin, X-Requested-With, Content-Type, Accept"
     },
     proxy: {
-      '/': {
+      '/rqs': {
         target: 'http://10.45.148.66:9001',
+        // pathRewrite: { '^/rqs': '' },
+        secure: false,
+        changeOrigin: true
+      },
+      '/icloud.web': {
+        target: 'http://10.45.146.69:8080',
         // pathRewrite: { '^/rqs': '' },
         secure: false,
         changeOrigin: true

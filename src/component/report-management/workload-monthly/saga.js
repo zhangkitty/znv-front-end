@@ -1,8 +1,8 @@
 import { Modal, message } from 'antd';
 import { take, put, fork, takeLatest } from 'redux-saga/effects';
-import { initSet, searchSet, handleSet, initSuccess } from './action';
+import { initSet, searchSet, handleSet, initSuccess, submitSuccess } from './action';
 import * as types from './types';
-import { pickingList, pickingListDelete, generate, initSer } from './server';
+import { pickingList, pickingListDelete, generate, initSer, submitSer } from './server';
 
 function* init(action) {
   const data = yield initSer(action.props);
@@ -43,11 +43,41 @@ function* handle(action) {
   }
 }
 
+function* submit(action) {
+  const data = yield submitSer(action.props);
+  if (data.errCode !== 0) {
+    return message.error(data.msg);
+  }
+  yield put(submitSuccess(data.data));
+  return null;
+}
+
+function* changePage(action) {
+  const data = yield submitSer(action.props);
+  if (data.errCode !== 0) {
+    return message.error(data.msg);
+  }
+  yield put(submitSuccess(data.data));
+  return null;
+}
+
+function* changePageSize(action) {
+  const data = yield submitSer(action.props);
+  if (data.errCode !== 0) {
+    return message.error(data.msg);
+  }
+  yield put(submitSuccess(data.data));
+  return null;
+}
+
 
 function* mainSaga() {
   yield takeLatest(types.init, init);
   yield takeLatest(types.search, search);
   yield takeLatest(types.handle, handle);
+  yield takeLatest(types.submit, submit);
+  yield takeLatest(types.changePage, changePage);
+  yield takeLatest(types.changePageSize, changePageSize);
 }
 
 export default mainSaga;

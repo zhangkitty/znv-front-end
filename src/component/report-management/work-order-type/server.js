@@ -43,6 +43,6 @@ export const generate = () => ({
 });
 
 export const submitSer = props => request({
-  url: `/rqs/orderasset/order?pageSize=${props.pageSize}&pageNum=${props.pageNumber}&startTime=${props.formData.kkk[0].format('YYYY-MM-DD')}&endTime=${props.formData.kkk[1].format('YYYY-MM-DD')}`,
+  url: `/rqs/orderasset/order?pageSize=${props.pageSize}&pageNum=${props.page}&startTime=${props.formData.kkk[0].format('YYYY-MM-DD')}&endTime=${props.formData.kkk[1].format('YYYY-MM-DD')}`,
   method: 'get',
 });

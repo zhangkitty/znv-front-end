@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Table } from 'antd';
+import { Table } from 'shineout';
 
 const List1 = (props) => {
   const {
@@ -11,6 +11,8 @@ const List1 = (props) => {
     page,
     pageSize,
   } = props;
+
+  const arr = [];
   const columns = [
     {
       title: '城市',
@@ -28,7 +30,7 @@ const List1 = (props) => {
 
     },
     {
-      title: '投放数',
+      title: '巡检资产数',
       dataIndex: '',
       width: 100,
       fixed: 'left',
@@ -36,58 +38,36 @@ const List1 = (props) => {
 
     },
     {
-      title: '应投数',
+      title: '已完成',
       width: 120,
       fixed: 'left',
       align: 'center',
 
     },
     {
-      title: '实投数',
+      title: '未完成',
       width: 120,
       fixed: 'left',
       align: 'center',
 
     },
     {
-      title: '已监播数',
+      title: '完成率',
       width: 120,
       fixed: 'left',
       align: 'center',
 
     },
-    {
-      title: '未监播数',
-      width: 140,
-      fixed: 'left',
-      align: 'center',
-
-    },
-    {
-      title: '完成进度',
-      width: 150,
-      fixed: 'left',
-      align: 'center',
-
-    },
-    {
-      title: '1',
-    },
-    {
-      title: '2',
-    },
-    {
-      title: '3',
-      width: 100,
-    },
+    ...arr,
   ];
   return (
     <div>
       <Table
         bordered
-        rowKey="id"
+        fixed="both"
+        keygen="id"
         columns={columns}
-        scroll={{ x: 2000 }}
+        width={200}
       />
 
 

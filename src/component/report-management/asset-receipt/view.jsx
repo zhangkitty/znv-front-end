@@ -36,14 +36,14 @@ class Container extends React.Component {
             total={total}
             onChange={(pageValue) => {
               dispatch(changeValue('page', pageValue));
-              dispatch(changePage(Object.assign({}, props, {
+              dispatch(changePage(Object.assign({}, this.props, {
                 page: pageValue,
                 pageSize,
               })));
             }}
             onShowSizeChange={(current, size) => {
               dispatch(changeValue('pageSize', size));
-              dispatch(changePageSize(Object.assign({}, props, {
+              dispatch(changePageSize(Object.assign({}, this.props, {
                 page: current,
                 pageSize: size,
               })));

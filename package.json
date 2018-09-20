@@ -37,7 +37,7 @@
     "redux": "^3.7.2",
     "redux-saga": "^0.16.0",
     "rrc-loader-helper": "^1.0.7",
-    "shineout": "^0.7.6",
+    "shineout": "^1.0.7",
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {

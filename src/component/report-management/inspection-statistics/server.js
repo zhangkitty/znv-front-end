@@ -44,49 +44,12 @@ export const generate = () => ({
 
 export const initSer = (props) => {
   console.log(props);
-  console.log(1);
-
-  Promise.all([
+  return Promise.all([
     request({
-      url: '/sdfaf',
-      method: 'post',
-      data: [],
-    }),
-    request({
-      url: '/sdfaf',
-      method: 'post',
-      data: [],
-    }),
-    request({
-      url: '/sdfaf',
-      method: 'post',
-      data: [],
+      url: '/icloud.web/api/task/list?taskType=2',
+      method: 'get',
     }),
   ]).then(res => res);
-
-  return [
-    {
-      success: true,
-      data: [
-        { id: 1, aims: 'haha' },
-        { id: 2, aims: 'wawa' },
-      ],
-    },
-    {
-      success: true,
-      data: [
-        { id: 1, city: '南京' },
-        { id: 2, city: '杭州' },
-      ],
-    },
-    {
-      success: true,
-      data: [
-        { id: 1, team: '天辰' },
-        { id: 2, team: '力维' },
-      ],
-    },
-  ];
 };
 
 export const submitSer = (props) => {

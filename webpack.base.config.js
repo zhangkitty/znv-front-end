@@ -15,7 +15,6 @@ module.exports = {
       'react-router',
       'react-router-redux',
       'redux-saga',
-      'shineout',
       'object-assign',
       'classnames',
       'whatwg-fetch',

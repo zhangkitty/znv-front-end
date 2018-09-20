@@ -52,11 +52,31 @@ function* submit(action) {
   return null;
 }
 
+function* changePage(action) {
+  const data = yield submitSer(action.props);
+  if (!data.success) {
+    return message.error(data.msg);
+  }
+  yield put(submitSuccess(data.data));
+  return null;
+}
+
+function* changePageSize(action) {
+  const data = yield submitSer(action.props);
+  if (!data.success) {
+    return message.error(data.msg);
+  }
+  yield put(submitSuccess(data.data));
+  return null;
+}
+
 function* mainSaga() {
   yield takeLatest(types.init, init);
   yield takeLatest(types.search, search);
   yield takeLatest(types.handle, handle);
   yield takeLatest(types.submit, submit);
+  yield takeLatest(types.changePage, changePage);
+  yield takeLatest(types.changePageSize, changePageSize);
 }
 
 export default mainSaga;

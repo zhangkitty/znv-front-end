@@ -1,90 +1,92 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Table } from 'antd';
+import { Table } from 'shineout';
 
 const List1 = (props) => {
   const {
     list,
     dataLoading,
+    dataSource,
   } = props;
   const columns = [
     {
       title: '城市',
-      dataIndex: '',
+      render: 'areaCode',
       width: 80,
       fixed: 'left',
-      align: 'center',
     },
     {
       title: '团队',
-      dataIndex: '',
+      render: 'teamId',
       width: 80,
       fixed: 'left',
-      align: 'center',
 
     },
     {
-      title: '累计工单',
-      dataIndex: '',
+      title: '当月新增',
+      rende: 'incrOrder',
       width: 100,
       fixed: 'left',
-      align: 'center',
 
     },
     {
-      title: '新增工单',
+      title: '当月关闭',
+      render: 'incrClosedOrder',
       width: 120,
       fixed: 'left',
-      align: 'center',
 
     },
     {
-      title: '关闭工单',
+      title: '工单总数',
+      render: 'incrOrder',
       width: 120,
       fixed: 'left',
-      align: 'center',
+
+    },
+    {
+      title: '已关闭',
+      render: 'incrClosedOrder',
+      width: 120,
+      fixed: 'left',
 
     },
     {
       title: '超时关闭',
-      width: 120,
+      width: 140,
       fixed: 'left',
-      align: 'center',
 
     },
     {
       title: '完成率',
-      width: 140,
+      width: 150,
       fixed: 'left',
-      align: 'center',
 
     },
     {
       title: '及时关闭率',
-      width: 150,
+      width: 120,
       fixed: 'left',
-      align: 'center',
 
     },
     {
       title: '未关闭',
+      render: 'incrTimeoutUnclosedOrder',
       width: 120,
       fixed: 'left',
-      align: 'center',
 
     },
     {
-      title: '超时关闭',
+      title: '超时未关闭',
+      render: 'incrTimeoutUnclosedOrder',
       width: 120,
       fixed: 'left',
-      align: 'center',
 
     },
     {
       title: '平均处理时长',
+      render: 'finishAvgDuration',
       width: 120,
       fixed: 'left',
-      align: 'center',
 
     },
   ];
@@ -92,9 +94,11 @@ const List1 = (props) => {
     <div>
       <Table
         bordered
-        rowKey="id"
+        keygen="id"
         columns={columns}
-        scroll={{ x: 2000 }}
+        width={1500}
+        data={dataSource}
+
       />
     </div>
   );

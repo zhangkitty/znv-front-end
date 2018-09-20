@@ -6,14 +6,8 @@ import { pickingList, pickingListDelete, generate, initSer, submitSer } from './
 
 function* init(action) {
   const data = yield initSer(action.props);
-  if (!data[0].success) {
+  if (data[0].code !== 0) {
     return message.error(data[0].msg);
-  }
-  if (!data[1].success) {
-    return message.error(data[1].msg);
-  }
-  if (!data[2].success) {
-    return message.error(data[2].msg);
   }
   yield put(initSuccess(data));
   return null;

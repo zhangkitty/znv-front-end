@@ -1,6 +1,8 @@
 import assign from 'object-assign';
 import { getSize } from 'shein-middlewares/pagesize';
 import * as types from './types';
+import citys from 'utils/city';
+
 import { submitSuccess } from './action';
 
 export const defaultState = {
@@ -21,7 +23,7 @@ export const defaultState = {
   recordCount: '',
   aims: [],
   choosedAims: null,
-  city: [],
+  city: citys,
   choosedCity: null,
   team: [],
   choosedTeam: null,
@@ -40,8 +42,8 @@ const reducer = (state = defaultState, action) => {
       return assign({}, state, {
         ready: true,
         aims: action.data[0].data,
-        city: action.data[1].data,
-        team: action.data[2].data,
+        // city: action.data[1].data,
+        // team: action.data[2].data,
       });
     case types.initSet:
       return assign({}, state, action.data, {

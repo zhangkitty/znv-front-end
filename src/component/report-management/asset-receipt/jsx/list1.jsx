@@ -1,96 +1,68 @@
 import React from 'react';
+import moment from 'moment';
 import PropTypes from 'prop-types';
-import { Table } from 'antd';
+import { Table } from 'shineout';
 
 const List1 = (props) => {
   const {
     list,
     dataLoading,
+    dataSource,
+    choosedMonth,
   } = props;
+  const arr = [];
+
+  if (moment(choosedMonth, 'YYYYMM').daysInMonth() && dataSource.length > 0) {
+    for (let i = 0; i < moment(choosedMonth, 'YYYYMM').daysInMonth(); i++) {
+      arr.push({
+        title: `${i + 1}号接收资产数`,
+        width: 100,
+      });
+    }
+  }
+
   const columns = [
     {
       title: '城市',
-      dataIndex: '',
-      width: 80,
+      width: 50,
       fixed: 'left',
-      align: 'center',
     },
     {
       title: '团队',
-      dataIndex: '',
-      width: 80,
+      width: 50,
       fixed: 'left',
-      align: 'center',
-
     },
     {
       title: '资产总数',
-      dataIndex: '',
-      width: 100,
+      width: 50,
       fixed: 'left',
-      align: 'center',
-
     },
     {
-      title: '已接收资产数',
+      title: '接收总数',
+      width: 50,
+      fixed: 'left',
+    },
+    {
+      title: '当月新增资产数',
       width: 120,
       fixed: 'left',
-      align: 'center',
-
-    },
-    {
-      title: '待接收资产数',
-      width: 120,
-      fixed: 'left',
-      align: 'center',
-
-    },
-    {
-      title: '无法接收资产数',
-      width: 120,
-      fixed: 'left',
-      align: 'center',
-
-    },
-    {
-      title: '超7天未接收资产数',
-      width: 140,
-      fixed: 'left',
-      align: 'center',
-
-    },
-    {
-      title: '当月新增验收资产数',
-      width: 150,
-      fixed: 'left',
-      align: 'center',
-
     },
     {
       title: '当月接收资产数',
       width: 120,
       fixed: 'left',
-      align: 'center',
-
     },
-    {
-      title: '1',
-    },
-    {
-      title: '2',
-    },
-    {
-      title: '3',
-      width: 100,
-    },
+    ...arr,
   ];
   return (
     <div>
       <Table
         bordered
-        rowKey="id"
+        fixed="both"
+        keygen="id"
+        width={1500}
         columns={columns}
-        scroll={{ x: 2000 }}
+        data={dataSource}
       />
     </div>
   );

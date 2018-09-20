@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Table } from 'antd';
+import { Table } from 'shineout';
 import Page from 'shein-lib/pagination';
 import {
   changePage,
@@ -38,7 +38,7 @@ const List1 = (props) => {
     <div>
       <Table
         bordered
-        rowKey="id"
+        genkey="id"
         columns={columns}
       />
 

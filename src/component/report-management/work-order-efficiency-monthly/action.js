@@ -2,7 +2,7 @@ import { makeActionCreator } from 'shein-lib/dealFunc';
 
 import * as types from './types';
 
-export const changeValue = makeActionCreator(types.initSuccess, 'key', 'value');
+export const changeValue = makeActionCreator(types.changeValue, 'key', 'value');
 
 export const changePage = makeActionCreator(types.changePage, 'props');
 export const changePageSize = makeActionCreator(types.changePageSize, 'props');

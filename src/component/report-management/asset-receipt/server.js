@@ -92,7 +92,7 @@ export const initSer = (props) => {
 export const submitSer = (props) => {
   console.log(props);
   return request({
-    url: `/rqs/orderasset/asset?month=${props.choosedMonth}&pageSize=${props.pageSize}&pageNum${props.page}&type=${props.chooseValue}`,
+    url: `/rqs/orderasset/asset?dataTime=${props.choosedMonth}&pageSize=${props.pageSize}&pageNum=${props.page}&type=${props.chooseValue}&areaCode=${props.choosedCity}`,
     method: 'get',
   });
 };

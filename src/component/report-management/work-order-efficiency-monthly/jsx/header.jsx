@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Select, Radio, Button } from 'antd';
 import styles from '../style.css';
 import { submit } from '../action';
+import { changeValue } from '../action';
 
 
 const { Option, OptGroup } = Select;
@@ -43,6 +44,7 @@ const Header = (props) => {
         <div className={styles.label}>考核城市</div>
         <div >
           <Select
+            allowClear
             className={styles.monthSelect}
             data-bind="formData.choosedCity"
           >
@@ -61,6 +63,7 @@ const Header = (props) => {
         <div className={`${styles.label} ${styles.team}`}>考核团队</div>
         <div>
           <Select
+            disabled
             className={styles.monthSelect}
             data-bind="formData.choosedTeam"
           >

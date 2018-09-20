@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Select, Radio, Button } from 'antd';
 import styles from '../style.css';
+import { submit } from '../action';
 
 
 const { Option, OptGroup } = Select;
@@ -42,6 +43,7 @@ const Header = (props) => {
         <div className={styles.label}>考核城市</div>
         <div >
           <Select
+            allowClear
             data-bind="formData.choosedCity"
             className={styles.monthSelect}
           >
@@ -60,6 +62,7 @@ const Header = (props) => {
         <div className={`${styles.label} ${styles.team}`}>考核团队</div>
         <div>
           <Select
+            disabled
             data-bind="formData.choosedTeam"
             className={styles.monthSelect}
           >
@@ -71,7 +74,10 @@ const Header = (props) => {
         </div>
       </div>
       <div className={styles.button}>
-        <Button>查询</Button>
+        <Button
+          onClick={() => dispatch(submit(props))}
+        >查询
+        </Button>
         <Button>导出每日明细</Button>
       </div>
       <hr style={{ margin: 20 }} />

@@ -47,6 +47,7 @@ const Header = (props) => {
         <div className={styles.label}>考核城市</div>
         <div >
           <Select
+            allowClear
             className={styles.monthSelect}
             onChange={value => dispatch(changeValue('choosedCity', value))}
           >
@@ -65,6 +66,7 @@ const Header = (props) => {
         <div className={`${styles.label} ${styles.team}`}>考核团队</div>
         <div>
           <Select
+            disabled
             className={styles.monthSelect}
             onChange={value => dispatch(changeValue('choosedTeam', value))}
           >

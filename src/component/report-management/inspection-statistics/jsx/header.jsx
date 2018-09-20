@@ -5,7 +5,7 @@ import styles from '../style.css';
 import { changeValue, submit } from '../action';
 
 
-const Option = Select.Option;
+const { Option, OptGroup } = Select;
 const RadioGroup = Radio.Group;
 const { RangePicker } = DatePicker;
 const Header = (props) => {
@@ -23,11 +23,10 @@ const Header = (props) => {
             onChange={value => dispatch(changeValue('choosedAims', value))}
           >
             {
-              aims.map(v =>
-                (
-                  <Option key={v.id}>
-                    {v.aims}
-                  </Option>))
+              aims.map(v => (
+                <Option key={v.taskId}>
+                  {`${v.taskName}`}
+                </Option>))
             }
           </Select>
         </div>
@@ -61,16 +60,19 @@ const Header = (props) => {
         <div className={styles.label}>考核城市</div>
         <div >
           <Select
+            allowClear
             value={choosedCity}
             onChange={value => dispatch(changeValue('choosedCity', value))}
             className={styles.monthSelect}
           >
             {
-              city.map(v =>
-                (
-                  <Option key={v.id}>
-                    {v.city}
-                  </Option>))
+              city.map(v => (
+                <OptGroup key={v.pro.key} label={v.pro.province}>
+                  {
+                    v.citys.map(k => <Option key={k.split(',')[0]}>{k.split(',')[1]}</Option>)
+                  }
+                </OptGroup>
+              ))
             }
           </Select>
         </div>
@@ -78,6 +80,7 @@ const Header = (props) => {
         <div className={`${styles.label} ${styles.team}`}>考核团队</div>
         <div>
           <Select
+            disabled
             className={styles.monthSelect}
             value={choosedTeam}
             onChange={value => dispatch(changeValue('choosedTeam', value))}

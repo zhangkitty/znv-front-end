@@ -93,12 +93,22 @@ export const initSer = (props) => {
 };
 
 export const submitSer = (props) => {
-  console.log(props);
-  return {
-    success: true,
-    data: [
-
-    ],
+  const test = {
+    pageSize: props.pageSize,
+    pageNum: props.page,
+    dataTime: props.formData.choosedMonth,
+    type: props.formData.chooseValue,
+    areaCode: props.formData.choosedCity,
   };
+  const arr = [];
+  for (const [key, value] of Object.entries(test)) {
+    if (value !== null) {
+      arr.push(`${key}=${value}`);
+    }
+  }
+  return request({
+    url: `/rqs/orderasset/ordermonth?${arr.join('&')}`,
+    method: 'get',
+  });
 };
 
