@@ -8,14 +8,12 @@ const List2 = (props) => {
     dataLoading,
     dataSource,
   } = props;
-
-
   const columns = [
     {
       title: '运维人员',
-      render: 'executor',
-      width: 80,
+      width: 50,
       fixed: 'left',
+      render: 'executor',
     },
     {
       title: '城市',
@@ -98,16 +96,15 @@ const List2 = (props) => {
 
     },
   ];
-
-
   return (
     <div>
       <Table
         bordered
-        rowKey="id"
+        keygen="id"
         columns={columns}
         width={1500}
         data={dataSource}
+
       />
     </div>
   );

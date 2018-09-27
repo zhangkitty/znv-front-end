@@ -16,22 +16,23 @@ const List1 = (props) => {
     total,
     page,
     pageSize,
+    dataSource,
   } = props;
   const columns = [
     {
       title: '城市',
-      dataIndex: '',
       width: 80,
+      render: 'areaCode',
     },
     {
       title: '资产类型',
-      dataIndex: '',
       width: 80,
+      render: () => ('广告机'),
     },
     {
       title: '每种工单类型的工单数',
-      dataIndex: '',
       width: 100,
+      render: 'incrOrder',
     },
   ];
   return (
@@ -40,6 +41,7 @@ const List1 = (props) => {
         bordered
         genkey="id"
         columns={columns}
+        data={dataSource}
       />
 
       <Page

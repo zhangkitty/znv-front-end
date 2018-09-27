@@ -32,6 +32,7 @@ export const defaultState = {
   total: 0,
   dataSource: [],
   submitTrue: false,
+  submitChooseValue: 0,
 };
 
 const reducer = (state = defaultState, action) => {
@@ -69,6 +70,7 @@ const reducer = (state = defaultState, action) => {
         total: action.data.total,
         dataSource: action.data.list,
         submitTrue: true,
+        submitChooseValue: state.formData.chooseValue,
       });
 
     default:

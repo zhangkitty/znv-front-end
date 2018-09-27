@@ -44,6 +44,10 @@ function* handle(action) {
 }
 
 function* submit(action) {
+  const { props } = action;
+  if (!props.formData.choosedMonth) {
+    return message.error('统计月份不能为空');
+  }
   const data = yield submitSer(action.props);
   if (data.errCode !== 0) {
     return message.error(data.msg);

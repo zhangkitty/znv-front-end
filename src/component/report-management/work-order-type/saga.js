@@ -52,7 +52,7 @@ function* submit(action) {
   if (data.errCode !== 0) {
     return message.error(data.msg);
   }
-  yield put(submitSuccess(action.data));
+  yield put(submitSuccess(data.data));
   return null;
 }
 

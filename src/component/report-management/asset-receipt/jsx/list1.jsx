@@ -17,6 +17,7 @@ const List1 = (props) => {
       arr.push({
         title: `${i + 1}号接收资产数`,
         width: 100,
+        render: `${moment(choosedMonth).format('YYYY')}${i + 1}`,
       });
     }
   }
@@ -26,43 +27,53 @@ const List1 = (props) => {
       title: '城市',
       width: 50,
       fixed: 'left',
+      render: 'id',
     },
     {
       title: '团队',
       width: 50,
       fixed: 'left',
+      render: 'teamId',
     },
     {
       title: '资产总数',
       width: 50,
       fixed: 'left',
+      render: 'totalAsset',
     },
     {
       title: '接收总数',
       width: 50,
       fixed: 'left',
+      render: 'incrClosedOrder',
     },
     {
       title: '当月新增资产数',
       width: 120,
       fixed: 'left',
+      render: 'incrOrder',
     },
     {
       title: '当月接收资产数',
       width: 120,
       fixed: 'left',
+      render: 'incrClosedOrder',
     },
     ...arr,
   ];
+  const data = dataSource.map((v) => {
+    const arr = v.listDays.map(k => ({ [k.dataTime]: k.incrAcceptedAsset }));
+    return Object.assign({}, v, ...arr);
+  });
   return (
     <div>
       <Table
         bordered
         fixed="both"
         keygen="id"
-        width={1500}
+        width={3500}
         columns={columns}
-        data={dataSource}
+        data={data}
       />
     </div>
   );

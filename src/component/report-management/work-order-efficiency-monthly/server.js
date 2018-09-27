@@ -102,7 +102,7 @@ export const submitSer = (props) => {
   };
   const arr = [];
   for (const [key, value] of Object.entries(test)) {
-    if (value !== null) {
+    if (value) {
       arr.push(`${key}=${value}`);
     }
   }

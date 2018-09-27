@@ -54,8 +54,21 @@ export const initSer = (props) => {
 
 export const submitSer = (props) => {
   console.log(props);
+  const test = {
+    pageSize: props.pageSize,
+    pageNum: props.page,
+    startTime: props.formData.kkk[0].format('YYYYMMDD'),
+    endTime: props.formData.kkk[1].format('YYYYMMDD'),
+    type: props.chooseValue,
+  };
+  const arr = [];
+  for (const [key, value] of Object.entries(test)) {
+    if (value) {
+      arr.push(`${key}=${value}`);
+    }
+  }
   return request({
-    url: `/rqs/patrol/count?pageSize=${props.pageSize}&pageNum=${props.page}&startTime=${props.formData.kkk[0].format('YYYY-MM-DD')}&endTime=${props.formData.kkk[1].format('YYYY-MM-DD')}&type=${props.chooseValue}`,
+    url: `/rqs/patrol/count?${arr.join('&')}`,
     method: 'get',
   });
 };

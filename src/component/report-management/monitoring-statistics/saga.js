@@ -38,6 +38,10 @@ function* handle(action) {
 }
 
 function* submit(action) {
+  const { props } = action;
+  if (+props.formData.kkk.length === 0) {
+    return message.error('统计日期不能为空');
+  }
   const data = yield submitSer(action.props);
   if (!data.success) {
     return message.error(data.msg);

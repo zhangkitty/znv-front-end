@@ -90,9 +90,21 @@ export const initSer = (props) => {
 };
 
 export const submitSer = (props) => {
-  console.log(props);
+  const test = {
+    pageSize: props.pageSize,
+    pageNum: props.page,
+    dataTime: props.choosedMonth,
+    type: props.chooseValue,
+    areaCode: props.choosedCity,
+  };
+  const arr = [];
+  for (const [key, value] of Object.entries(test)) {
+    if (value) {
+      arr.push(`${key}=${value}`);
+    }
+  }
   return request({
-    url: `/rqs/orderasset/asset?dataTime=${props.choosedMonth}&pageSize=${props.pageSize}&pageNum=${props.page}&type=${props.chooseValue}&areaCode=${props.choosedCity}`,
+    url: `/rqs/orderasset/asset?${arr.join('&')}`,
     method: 'get',
   });
 };

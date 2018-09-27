@@ -7,31 +7,32 @@ const menus = [
   {
     title: '首页',
     icon: 'mobile',
-    link: '/dashboard/a',
+    // link: '/dashboard/a',
+    link: '/dashboard/xxx',
   },
-  {
-    title: '功能组1',
-    icon: 'bars',
-    link: '/warehouse',
-    children: [
-      {
-        title: '子功能1',
-        // icon: 'mail',
-        link: '/warehouse/a',
-      },
-      {
-        title: '子功能2',
-        // icon: 'mail',
-        link: '/warehouse/b',
-        children: [
-          {
-            title: '编辑',
-            link: '/warehouse/b/edit',
-          },
-        ],
-      },
-    ],
-  },
+  // {
+  //   title: '功能组1',
+  //   icon: 'bars',
+  //   link: '/warehouse',
+  //   children: [
+  //     {
+  //       title: '子功能1',
+  //       // icon: 'mail',
+  //       link: '/warehouse/a',
+  //     },
+  //     {
+  //       title: '子功能2',
+  //       // icon: 'mail',
+  //       link: '/warehouse/b',
+  //       children: [
+  //         {
+  //           title: '编辑',
+  //           link: '/warehouse/b/edit',
+  //         },
+  //       ],
+  //     },
+  //   ],
+  // },
   {
     title: '报表管理',
     icon: 'bars',
@@ -63,21 +64,21 @@ const menus = [
       },
     ],
   },
-  {
-    title: '权限管理',
-    icon: 'bars',
-    link: '/authority-management',
-    children: [
-      {
-        title: '用户管理',
-        link: '/authority-management/user-management',
-      },
-      {
-        title: '角色管理',
-        link: '/authority-management/role-management',
-      },
-    ],
-  },
+  // {
+  //   title: '权限管理',
+  //   icon: 'bars',
+  //   link: '/authority-management',
+  //   children: [
+  //     {
+  //       title: '用户管理',
+  //       link: '/authority-management/user-management',
+  //     },
+  //     {
+  //       title: '角色管理',
+  //       link: '/authority-management/role-management',
+  //     },
+  //   ],
+  // },
 ];
 
 const linkList = menus.slice(1).reduce((concated, value) => (

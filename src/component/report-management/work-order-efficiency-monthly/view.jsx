@@ -21,16 +21,17 @@ class Container extends React.Component {
       page,
       pageSize,
       submitTrue,
+      submitChooseValue,
     } = this.props;
     if (ready) {
       return (
         <div>
           <Header {...this.props} />
           {
-            +formData.chooseValue === 1 && submitTrue && <List1 {...this.props} />
+            +submitChooseValue === 1 && submitTrue && <List1 {...this.props} />
           }
           {
-            +formData.chooseValue === 2 && submitTrue && <List2 {...this.props} />
+            +submitChooseValue === 2 && submitTrue && <List2 {...this.props} />
           }
           {
             submitTrue &&

@@ -22,6 +22,7 @@ export const defaultState = {
   pageSize: 10,
   page: 1,
   total: 0,
+  dataSource: [],
 };
 
 const reducer = (state = defaultState, action) => {
@@ -49,7 +50,8 @@ const reducer = (state = defaultState, action) => {
 
     case types.submitSuccess:
       return assign({}, state, {
-
+        total: action.data.total,
+        dataSource: action.data.list,
       });
     default:
       return state;

@@ -42,7 +42,22 @@ export const generate = () => ({
   msg: 'ok',
 });
 
-export const submitSer = props => request({
-  url: `/rqs/orderasset/order?pageSize=${props.pageSize}&pageNum=${props.page}&startTime=${props.formData.kkk[0].format('YYYY-MM-DD')}&endTime=${props.formData.kkk[1].format('YYYY-MM-DD')}`,
-  method: 'get',
-});
+export const submitSer = (props) => {
+  const test = {
+    pageSize: props.pageSize,
+    pageNum: props.page,
+    startTime: props.formData.kkk[0].format('YYYYMMDD'),
+    endTime: props.formData.kkk[1].format('YYYYMMDD'),
+  };
+  const arr = [];
+  for (const [key, value] of Object.entries(test)) {
+    if (value) {
+      arr.push(`${key}=${value}`);
+    }
+  }
+  return request({
+    url: `/rqs/orderasset/order?${arr.join('&')}`,
+    method: 'get',
+  });
+};
+
