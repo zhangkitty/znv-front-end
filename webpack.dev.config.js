@@ -47,7 +47,7 @@ module.exports = Object.assign({},config, {
     },
     proxy: {
       '/rqs': {
-        target: 'http://10.45.148.66:9001',
+        target: 'http://10.45.156.186:9008',
         // target: 'http://127.0.0.1:9001',
         // pathRewrite: { '^/rqs': '' },
         secure: false,

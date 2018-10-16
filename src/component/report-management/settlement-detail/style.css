@@ -1,0 +1,99 @@
+.head{
+}
+
+.dataPicker{
+  width: 200px;
+}
+
+.divlink{
+  font-family: Helvetica Neue For Number,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif;
+  line-height: 1.5;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: 400;
+  text-align: center;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 0 15px;
+  font-size: 14px;
+  border-radius: 4px;
+  height: 32px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all .3s cubic-bezier(.645,.045,.355,1);
+  transition: all .3s cubic-bezier(.645,.045,.355,1);
+  position: relative;
+  color: rgba(0,0,0,.65);
+  background-color: #fff;
+  border-color: #d9d9d9;
+}
+
+.link{
+  text-decoraction: none;
+}
+
+.month{
+  display: flex;
+}
+
+.month div{
+  flex-basis: 80px;
+  line-height: 32px;
+}
+
+.monthSelect{
+  width: 200px;
+}
+
+.dimension{
+  display: flex;
+  height: 34px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.dimension div{
+  flex-basis: 80px;
+  line-height: 34px;
+}
+
+.radioGroup{
+  display: flex;
+}
+.radio{
+  line-height: 34px;
+}
+
+.radioFontSize{
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.assessment{
+  display: flex;
+}
+
+.label{
+  line-height: 32px;
+  flex-basis: 80px;
+}
+
+.team{
+  margin-left: 200px;
+}
+
+.button{
+  margin-top: 20px;
+}
+

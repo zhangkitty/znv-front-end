@@ -62,6 +62,10 @@ const menus = [
         title: '工作量月度考核',
         link: '/report-management/workload-monthly',
       },
+      {
+        title: '结算详情',
+        link: '/report-management/settlement-detail',
+      },
     ],
   },
   // {
