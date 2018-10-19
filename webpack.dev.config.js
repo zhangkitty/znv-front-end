@@ -54,7 +54,7 @@ module.exports = Object.assign({},config, {
         changeOrigin: true
       },
       '/icloud.web': {
-        target: 'http://10.45.146.69:8080',
+        target: 'http://10.45.148.173:8089',
         // pathRewrite: { '^/rqs': '' },
         secure: false,
         changeOrigin: true
