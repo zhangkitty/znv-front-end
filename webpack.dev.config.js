@@ -46,6 +46,13 @@ module.exports = Object.assign({},config, {
       "Access-Control-Allow-Headers":"Authorization,Origin, X-Requested-With, Content-Type, Accept"
     },
     proxy: {
+      '/rqs-dftc':{
+        target: 'http://10.45.156.186:9009',
+        // target: 'http://127.0.0.1:9001',
+        // pathRewrite: { '^/rqs': '' },
+        secure: false,
+        changeOrigin: true
+      },
       '/rqs': {
         target: 'http://10.45.156.186:9008',
         // target: 'http://127.0.0.1:9001',

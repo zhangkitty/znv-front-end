@@ -23,7 +23,7 @@ export const submitSer = (props) => {
   }
 
   return request({
-    url: `/rqs/balance/detail/query?${arr.join('&')}`,
+    url: `/rqs-dftc/balance/detail/query?${arr.join('&')}`,
     method: 'get',
   }).then(res => res);
 };
@@ -41,7 +41,7 @@ export const downloadSer = (props) => {
     }
   }
   return request({
-    url: `/rqs/balance/detail/download?${arr.join('&')}`,
+    url: `/rqs-dftc/balance/detail/download?${arr.join('&')}`,
     method: 'get',
   }).then((res) => {
     FileSaver.saveAs(res, res.name);
