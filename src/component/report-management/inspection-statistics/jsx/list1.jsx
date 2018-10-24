@@ -85,6 +85,7 @@ const List1 = (props) => {
         fixed="both"
         keygen="id"
         width={5000}
+        style={{ maxHeight: 400 }}
         columns={columns}
         data={data}
       />

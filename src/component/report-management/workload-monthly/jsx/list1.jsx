@@ -143,6 +143,7 @@ const List1 = (props) => {
         width={6000}
         columns={columns}
         data={newDataSource}
+        style={{ maxHeight: 400 }}
       />
     </div>
   );

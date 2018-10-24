@@ -26,7 +26,7 @@ const List2 = (props) => {
   const columns = [
     {
       title: '运维人员',
-      width: 50,
+      width: 80,
       fixed: 'left',
       render: 'executor',
     },
@@ -91,6 +91,7 @@ const List2 = (props) => {
         fixed="both"
         keygen="id"
         width={5000}
+        style={{ maxHeight: 400 }}
         columns={columns}
         data={data}
       />

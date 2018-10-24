@@ -25,31 +25,31 @@ const List2 = (props) => {
   const columns = [
     {
       title: '运维人员',
-      width: 50,
+      width: 80,
       fixed: 'left',
       render: 'executor',
     },
     {
       title: '城市',
-      width: 50,
+      width: 80,
       fixed: 'left',
       render: 'id',
     },
     {
       title: '团队',
-      width: 50,
+      width: 80,
       fixed: 'left',
       render: 'teamId',
     },
     {
       title: '资产总数',
-      width: 50,
+      width: 80,
       fixed: 'left',
       render: 'totalAsset',
     },
     {
       title: '接收总数',
-      width: 50,
+      width: 80,
       fixed: 'left',
       render: 'incrClosedOrder',
     },
@@ -78,6 +78,7 @@ const List2 = (props) => {
         fixed="both"
         keygen="id"
         width={3500}
+        style={{ maxHeight: 400 }}
         columns={columns}
         data={data}
       />

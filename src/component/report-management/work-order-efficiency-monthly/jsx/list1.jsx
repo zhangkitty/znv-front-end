@@ -97,6 +97,7 @@ const List1 = (props) => {
         keygen="id"
         columns={columns}
         width={1500}
+        style={{ maxHeight: 400 }}
         data={dataSource}
 
       />

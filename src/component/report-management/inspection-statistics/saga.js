@@ -23,7 +23,7 @@ function* submit(action) {
     return message.error('统计时间不能为空');
   }
   const data = yield submitSer(action.props);
-  if (!data.success) {
+  if (data.errCode !== 0) {
     return message.error(data.msg);
   }
   yield put(submitSuccess(data.data));

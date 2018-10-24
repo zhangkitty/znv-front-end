@@ -11,7 +11,7 @@ const List2 = (props) => {
   const columns = [
     {
       title: '运维人员',
-      width: 50,
+      width: 80,
       fixed: 'left',
       render: 'executor',
     },
@@ -103,6 +103,7 @@ const List2 = (props) => {
         keygen="id"
         columns={columns}
         width={1500}
+        style={{ maxHeight: 400 }}
         data={dataSource}
 
       />
