@@ -71,7 +71,7 @@ const List1 = (props) => {
         bordered
         fixed="both"
         keygen="id"
-        width={3500}
+        width={4000}
         style={{ maxHeight: 400 }}
         columns={columns}
         data={data}

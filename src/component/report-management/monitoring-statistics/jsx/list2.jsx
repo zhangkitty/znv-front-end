@@ -99,7 +99,7 @@ const List2 = (props) => {
         fixed="both"
         keygen="id"
         width={5000}
-        style={{maxHeight:400}}
+        style={{ maxHeight: 400 }}
         columns={columns}
         data={dataSource}
       />
