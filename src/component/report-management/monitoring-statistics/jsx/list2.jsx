@@ -43,7 +43,7 @@ const List2 = (props) => {
       title: '城市',
       width: 80,
       fixed: 'left',
-      render: 'areaCode',
+      render: 'areaName',
     },
     {
       title: '投放数',

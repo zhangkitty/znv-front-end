@@ -22,7 +22,7 @@ const List1 = (props) => {
     {
       title: '城市',
       width: 80,
-      render: 'areaCode',
+      render: 'areaName',
     },
     {
       title: '资产类型',

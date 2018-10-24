@@ -33,7 +33,7 @@ const List2 = (props) => {
       title: '城市',
       width: 50,
       fixed: 'left',
-      render: 'id',
+      render: 'areaName',
     },
     {
       title: '团队',

@@ -11,7 +11,7 @@ export const defaultState = {
     kkk: '',
     choosedMonth: null,
     choosedCity: null,
-    choosedTeam: null,
+    choosedTeam: 1,
     chooseValue: 1, // 城市1------人员2
   },
   secondaryProcess: '',
@@ -26,7 +26,7 @@ export const defaultState = {
   recordCount: '',
   month: gen(),
   city: citys,
-  team: [],
+  team: [{ id: 1, team: '全部' }],
   page: 1,
   pageSize: 10,
   total: 0,

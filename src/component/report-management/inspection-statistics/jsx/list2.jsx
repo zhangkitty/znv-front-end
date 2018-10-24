@@ -35,7 +35,7 @@ const List2 = (props) => {
       width: 80,
       fixed: 'left',
       align: 'center',
-      render: 'areaCode',
+      render: 'areaName',
     },
     {
       title: '团队',

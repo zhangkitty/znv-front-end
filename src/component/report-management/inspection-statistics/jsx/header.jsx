@@ -80,9 +80,9 @@ const Header = (props) => {
         <div className={`${styles.label} ${styles.team}`}>考核团队</div>
         <div>
           <Select
-            disabled
             className={styles.monthSelect}
-            value={choosedTeam}
+            // value={choosedTeam}
+            value="全部"
             onChange={value => dispatch(changeValue('choosedTeam', value))}
           >
             {

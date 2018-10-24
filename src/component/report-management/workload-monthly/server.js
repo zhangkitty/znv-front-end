@@ -1,10 +1,6 @@
-import { under2Camal } from 'shein-lib/camal-case-convertor';
 import { request } from 'utils/index';
-import { parseQueryString, toQueryString } from 'shein-lib/query-string';
-
 
 export const initSer = (props) => {
-  console.log(props);
   Promise.all([
     request({
       url: '/asfadfasf',
@@ -47,8 +43,7 @@ export const initSer = (props) => {
     {
       success: true,
       data: [
-        { id: 1, team: '力维' },
-        { id: 2, team: '天辰' },
+        { id: 1, team: '全部' },
       ],
     },
   ];

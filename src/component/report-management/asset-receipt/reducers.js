@@ -23,7 +23,7 @@ export const defaultState = {
   city: citys, // 考核城市
   choosedCity: null,
   team: [], // 考核团队
-  choosedTeam: null,
+  choosedTeam: 1,
   month: gen(), // 统计月份
   choosedMonth: null,
   chooseValue: 1, // 城市1---人员2

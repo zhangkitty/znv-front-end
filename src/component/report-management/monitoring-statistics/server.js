@@ -2,15 +2,16 @@ import { under2Camal } from 'shein-lib/camal-case-convertor';
 import { request } from 'utils/index';
 
 
-export const initSer = (props) => {
-  console.log(props);
-  return Promise.all([
-    request({
-      url: '/icloud.web/api/task/list?taskType=1',
-      method: 'get',
-    }),
-  ]).then(res => res);
-};
+export const initSer = props => Promise.all([
+  request({
+    url: '/icloud.web/api/task/list?taskType=1',
+    method: 'get',
+  }),
+  request({
+    url: '/asafsfa',
+    method: 'get',
+  }),
+]).then(res => res);
 
 export const submitSer = (props) => {
   const test = {

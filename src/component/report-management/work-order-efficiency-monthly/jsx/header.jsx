@@ -63,13 +63,12 @@ const Header = (props) => {
         <div className={`${styles.label} ${styles.team}`}>考核团队</div>
         <div>
           <Select
-            disabled
             className={styles.monthSelect}
             data-bind="formData.choosedTeam"
           >
             {
               team.map(v =>
-                <Option key={v.id}>{v.team}</Option>)
+                <Option value={v.id}>{v.team}</Option>)
             }
           </Select>
         </div>

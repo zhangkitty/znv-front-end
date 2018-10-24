@@ -11,7 +11,7 @@ const List1 = (props) => {
   const columns = [
     {
       title: '城市',
-      render: 'areaCode',
+      render: 'areaName',
       width: 80,
       fixed: 'left',
     },

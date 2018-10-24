@@ -94,7 +94,7 @@ const List2 = (props) => {
     {
       title: '城市',
       fixed: 'left',
-      render: 'areaCode',
+      render: 'areaName',
       width: 100,
     },
     {
@@ -140,7 +140,6 @@ const List2 = (props) => {
     }));
     return Object.assign({}, v, ...arrA);
   });
-  console.log(newDataSource);
   return (
     <div>
       <Table
