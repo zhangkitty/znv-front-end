@@ -20,6 +20,7 @@ export const submitSer = (props) => {
     startTime: props.formData.kkk[0].format('YYYYMMDD'),
     endTime: props.formData.kkk[1].format('YYYYMMDD'),
     type: props.chooseValue,
+    taskId: props.choosedAims,
   };
   const arr = [];
   for (const [key, value] of Object.entries(test)) {
