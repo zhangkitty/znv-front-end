@@ -46,20 +46,20 @@ const List2 = (props) => {
       render: 'areaName',
     },
     {
-      title: '投放数',
+      title: '播控系统投放总量',
       width: 80,
       fixed: 'left',
       render: 'deliverySuccessCount',
 
     },
     {
-      title: '应投数',
+      title: '销售合同投放量',
       width: 80,
       fixed: 'left',
 
     },
     {
-      title: '实投数',
+      title: '巡查实际投放量',
       width: 80,
       fixed: 'left',
       render: 'deliverySuccessCount',

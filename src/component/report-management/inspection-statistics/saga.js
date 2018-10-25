@@ -22,6 +22,9 @@ function* submit(action) {
   if (!props.formData.kkk[1]) {
     return message.error('统计时间不能为空');
   }
+  if (!props.choosedAims) {
+    return message.error('统计目标不能为空');
+  }
   const data = yield submitSer(action.props);
   if (data.errCode !== 0) {
     return message.error(data.msg);
