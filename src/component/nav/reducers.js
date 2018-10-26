@@ -5,10 +5,9 @@ import * as types from './types';
 
 const menus = [
   {
-    title: '首页',
+    title: '异常中心',
     icon: 'mobile',
-    // link: '/dashboard/a',
-    link: '/dashboard/xxx',
+    link: '/dashboard/exception',
   },
   // {
   //   title: '功能组1',
