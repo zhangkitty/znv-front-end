@@ -21,7 +21,7 @@ export const defaultState = {
   perPage: getSize(),
   recordCount: '',
   city: citys, // 考核城市
-  choosedCity: null,
+  choosedCity: '',
   team: [], // 考核团队
   choosedTeam: 1,
   month: gen(), // 统计月份

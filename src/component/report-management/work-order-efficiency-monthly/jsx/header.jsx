@@ -44,10 +44,10 @@ const Header = (props) => {
         <div className={styles.label}>考核城市</div>
         <div >
           <Select
-            allowClear
             className={styles.monthSelect}
             data-bind="formData.choosedCity"
           >
+            <Option value="">全国</Option>
             {
               city.map(v => (
                 <OptGroup key={v.pro.key} label={v.pro.province}>

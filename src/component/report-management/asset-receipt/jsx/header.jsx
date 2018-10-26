@@ -9,7 +9,7 @@ const { Option, OptGroup } = Select;
 const RadioGroup = Radio.Group;
 const Header = (props) => {
   const {
-    dispatch, month, city, team, chooseValue, choosedTeam,
+    dispatch, month, city, team, chooseValue, choosedTeam, choosedCity,
   } = props;
   return (
     <div className={styles.head}>
@@ -47,10 +47,11 @@ const Header = (props) => {
         <div className={styles.label}>考核城市</div>
         <div >
           <Select
-            allowClear
+            value={choosedCity}
             className={styles.monthSelect}
             onChange={value => dispatch(changeValue('choosedCity', value))}
           >
+            <Option value="">全国</Option>
             {
               city.map(v => (
                 <OptGroup key={v.pro.key} label={v.pro.province}>

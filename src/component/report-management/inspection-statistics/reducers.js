@@ -24,7 +24,7 @@ export const defaultState = {
   aims: [],
   choosedAims: null,
   city: citys,
-  choosedCity: null,
+  choosedCity: '',
   team: [],
   choosedTeam: null,
   chooseValue: 1, // 城市1-------人员2

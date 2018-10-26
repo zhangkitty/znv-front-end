@@ -60,11 +60,11 @@ const Header = (props) => {
         <div className={styles.label}>考核城市</div>
         <div >
           <Select
-            allowClear
             value={choosedCity}
             onChange={value => dispatch(changeValue('choosedCity', value))}
             className={styles.monthSelect}
           >
+            <Option value="">全国</Option>
             {
               city.map(v => (
                 <OptGroup key={v.pro.key} label={v.pro.province}>

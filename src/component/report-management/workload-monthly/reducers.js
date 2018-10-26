@@ -10,7 +10,7 @@ export const defaultState = {
   formData: {
     kkk: '',
     choosedMonth: null,
-    choosedCity: null,
+    choosedCity: '',
     choosedTeam: 1,
     chooseValue: 1, // 城市1------人员2
   },
