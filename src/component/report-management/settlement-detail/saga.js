@@ -46,7 +46,7 @@ function* downloadSaga(action) {
       arr.push(`${key}=${value}`);
     }
   }
-  window.location.href = `${process.env.BASE_URI}/rqs/balance/detail/download?${arr.join('&')}`;
+  window.location.href = `${process.env.BASE_URI}/rqs-dftc/balance/detail/download?${arr.join('&')}`;
   return null;
 }
 
