@@ -49,13 +49,13 @@ const List2 = (props) => {
       title: '目标投放数',
       width: 80,
       fixed: 'left',
-      render: 'deliverySuccessCount',
+      render: d => (parseInt(d.finishCount, 10) + parseInt(d.unfinishCount, 10)),
     },
     {
       title: '已监播数',
       width: 80,
       fixed: 'left',
-
+      render: 'finishCount',
     },
     {
       title: '未监播数',
@@ -73,7 +73,7 @@ const List2 = (props) => {
       title: '完成进度',
       width: 80,
       fixed: 'left',
-
+      render: d => Number(d.deliverySuccessCount / (parseInt(d.finishCount, 10) + parseInt(d.unfinishCount, 10))).toFixed(2),
     },
     ...arr,
   ];
