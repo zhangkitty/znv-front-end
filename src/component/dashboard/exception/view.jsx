@@ -5,11 +5,16 @@ import { connect } from 'react-redux';
 import { init } from './action';
 import LineChart from './jsx/lineChart';
 import Head from './jsx/header';
+import Left from './jsx/left';
+import Left1 from './jsx/left1';
 
 class Container extends React.Component {
-  componentWillMount() {
-    this.props.dispatch(init(this.props));
+  constructor(props) {
+    super(props);
+    props.dispatch(init(props));
   }
+
+
   render() {
     const {
       ready,
@@ -17,6 +22,8 @@ class Container extends React.Component {
     if (1) {
       return (
         <div>
+          <Left1 {...this.props} />
+          {/* <Left {...this.props} /> */}
           <LineChart {...this.props} />
           <Head {...this.props} />
         </div>

@@ -3,92 +3,82 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import { Table } from 'shineout';
 
-const List2 = (props) => {
+const List1 = (props) => {
   const {
     list,
     dataLoading,
     dataSource,
     choosedMonth,
   } = props;
-  const arr = [];
-
-  if (moment(choosedMonth, 'YYYYMM').daysInMonth() && dataSource.length > 0) {
-    for (let i = 0; i < moment(choosedMonth, 'YYYYMM').daysInMonth(); i++) {
-      arr.push({
-        title: `${i + 1}号接收资产数`,
-        width: 100,
-        render: `${moment(choosedMonth).format('YYYY')}${i + 1}`,
-      });
-    }
-  }
 
   const columns = [
     {
-      title: '运维人员',
-      width: 80,
-      fixed: 'left',
-      render: 'executor',
+      title: '人员',
+      render: 'name',
     },
     {
-      title: '城市',
-      width: 80,
-      fixed: 'left',
-      render: 'id',
+      title: '在线记录点位数',
+      render: 'onlineNum',
     },
     {
-      title: '团队',
-      width: 80,
-      fixed: 'left',
-      render: 'teamId',
+      title: '故障点位数',
+      render: 'serviceNum',
     },
     {
-      title: '资产总数',
-      width: 80,
-      fixed: 'left',
-      render: 'totalAsset',
+      title: '协调点位数',
+      render: 'coordinateNum',
     },
     {
-      title: '接收总数',
-      width: 80,
-      fixed: 'left',
-      render: 'incrClosedOrder',
+      title: '故障点位且在协调流程点位数',
+      render: 'serviceCoordinateNum',
     },
     {
-      title: '当月新增资产数',
-      width: 120,
-      fixed: 'left',
-      render: 'incrOrder',
+      title: '每日设备在线数',
+      render: 'onlineTotalNum',
     },
     {
-      title: '当月接收资产数',
-      width: 120,
-      fixed: 'left',
-      render: 'incrClosedOrder',
+      title: '已交接设备数',
+      render: 'handoverNum',
     },
-    ...arr,
+    {
+      title: '近20天交接未安装FSU设备数',
+      render: 'handoverUninstalNum',
+    },
+    {
+      title: '未安装FSU设备数',
+      render: 'uninstalNum',
+    },
+    {
+      title: '当日拆机数',
+      render: 'todayDismantleNum',
+    },
+    {
+      title: '运营中设备总数',
+      render: 'inoperationTotalNum',
+    },
+    {
+      title: '每日在线率',
+      render: 'onlineRate',
+    },
   ];
-  const data = dataSource.map((v) => {
-    const arr = v.listDays.map(k => ({ [k.dataTime]: k.incrAcceptedAsset }));
-    return Object.assign({}, v, ...arr);
-  });
+
+
   return (
     <div>
       <Table
         bordered
-        fixed="both"
         keygen="id"
-        width={4000}
-        style={{ maxHeight: 400 }}
         columns={columns}
-        data={data}
+        data={dataSource}
+        style={{ maxHeight: 400 }}
       />
     </div>
   );
 };
 
-List2.propTypes = {
+List1.propTypes = {
   dataLoading: PropTypes.bool.isRequired,
   list: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
-export default List2;
+export default List1;

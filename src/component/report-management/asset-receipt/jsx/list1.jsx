@@ -45,19 +45,19 @@ const List1 = (props) => {
       title: '接收总数',
       width: 80,
       fixed: 'left',
-      render: 'incrClosedOrder',
+      render: 'acceptedAsset',
     },
     {
       title: '当月新增资产数',
       width: 120,
       fixed: 'left',
-      render: 'incrOrder',
+      render: 'incrAsset',
     },
     {
       title: '当月接收资产数',
       width: 120,
       fixed: 'left',
-      render: 'incrClosedOrder',
+      render: 'incrAcceptedAsset',
     },
     ...arr,
   ];

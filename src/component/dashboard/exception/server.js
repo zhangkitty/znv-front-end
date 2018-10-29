@@ -3,69 +3,12 @@ import { request } from 'utils/index';
 
 
 export const initSer = (props) => {
-  Promise.all([
+  console.log(props);
+  return Promise.all([
     request({
-      url: 'safa',
-      method: 'post',
-      data: [
-      ],
-    }),
-    request({
-      url: 'safa',
-      method: 'post',
-      data: [
-
-      ],
-    }),
-    request({
-      url: 'safa',
-      method: 'post',
-      data: [
-
-      ],
+      url: '/rqs/exception/getCityTree',
+      method: 'get',
     }),
   ]).then(res => res);
-  return [
-    {
-      success: true,
-      data: [
-        { id: 1, month: '七月份' },
-        { id: 2, month: '八月份' },
-      ],
-    },
-    {
-      success: true,
-      data: [
-        { id: 1, city: '南京' },
-        { id: 2, city: '杭州' },
-      ],
-    },
-    {
-      success: true,
-      data: [
-        { id: 1, team: '全部' },
-      ],
-    },
-  ];
-};
-
-export const submitSer = (props) => {
-  const test = {
-    pageSize: props.pageSize,
-    pageNum: props.page,
-    dataTime: props.choosedMonth,
-    type: props.chooseValue,
-    areaCode: props.choosedCity,
-  };
-  const arr = [];
-  for (const [key, value] of Object.entries(test)) {
-    if (value) {
-      arr.push(`${key}=${value}`);
-    }
-  }
-  return request({
-    url: `/rqs/orderasset/asset?${arr.join('&')}`,
-    method: 'get',
-  });
 };
 

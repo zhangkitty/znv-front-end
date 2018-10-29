@@ -70,7 +70,7 @@ const reducer = (state = defaultState, action) => {
       return assign({}, state, {
         dataSource: action.data.list,
         total: action.data.total,
-        submitChooseValue: state.chooseValue,
+        submitChooseValue: state.formData.radioValue,
       });
     default:
       return state;
