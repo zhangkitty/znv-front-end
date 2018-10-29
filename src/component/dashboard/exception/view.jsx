@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import { Spin } from 'antd';
 import { connect } from 'react-redux';
 import { init } from './action';
-import LineChart from './jsx/lineChart';
-import Head from './jsx/header';
 import Left from './jsx/left';
-import Left1 from './jsx/left1';
+import Right from './jsx/right';
+import styles from './style.css';
 
 class Container extends React.Component {
   constructor(props) {
@@ -21,11 +20,9 @@ class Container extends React.Component {
     } = this.props;
     if (1) {
       return (
-        <div>
-          <Left1 {...this.props} />
-          {/* <Left {...this.props} /> */}
-          <LineChart {...this.props} />
-          <Head {...this.props} />
+        <div className={styles.all}>
+          <Left {...this.props} />
+          <Right {...this.props} />
         </div>
       );
     }

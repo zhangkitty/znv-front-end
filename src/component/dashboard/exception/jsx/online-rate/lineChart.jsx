@@ -107,7 +107,6 @@ const option = {
 
 const LineChart = props => (
   <div>
-      safasfasfafs
     <div>
       <ReactEcharts option={option} />
     </div>

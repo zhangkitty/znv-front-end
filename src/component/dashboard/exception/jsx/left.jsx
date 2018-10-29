@@ -1,34 +1,31 @@
 import React from 'react';
+import assign from 'object-assign';
 import PropTypes from 'prop-types';
-import { Tree } from 'antd';
+import { Tree } from 'shineout';
+import styles from '../style.css';
 
 
-const TreeNode = Tree.TreeNode;
 const LeftTree = (props) => {
   const { cityTree } = props;
-  const renderTreeNodes = data => data.map((item) => {
-    if (item.cityList) {
-      return (
-        <TreeNode title={item.areaName} key={`${item.level}.${item.areaCode}`} value={item}>
-          {renderTreeNodes(item.cityList)}
-        </TreeNode>
-      );
-    }
-    return <TreeNode {...item} />;
-  });
+  const transfrom = data => data.map(v => assign({}, v, {
+    text: v.areaName,
+    id: `${v.level}.${v.areaCode}`,
+    children: transfrom(v.cityList),
+  }));
+
 
   return (
-    <div>
+    <div className={styles.left}>
       <Tree
-        onSelect={(selectedKeys, e) => {
-          console.log(selectedKeys);
-          console.log(e);
+        data={transfrom(cityTree)}
+        keygen="id"
+        renderItem={v => v.areaName}
+        line={false}
+        onClick={(node, id) => {
+          console.log(node);
+          console.log(id);
         }}
-      >
-        {
-          renderTreeNodes(cityTree)
-        }
-      </Tree>
+      />
     </div>
   );
 };

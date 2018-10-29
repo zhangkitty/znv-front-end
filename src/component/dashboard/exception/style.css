@@ -1,0 +1,10 @@
+.all{
+    display: flex;
+    flex-direction: row;
+}
+
+.left{
+    border: 1px solid black;
+    flex-basis: 200px;
+    margin-right: 40px;
+}
