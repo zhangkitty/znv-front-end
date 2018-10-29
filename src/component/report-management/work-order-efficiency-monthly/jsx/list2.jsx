@@ -30,7 +30,7 @@ const List2 = (props) => {
     },
     {
       title: '当月新增',
-      rende: 'incrOrder',
+      render: 'incrOrder',
       width: 100,
       fixed: 'left',
 
