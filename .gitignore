@@ -6,9 +6,9 @@ node_modules
 
 *.log
 
-dist
+#dist
 
-*.html
+#*.html
 
 # Coverage directory used by tools like istanbul
 coverage
