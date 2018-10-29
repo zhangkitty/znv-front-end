@@ -74,7 +74,7 @@ const List1 = (props) => {
   ];
 
   const data = dataSource.map((v) => {
-    const arrA = v.listDays.map(k => ({ [k.dataTime]: k.finishCount }));
+    const arrA = v.listDays.map(k => ({ [k.dataTime]: k.incrFinishCount }));
     return Object.assign({}, v, ...arrA);
   });
   return (
@@ -86,7 +86,7 @@ const List1 = (props) => {
         width={columns.length * 80}
         style={{ maxHeight: 400 }}
         columns={columns}
-        data={dataSource}
+        data={data}
       />
     </div>
   );
