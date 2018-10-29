@@ -4,11 +4,12 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 import * as types from './types';
 
 const menus = [
-  // {
-  //   title: '首页',
-  //   icon: 'mobile',
-  //   link: '/dashboard/exception',
-  // },
+  {
+    title: '首页',
+    icon: 'mobile',
+    // link: '/dashboard/exception',
+    link: '/dashboard/xxx',
+  },
   {
     title: '报表管理',
     icon: 'bars',
