@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import toPercent from 'utils/toPercent';
 import { Table } from 'shineout';
 
 const List2 = (props) => {
@@ -73,7 +74,7 @@ const List2 = (props) => {
       title: '完成进度',
       width: 80,
       fixed: 'left',
-      render: d => Number(d.deliverySuccessCount / (parseInt(d.finishCount, 10) + parseInt(d.unfinishCount, 10))).toFixed(2),
+      render: d => toPercent(d.deliverySuccessCount / (parseInt(d.finishCount, 10) + parseInt(d.unfinishCount, 10))),
     },
     ...arr,
   ];
