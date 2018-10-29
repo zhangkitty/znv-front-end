@@ -46,30 +46,15 @@ const List2 = (props) => {
       render: 'areaName',
     },
     {
-      title: '应投数',
+      title: '目标投放数',
       width: 80,
       fixed: 'left',
       render: 'deliverySuccessCount',
-
     },
     {
       title: '已监播数',
       width: 80,
       fixed: 'left',
-
-    },
-    {
-      title: '实际投放成功数',
-      width: 80,
-      fixed: 'left',
-      render: 'deliverySuccessCount',
-
-    },
-    {
-      title: '已监播数',
-      width: 80,
-      fixed: 'left',
-      render: 'finishCount',
 
     },
     {
@@ -77,7 +62,12 @@ const List2 = (props) => {
       width: 80,
       fixed: 'left',
       render: 'unfinishCount',
-
+    },
+    {
+      title: '实际投放成功数',
+      width: 80,
+      fixed: 'left',
+      render: 'deliverySuccessCount',
     },
     {
       title: '完成进度',
