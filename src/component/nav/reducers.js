@@ -4,63 +4,40 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 import * as types from './types';
 
 const menus = [
-  {
-    title: '首页',
-    icon: 'mobile',
-    link: '/dashboard/exception',
-  },
   // {
-  //   title: '功能组1',
-  //   icon: 'bars',
-  //   link: '/warehouse',
-  //   children: [
-  //     {
-  //       title: '子功能1',
-  //       // icon: 'mail',
-  //       link: '/warehouse/a',
-  //     },
-  //     {
-  //       title: '子功能2',
-  //       // icon: 'mail',
-  //       link: '/warehouse/b',
-  //       children: [
-  //         {
-  //           title: '编辑',
-  //           link: '/warehouse/b/edit',
-  //         },
-  //       ],
-  //     },
-  //   ],
+  //   title: '首页',
+  //   icon: 'mobile',
+  //   link: '/dashboard/exception',
   // },
   {
     title: '报表管理',
     icon: 'bars',
     link: '/report-management',
     children: [
-      {
-        title: '资产接收进度统计',
-        link: '/report-management/asset-receipt',
-      },
-      {
-        title: '监播进度统计',
-        link: '/report-management/monitoring-statistics',
-      },
-      {
-        title: '巡检进度统计',
-        link: '/report-management/inspection-statistics',
-      },
-      {
-        title: '工单类型统计',
-        link: '/report-management/work-order-type',
-      },
-      {
-        title: '工单效率月度考核',
-        link: '/report-management/work-order-efficiency-monthly',
-      },
-      {
-        title: '工作量月度考核',
-        link: '/report-management/workload-monthly',
-      },
+      // {
+      //   title: '资产接收进度统计',
+      //   link: '/report-management/asset-receipt',
+      // },
+      // {
+      //   title: '监播进度统计',
+      //   link: '/report-management/monitoring-statistics',
+      // },
+      // {
+      //   title: '巡检进度统计',
+      //   link: '/report-management/inspection-statistics',
+      // },
+      // {
+      //   title: '工单类型统计',
+      //   link: '/report-management/work-order-type',
+      // },
+      // {
+      //   title: '工单效率月度考核',
+      //   link: '/report-management/work-order-efficiency-monthly',
+      // },
+      // {
+      //   title: '工作量月度考核',
+      //   link: '/report-management/workload-monthly',
+      // },
       {
         title: '结算详情',
         link: '/report-management/settlement-detail',
