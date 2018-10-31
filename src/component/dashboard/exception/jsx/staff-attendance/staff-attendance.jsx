@@ -1,22 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import HeadTable from './head-table';
+import DetailData from './detail-data'
 import Trend from './trend';
-import DetailData from './detail-data';
 
-const Online = (props) => {
+const StaffAttendance = (props) => {
   console.log(props);
-
-
   return (
     <div>
       <HeadTable {...props} />
       <hr />
       <Trend {...props} />
-      <hr />
+      <hr/>
       <DetailData {...props} />
     </div>
   );
 };
 
-export default Online;
+
+export default StaffAttendance;
+

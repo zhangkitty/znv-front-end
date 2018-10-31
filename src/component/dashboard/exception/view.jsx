@@ -18,7 +18,7 @@ class Container extends React.Component {
     const {
       ready,
     } = this.props;
-    if (1) {
+    if (ready) {
       return (
         <div className={styles.all}>
           <Left {...this.props} />

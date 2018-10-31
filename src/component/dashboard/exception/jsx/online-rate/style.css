@@ -1,0 +1,31 @@
+.firstLine{
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.firstLine .firstTips{
+    line-height: 27px;
+    margin-left: 20px;
+    flex-basis: 150px;
+}
+
+.secendLine {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.secendLine .secendTips{
+    line-height: 21px;
+    margin-left: 20px;
+    flex-basis: 150px;
+}
+
+.thirdLine{
+    display: flex;
+}
+
+.thirdLine .thirdTips{
+    line-height: 21px;
+    margin-left: 20px;
+    flex-basis: 150px;
+}

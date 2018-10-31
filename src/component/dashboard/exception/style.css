@@ -8,3 +8,13 @@
     flex-basis: 200px;
     margin-right: 40px;
 }
+
+.leftItem{
+    font-size: 18px;
+    color:#1890ff;
+}
+
+.right{
+    border: 1px solid black;
+    flex-grow:1;
+}
