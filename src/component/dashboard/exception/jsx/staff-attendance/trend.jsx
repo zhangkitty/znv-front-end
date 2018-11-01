@@ -3,6 +3,7 @@ import PropType from 'prop-types';
 import { DatePicker } from 'shineout';
 import styles from './style.css';
 import { Radio } from 'antd';
+import LineChart from './lineChart';
 
 
 const RadioGroup = Radio.Group;
@@ -37,6 +38,7 @@ const Trend = (props) => {
           }
         </RadioGroup>
       </div>
+      <LineChart {...props} />
     </div>
   );
 };

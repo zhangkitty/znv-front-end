@@ -41,6 +41,19 @@ const List1 = (props) => {
       render: 'areaName',
     },
     {
+      title: '团队',
+      width: 80,
+      fixed: 'left',
+      align: 'center',
+      render: (d) => {
+        if (d.teamId) {
+          return d.teamId;
+        }
+        return 999;
+      },
+
+    },
+    {
       title: '目标投放数',
       width: 80,
       fixed: 'left',

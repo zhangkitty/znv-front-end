@@ -42,7 +42,12 @@ const List2 = (props) => {
       width: 80,
       fixed: 'left',
       align: 'center',
-      render: 'teamId',
+      render: (d) => {
+        if (d.teamId) {
+          return d.teamId;
+        }
+        return 999;
+      },
 
     },
     {

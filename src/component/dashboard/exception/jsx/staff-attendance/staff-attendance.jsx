@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import HeadTable from './head-table';
-import DetailData from './detail-data'
+import DetailData from './detail-data';
 import Trend from './trend';
 
 const StaffAttendance = (props) => {
@@ -11,7 +11,7 @@ const StaffAttendance = (props) => {
       <HeadTable {...props} />
       <hr />
       <Trend {...props} />
-      <hr/>
+      <hr />
       <DetailData {...props} />
     </div>
   );

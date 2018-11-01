@@ -2,6 +2,10 @@ import React from 'react';
 import { Radio, Select } from 'antd';
 import PropTypes from 'prop-types';
 import styles from './style.css';
+import BarChart from './barChart';
+import ChinaMap from './china-map';
+import ProvinceMap from './province-map';
+import BmapCity from './bmap-city';
 
 const RadioGroup = Radio.Group;
 const DetailData = (props) => {
@@ -38,6 +42,10 @@ const DetailData = (props) => {
           }
         </RadioGroup>
       </div>
+      <BarChart {...props} />
+      <ChinaMap {...props} />
+      <ProvinceMap {...props} />
+      <BmapCity {...props} />
     </div>
   );
 };

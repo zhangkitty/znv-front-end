@@ -94,7 +94,12 @@ const List1 = (props) => {
     {
       title: '团队',
       fixed: 'left',
-      render: 'teamId',
+      render: (d) => {
+        if (d.teamId) {
+          return d.teamId;
+        }
+        return 999;
+      },
       width: 100,
     },
     ...arr,

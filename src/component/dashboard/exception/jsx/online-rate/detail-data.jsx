@@ -2,6 +2,7 @@ import React from 'react';
 import { Radio, Select } from 'antd';
 import PropTypes from 'prop-types';
 import styles from './style.css';
+import BarChart from './barChart';
 
 const RadioGroup = Radio.Group;
 const DetailData = (props) => {
@@ -36,6 +37,7 @@ const DetailData = (props) => {
           }
         </RadioGroup>
       </div>
+      <BarChart {...this.props} />
     </div>
   );
 };

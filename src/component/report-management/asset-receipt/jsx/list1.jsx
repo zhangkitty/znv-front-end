@@ -33,7 +33,12 @@ const List1 = (props) => {
       title: '团队',
       width: 80,
       fixed: 'left',
-      render: 'teamId',
+      render: (d) => {
+        if (d.teamId) {
+          return d.teamId;
+        }
+        return 999;
+      },
     },
     {
       title: '资产总数',

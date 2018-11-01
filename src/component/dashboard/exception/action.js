@@ -9,3 +9,7 @@ export const init = makeActionCreator(types.init, 'props');
 
 export const initSuccess = makeActionCreator(types.initSuccess, 'data');
 
+export const getExceptionRate = makeActionCreator(types.getExceptionRate, 'props');
+
+export const getExceptionRateSuccess = makeActionCreator(types.getExceptionRateSuccess, 'data');
+
