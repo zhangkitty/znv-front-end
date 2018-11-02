@@ -67,8 +67,8 @@ const List1 = (props) => {
       width: 150,
       fixed: 'left',
       render: (d) => {
-        if (+d.closedOrder !== 0) {
-          return `${Number(d.closedOrder / d.closedOrder).toFixed(2)}%`;
+        if (+d.totalOrder !== 0) {
+          return `${Number(d.closedOrder / d.totalOrder).toFixed(2)}%`;
         }
         return '0.00%';
       },
@@ -78,15 +78,15 @@ const List1 = (props) => {
       width: 120,
       fixed: 'left',
       render: (d) => {
-        if (+d.closedOrder !== 0) {
-          return `${Number((d.closedOrder - d.timeoutClosedOrder) / d.closedOrder).toFixed(2)}%`;
+        if (+d.totalOrder !== 0) {
+          return `${Number((d.closedOrder - d.timeoutClosedOrder) / d.totalOrder).toFixed(2)}%`;
         }
         return '0.00%';
       },
     },
     {
       title: '未关闭',
-      render: 'incrTimeoutUnclosedOrder',
+      render: d => d.totalOrder - d.closedOrder,
       width: 120,
       fixed: 'left',
 
