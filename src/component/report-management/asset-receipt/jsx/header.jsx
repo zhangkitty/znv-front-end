@@ -52,8 +52,8 @@ const Header = (props) => {
             value={choosedCity}
             className={styles.monthSelect}
             onChange={value => dispatch(changeValue('choosedCity', value))}
-            // mode="tags"
             showSearch
+            placeholder="使用首字母快速选择城市"
             filterOption={(input, option) => pinyinUtil.getFirstLetter(option.props.children).toLowerCase().indexOf(input.toLowerCase()) >= 0}
           >
             <Option value="">全国</Option>

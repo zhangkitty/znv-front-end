@@ -79,7 +79,7 @@ const List2 = (props) => {
       width: 80,
       fixed: 'left',
       align: 'center',
-      render: 'rate',
+      render: d => `${Number(d.rate * 100).toFixed(2)}%`,
 
     },
     ...arr,

@@ -49,14 +49,14 @@ const List2 = (props) => {
     },
     {
       title: '工单总数',
-      render: 'incrOrder',
+      render: 'totalOrder',
       width: 120,
       fixed: 'left',
 
     },
     {
       title: '已关闭',
-      render: 'incrClosedOrder',
+      render: 'closedOrder',
       width: 120,
       fixed: 'left',
 
@@ -65,19 +65,30 @@ const List2 = (props) => {
       title: '超时关闭',
       width: 140,
       fixed: 'left',
+      render: 'timeoutClosedOrder',
 
     },
     {
       title: '完成率',
       width: 150,
       fixed: 'left',
-
+      render: (d) => {
+        if (+d.closedOrder !== 0) {
+          return `${Number(d.closedOrder / d.closedOrder).toFixed(2)}%`;
+        }
+        return '0.00%';
+      },
     },
     {
       title: '及时关闭率',
       width: 120,
       fixed: 'left',
-
+      render: (d) => {
+        if (+d.closedOrder !== 0) {
+          return `${Number((d.closedOrder - d.timeoutClosedOrder) / d.closedOrder).toFixed(2)}%`;
+        }
+        return '0.00%';
+      },
     },
     {
       title: '未关闭',

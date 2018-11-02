@@ -25,6 +25,9 @@ function* submit(action) {
   if (!props.choosedAims) {
     return message.error('统计目标不能为空');
   }
+  if (props.choosedCity === null) {
+    return message.error('考核城市不能为空');
+  }
   const data = yield submitSer(action.props);
   if (data.errCode !== 0) {
     return message.error(data.msg);
