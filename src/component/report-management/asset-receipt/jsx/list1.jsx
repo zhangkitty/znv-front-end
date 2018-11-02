@@ -17,7 +17,7 @@ const List1 = (props) => {
       arr.push({
         title: `${i + 1}号接收资产数`,
         width: 100,
-        render: `${moment(choosedMonth).format('YYYY')}${i + 1}`,
+        render: `${moment(choosedMonth).format('YYYY')}${i + 1 < 10 ? `0${i + 1}` : (i + 1)}`,
       });
     }
   }
@@ -66,10 +66,13 @@ const List1 = (props) => {
     },
     ...arr,
   ];
+
+  console.log(columns, 'xxxxxxxxx');
   const data = dataSource.map((v) => {
     const arr = v.listDays.map(k => ({ [k.dataTime]: k.incrAcceptedAsset }));
     return Object.assign({}, v, ...arr);
   });
+  console.log(data, 'pppppppppppppp');
   return (
     <div>
       <Table

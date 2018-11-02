@@ -3,7 +3,7 @@ import PropType from 'prop-types';
 import { Table, Progress } from 'shineout';
 
 const HeadTable = (props) => {
-  const { headTable: { dataSource } } = props;
+  const { onlineRate: { headTable: { dataSource } } } = props;
   const columns = [
     {
       title: '     ',

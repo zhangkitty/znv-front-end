@@ -13,6 +13,9 @@ function* initSaga(action) {
   if (data[1].errCode !== 0) {
     return message.error(data[1].msg);
   }
+  if (data[2].errCode !== 0) {
+    return message.error(data[2].msg);
+  }
   yield put(initSuccess(data));
   return null;
 }

@@ -1,21 +1,32 @@
 import React from 'react';
-import { Radio, Select } from 'antd';
+import { Radio } from 'antd';
+import { Select } from 'shineout';
 import PropTypes from 'prop-types';
 import styles from './style.css';
 import BarChart from './barChart';
+import moment from 'moment';
 
 const RadioGroup = Radio.Group;
 const DetailData = (props) => {
   const { onlineRate: { detailData: { imensiond, showType } } } = props;
+  const { onlineRate: { trend: { dateValue } } } = props;
+
+  const selectDay = [];
+  for (let i = 0; i < (moment(dateValue[1]).endOf('days').unix() - moment(dateValue[0]).startOf('days').unix()) / (3600 * 24); i++) {
+    console.log(moment(dateValue[0]).add(i, 'd').format('YYYY-MM-DD'));
+    selectDay.push(moment(dateValue[0]).add(i, 'd').format('YYYY-MM-DD'));
+  }
   return (
     <div>
       <h3 style={{ marginLeft: 20 }}>明细数据</h3>
 
       <div className={styles.firstLine}>
         <div className={styles.firstTips}>请选择日期维度:</div>
-        <RadioGroup>
+        <RadioGroup
+          data-bind="onlineRate.detailData.choosedImensiond"
+        >
           {
-            imensiond.map(v => <Radio>{v.name}</Radio>)
+            imensiond.map(v => <Radio value={v.value} disabled={v.disabled}>{v.name}</Radio>)
           }
         </RadioGroup>
       </div>
@@ -23,9 +34,10 @@ const DetailData = (props) => {
       <div className={styles.secendLine}>
         <div className={styles.secendTips}>请选择日期:</div>
         <Select
-          style={{ width: 80 }}
+          style={{ width: 120 }}
           size="small"
-          data={[1, 2, 3]}
+          data={selectDay}
+          data-bind="onlineRate.detailData.choosedData"
         />
       </div>
 

@@ -1,4 +1,5 @@
 import assign from 'object-assign';
+import moment from 'moment';
 import * as types from './types';
 
 export const defaultState = {
@@ -8,20 +9,24 @@ export const defaultState = {
   cityTree: [],
   clickedId: '0',
   node: null,
-  headTable: {
-    dataSource: [],
-  },
+
   onlineRate: {
     headTable: {
-
+      dataSource: [],
     },
     trend: {
-      imensiond: [
-        { value: 0, name: '按天' },
-        { value: 1, name: '按周' },
-        { value: 2, name: '按月' },
-        { value: 3, name: '按季' },
+      dateValue: [
+        moment().subtract(30, 'days').toDate(),
+        moment().toDate(),
       ],
+      imensiond: [
+        { value: 0, name: '按天', disabled: false },
+        { value: 1, name: '按周', disabled: true },
+        { value: 2, name: '按月', disabled: true },
+        { value: 3, name: '按季', disabled: true },
+      ],
+      choosedImensiond: 0,
+      dataSource: [],
       showType: [
         { value: 0, name: '折线图' },
         { value: 1, name: '表格' },
@@ -29,11 +34,13 @@ export const defaultState = {
     },
     detailData: {
       imensiond: [
-        { value: 0, name: '按天' },
-        { value: 1, name: '按周' },
-        { value: 2, name: '按月' },
-        { value: 3, name: '按季' },
+        { value: 0, name: '按天', disabled: false },
+        { value: 1, name: '按周', disabled: true },
+        { value: 2, name: '按月', disabled: true },
+        { value: 3, name: '按季', disabled: true },
       ],
+      choosedImensiond: 0,
+      choosedData: moment().format('YYYY-MM-DD'),
       showType: [
         { value: 0, name: '柱状图' },
         { value: 1, name: '表格' },
@@ -82,16 +89,23 @@ const reducer = (state = defaultState, action) => {
     case types.initSuccess:
       return assign({}, state, {
         cityTree: (action.data)[0].data,
-        headTable: assign({}, state.headTable, {
-          dataSource: action.data[1].data.list,
+        onlineRate: assign({}, state.onlineRate, {
+          headTable: assign({}, state.onlineRate.headTable, {
+            dataSource: action.data[1].data.list,
+          }),
+          trend: assign({}, state.onlineRate.trend, {
+            dataSource: action.data[2].data.list,
+          }),
         }),
         ready: true,
       });
 
     case types.getExceptionRateSuccess:
       return assign({}, state, {
-        headTable: assign({}, state.headTable, {
-          dataSource: action.data.list,
+        onlineRate: assign({}, state.onlineRate, {
+          headTable: assign({}, state.onlineRate.headTable, {
+            dataSource: action.data.list,
+          }),
         }),
       });
     default:
