@@ -67,12 +67,10 @@ const List1 = (props) => {
     ...arr,
   ];
 
-  console.log(columns, 'xxxxxxxxx');
   const data = dataSource.map((v) => {
     const arr = v.listDays.map(k => ({ [k.dataTime]: k.incrAcceptedAsset }));
     return Object.assign({}, v, ...arr);
   });
-  console.log(data, 'pppppppppppppp');
   return (
     <div>
       <Table
