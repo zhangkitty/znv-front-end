@@ -32,16 +32,30 @@ export const initSer = (props) => {
 export const getExceptionRateSer = (props) => {
   console.log(props);
   const { node } = props;
-  const data = {
+  const tableData = {
     type: 1,
     startTime: null,
     endTime: null,
     areaCode: node.areaCode,
     executor: null,
   };
-  return request({
-    url: `/rqs/exception/rate${getParam(data)}`,
-    method: 'get',
-  });
+
+  const trendData = {
+    type: 1,
+    startTime: moment(props.onlineRate.trend.dateValue[0]).format('YYYYMMDD'),
+    endTime: moment(props.onlineRate.trend.dateValue[1]).format('YYYYMMDD'),
+    areaCode: node.areaCode,
+    executor: null,
+  };
+
+  return Promise.all([
+    request({
+      url: `/rqs/exception/rate${getParam(tableData)}`,
+      method: 'get',
+    }),
+    request({
+      url: `/rqs/exception/rate${getParam(trendData)}`,
+    }),
+  ]);
 };
 

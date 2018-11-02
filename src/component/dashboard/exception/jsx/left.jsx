@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Tree } from 'shineout';
 import styles from '../style.css';
 import { changeValue, getExceptionRate } from '../action';
+import moment from 'moment';
 
 export default class LeftTree extends React.Component {
   constructor(props) {
@@ -31,12 +32,25 @@ export default class LeftTree extends React.Component {
           renderItem={v => (<span className={clickedId === v.id ? styles.leftItem : null}>{v.areaName}</span>)}
           line={false}
           onClick={(node, id) => {
-            console.log(node);
+            if (id.split('.').length === 2) {
+              return null;
+            }
             dispatch(changeValue('clickedId', id));
             dispatch(changeValue('node', node));
-            dispatch(getExceptionRate(assign({}, this.props, {
+            return dispatch(getExceptionRate(assign({}, this.props, {
               node,
               clickedId: id,
+              onlineRate: assign({}, this.props.onlineRate, {
+                trend: assign({}, this.props.onlineRate.trend, {
+                  dateValue: [
+                    moment().subtract(30, 'days').toDate(),
+                    moment().toDate(),
+                  ],
+                }),
+                detailData: assign({}, this.props.onlineRate.detailData, {
+                  choosedData: moment().format('YYYY-MM-DD'),
+                }),
+              }),
             })));
           }}
         />
