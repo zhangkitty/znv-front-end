@@ -38,6 +38,16 @@ const Header = (props) => {
           <RangePicker
             style={{ width: 300 }}
             data-bind="formData.kkk"
+            disabledDate={
+              (current) => {
+                const startTime = moment(aims.filter(v => v.taskId === choosedAims)[0].startTime);
+                const entTime = moment(aims.filter(v => v.taskId === choosedAims)[0].endTime);
+                if (current < startTime.startOf('days') || current > entTime) {
+                  return true;
+                }
+                return false;
+              }
+            }
           />
         </div>
       </div>
