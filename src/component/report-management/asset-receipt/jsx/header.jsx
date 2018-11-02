@@ -4,6 +4,8 @@ import { Select, Radio, Button } from 'antd';
 import styles from '../style.css';
 import { changeValue, submit } from '../action';
 
+console.log(pinyinUtil.getFirstLetter('小茗同学'), 'pppppppppppp');
+
 
 const { Option, OptGroup } = Select;
 const RadioGroup = Radio.Group;
@@ -50,15 +52,24 @@ const Header = (props) => {
             value={choosedCity}
             className={styles.monthSelect}
             onChange={value => dispatch(changeValue('choosedCity', value))}
+            // mode="tags"
+            showSearch
+            filterOption={(input, option) => pinyinUtil.getFirstLetter(option.props.children).toLowerCase().indexOf(input.toLowerCase()) >= 0}
           >
             <Option value="">全国</Option>
+            {/* { */}
+            {/* city.map(v => ( */}
+            {/* <OptGroup key={v.pro.key} label={v.pro.province}> */}
+            {/* { */}
+            {/* v.citys.map(k => <Option key={k.split(',')[0]}>{k.split(',')[1]}</Option>) */}
+            {/* } */}
+            {/* </OptGroup> */}
+            {/* )) */}
+            {/* } */}
+
             {
               city.map(v => (
-                <OptGroup key={v.pro.key} label={v.pro.province}>
-                  {
-                    v.citys.map(k => <Option key={k.split(',')[0]}>{k.split(',')[1]}</Option>)
-                  }
-                </OptGroup>
+                  v.citys.map(k => <Option key={k.split(',')[0]}>{k.split(',')[1]}</Option>)
               ))
             }
           </Select>

@@ -104,7 +104,10 @@ const reducer = (state = defaultState, action) => {
       return assign({}, state, {
         onlineRate: assign({}, state.onlineRate, {
           headTable: assign({}, state.onlineRate.headTable, {
-            dataSource: action.data.list,
+            dataSource: action.data[0].data.list,
+          }),
+          trend: assign({}, state.onlineRate.trend, {
+            dataSource: action.data[1].data.list,
           }),
         }),
       });

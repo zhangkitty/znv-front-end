@@ -23,10 +23,13 @@ function* initSaga(action) {
 function* getExceptionRateSaga(action) {
   const { props } = action;
   const data = yield getExceptionRateSer(props);
-  if (data.errCode !== 0) {
-    return message.error(data.msg);
+  if (data[0].errCode !== 0) {
+    return message.error(data[0].msg);
   }
-  yield put(getExceptionRateSuccess(data.data));
+  if (data[1].errCode !== 0) {
+    return message.error(data[1].msg);
+  }
+  yield put(getExceptionRateSuccess(data));
   return null;
 }
 
