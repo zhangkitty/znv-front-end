@@ -74,7 +74,7 @@ const List2 = (props) => {
       fixed: 'left',
       render: (d) => {
         if (+d.totalOrder !== 0) {
-          return `${Number(d.closedOrder / d.totalOrder).toFixed(2)}%`;
+          return `${Number(100 * d.closedOrder / d.totalOrder).toFixed(2)}%`;
         }
         return '0.00%';
       },
@@ -85,7 +85,7 @@ const List2 = (props) => {
       fixed: 'left',
       render: (d) => {
         if (+d.totalOrder !== 0) {
-          return `${Number((d.closedOrder - d.timeoutClosedOrder) / d.totalOrder).toFixed(2)}%`;
+          return `${Number(100 * (d.closedOrder - d.timeoutClosedOrder) / d.totalOrder).toFixed(2)}%`;
         }
         return '0.00%';
       },
