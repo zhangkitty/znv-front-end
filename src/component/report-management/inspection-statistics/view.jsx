@@ -51,8 +51,6 @@ class Container extends React.Component {
             current={page}
             pageSize={pageSize}
           />
-
-
         </div>
       );
     }
