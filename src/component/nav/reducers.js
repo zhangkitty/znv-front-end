@@ -71,7 +71,7 @@ const linkList = menus.slice(1).reduce((concated, value) => (
 
 const routerMatch = current => linkList
   .filter(({ link }) => (link === '/' || `${current}/`.startsWith(`${link}/`)))
-  .sort((item1, item2) => item1.link.length > item2.link.length);
+  .sort((item1, item2) => item1.link.length - item2.link.length);
 
 
 // const routerMatch = current => linkList.filter(({ link }) => link === `${current}`);
