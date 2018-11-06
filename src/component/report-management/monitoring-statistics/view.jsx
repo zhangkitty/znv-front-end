@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 import Page from 'shein-lib/pagination';
 import { Spin } from 'antd';
 import { connect } from 'react-redux';
-import { init } from './action';
+import { init, changePage, changePageSize, changeValue } from './action';
 import Header from './jsx/header';
 import List1 from './jsx/list1';
 import List2 from './jsx/list2';
-import { changePage, changePageSize, changeValue } from '../asset-receipt/action';
 
 class Container extends React.Component {
   componentWillMount() {
