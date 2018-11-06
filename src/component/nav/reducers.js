@@ -92,6 +92,9 @@ export default (state = defaultState, action) => {
         [action.key]: action.value,
       });
     case LOCATION_CHANGE:
+      console.log(action, 'action');
+      console.log(menus, 'menus');
+      console.log(menus.slice(0, 1).concat(routerMatch(action.payload.pathname)));
       return Object.assign({}, state, {
         current: action.payload.pathname,
         pathList: menus.slice(0, 1).concat(routerMatch(action.payload.pathname)),
