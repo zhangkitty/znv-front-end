@@ -121,9 +121,16 @@ const LineChart = (props) => {
     ],
   };
 
+  const onEvents = {
+    click: e => console.log(e),
+  };
+
   return (
     <div>
-      <ReactEcharts option={option} />
+      <ReactEcharts
+        option={option}
+        onEvents={onEvents}
+      />
     </div>
   );
 };

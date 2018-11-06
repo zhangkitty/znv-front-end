@@ -106,7 +106,10 @@ const List2 = (props) => {
     },
     {
       title: '平均处理时长',
-      render: 'finishAvgDuration',
+      render: (d) => {
+        const min = parseInt(d.finishAvgDuration / 60, 10);
+        return `${parseInt((min / 60), 10)}小时${min % 60}分钟`;
+      },
       width: 120,
       fixed: 'left',
 

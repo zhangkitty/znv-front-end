@@ -9,29 +9,6 @@ const menus = [
     icon: 'mobile',
     link: '/dashboard/exception',
   },
-  // {
-  //   title: '功能组1',
-  //   icon: 'bars',
-  //   link: '/warehouse',
-  //   children: [
-  //     {
-  //       title: '子功能1',
-  //       // icon: 'mail',
-  //       link: '/warehouse/a',
-  //     },
-  //     {
-  //       title: '子功能2',
-  //       // icon: 'mail',
-  //       link: '/warehouse/b',
-  //       children: [
-  //         {
-  //           title: '编辑',
-  //           link: '/warehouse/b/edit',
-  //         },
-  //       ],
-  //     },
-  //   ],
-  // },
   {
     title: '报表管理',
     icon: 'bars',
@@ -66,6 +43,11 @@ const menus = [
         link: '/report-management/settlement-detail',
       },
     ],
+  },
+  {
+    title: '考勤管理',
+    icon: 'bars',
+    link: '/attendance/management',
   },
   // {
   //   title: '权限管理',
