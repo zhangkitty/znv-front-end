@@ -93,7 +93,7 @@ const List1 = (props) => {
     },
     {
       title: '超时未关闭',
-      render: 'incrTimeoutUnclosedOrder',
+      render: 'timeoutUnclosedOrder',
       width: 120,
       fixed: 'left',
 
