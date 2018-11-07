@@ -9,12 +9,12 @@ const LineChart = (props) => {
 
   const selectDay = [];
   for (let i = 0; i < (moment(dateValue[1]).endOf('days').unix() - moment(dateValue[0]).startOf('days').unix()) / (3600 * 24); i++) {
-    console.log(moment(dateValue[0]).add(i, 'd').format('YYYY-MM-DD'));
     selectDay.push(moment(dateValue[0]).add(i, 'd').format('YYYY-MM-DD'));
   }
 
+  console.log(selectDay, 'trend');
+
   const toList = type => selectDay.map((v, idx) => {
-    console.log(v);
     const temp = dataSource.filter((t) => {
       if (t.dataTime === v) {
         return true;
@@ -44,6 +44,7 @@ const LineChart = (props) => {
         restore: { show: true },
         saveAsImage: { show: true },
       },
+      left: '20px',
     },
     calculable: true,
     legend: {
@@ -126,7 +127,7 @@ const LineChart = (props) => {
   };
 
   return (
-    <div>
+    <div style={{ paddingTop: 10 }}>
       <ReactEcharts
         option={option}
         onEvents={onEvents}

@@ -1,19 +1,20 @@
 import React from 'react';
 import { Radio } from 'antd';
-import { Select } from 'shineout';
-import PropTypes from 'prop-types';
+import assign from 'object-assign';
+import { DatePicker } from 'shineout';
 import styles from './style.css';
 import BarChart from './barChart';
 import moment from 'moment';
+import { changeDetailDay } from '../../action';
 
 const RadioGroup = Radio.Group;
 const DetailData = (props) => {
-  const { onlineRate: { detailData: { imensiond, showType } } } = props;
+  const { onlineRate: { detailData: { imensiond, showType, choosedData } } } = props;
   const { onlineRate: { trend: { dateValue } } } = props;
+  const { dispatch } = props;
 
   const selectDay = [];
   for (let i = 0; i < (moment(dateValue[1]).endOf('days').unix() - moment(dateValue[0]).startOf('days').unix()) / (3600 * 24); i++) {
-    console.log(moment(dateValue[0]).add(i, 'd').format('YYYY-MM-DD'));
     selectDay.push(moment(dateValue[0]).add(i, 'd').format('YYYY-MM-DD'));
   }
   return (
@@ -33,11 +34,16 @@ const DetailData = (props) => {
 
       <div className={styles.secendLine}>
         <div className={styles.secendTips}>请选择日期:</div>
-        <Select
-          style={{ width: 120 }}
-          size="small"
-          data={selectDay}
-          data-bind="onlineRate.detailData.choosedData"
+        <DatePicker
+          placeholder="Select date"
+          value={choosedData}
+          onChange={v => dispatch(changeDetailDay(assign({}, props, {
+            onlineRate: assign({}, props.onlineRate, {
+              detailData: assign({}, props.onlineRate.detailData, {
+                choosedData: v,
+              }),
+            }),
+          })))}
         />
       </div>
 
@@ -49,7 +55,7 @@ const DetailData = (props) => {
           }
         </RadioGroup>
       </div>
-      <BarChart {...this.props} />
+      <BarChart {...props} />
     </div>
   );
 };

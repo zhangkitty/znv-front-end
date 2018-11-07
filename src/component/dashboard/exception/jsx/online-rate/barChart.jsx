@@ -1,8 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import ReactEcharts from 'echarts-for-react';
 
 const BarChart = (props) => {
+  const { onlineRate: { detailData: { dataSource } } } = props;
+
+
+  const X = dataSource.map(v => (v.areaName));
+
+  const toList = type => dataSource.map(v => v[type]);
+
+
   const option = {
     tooltip: {
       trigger: 'axis',
@@ -16,6 +23,7 @@ const BarChart = (props) => {
         restore: { show: true },
         saveAsImage: { show: true },
       },
+      left: '20px',
     },
     calculable: true,
     legend: {
@@ -32,7 +40,7 @@ const BarChart = (props) => {
     xAxis: [
       {
         type: 'category',
-        data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+        data: X,
       },
     ],
     yAxis: [
@@ -55,44 +63,44 @@ const BarChart = (props) => {
       {
         name: '广告机总数',
         type: 'bar',
-        data: [30000, 30000, 30000, 30000, 30000, 30000, 30000, 30000, 30000, 30000, 30000, 30000],
+        data: toList('devTotal'),
       },
       {
         name: '广告机在线数',
         type: 'bar',
-        data: [30000, 29000, 28000, 27000, 26000, 25000, 24000, 23000, 22000, 21000, 20000, 19000],
+        data: toList('devOnlineNum'),
       },
       {
         name: '广告机在线率',
         type: 'bar',
         yAxisIndex: 1,
-        data: [50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50],
+        data: toList('onlineNumRate'),
       },
       {
         name: '云运维FSU在线数',
         type: 'bar',
-        data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
+        data: toList('onlineNum'),
       },
       {
         name: 'FSU在线率',
         type: 'bar',
-        data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
+        data: toList('onlineRate'),
       },
       {
         name: 'FSU入网数',
         type: 'bar',
-        data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
+        data: toList('openNum'),
       },
       {
         name: '入网进度',
         type: 'bar',
         yAxisIndex: 1,
-        data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2],
+        data: toList('openNum') / toList('onlineNum'),
       },
     ],
   };
   return (
-    <div>
+    <div style={{ paddingTop: 10 }}>
       <ReactEcharts option={option} />
     </div>
   );

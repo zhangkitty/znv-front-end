@@ -4,6 +4,8 @@ import { DatePicker } from 'shineout';
 import styles from './style.css';
 import { Radio } from 'antd';
 import LineChart from './lineChart';
+import assign from 'object-assign';
+import { changeTrendDays } from '../../action';
 
 
 const RadioGroup = Radio.Group;
@@ -14,22 +16,13 @@ const Trend = (props) => {
         imensiond, showType, dateValue, choosedImensiond,
       },
     },
+    dispatch,
   } = props;
   return (
     <div>
       <h3 style={{ marginLeft: 20 }}>趋势图</h3>
-      <div className={styles.firstLine}>
-        <div className={styles.firstTips}>请选择日期范围:</div>
-        <DatePicker
-          range
-          type="date"
-          format="yyyy-MM-dd"
-          data-bind="onlineRate.trend.dateValue"
-        />
-      </div>
-
-      <div className={styles.secendLine} >
-        <div className={styles.secendTips}>请选择展示维度:</div>
+      <div className={styles.firstLine} >
+        <div className={styles.firstTips}>请选择展示维度:</div>
         <RadioGroup
           data-bind="onlineRate.trend.choosedImensiond"
         >
@@ -37,6 +30,23 @@ const Trend = (props) => {
             imensiond.map(v => <Radio value={v.value} disabled={v.disabled}>{v.name}</Radio>)
           }
         </RadioGroup>
+      </div>
+
+      <div className={styles.secendLine}>
+        <div className={styles.secendTips}>请选择日期范围:</div>
+        <DatePicker
+          range
+          type="date"
+          format="yyyy-MM-dd"
+          value={dateValue}
+          onChange={v => dispatch(changeTrendDays(assign({}, props, {
+            onlineRate: assign({}, props.onlineRate, {
+              trend: assign({}, props.onlineRate.trend, {
+                dateValue: v,
+              }),
+            }),
+          })))}
+        />
       </div>
 
       <div className={styles.thirdLine}>

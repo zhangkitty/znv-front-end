@@ -5,13 +5,17 @@ import getParam from 'utils/getParam';
 
 
 export const initSer = (props) => {
-  console.log(props);
   const trendData = {
     type: 1,
     startTime: moment(props.onlineRate.trend.dateValue[0]).format('YYYYMMDD'),
     endTime: moment(props.onlineRate.trend.dateValue[1]).format('YYYYMMDD'),
     areaCode: null,
     executor: null,
+  };
+  const detailData = {
+    dataTime: (props.onlineRate.detailData.choosedData),
+    countType: 1,
+    areaCode: null,
   };
 
   return Promise.all([
@@ -26,17 +30,19 @@ export const initSer = (props) => {
     request({
       url: `/rqs/exception/rate${getParam(trendData)}`,
     }),
+    request({
+      url: `/rqs/exception/detailrate${getParam(detailData)}`,
+    }),
   ]).then(res => res);
 };
 
 export const getExceptionRateSer = (props) => {
-  console.log(props);
   const { node } = props;
   const tableData = {
     type: 1,
     startTime: null,
     endTime: null,
-    areaCode: node.areaCode,
+    areaCode: node && node.areaCode,
     executor: null,
   };
 
@@ -44,8 +50,14 @@ export const getExceptionRateSer = (props) => {
     type: 1,
     startTime: moment(props.onlineRate.trend.dateValue[0]).format('YYYYMMDD'),
     endTime: moment(props.onlineRate.trend.dateValue[1]).format('YYYYMMDD'),
-    areaCode: node.areaCode,
+    areaCode: node && node.areaCode,
     executor: null,
+  };
+
+  const detailData = {
+    dataTime: props.onlineRate.detailData.choosedData,
+    countType: 1,
+    areaCode: node && node.areaCode,
   };
 
   return Promise.all([
@@ -56,6 +68,36 @@ export const getExceptionRateSer = (props) => {
     request({
       url: `/rqs/exception/rate${getParam(trendData)}`,
     }),
+    request({
+      url: `/rqs/exception/detailrate${getParam(detailData)}`,
+    }),
   ]);
 };
 
+
+export const changeDetailDaySer = (props) => {
+  const { node } = props;
+  const detailData = {
+    dataTime: props.onlineRate.detailData.choosedData,
+    countType: 1,
+    areaCode: node && node.areaCode,
+  };
+  return request({
+    url: `/rqs/exception/detailrate${getParam(detailData)}`,
+  });
+};
+
+
+export const changeTrendDaysSer = (props) => {
+  const { node } = props;
+  const trendData = {
+    type: 1,
+    startTime: moment(props.onlineRate.trend.dateValue[0]).format('YYYYMMDD'),
+    endTime: moment(props.onlineRate.trend.dateValue[1]).format('YYYYMMDD'),
+    areaCode: node && node.areaCode,
+    executor: null,
+  };
+  return request({
+    url: `/rqs/exception/rate${getParam(trendData)}`,
+  });
+};

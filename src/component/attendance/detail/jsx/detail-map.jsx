@@ -7,17 +7,21 @@ const DetailMap = (props) => {
   const { rawData } = props;
 
 
-  const lines = rawData.track.slice(0, rawData.track.length - 1).map((seg, idx) => [{
-    coord: seg.coord,
-    value: seg.elevation,
-  }, {
-    coord: rawData.track[idx + 1].coord,
-  }]);
+  const lines = rawData.track.slice(0, rawData.track.length - 1).map((seg, idx) => [
+    {
+      coord: seg.coord,
+    },
+    {
+      coord: rawData.track[idx + 1].coord,
+    },
+  ]);
+  console.log(lines, 'lines');
 
   const waypointsData = rawData.waypoints.map(item => ({
     name: item.name,
-    value: item.coord.concat([item.elevation]),
+    value: item.coord,
   }));
+  console.log(waypointsData, 'waypointsData');
 
   const option = {
     animation: false,
@@ -64,7 +68,7 @@ const DetailMap = (props) => {
         },
         itemStyle: {
           normal: {
-            color: 'red',
+            color: 'blue',
             borderWidth: 1,
             borderColor: '#fff',
           },
@@ -81,7 +85,7 @@ const DetailMap = (props) => {
         },
         itemStyle: {
           normal: {
-            color: 'black',
+            color: 'red',
             borderWidth: 1,
             borderColor: '#fff',
           },
@@ -98,32 +102,33 @@ const DetailMap = (props) => {
           },
         },
         data: waypointsData,
-      }, {
-        type: 'scatter',
-        name: 'marker',
-        coordinateSystem: 'bmap',
-        symbolSize: 100,
-        symbolOffset: [0, -50],
-        itemStyle: {
-          normal: {
-            color: 'blue',
-            borderColor: '#111',
-            borderWidth: 5,
-          },
-        },
-        tooltip: {
-          show: false,
-        },
-        symbol: 'path://M21.9,15c0,0-8.7,9.9-9.5,11c-0.9,1.1-2.3,0.3-2.3,0.3  s-8.8-9.7-9.8-11.4C-0.7,13.3,1.2,13,1.2,13H6V1c0-0.6,0.4-1,1-1h8c0.6,0,1,0.4,1,1v12h4.7C23.1,13,21.9,15,21.9,15z',
-        data: [],
-      }],
+      },
+      // {
+      //   type: 'scatter',
+      //   name: 'marker',
+      //   coordinateSystem: 'bmap',
+      //   symbolSize: 100,
+      //   symbolOffset: [0, -50],
+      //   itemStyle: {
+      //     normal: {
+      //       color: 'blue',
+      //       borderColor: '#111',
+      //       borderWidth: 5,
+      //     },
+      //   },
+      //   tooltip: {
+      //     show: false,
+      //   },
+      //   symbol: 'path://M21.9,15c0,0-8.7,9.9-9.5,11c-0.9,1.1-2.3,0.3-2.3,0.3  s-8.8-9.7-9.8-11.4C-0.7,13.3,1.2,13,1.2,13H6V1c0-0.6,0.4-1,1-1h8c0.6,0,1,0.4,1,1v12h4.7C23.1,13,21.9,15,21.9,15z',
+      //   data: [],
+      // },
+    ],
   };
   return (
-    <div style={{ height: 600, width: 1000 }}>
-      <ReactEcharts
-        option={option}
-      />
-    </div>
+    <ReactEcharts
+      option={option}
+      style={{ height: 600 }}
+    />
   );
 };
 

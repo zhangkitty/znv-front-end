@@ -7,6 +7,11 @@ const menus = [
   {
     title: '首页',
     icon: 'mobile',
+    link: '/dashboard/xxxx',
+  },
+  {
+    title: '异常中心',
+    icon: 'bars',
     link: '/dashboard/exception',
   },
   {
