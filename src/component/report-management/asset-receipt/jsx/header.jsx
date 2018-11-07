@@ -4,8 +4,6 @@ import { Select, Radio, Button } from 'antd';
 import styles from '../style.css';
 import { changeValue, submit } from '../action';
 
-console.log(pinyinUtil.getFirstLetter('小茗同学'), 'pppppppppppp');
-
 
 const { Option, OptGroup } = Select;
 const RadioGroup = Radio.Group;

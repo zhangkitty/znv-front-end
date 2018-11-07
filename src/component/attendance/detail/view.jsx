@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { init } from './actions';
+import AttendanceTable from './jsx/attendance-table';
 
 
 class Detail extends Component {
@@ -15,7 +16,7 @@ class Detail extends Component {
     return (
       <div>
         <div>
-          发送到发放
+          <AttendanceTable {...this.props} />
         </div>
       </div>
     );

@@ -120,9 +120,6 @@ class MainPage extends React.PureComponent {
           >
             <div>
               {
-                console.log(pathList, 'pppppppppp')
-              }
-              {
                 crumbList
               }
             </div>
