@@ -3,10 +3,9 @@ import ReactEcharts from 'echarts-for-react';
 import 'echarts/extension/bmap/bmap';
 
 
-const BmapCity = (props) => {
-  const token = '0utVz0V8yEAAFsAYNgOpXGjFpiAl4ZTB';
-
+const DetailMap = (props) => {
   const { rawData } = props;
+
 
   const lines = rawData.track.slice(0, rawData.track.length - 1).map((seg, idx) => [{
     coord: seg.coord,
@@ -19,7 +18,6 @@ const BmapCity = (props) => {
     name: item.name,
     value: item.coord.concat([item.elevation]),
   }));
-
 
   const option = {
     animation: false,
@@ -130,4 +128,4 @@ const BmapCity = (props) => {
   );
 };
 
-export default BmapCity;
+export default DetailMap;

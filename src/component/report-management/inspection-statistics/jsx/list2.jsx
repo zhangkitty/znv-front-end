@@ -86,7 +86,7 @@ const List2 = (props) => {
   ];
 
   const data = dataSource.map((v) => {
-    const arrA = v.listDays.map(k => ({ [k.dataTime]: k.finishCount }));
+    const arrA = v.listDays.map(k => ({ [k.dataTime]: k.incrFinishCount }));
     return Object.assign({}, v, ...arrA);
   });
   return (

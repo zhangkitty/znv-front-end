@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { init } from './actions';
 import AttendanceTable from './jsx/attendance-table';
+import DetailMap from './jsx/detail-map';
 
 
 class Detail extends Component {
@@ -17,6 +18,7 @@ class Detail extends Component {
       <div>
         <div>
           <AttendanceTable {...this.props} />
+          <DetailMap {...this.props} />
         </div>
       </div>
     );
