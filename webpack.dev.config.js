@@ -65,6 +65,11 @@ module.exports = Object.assign({},config, {
         // pathRewrite: { '^/rqs': '' },
         secure: false,
         changeOrigin: true
+      },
+      '/aps':{
+        target: 'http://10.45.146.48:9010',
+        secure: false,
+        changeOrigin: true
       }
     },
     open: true

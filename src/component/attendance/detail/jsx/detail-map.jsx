@@ -30,7 +30,6 @@ const DetailMap = (props) => {
       trigger: 'axis',
     },
 
-
     series: [
       {
         type: 'lines',

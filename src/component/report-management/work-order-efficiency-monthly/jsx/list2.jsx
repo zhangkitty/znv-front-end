@@ -92,7 +92,7 @@ const List2 = (props) => {
     },
     {
       title: '未关闭',
-      render: 'incrTimeoutUnclosedOrder',
+      render: d => d.totalOrder - d.closedOrder,
       width: 120,
       fixed: 'left',
 
