@@ -9,6 +9,7 @@
     height: 500px;
     border-right: 5px solid black;
     overflow:scroll;
+    flex-shrink:0;
 }
 
 .leftItem{
