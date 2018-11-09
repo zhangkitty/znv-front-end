@@ -19,6 +19,8 @@ const Header = (props) => {
         <div>统计目标</div>
         <div>
           <Select
+            showSearch
+            filterOption={(input, option) => option.props.children.indexOf(input) >= 0}
             className={styles.monthSelect}
             value={choosedAims}
             onChange={(value) => {
