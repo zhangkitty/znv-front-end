@@ -4,7 +4,7 @@ import { request } from 'utils/index';
 
 export const initSer = props => Promise.all([
   request({
-    url: '/icloud.web/api/task/list?taskType=1',
+    url: '/web/api/task/list?taskType=1',
     method: 'get',
   }),
   request({
@@ -21,7 +21,7 @@ export const submitSer = (props) => {
     endTime: props.formData.kkk[1].format('YYYYMMDD'),
     type: props.chooseValue,
     taskId: props.choosedAims,
-    areaCode:props.choosedCity,
+    areaCode: props.choosedCity,
   };
   const arr = [];
   for (const [key, value] of Object.entries(test)) {

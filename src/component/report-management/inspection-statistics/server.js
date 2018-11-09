@@ -4,7 +4,7 @@ import { request } from 'utils/index';
 
 export const initSer = props => Promise.all([
   request({
-    url: '/icloud.web/api/task/list?taskType=2',
+    url: '/web/api/task/list?taskType=2',
     method: 'get',
   }),
   request({
