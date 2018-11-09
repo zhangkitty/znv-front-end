@@ -9,11 +9,11 @@ const menus = [
     icon: 'mobile',
     link: '/dashboard/xxxx',
   },
-  {
-    title: '异常中心',
-    icon: 'bars',
-    link: '/dashboard/exception',
-  },
+  // {
+  //   title: '异常中心',
+  //   icon: 'bars',
+  //   link: '/dashboard/exception',
+  // },
   {
     title: '报表管理',
     icon: 'bars',
@@ -49,11 +49,11 @@ const menus = [
       },
     ],
   },
-  {
-    title: '考勤管理',
-    icon: 'bars',
-    link: '/attendance/management',
-  },
+  // {
+  //   title: '考勤管理',
+  //   icon: 'bars',
+  //   link: '/attendance/management',
+  // },
   // {
   //   title: '权限管理',
   //   icon: 'bars',
