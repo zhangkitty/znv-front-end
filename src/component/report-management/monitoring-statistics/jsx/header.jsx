@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import { Select, Radio, Button, DatePicker } from 'antd';
 import styles from '../style.css';
 import { changeValue, submit } from '../action';
@@ -10,7 +11,7 @@ const RadioGroup = Radio.Group;
 const { RangePicker } = DatePicker;
 const Header = (props) => {
   const {
-    dispatch, city, team, aims, choosedCity, choosedTeam, choosedAims, chooseValue, formData,
+    dispatch, city, team, aims, choosedCity, choosedTeam, choosedAims, chooseValue, formData, dataDisabled,
   } = props;
   return (
     <div className={styles.head}>
@@ -20,7 +21,12 @@ const Header = (props) => {
           <Select
             className={styles.monthSelect}
             value={choosedAims}
-            onChange={value => dispatch(changeValue('choosedAims', value))}
+            onChange={(value) => {
+              if (value) {
+                dispatch(changeValue('dataDisabled', false));
+              }
+              dispatch(changeValue('choosedAims', value));
+            }}
           >
             {
               aims.map(v => (
@@ -36,8 +42,19 @@ const Header = (props) => {
         <div>统计日期</div>
         <div>
           <RangePicker
+            disabled={dataDisabled}
             style={{ width: 300 }}
             data-bind="formData.kkk"
+            disabledDate={
+              (current) => {
+                const startTime = moment(aims.filter(v => v.taskId === choosedAims)[0].startTime);
+                const entTime = moment(aims.filter(v => v.taskId === choosedAims)[0].endTime);
+                if (current < startTime.startOf('days') || current > entTime) {
+                  return true;
+                }
+                  return false;
+              }
+            }
           />
         </div>
       </div>
@@ -60,18 +77,16 @@ const Header = (props) => {
         <div className={styles.label}>考核城市</div>
         <div >
           <Select
+            showSearch
             className={styles.monthSelect}
             value={choosedCity}
             onChange={value => dispatch(changeValue('choosedCity', value))}
+            filterOption={(input, option) => pinyinUtil.getFirstLetter(option.props.children).toLowerCase().indexOf(input.toLowerCase()) >= 0}
           >
             <Option value="">全国</Option>
             {
               city.map(v => (
-                <OptGroup key={v.pro.key} label={v.pro.province}>
-                  {
                     v.citys.map(k => <Option key={k.split(',')[0]}>{k.split(',')[1]}</Option>)
-                  }
-                </OptGroup>
               ))
             }
           </Select>

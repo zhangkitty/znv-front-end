@@ -17,7 +17,7 @@ const List2 = (props) => {
       arr.push({
         title: `${i + 1}号接收资产数`,
         width: 100,
-        render: `${moment(choosedMonth).format('YYYY')}${i + 1}`,
+        render: `${moment(choosedMonth).format('YYYY')}${i + 1 < 10 ? `0${i + 1}` : (i + 1)}`,
       });
     }
   }
@@ -39,7 +39,12 @@ const List2 = (props) => {
       title: '团队',
       width: 80,
       fixed: 'left',
-      render: 'teamId',
+      render: (d) => {
+        if (d.teamId) {
+          return d.teamId;
+        }
+        return 999;
+      },
     },
     {
       title: '资产总数',

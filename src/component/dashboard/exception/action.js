@@ -9,3 +9,16 @@ export const init = makeActionCreator(types.init, 'props');
 
 export const initSuccess = makeActionCreator(types.initSuccess, 'data');
 
+export const getExceptionRate = makeActionCreator(types.getExceptionRate, 'props');
+
+export const getExceptionRateSuccess = makeActionCreator(types.getExceptionRateSuccess, 'data');
+
+
+// 明细数据中选择日期
+export const changeDetailDay = makeActionCreator(types.changeDetailDay, 'props');
+export const changeDetailDaySuccess = makeActionCreator(types.changeDetailDaySuccess, 'data');
+
+// 趋势数据中选择日期
+export const changeTrendDays = makeActionCreator(types.changeTrendDays, 'props');
+export const changeTrendDaysSuccess = makeActionCreator(types.changeTrendDaysSuccess, 'data');
+

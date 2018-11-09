@@ -30,9 +30,14 @@ const List1 = (props) => {
       render: () => ('广告机'),
     },
     {
-      title: '每种工单类型的工单数',
+      title: '市电停电工单数',
       width: 100,
-      render: 'incrOrder',
+      render: 'powerOffNum',
+    },
+    {
+      title: 'FSU中断工单数',
+      width: 100,
+      render: 'interruptNum',
     },
   ];
   return (

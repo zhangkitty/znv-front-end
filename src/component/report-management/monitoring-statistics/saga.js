@@ -33,6 +33,8 @@ function* submit(action) {
 function* mainSaga() {
   yield takeLatest(types.init, init);
   yield takeLatest(types.submit, submit);
+  yield takeLatest(types.changePage, submit);
+  yield takeLatest(types.changePageSize, submit);
 }
 
 export default mainSaga;

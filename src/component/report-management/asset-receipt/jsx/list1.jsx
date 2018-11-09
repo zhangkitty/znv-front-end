@@ -17,7 +17,7 @@ const List1 = (props) => {
       arr.push({
         title: `${i + 1}号接收资产数`,
         width: 100,
-        render: `${moment(choosedMonth).format('YYYY')}${i + 1}`,
+        render: `${moment(choosedMonth).format('YYYY')}${i + 1 < 10 ? `0${i + 1}` : (i + 1)}`,
       });
     }
   }
@@ -33,7 +33,12 @@ const List1 = (props) => {
       title: '团队',
       width: 80,
       fixed: 'left',
-      render: 'teamId',
+      render: (d) => {
+        if (d.teamId) {
+          return d.teamId;
+        }
+        return 999;
+      },
     },
     {
       title: '资产总数',
@@ -61,6 +66,7 @@ const List1 = (props) => {
     },
     ...arr,
   ];
+
   const data = dataSource.map((v) => {
     const arr = v.listDays.map(k => ({ [k.dataTime]: k.incrAcceptedAsset }));
     return Object.assign({}, v, ...arr);

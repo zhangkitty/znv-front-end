@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { init } from './action';
 import Header from './jsx/header';
 import List1 from './jsx/list1';
-import List2 from './jsx/list2';
 import { defaultState } from './reducers';
 
 class Container extends React.Component {
@@ -13,18 +12,12 @@ class Container extends React.Component {
     this.props.dispatch(init({ defaultState }));
   }
   render() {
-    const { ready, chooseValue } = this.props;
+    const { ready } = this.props;
     if (!ready) {
       return (
         <div>
           <Header {...this.props} />
-          {
-            (+chooseValue === 1) && <List1 {...this.props} />
-
-          }
-          {
-            (+chooseValue === 2) && <List2 {...this.props} />
-          }
+          <List1 {...this.props} />
         </div>
       );
     }

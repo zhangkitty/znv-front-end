@@ -44,17 +44,15 @@ const Header = (props) => {
         <div className={styles.label}>考核城市</div>
         <div >
           <Select
+            showSearch
             className={styles.monthSelect}
             data-bind="formData.choosedCity"
+            filterOption={(input, option) => pinyinUtil.getFirstLetter(option.props.children).toLowerCase().indexOf(input.toLowerCase()) >= 0}
           >
             <Option value="">全国</Option>
             {
               city.map(v => (
-                <OptGroup key={v.pro.key} label={v.pro.province}>
-                  {
                     v.citys.map(k => <Option key={k.split(',')[0]}>{k.split(',')[1]}</Option>)
-                  }
-                </OptGroup>
               ))
             }
           </Select>

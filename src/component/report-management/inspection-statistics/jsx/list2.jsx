@@ -42,7 +42,12 @@ const List2 = (props) => {
       width: 80,
       fixed: 'left',
       align: 'center',
-      render: 'teamId',
+      render: (d) => {
+        if (d.teamId) {
+          return d.teamId;
+        }
+        return 999;
+      },
 
     },
     {
@@ -74,14 +79,14 @@ const List2 = (props) => {
       width: 80,
       fixed: 'left',
       align: 'center',
-      render: 'rate',
+      render: d => `${Number(d.rate * 100).toFixed(2)}%`,
 
     },
     ...arr,
   ];
 
   const data = dataSource.map((v) => {
-    const arrA = v.listDays.map(k => ({ [k.dataTime]: k.finishCount }));
+    const arrA = v.listDays.map(k => ({ [k.dataTime]: k.incrFinishCount }));
     return Object.assign({}, v, ...arrA);
   });
   return (

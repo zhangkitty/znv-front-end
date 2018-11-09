@@ -50,15 +50,24 @@ const Header = (props) => {
             value={choosedCity}
             className={styles.monthSelect}
             onChange={value => dispatch(changeValue('choosedCity', value))}
+            showSearch
+            placeholder="使用首字母快速选择城市"
+            filterOption={(input, option) => pinyinUtil.getFirstLetter(option.props.children).toLowerCase().indexOf(input.toLowerCase()) >= 0}
           >
             <Option value="">全国</Option>
+            {/* { */}
+            {/* city.map(v => ( */}
+            {/* <OptGroup key={v.pro.key} label={v.pro.province}> */}
+            {/* { */}
+            {/* v.citys.map(k => <Option key={k.split(',')[0]}>{k.split(',')[1]}</Option>) */}
+            {/* } */}
+            {/* </OptGroup> */}
+            {/* )) */}
+            {/* } */}
+
             {
               city.map(v => (
-                <OptGroup key={v.pro.key} label={v.pro.province}>
-                  {
-                    v.citys.map(k => <Option key={k.split(',')[0]}>{k.split(',')[1]}</Option>)
-                  }
-                </OptGroup>
+                  v.citys.map(k => <Option key={k.split(',')[0]}>{k.split(',')[1]}</Option>)
               ))
             }
           </Select>

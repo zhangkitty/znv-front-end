@@ -23,14 +23,19 @@ const List2 = (props) => {
     },
     {
       title: '团队',
-      render: 'teamId',
+      render: (d) => {
+        if (d.teamId) {
+          return d.teamId;
+        }
+        return 999;
+      },
       width: 80,
       fixed: 'left',
 
     },
     {
       title: '当月新增',
-      rende: 'incrOrder',
+      render: 'incrOrder',
       width: 100,
       fixed: 'left',
 
@@ -44,14 +49,14 @@ const List2 = (props) => {
     },
     {
       title: '工单总数',
-      render: 'incrOrder',
+      render: 'totalOrder',
       width: 120,
       fixed: 'left',
 
     },
     {
       title: '已关闭',
-      render: 'incrClosedOrder',
+      render: 'closedOrder',
       width: 120,
       fixed: 'left',
 
@@ -60,37 +65,51 @@ const List2 = (props) => {
       title: '超时关闭',
       width: 140,
       fixed: 'left',
+      render: 'timeoutClosedOrder',
 
     },
     {
       title: '完成率',
       width: 150,
       fixed: 'left',
-
+      render: (d) => {
+        if (+d.totalOrder !== 0) {
+          return `${Number(100 * d.closedOrder / d.totalOrder).toFixed(2)}%`;
+        }
+        return '0.00%';
+      },
     },
     {
       title: '及时关闭率',
       width: 120,
       fixed: 'left',
-
+      render: (d) => {
+        if (+d.totalOrder !== 0) {
+          return `${Number(100 * (d.closedOrder - d.timeoutClosedOrder) / d.totalOrder).toFixed(2)}%`;
+        }
+        return '0.00%';
+      },
     },
     {
       title: '未关闭',
-      render: 'incrTimeoutUnclosedOrder',
+      render: d => d.totalOrder - d.closedOrder,
       width: 120,
       fixed: 'left',
 
     },
     {
       title: '超时未关闭',
-      render: 'incrTimeoutUnclosedOrder',
+      render: 'timeoutUnclosedOrder',
       width: 120,
       fixed: 'left',
 
     },
     {
       title: '平均处理时长',
-      render: 'finishAvgDuration',
+      render: (d) => {
+        const min = parseInt(d.finishAvgDuration / 60, 10);
+        return `${parseInt((min / 60), 10)}小时${min % 60}分钟`;
+      },
       width: 120,
       fixed: 'left',
 

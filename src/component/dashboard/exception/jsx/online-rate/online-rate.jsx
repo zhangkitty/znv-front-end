@@ -1,16 +1,24 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import HeadTable from './head-table';
+import Trend from './trend';
+import DetailData from './detail-data';
 
-const Online = (props) => {
-  console.log(props);
 
+export default class Online extends Component {
+  constructor(props) {
+    super(props);
+    console.log('sbsbsbsbsbsbsbxxxxx');
+  }
 
-  return (
-    <div>
-      <HeadTable {...props} />
-    </div>
-  );
-};
-
-export default Online;
+  render() {
+    return (
+      <div>
+        <HeadTable {...this.props} />
+        <hr />
+        <Trend {...this.props} />
+        <hr />
+        <DetailData {...this.props} />
+      </div>
+    );
+  }
+}

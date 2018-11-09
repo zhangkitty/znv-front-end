@@ -25,6 +25,9 @@ function* submit(action) {
   if (!props.choosedAims) {
     return message.error('统计目标不能为空');
   }
+  if (props.choosedCity === null) {
+    return message.error('考核城市不能为空');
+  }
   const data = yield submitSer(action.props);
   if (data.errCode !== 0) {
     return message.error(data.msg);
@@ -36,6 +39,8 @@ function* submit(action) {
 function* mainSaga() {
   yield takeLatest(types.init, init);
   yield takeLatest(types.submit, submit);
+  yield takeLatest(types.changePage, submit);
+  yield takeLatest(types.changePageSize, submit);
 }
 
 export default mainSaga;
