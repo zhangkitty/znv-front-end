@@ -62,6 +62,8 @@ function* mainSaga() {
   yield takeLatest(types.submit, submit);
   yield takeLatest(types.search, search);
   yield takeLatest(types.handle, handle);
+  yield takeLatest(types.changePage, submit);
+  yield takeLatest(types.changePageSize, submit);
 }
 
 export default mainSaga;
