@@ -47,7 +47,10 @@ const Header = (props) => {
             showSearch
             className={styles.monthSelect}
             data-bind="formData.choosedCity"
-            filterOption={(input, option) => pinyinUtil.getFirstLetter(option.props.children).toLowerCase().indexOf(input.toLowerCase()) >= 0}
+            filterOption={(input, option) =>
+              pinyinUtil.getFirstLetter(option.props.children).toLowerCase().indexOf(input.toLowerCase()) >= 0 ||
+              option.props.children.indexOf(input) >= 0
+            }
           >
             <Option value="">全国</Option>
             {

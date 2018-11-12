@@ -83,7 +83,10 @@ const Header = (props) => {
             className={styles.monthSelect}
             value={choosedCity}
             onChange={value => dispatch(changeValue('choosedCity', value))}
-            filterOption={(input, option) => pinyinUtil.getFirstLetter(option.props.children).toLowerCase().indexOf(input.toLowerCase()) >= 0}
+            filterOption={(input, option) =>
+              pinyinUtil.getFirstLetter(option.props.children).toLowerCase().indexOf(input.toLowerCase()) >= 0 ||
+              option.props.children.indexOf(input) >= 0
+            }
           >
             <Option value="">全国</Option>
             {

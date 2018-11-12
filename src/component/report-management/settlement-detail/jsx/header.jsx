@@ -30,7 +30,10 @@ const Header = (props) => {
             className={styles.monthSelect}
             allowClear
             data-bind="formData.choosedMonth"
-            filterOption={(input, option) => pinyinUtil.getFirstLetter(option.props.children).toLowerCase().indexOf(input.toLowerCase()) >= 0}
+            filterOption={(input, option) =>
+              pinyinUtil.getFirstLetter(option.props.children).toLowerCase().indexOf(input.toLowerCase()) >= 0 ||
+              option.props.children.indexOf(input) >= 0
+            }
           >
             {
               month.map(v =>

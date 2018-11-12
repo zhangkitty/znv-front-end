@@ -47,7 +47,10 @@ const Header = (props) => {
             data-bind="formData.choosedCity"
             placeholder="使用首字母快速选择城市"
             className={styles.monthSelect}
-            filterOption={(input, option) => pinyinUtil.getFirstLetter(option.props.children).toLowerCase().indexOf(input.toLowerCase()) >= 0}
+            filterOption={(input, option) =>
+              pinyinUtil.getFirstLetter(option.props.children).toLowerCase().indexOf(input.toLowerCase()) >= 0 ||
+              option.props.children.indexOf(input) >= 0
+            }
           >
             <Option value="">全国</Option>
             {
