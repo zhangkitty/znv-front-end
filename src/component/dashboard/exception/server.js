@@ -164,7 +164,8 @@ export const changeDetailDayTab1Ser = (props) => {
 
   const detailData = {
     dataTime: props.staffAttendance.detailData.choosedData,
-    areaCode: node.areaCode,
+    // 暂时放开
+    // areaCode: node.areaCode,
   };
   return request({
     url: `/rqs/attendance/citydetail${getParam(detailData)}`,

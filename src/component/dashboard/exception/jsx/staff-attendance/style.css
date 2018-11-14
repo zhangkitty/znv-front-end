@@ -30,3 +30,24 @@
     margin-left: 20px;
     flex-basis: 150px;
 }
+
+
+.map{
+    /*position:relative;*/
+    /*left: 0px;*/
+    /*top:0px;*/
+    /*right: 0px;*/
+    /*height: 800px;*/
+    /*padding: 30px;*/
+    display: flex;
+    height: 800px;
+}
+
+.mapLeft{
+    flex-basis: 200px;
+}
+
+.mapRight{
+    width:100%;
+    height: 100% !important;
+}

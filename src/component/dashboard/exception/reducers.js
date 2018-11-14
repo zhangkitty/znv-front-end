@@ -112,6 +112,8 @@ export const defaultState = {
         { value: 0, name: '柱状图' },
         { value: 1, name: '地图' },
       ],
+      chooseType: 0,
+      dataSource: [],
     },
   },
 };

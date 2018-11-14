@@ -3,6 +3,14 @@ import PropTypes from 'prop-types';
 import ReactEcharts from 'echarts-for-react';
 
 const BarChart = (props) => {
+  const { staffAttendance: { detailData: { dataSource } } } = props;
+
+
+
+  const X = dataSource.map(v => (v.areaName || v.executorName));
+
+  const toList = type => dataSource.map(v => v[type]);
+
   const option = {
     tooltip: {
       trigger: 'axis',
@@ -20,74 +28,43 @@ const BarChart = (props) => {
     calculable: true,
     legend: {
       data: [
-        '广告机总数',
-        '广告机在线数',
-        '广告机在线率',
-        '云运维FSU在线数',
-        'FSU在线率',
-        'FSU入网数',
-        '入网进度',
+        '工作时长',
+        '工作路程',
       ],
     },
     xAxis: [
       {
         type: 'category',
-        data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+        data: X,
       },
     ],
     yAxis: [
       {
         type: 'value',
-        name: '数目',
+        name: '工作时长',
         axisLabel: {
           formatter: '{value}',
         },
       },
       {
         type: 'value',
-        name: '百分比',
+        name: '工作路程',
         axisLabel: {
-          formatter: '{value} %',
+          formatter: '{value}',
         },
       },
     ],
     series: [
       {
-        name: '广告机总数',
+        name: '工作时长',
         type: 'bar',
-        data: [30000, 30000, 30000, 30000, 30000, 30000, 30000, 30000, 30000, 30000, 30000, 30000],
+        data: toList('workTime'),
       },
       {
-        name: '广告机在线数',
-        type: 'bar',
-        data: [30000, 29000, 28000, 27000, 26000, 25000, 24000, 23000, 22000, 21000, 20000, 19000],
-      },
-      {
-        name: '广告机在线率',
+        name: '工作路程',
         type: 'bar',
         yAxisIndex: 1,
-        data: [50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50],
-      },
-      {
-        name: '云运维FSU在线数',
-        type: 'bar',
-        data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
-      },
-      {
-        name: 'FSU在线率',
-        type: 'bar',
-        data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
-      },
-      {
-        name: 'FSU入网数',
-        type: 'bar',
-        data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
-      },
-      {
-        name: '入网进度',
-        type: 'bar',
-        yAxisIndex: 1,
-        data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2],
+        data: toList('workDistance'),
       },
     ],
   };

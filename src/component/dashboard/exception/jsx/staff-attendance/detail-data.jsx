@@ -6,6 +6,7 @@ import BarChart from './barChart';
 import ChinaMap from './china-map';
 import ProvinceMap from './province-map';
 import BmapCity from './bmap-city';
+import BmapPerson from './bmap-person';
 import assign from 'object-assign';
 import { changeDetailDayTab1 } from '../../action';
 
@@ -15,10 +16,14 @@ const DetailData = (props) => {
   const {
     staffAttendance: {
       detailData: {
-        imensiond, choosedImensiond, showType, choosedData,
+        imensiond, choosedImensiond, showType, choosedData, chooseType,
       },
     },
   } = props;
+
+  const { node } = props;
+  const len = node.id.split('.').length;
+
   return (
     <div>
       <h3 style={{ marginLeft: 20 }}>实时城市</h3>
@@ -52,16 +57,30 @@ const DetailData = (props) => {
 
       <div className={styles.thirdLine}>
         <div className={styles.thirdTips}>请选择图标类型:</div>
-        <RadioGroup>
+        <RadioGroup
+          data-bind="staffAttendance.detailData.chooseType"
+        >
           {
             showType.map(v => <Radio value={v.value}>{v.name}</Radio>)
           }
         </RadioGroup>
       </div>
-      <BarChart {...props} />
-      <ChinaMap {...props} />
-      <ProvinceMap {...props} />
-      <BmapCity {...props} />
+      {
+        chooseType === 0 ? <BarChart {...props} />
+          :
+        <div style={{ marginTop: 10 }}>
+          {
+              len < 3 && <ChinaMap {...props} />
+          }
+          {
+              len === 3 && <BmapCity {...props} />
+          }
+          {
+              len > 3 && <BmapPerson {...props} />
+          }
+          {/* <ProvinceMap {...props} /> */}
+        </div>
+      }
     </div>
   );
 };

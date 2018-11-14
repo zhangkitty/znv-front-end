@@ -6,7 +6,6 @@ import moment from 'moment';
 const LineChart = (props) => {
   const { staffAttendance: { trend: { dateValue, dataSource } } } = props;
 
-  console.log(dataSource);
 
   const selectDay = [];
   for (let i = 0; i < (moment(dateValue[1]).endOf('days').unix() - moment(dateValue[0]).startOf('days').unix()) / (3600 * 24); i++) {
