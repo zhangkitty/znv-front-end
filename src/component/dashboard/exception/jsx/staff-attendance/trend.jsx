@@ -4,11 +4,20 @@ import { DatePicker } from 'shineout';
 import styles from './style.css';
 import { Radio } from 'antd';
 import LineChart from './lineChart';
+import { changeTrendDaysInTab1 } from '../../action';
+import assign from 'object-assign';
 
 
 const RadioGroup = Radio.Group;
 const Trend = (props) => {
-  const { staffAttendance: { trend: { imensiond, showType } } } = props;
+  const {
+    dispatch,
+    staffAttendance: {
+      trend: {
+        imensiond, choosedImensiond, showType, dateValue,
+      },
+    },
+  } = props;
   return (
     <div>
       <h3 style={{ marginLeft: 20 }}>趋势图</h3>
@@ -16,15 +25,26 @@ const Trend = (props) => {
         <div className={styles.firstTips}>请选择日期范围:</div>
         <DatePicker
           range
-          defaultValue={['2018-05-25', '2018-06-05']}
+          type="date"
+          format="yyyy-MM-dd"
+          value={dateValue}
+          onChange={v => dispatch(changeTrendDaysInTab1(assign({}, props, {
+            staffAttendance: assign({}, props.staffAttendance, {
+              trend: assign({}, props.staffAttendance.trend, {
+                dateValue: v,
+              }),
+            }),
+          })))}
         />
       </div>
 
       <div className={styles.secendLine} >
         <div className={styles.secendTips}>请选择展示维度:</div>
-        <RadioGroup>
+        <RadioGroup
+          data-bind="staffAttendance.trend.choosedImensiond"
+        >
           {
-            imensiond.map(v => <Radio >{v.name}</Radio>)
+            imensiond.map(v => <Radio value={v.value} disabled={v.disabled}>{v.name}</Radio>)
           }
         </RadioGroup>
       </div>

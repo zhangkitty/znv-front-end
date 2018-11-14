@@ -12,7 +12,6 @@ const LineChart = (props) => {
     selectDay.push(moment(dateValue[0]).add(i, 'd').format('YYYY-MM-DD'));
   }
 
-  console.log(selectDay, 'trend');
 
   const toList = type => selectDay.map((v, idx) => {
     const temp = dataSource.filter((t) => {

@@ -7,7 +7,6 @@ import styles from '../style.css';
 export default class Right extends React.Component {
   constructor(props) {
     super(props);
-    console.log('右侧组件构造函数');
   }
 
   render() {

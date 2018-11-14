@@ -13,26 +13,21 @@ export default class LeftTree extends React.Component {
 
   render() {
     const { cityTree, dispatch, clickedId } = this.props;
-    const transfrom = data => data.map(v => assign({}, v, {
-      id: `${v.level}.${v.areaCode}`,
-      children: transfrom(v.cityList),
-    }));
 
-    const data = [{
-      areaName: '全国',
-      id: '0',
-      children: transfrom(cityTree),
-    }];
+
     return (
       <div className={styles.left}>
         <Tree
-          data={data}
+          data={cityTree}
           keygen="id"
           defaultExpanded={['0']}
           renderItem={v => (<span className={clickedId === v.id ? styles.leftItem : null}>{v.areaName}</span>)}
           line={false}
           onClick={(node, id) => {
             if (id.split('.').length === 2) {
+              return null;
+            }
+            if (id.split('.').length === 4 && node.person !== true) {
               return null;
             }
             dispatch(changeValue('clickedId', id));

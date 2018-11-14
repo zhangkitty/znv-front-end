@@ -5,7 +5,7 @@ const BarChart = (props) => {
   const { onlineRate: { detailData: { dataSource } } } = props;
 
 
-  const X = dataSource.map(v => (v.areaName));
+  const X = dataSource.map(v => (v.areaName || v.executorName));
 
   const toList = type => dataSource.map(v => v[type]);
 

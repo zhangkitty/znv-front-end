@@ -1,22 +1,28 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import HeadTable from './head-table';
 import DetailData from './detail-data';
 import Trend from './trend';
-
-const StaffAttendance = (props) => {
-  console.log(props);
-  return (
-    <div>
-      <HeadTable {...props} />
-      <hr />
-      <Trend {...props} />
-      <hr />
-      <DetailData {...props} />
-    </div>
-  );
-};
+import { staffAttendanceInit } from '../../action';
 
 
-export default StaffAttendance;
+export default class StaffAttendance extends React.Component {
+  constructor(props) {
+    super(props);
+    const { dispatch } = props;
+    dispatch(staffAttendanceInit(props));
+  }
+
+
+  render() {
+    return (
+      <div>
+        <HeadTable {...this.props} />
+        <hr />
+        <Trend {...this.props} />
+        <hr />
+        <DetailData {...this.props} />
+      </div>
+    );
+  }
+}
 

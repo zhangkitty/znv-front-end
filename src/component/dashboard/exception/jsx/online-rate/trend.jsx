@@ -60,6 +60,7 @@ const Trend = (props) => {
 
       <LineChart {...props} />
 
+
     </div>
   );
 };
