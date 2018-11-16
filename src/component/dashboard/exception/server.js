@@ -238,8 +238,8 @@ export const changeDetailDayTab1Ser = (props) => {
 
   if (len === 3) {
     const detailData = {
-      areaCode: '440300', // node.areaCode,
-      dataTime: '2018-11-14', // props.staffAttendance.detailData.choosedData,
+      areaCode: node.areaCode,
+      dataTime: props.staffAttendance.detailData.choosedData,
     };
     return request({
       url: `/rqs/attendance/citydetail${getParam(detailData)}`,
@@ -248,8 +248,8 @@ export const changeDetailDayTab1Ser = (props) => {
 
   if (len > 3) {
     const detailData = {
-      executor: '51000000699', // node.areaCode,
-      dataTime: '2018-11-14', // props.staffAttendance.detailData.choosedData,
+      executor: node.areaCode,
+      dataTime: props.staffAttendance.detailData.choosedData,
     };
 
     return Promise.all([

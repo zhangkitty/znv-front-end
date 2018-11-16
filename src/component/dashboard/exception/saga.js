@@ -80,7 +80,12 @@ function* getDevicedetailSaga(action) {
 function* staffAttendanceInitSaga(action) {
   const { props } = action;
   const data = yield staffAttendanceInitSer(props);
-  debugger;
+
+  for (const v of data) {
+    if (v.errCode !== 0) {
+      return message.error(v.msg);
+    }
+  }
   return yield put(staffAttendanceInitSuccess(data));
 }
 
