@@ -3,7 +3,7 @@ import assign from 'object-assign';
 import PropTypes from 'prop-types';
 import { Tree } from 'shineout';
 import styles from '../style.css';
-import { changeValue, getExceptionRate } from '../action';
+import { changeValue, getExceptionRate, staffAttendanceInit } from '../action';
 import moment from 'moment';
 
 export default class LeftTree extends React.Component {
@@ -12,7 +12,9 @@ export default class LeftTree extends React.Component {
   }
 
   render() {
-    const { cityTree, dispatch, clickedId } = this.props;
+    const {
+      cityTree, dispatch, clickedId, TabValue,
+    } = this.props;
 
 
     return (
@@ -32,21 +34,29 @@ export default class LeftTree extends React.Component {
             }
             dispatch(changeValue('clickedId', id));
             dispatch(changeValue('node', node));
-            return dispatch(getExceptionRate(assign({}, this.props, {
-              node,
-              clickedId: id,
-              onlineRate: assign({}, this.props.onlineRate, {
-                trend: assign({}, this.props.onlineRate.trend, {
-                  dateValue: [
-                    moment().subtract(30, 'days').toDate(),
-                    moment().toDate(),
-                  ],
+            if (TabValue === 0) {
+              return dispatch(getExceptionRate(assign({}, this.props, {
+                node,
+                clickedId: id,
+                onlineRate: assign({}, this.props.onlineRate, {
+                  trend: assign({}, this.props.onlineRate.trend, {
+                    dateValue: [
+                      moment().subtract(30, 'days').toDate(),
+                      moment().toDate(),
+                    ],
+                  }),
+                  detailData: assign({}, this.props.onlineRate.detailData, {
+                    choosedData: moment().format('YYYY-MM-DD'),
+                  }),
                 }),
-                detailData: assign({}, this.props.onlineRate.detailData, {
-                  choosedData: moment().format('YYYY-MM-DD'),
-                }),
-              }),
-            })));
+              })));
+            }
+            if (TabValue === 1) {
+              return dispatch(staffAttendanceInit(assign({}, this.props, {
+                node,
+                clickedId: id,
+              })));
+            }
           }}
         />
       </div>

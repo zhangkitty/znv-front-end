@@ -8,7 +8,7 @@ import ProvinceMap from './province-map';
 import BmapCity from './bmap-city';
 import BmapPerson from './bmap-person';
 import assign from 'object-assign';
-import { changeDetailDayTab1 } from '../../action';
+import { changeDetailDayTab1, changeDetailTypeTab1 } from '../../action';
 
 const RadioGroup = Radio.Group;
 const DetailData = (props) => {
@@ -26,7 +26,7 @@ const DetailData = (props) => {
 
   return (
     <div>
-      <h3 style={{ marginLeft: 20 }}>实时城市</h3>
+      <h3 style={{ marginLeft: 20 }}>详情信息</h3>
 
       <div className={styles.firstLine}>
         <div className={styles.firstTips}>请选择日期维度:</div>
@@ -57,31 +57,50 @@ const DetailData = (props) => {
 
       <div className={styles.thirdLine}>
         <div className={styles.thirdTips}>请选择图标类型:</div>
-        <RadioGroup
-          data-bind="staffAttendance.detailData.chooseType"
-        >
+
+        <div>
           {
-            showType.map(v => <Radio value={v.value}>{v.name}</Radio>)
+            len > 3 ? null
+              :
+            <RadioGroup
+              value={chooseType}
+              onChange={e => dispatch(changeDetailTypeTab1(assign({}, props, {
+                staffAttendance: assign({}, props.staffAttendance, {
+                  detailData: assign({}, props.staffAttendance.detailData, {
+                    chooseType: e.target.value,
+                  }),
+                }),
+              })))}
+            >
+              {
+                showType.map(v => <Radio value={v.value}>{v.name}</Radio>)
+              }
+            </RadioGroup>
           }
-        </RadioGroup>
+        </div>
+
       </div>
       {
-        chooseType === 0 ? <BarChart {...props} />
-          :
-        <div style={{ marginTop: 10 }}>
-          {
-              len < 3 && <ChinaMap {...props} />
+        (function (len, chooseType) {
+          if (len > 3) {
+            return <BmapPerson {...props} />;
           }
-          {
-              len === 3 && <BmapCity {...props} />
+          if (chooseType === 1) {
+            if (len === 3) {
+              return <BmapCity {...props} />;
+            }
+            if (len < 3) {
+              return <ChinaMap {...props} />;
+            }
           }
-          {
-              len > 3 && <BmapPerson {...props} />
+          if (chooseType === 2) {
+            return <BarChart {...props} />;
           }
-          {/* <ProvinceMap {...props} /> */}
-        </div>
+          return null;
+        }(len, chooseType))
       }
     </div>
+
   );
 };
 

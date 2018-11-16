@@ -125,24 +125,85 @@ export const getDevicedetailSer = (props) => {
   });
 };
 
+
+// 初始化人员考勤
 export const staffAttendanceInitSer = (props) => {
+  const { node } = props;
+  const len = node.id.split('.').length;
+  let { areaCode } = node;
+  let executor = null;
+  if (len === 3) {
+    areaCode = null;
+  } else {
+    executor = node.areaCode;
+  }
   const tableData = {
-
+    areaCode,
+    executor,
   };
-
   const trendData = {
     startTime: moment(props.staffAttendance.trend.dateValue[0]).format('YYYY-MM-DD'),
     endTime: moment(props.staffAttendance.trend.dateValue[1]).format('YYYY-MM-DD'),
   };
 
-  return Promise.all([
-    request({
-      url: '/rqs/attendance/totalrate',
-    }),
-    request({
-      url: `/rqs/attendance/rate${getParam(trendData)}`,
-    }),
-  ]);
+  if (len === 1) {
+    const detailData = {
+      countType: 1, // 1:按天（默认），2：按月，3：按年，4：按周，5：按季  （目前只支持按天，其它统计待定）
+      groupType: props.staffAttendance.detailData.chooseType, // 1:按一级省（默认）  2：按二级市（柱状图的时候用这个）
+      dataTime: props.staffAttendance.detailData.choosedData,
+    };
+    return Promise.all([
+      request({
+        url: `/rqs/attendance/totalrate${getParam(tableData)}`,
+      }),
+      request({
+        url: `/rqs/attendance/rate${getParam(trendData)}`,
+      }),
+      request({
+        url: `/rqs/attendance/chinadetailrate${getParam(detailData)}`,
+      }),
+    ]);
+  }
+
+  if (len === 3) {
+    const detailData = {
+      areaCode: node.areaCode,
+      dataTime: props.staffAttendance.detailData.choosedData,
+    };
+    return Promise.all([
+      request({
+        url: `/rqs/attendance/totalrate${getParam(tableData)}`,
+      }),
+      request({
+        url: `/rqs/attendance/rate${getParam(trendData)}`,
+      }),
+      request({
+        url: `/rqs/attendance/citydetail${getParam(detailData)}`,
+      }),
+    ]);
+  }
+
+  if (len > 3) {
+    const detailData = {
+      executor: node.areaCode,
+      dataTime: props.staffAttendance.detailData.choosedData,
+    };
+    return Promise.all([
+      request({
+        url: `/rqs/attendance/totalrate${getParam(tableData)}`,
+      }),
+      request({
+        url: `/rqs/attendance/rate${getParam(trendData)}`,
+      }),
+      request({
+        url: `/rqs/attendance/persontracedetail${getParam(detailData)}`,
+      }),
+      request({
+        url: `/rqs/attendance/persontaskdetail${getParam(detailData)}`,
+      }),
+    ]);
+  }
+  return null;
 };
 
 export const changeTrendDaysInTab1Ser = (props) => {
@@ -159,15 +220,47 @@ export const changeTrendDaysInTab1Ser = (props) => {
   });
 };
 
+
+// 改变明细数据的日期
 export const changeDetailDayTab1Ser = (props) => {
   const { node } = props;
+  const len = node.id.split('.').length;
+  if (len === 1) {
+    const detailData = {
+      countType: 1, // 1:按天（默认），2：按月，3：按年，4：按周，5：按季  （目前只支持按天，其它统计待定）
+      groupType: props.staffAttendance.detailData.chooseType, // 1:按一级省（默认）  2：按二级市（柱状图的时候用这个）
+      dataTime: props.staffAttendance.detailData.choosedData,
+    };
+    return request({
+      url: `/rqs/attendance/chinadetailrate${getParam(detailData)}`,
+    });
+  }
 
-  const detailData = {
-    dataTime: props.staffAttendance.detailData.choosedData,
-    // 暂时放开
-    // areaCode: node.areaCode,
-  };
-  return request({
-    url: `/rqs/attendance/citydetail${getParam(detailData)}`,
-  });
+  if (len === 3) {
+    const detailData = {
+      areaCode: '440300', // node.areaCode,
+      dataTime: '2018-11-14', // props.staffAttendance.detailData.choosedData,
+    };
+    return request({
+      url: `/rqs/attendance/citydetail${getParam(detailData)}`,
+    });
+  }
+
+  if (len > 3) {
+    const detailData = {
+      executor: '51000000699', // node.areaCode,
+      dataTime: '2018-11-14', // props.staffAttendance.detailData.choosedData,
+    };
+
+    return Promise.all([
+      request({
+        url: `/rqs/attendance/persontracedetail${getParam(detailData)}`,
+      }),
+      request({
+        url: `/rqs/attendance/persontaskdetail${getParam(detailData)}`,
+      }),
+    ]);
+  }
+
+  return null;
 };

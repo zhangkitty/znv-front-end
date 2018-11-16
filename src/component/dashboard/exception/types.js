@@ -26,3 +26,6 @@ export let changeTrendDaysInTab1Success;
 export let changeDetailDayTab1;
 export let changeDetailDayTab1Success;
 
+export let changeDetailTypeTab1;
+export let changeDetailTypeTab1Success;
+

@@ -3,17 +3,29 @@ import { Tabs } from 'shineout';
 import OnlineRate from './online-rate/online-rate';
 import StaffAttendance from './staff-attendance/staff-attendance';
 import styles from '../style.css';
+import { changeValue } from '../action';
 
 export default class Right extends React.Component {
   constructor(props) {
     super(props);
+    console.log('mdzz');
   }
 
   render() {
     const panelStyle = { padding: '12px 0' };
+    const { dispatch, TabValue } = this.props;
     return (
       <div className={styles.right}>
-        <Tabs shape="line" defaultActive={0}>
+        <Tabs
+          shape="line"
+          value={TabValue}
+          onChange={
+            (key) => {
+              dispatch(changeValue('TabValue', key));
+              return null;
+            }
+          }
+        >
           <Tabs.Panel border="transparent" style={panelStyle} tab="在线率">
             <OnlineRate {...this.props} />
           </Tabs.Panel>

@@ -23,7 +23,7 @@ export const defaultState = {
   recordCount: '',
   aims: [],
   choosedAims: null,
-  dataDisabled:true,
+  dataDisabled: true,
   city: citys,
   choosedCity: '',
   team: [],

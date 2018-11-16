@@ -37,3 +37,6 @@ export const changeTrendDaysInTab1Success = makeActionCreator(types.changeTrendD
 export const changeDetailDayTab1 = makeActionCreator(types.changeDetailDayTab1, 'props');
 export const changeDetailDayTab1Success = makeActionCreator(types.changeDetailDayTab1Success, 'data');
 
+export const changeDetailTypeTab1 = makeActionCreator(types.changeDetailTypeTab1, 'props');
+export const changeDetailTypeTab1Success = makeActionCreator(types.changeDetailTypeTab1Success, 'data');
+

@@ -6,7 +6,6 @@ const BarChart = (props) => {
   const { staffAttendance: { detailData: { dataSource } } } = props;
 
 
-
   const X = dataSource.map(v => (v.areaName || v.executorName));
 
   const toList = type => dataSource.map(v => v[type]);

@@ -12,6 +12,8 @@ export const defaultState = {
   clickedId: '0',
   node: null,
 
+  TabValue: 0,
+
   onlineRate: {
     headTable: {
       dataSource: [],
@@ -91,10 +93,6 @@ export const defaultState = {
       ],
       choosedImensiond: 0,
       dataSource: [],
-      // showType: [
-      //   { value: 0, name: '折线图' },
-      //   { value: 1, name: '表格' },
-      // ],
       showType: [
 
       ],
@@ -109,11 +107,13 @@ export const defaultState = {
       choosedImensiond: 0,
       choosedData: moment().format('YYYY-MM-DD'),
       showType: [
-        { value: 0, name: '柱状图' },
         { value: 1, name: '地图' },
+        { value: 2, name: '柱状图' },
       ],
-      chooseType: 0,
+      chooseType: 1,
       dataSource: [],
+      dataSourcePerson: [], // 人员轨迹
+      dataSourceTask: [], // 任务轨迹查询
     },
   },
 };
@@ -249,16 +249,54 @@ const reducer = (state = defaultState, action) => {
       });
 
     case types.staffAttendanceInitSuccess:
-      return assign({}, state, {
-        staffAttendance: assign({}, state.staffAttendance, {
-          headTable: assign({}, state.staffAttendance.headTable, {
-            dataSource: action.data[0].data.list,
+      const len = state.clickedId.split('.').length;
+      if (len === 1) {
+        return assign({}, state, {
+          staffAttendance: assign({}, state.staffAttendance, {
+            headTable: assign({}, state.staffAttendance.headTable, {
+              dataSource: action.data[0].data.list,
+            }),
+            trend: assign({}, state.staffAttendance.trend, {
+              dataSource: action.data[1].data.list,
+            }),
+            detailData: assign({}, state.staffAttendance.detailData, {
+              dataSource: action.data[2].data.list,
+            }),
           }),
-          trend: assign({}, state.staffAttendance.trend, {
-            dataSource: action.data[1].data.list,
+        });
+      }
+      if (len === 3) {
+        return assign({}, state, {
+          staffAttendance: assign({}, state.staffAttendance, {
+            headTable: assign({}, state.staffAttendance.headTable, {
+              dataSource: action.data[0].data.list,
+            }),
+            trend: assign({}, state.staffAttendance.trend, {
+              dataSource: action.data[1].data.list,
+            }),
+            detailData: assign({}, state.staffAttendance.detailData, {
+              dataSource: action.data[2].data.list,
+            }),
           }),
-        }),
-      });
+        });
+      }
+      if (len > 3) {
+        return assign({}, state, {
+          staffAttendance: assign({}, state.staffAttendance, {
+            headTable: assign({}, state.staffAttendance.headTable, {
+              dataSource: action.data[0].data.list,
+            }),
+            trend: assign({}, state.staffAttendance.trend, {
+              dataSource: action.data[1].data.list,
+            }),
+            detailData: assign({}, state.staffAttendance.detailData, {
+              dataSourcePerson: action.data[2].data.list,
+              dataSourcePersonTask: action.data[3].data.list,
+            }),
+          }),
+        });
+      }
+
 
     case types.changeTrendDaysInTab1:
       return assign({}, state, {
@@ -290,10 +328,41 @@ const reducer = (state = defaultState, action) => {
 
 
     case types.changeDetailDayTab1Success:
+      if (state.clickedId.split('.').length === 1) {
+        return assign({}, state, {
+          staffAttendance: assign({}, state.staffAttendance, {
+            detailData: assign({}, state.staffAttendance.detailData, {
+              dataSource: action.data.data.list,
+            }),
+          }),
+        });
+      }
+      if (state.clickedId.split('.').length === 3) {
+        return assign({}, state, {
+          staffAttendance: assign({}, state.staffAttendance, {
+            detailData: assign({}, state.staffAttendance.detailData, {
+              dataSource: action.data.data.list,
+            }),
+          }),
+        });
+      }
+      if (state.clickedId.split('.').length > 3) {
+        return assign({}, state, {
+          staffAttendance: assign({}, state.staffAttendance, {
+            detailData: assign({}, state.staffAttendance.detailData, {
+              dataSourcePerson: action.data[0].data.list,
+              dataSourceTask: action.data[1].data.list,
+            }),
+          }),
+        });
+      }
+
+
+    case types.changeDetailTypeTab1:
       return assign({}, state, {
         staffAttendance: assign({}, state.staffAttendance, {
           detailData: assign({}, state.staffAttendance.detailData, {
-            dataSource: action.data.data.list,
+            chooseType: action.props.staffAttendance.detailData.chooseType,
           }),
         }),
       });

@@ -80,8 +80,7 @@ function* getDevicedetailSaga(action) {
 function* staffAttendanceInitSaga(action) {
   const { props } = action;
   const data = yield staffAttendanceInitSer(props);
-
-
+  debugger;
   return yield put(staffAttendanceInitSuccess(data));
 }
 
@@ -97,10 +96,13 @@ function* changeTrendDaysInTab1Saga(action) {
 
 function* changeDetailDayTab1Saga(action) {
   const { props } = action;
+  const { node } = props;
+  const len = node.id.split('.').length;
   const data = yield changeDetailDayTab1Ser(props);
-  if (data.errCode !== 0) {
-    return message.error(data.msg);
-  }
+
+  // if (data.errCode !== 0) {
+  //   return message.error(data.msg);
+  // }
   return yield put(changeDetailDayTab1Success(data));
 }
 
