@@ -41,7 +41,6 @@ export const getExceptionRateSer = (props) => {
   const len = node.id.split('.').length;
   const tableData =
     {
-      type: 1,
       startTime: null,
       endTime: null,
       areaCode: node.person === true ? null : node.areaCode,
