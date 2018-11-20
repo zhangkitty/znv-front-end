@@ -25,6 +25,7 @@ const Trend = (props) => {
         <div className={styles.firstTips}>请选择日期范围:</div>
         <DatePicker
           range
+          clearable={false}
           type="date"
           format="yyyy-MM-dd"
           value={dateValue}

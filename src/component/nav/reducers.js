@@ -54,6 +54,17 @@ const menus = [
     icon: 'bars',
     link: '/attendance/management',
   },
+  {
+    title: '全网检测',
+    icon: 'bars',
+    link: '/network-detection',
+    children: [
+      {
+        title: 'FSU显示',
+        link: '/network-detection/show-fsu',
+      },
+    ],
+  },
   // {
   //   title: '权限管理',
   //   icon: 'bars',

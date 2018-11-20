@@ -70,6 +70,7 @@ const DeviceTable = (props) => {
         <div className={styles.secendTips}>请选择日期:</div>
         <DatePicker
           placeholder="Select date"
+          clearable={false}
           value={choosedData}
           onChange={v => dispatch(getDevicedetail(assign({}, props, {
             onlineRate: assign({}, props.onlineRate, {

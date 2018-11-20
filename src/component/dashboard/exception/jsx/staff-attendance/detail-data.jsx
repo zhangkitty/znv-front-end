@@ -44,6 +44,7 @@ const DetailData = (props) => {
         <div className={styles.secendTips}>请选择日期:</div>
         <DatePicker
           placeholder="Select date"
+          clearable={false}
           value={choosedData}
           onChange={v => dispatch(changeDetailDayTab1(assign({}, props, {
             staffAttendance: assign({}, props.staffAttendance, {

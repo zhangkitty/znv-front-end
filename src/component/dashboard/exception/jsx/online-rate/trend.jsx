@@ -35,6 +35,7 @@ const Trend = (props) => {
       <div className={styles.secendLine}>
         <div className={styles.secendTips}>请选择日期范围:</div>
         <DatePicker
+          clearable={false}
           range
           type="date"
           format="yyyy-MM-dd"
@@ -42,7 +43,7 @@ const Trend = (props) => {
           onChange={v => dispatch(changeTrendDays(assign({}, props, {
             onlineRate: assign({}, props.onlineRate, {
               trend: assign({}, props.onlineRate.trend, {
-                dateValue: v,
+                dateValue: v || [null, null],
               }),
             }),
           })))}
