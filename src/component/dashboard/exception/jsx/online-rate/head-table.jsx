@@ -19,7 +19,8 @@ const HeadTable = (props) => {
     },
     {
       title: '广告机在线率',
-      render: 'onlineNumRate',
+      render: d => `${Number(d.onlineNumRate * 100).toFixed(2)}%`,
+
     },
     {
       title: '云运维FSU在线数',
@@ -27,7 +28,7 @@ const HeadTable = (props) => {
     },
     {
       title: 'FSU在线率',
-      render: 'onlineRate',
+      render: d => `${Number(d.onlineRate * 100).toFixed(2)}%`,
     },
     {
       title: 'FSU入网数',

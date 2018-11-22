@@ -1,47 +1,73 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Button, Input } from 'antd';
+import { Input, Button, Select } from 'shineout';
+import styles from './style.css';
 import { search } from '../action';
-import style from '../style.css';
+
 
 const Header = (props) => {
   const {
-    dispatch,
-    dataLoading,
-    formData,
+    area, formData, status, type, dispatch,
   } = props;
+  console.log(area);
   return (
-    <div className={style.flexBox} style={{ paddingTop: 0 }}>
-      <div className={style.inputItem}>
-        <span className={style.itemTitle}>
-          二次工艺：{formData.kkk}
-        </span>
+    <div>
+      <div className={styles.oneLine}>
+        <div className={styles.divLine}>区 域:</div>
+        <Select
+          key={d => d.id}
+          data={area}
+          renderItem={v => v.name}
+          className={styles.selectLine}
+          onFilter={text => d => d.name.indexOf(text) >= 0}
+          data-bind="formData.choosedArea"
+        />
+        <div className={styles.divLine}>FSU序列号:</div>
         <Input
-          className={style.inputBox}
-          size="large"
-          data-bind="formData.kkk"
+          className={styles.selectLine}
+          data-bind="formData.FSUNum"
+        />
+        <div className={styles.divLine}>FSUID:</div>
+        <Input
+          className={styles.selectLine}
+          data-bind="formData.FSUID"
         />
       </div>
-      <div className={style.inputItem}>
+      <div className={styles.oneLine}>
+        <div className={styles.divLine}>站址名称:</div>
+        <Input
+          className={styles.selectLine}
+          data-bind="formData.siteName"
+        />
+        <div className={styles.divLine}>状 态:</div>
+        <Select
+          clearable
+          className={styles.selectLine}
+          renderItem={v => v.name}
+          data={status}
+          data-bind="formData.status"
+        />
+        <div className={styles.divLine}>类 型:</div>
+        <Select
+          clearable
+          className={styles.selectLine}
+          data={type}
+          renderItem={v => v.name}
+          data-bind="formData.type"
+        />
         <Button
-          loading={dataLoading}
-          type="primary"
-          size="large"
-          onClick={() => dispatch(search())}
-        >
-          搜索
+          className={styles.ButtonLine}
+          onClick={() => dispatch(search(props))}
+        >搜索
         </Button>
+        <Button className={styles.ButtonLine}>导出</Button>
       </div>
+      <hr style={{ marginBottom: 10 }} />
     </div>
   );
 };
 
 Header.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  formData: PropTypes.shape({
-    kkk: PropTypes.string,
-  }).isRequired,
-  dataLoading: PropTypes.bool.isRequired,
+
 };
 
 export default Header;

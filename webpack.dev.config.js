@@ -70,11 +70,16 @@ module.exports = Object.assign({},config, {
         secure: false,
         changeOrigin: true
       },
-      '/omc':{
+      '/omc.znv.com':{
         target: 'http://omc.znv.com',
-        pathRewrite: { '/omc': '' },
+        pathRewrite: { '/omc.znv.com': '' },
         // secure: false,
         // changeOrigin: true
+      },
+      '/oss':{
+        target: 'http://10.45.146.51:8180',
+        secure: false,
+        changeOrigin: true
       }
     },
     open: true
