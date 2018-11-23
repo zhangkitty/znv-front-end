@@ -25,42 +25,38 @@ export const defaultState = {
       ],
       imensiond: [
         { value: 0, name: '按天', disabled: false },
-        { value: 1, name: '按周', disabled: true },
+        // { value: 1, name: '按周', disabled: true },
         { value: 2, name: '按月', disabled: true },
         { value: 3, name: '按季', disabled: true },
       ],
       choosedImensiond: 0,
       dataSource: [],
-      // showType: [
-      //   { value: 0, name: '折线图' },
-      //   { value: 1, name: '表格' },
-      // ],
       showType: [
-
+        { value: 0, name: '折线图' },
+        { value: 1, name: '表格' },
       ],
+      choosedShowType: 0,
     },
     detailData: {
       imensiond: [
         { value: 0, name: '按天', disabled: false },
-        { value: 1, name: '按周', disabled: true },
+        // { value: 1, name: '按周', disabled: true },
         { value: 2, name: '按月', disabled: true },
         { value: 3, name: '按季', disabled: true },
       ],
       choosedImensiond: 0,
       choosedData: moment().format('YYYY-MM-DD'),
-      // showType: [
-      //   { value: 0, name: '柱状图' },
-      //   { value: 1, name: '表格' },
-      // ],
       showType: [
-
+        { value: 0, name: '柱状图' },
+        { value: 1, name: '表格' },
       ],
+      choosedShowType: 0,
       dataSource: [],
     },
     deviceTable: {
       imensiond: [
         { value: 0, name: '按天', disabled: false },
-        { value: 1, name: '按周', disabled: true },
+        // { value: 1, name: '按周', disabled: true },
         { value: 2, name: '按月', disabled: true },
         { value: 3, name: '按季', disabled: true },
       ],
@@ -83,7 +79,7 @@ export const defaultState = {
     trend: {
       imensiond: [
         { value: 0, name: '按天', disabled: false },
-        { value: 1, name: '按周', disabled: true },
+        // { value: 1, name: '按周', disabled: true },
         { value: 2, name: '按月', disabled: true },
         { value: 3, name: '按季', disabled: true },
       ],
@@ -100,7 +96,7 @@ export const defaultState = {
     detailData: {
       imensiond: [
         { value: 0, name: '按天', disabled: false },
-        { value: 1, name: '按周', disabled: true },
+        // { value: 1, name: '按周', disabled: true },
         { value: 2, name: '按月', disabled: true },
         { value: 3, name: '按季', disabled: true },
       ],

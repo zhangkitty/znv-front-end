@@ -19,7 +19,7 @@ const HeadTable = (props) => {
     },
     {
       title: '出勤率',
-      render: d => `${Number(d.workRate * 100).toFixed(2)}%`,
+      render: d => `${Number((Math.round(d.workRate * 10000) / 100)).toFixed(2)}%`,
     },
     {
       title: '平均工时/h',

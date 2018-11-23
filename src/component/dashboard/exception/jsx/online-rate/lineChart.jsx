@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import ReactEcharts from 'echarts-for-react';
+import { Table } from 'shineout';
 
 
 const LineChart = (props) => {
-  const { onlineRate: { trend: { dateValue, dataSource } } } = props;
+  const { onlineRate: { trend: { dateValue, dataSource, choosedShowType } } } = props;
 
   const selectDay = [];
   for (let i = 0; i < (moment(dateValue[1]).endOf('days').unix() - moment(dateValue[0]).startOf('days').unix()) / (3600 * 24); i++) {
@@ -38,12 +39,14 @@ const LineChart = (props) => {
       show: true,
       feature: {
         mark: { show: true },
-        dataView: { show: true, readOnly: false },
+        dataView: { show: false, readOnly: false },
         magicType: { show: true, type: ['line', 'bar'] },
         restore: { show: true },
         saveAsImage: { show: true },
       },
-      left: '20px',
+      orient: 'vertical',
+      x: 'right',
+      y: 'center',
     },
     calculable: true,
     legend: {
@@ -56,6 +59,15 @@ const LineChart = (props) => {
         'FSU入网数',
         '入网进度',
       ],
+      selected: {
+        广告机总数: false,
+        广告机在线数: false,
+        广告机在线率: true,
+        云运维FSU在线数: false,
+        FSU在线率: true,
+        FSU入网数: false,
+        入网进度: true,
+      },
     },
     xAxis: [
       {
@@ -125,12 +137,122 @@ const LineChart = (props) => {
     click: e => console.log(e),
   };
 
+  const columns = [
+    {
+      title: 'FSU总数',
+      render: 0,
+    },
+    {
+      title: '广告机总数',
+      render: 0,
+    },
+    {
+      title: '未开通FSU资产数量',
+      render: 0,
+    },
+    {
+      title: 'FSU入网数',
+      render: 0,
+    },
+    {
+      title: '入网进度',
+      render: 0,
+    },
+    {
+      title: 'FSU安装进度',
+      render: 0,
+    },
+    {
+      title: '云运维FSU在线数',
+      render: 0,
+    },
+    {
+      title: '云运维FSU离线数',
+      render: 0,
+    },
+    {
+      title: '云运维FSU在线率',
+      render: 0,
+    },
+    {
+      title: '今日新增云运维在线数',
+      render: 0,
+    },
+    {
+      title: '今日新增云运维离线数',
+      render: 0,
+    },
+    {
+      title: '云运维在线数净增长',
+      render: 0,
+    },
+    {
+      title: '频繁离线数量',
+      render: 0,
+    },
+    {
+      title: '稳定在线数',
+      render: 0,
+    },
+    {
+      title: '在线波动数',
+      render: 0,
+    },
+    {
+      title: '离线时间超长数量',
+      render: 0,
+    },
+    {
+      title: '广告机总数',
+      render: 0,
+    },
+    {
+      title: '今日新增资产数',
+      render: 0,
+    },
+    {
+      title: '今日新增资产数',
+      render: 0,
+    },
+    {
+      title: '今日新增广告机在线数',
+      render: 0,
+    },
+    {
+      title: '今日新增广告机在线数',
+      render: 0,
+    },
+    {
+      title: '净增长广告机在线数',
+      render: 0,
+    },
+    {
+      title: '广告机在线率',
+      render: 0,
+    },
+    {
+      title: '在线率是否提升',
+      render: 0,
+    },
+  ];
+
   return (
-    <div style={{ paddingTop: 10 }}>
-      <ReactEcharts
-        option={option}
-        onEvents={onEvents}
-      />
+    <div style={{ paddingTop: 10, width: '100%' }}>
+      {
+        choosedShowType === 1 ?
+          <Table
+            columns={columns}
+            fixed="both"
+            width={2500}
+            data={[{ 0: 0 }]}
+            style={{ padding: '0 20 0 20' }}
+          />
+          :
+          <ReactEcharts
+            option={option}
+            onEvents={onEvents}
+          />
+      }
     </div>
   );
 };

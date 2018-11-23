@@ -44,7 +44,7 @@ const DeviceTable = (props) => {
     },
     {
       title: 'FSU状态',
-      render: 'fsuOnlineStatus',
+      render: d => (d.fsuOnlineStatus ? '在线' : '离线'),
     },
   ];
 

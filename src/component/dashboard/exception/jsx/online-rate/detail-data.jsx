@@ -50,7 +50,9 @@ const DetailData = (props) => {
 
       <div className={styles.thirdLine}>
         <div className={styles.thirdTips}>请选择图标类型:</div>
-        <RadioGroup>
+        <RadioGroup
+          data-bind="onlineRate.detailData.choosedShowType"
+        >
           {
             showType.map(v => <Radio value={v.value}>{v.name}</Radio>)
           }
