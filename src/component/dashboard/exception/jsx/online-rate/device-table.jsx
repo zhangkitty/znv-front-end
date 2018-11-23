@@ -31,10 +31,6 @@ const DeviceTable = (props) => {
       render: 'deviceName',
     },
     {
-      title: '状态',
-      render: 'deviceOnlineStatus',
-    },
-    {
       title: '地区',
       render: 'areaName',
     },
@@ -43,7 +39,11 @@ const DeviceTable = (props) => {
       render: 'address',
     },
     {
-      title: 'FSU状态',
+      title: '广告机当前状态',
+      render: d => (d.deviceOnlineStatus ? '在线' : '离线'),
+    },
+    {
+      title: 'FSU当前状态',
       render: d => (d.fsuOnlineStatus ? '在线' : '离线'),
     },
   ];
