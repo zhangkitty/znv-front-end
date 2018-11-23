@@ -117,7 +117,7 @@ export const getDevicedetailSer = (props) => {
     countType: 1,
     executor: len === 3 ? null : node.areaCode,
     areaCode: len === 3 ? node.areaCode : null,
-    quotaType: 1,
+    quotaType: props.onlineRate.deviceTable.chooseType,
   };
   return request({
     url: `/rqs/exception/devicedetail${getParam(devicedetail)}`,
