@@ -16,6 +16,7 @@ const BarChart = (props) => {
     },
     toolbox: {
       show: true,
+      itemGap: 20,
       feature: {
         mark: { show: true },
         dataView: { show: false, readOnly: false },

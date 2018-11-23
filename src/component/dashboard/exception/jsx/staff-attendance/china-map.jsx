@@ -128,6 +128,7 @@ const ChinaMap = (props) => {
     },
     toolbox: {
       show: true,
+      itemGap: 20,
       orient: 'vertical',
       x: 'right',
       y: 'center',

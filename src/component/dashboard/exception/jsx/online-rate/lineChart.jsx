@@ -44,6 +44,7 @@ const LineChart = (props) => {
         restore: { show: true },
         saveAsImage: { show: true },
       },
+      itemGap: 20,
       orient: 'vertical',
       x: 'right',
       y: 'center',
