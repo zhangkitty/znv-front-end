@@ -6,7 +6,6 @@ import getParam from 'utils/getParam';
 
 export const initSer = (props) => {
   const trendData = {
-    type: 1,
     startTime: moment(props.onlineRate.trend.dateValue[0]).format('YYYYMMDD'),
     endTime: moment(props.onlineRate.trend.dateValue[1]).format('YYYYMMDD'),
     areaCode: null,
@@ -48,7 +47,6 @@ export const getExceptionRateSer = (props) => {
     };
 
   const trendData = {
-    type: 1,
     startTime: moment(props.onlineRate.trend.dateValue[0]).format('YYYYMMDD'),
     endTime: moment(props.onlineRate.trend.dateValue[1]).format('YYYYMMDD'),
     areaCode: node.person === true ? null : node.areaCode,
@@ -97,12 +95,12 @@ export const changeDetailDaySer = (props) => {
 
 export const changeTrendDaysSer = (props) => {
   const { node } = props;
+  const len = node.id.split('.').length;
   const trendData = {
-    type: 1,
     startTime: moment(props.onlineRate.trend.dateValue[0]).format('YYYYMMDD'),
     endTime: moment(props.onlineRate.trend.dateValue[1]).format('YYYYMMDD'),
-    areaCode: node && node.areaCode,
-    executor: null,
+    executor: len === 3 ? null : node.areaCode,
+    areaCode: len === 3 ? node.areaCode : null,
   };
   return request({
     url: `/rqs/exception/rate${getParam(trendData)}`,

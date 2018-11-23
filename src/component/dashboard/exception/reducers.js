@@ -67,7 +67,7 @@ export const defaultState = {
         { value: 1, name: '离线时间超长' },
         { value: 2, name: '频繁离线' },
         { value: 3, name: '稳定在线' },
-        { value: 4, name: '云运维FSU离线数' },
+        { value: 4, name: '云运维离线设备' },
       ],
       chooseType: 1,
     },
