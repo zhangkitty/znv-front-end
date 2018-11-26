@@ -40,11 +40,11 @@ const DeviceTable = (props) => {
     },
     {
       title: '广告机当前状态',
-      render: d => (d.deviceOnlineStatus ? '在线' : '离线'),
+      render: d => (+d.deviceOnlineStatus === 1 ? '在线' : '离线'),
     },
     {
       title: 'FSU当前状态',
-      render: d => (d.fsuOnlineStatus ? '在线' : '离线'),
+      render: d => (+d.fsuOnlineStatus === 1 ? '在线' : '离线'),
     },
   ];
 
