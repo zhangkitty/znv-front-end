@@ -273,11 +273,11 @@ const LineChart = (props) => {
     },
     {
       title: '入网进度',
-      render: 'openRate',
+      render: d => `${Number(d.openRate).toFixed(2)}%`,
     },
     {
       title: 'FSU安装进度',
-      render: 'fsuInsRate',
+      render: d => `${Number(d.fsuInsRate).toFixed(2)}%`,
     },
     {
       title: '云运维FSU在线数',
@@ -289,7 +289,7 @@ const LineChart = (props) => {
     },
     {
       title: '云运维FSU在线率',
-      render: 'onlineRate',
+      render: d => `${Number(d.onlineRate).toFixed(2)}%`,
     },
     {
       title: '今日新增云运维在线数',
