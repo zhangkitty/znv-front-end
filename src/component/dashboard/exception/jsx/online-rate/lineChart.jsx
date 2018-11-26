@@ -140,7 +140,7 @@ const LineChart = (props) => {
         name: '广告机在线率',
         type: 'line',
         yAxisIndex: 1,
-        data: toList('onlineNumRate'),
+        data: toList('onlineNumRate').map(v => `${Number(v * 100).toFixed(2)}`),
       },
       {
         name: '云运维FSU在线数',
@@ -151,7 +151,7 @@ const LineChart = (props) => {
         name: 'FSU在线率',
         type: 'line',
         yAxisIndex: 1,
-        data: toList('onlineRate'),
+        data: toList('onlineRate').map(v => `${Number(v * 100).toFixed(2)}`),
       },
       {
         name: 'FSU入网数',
@@ -168,7 +168,7 @@ const LineChart = (props) => {
         name: '云运维FSU在线率',
         type: 'line',
         yAxisIndex: 1,
-        data: toList('onlineRate'),
+        data: toList('onlineRate').map(v => `${Number(v * 100).toFixed(2)}`),
       },
 
 
