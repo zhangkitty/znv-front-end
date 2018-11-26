@@ -4,6 +4,8 @@ import { Table } from 'shineout';
 
 const HeadTable = (props) => {
   const { staffAttendance: { headTable: { dataSource } } } = props;
+  const { node } = props;
+  const len = node.id.split('.').length;
   const columns = [
     {
       title: '    ',
@@ -30,12 +32,31 @@ const HeadTable = (props) => {
       render: 'workDistance',
     },
   ];
+  const columns1 = [
+    {
+      title: '    ',
+      render: 'dataTime',
+    },
+    {
+      title: '是否出勤',
+      render: d => (Number(d.workTime) > 0 ? '是' : '否'),
+
+    },
+    {
+      title: '工作时长',
+      render: 'workTime',
+    },
+    {
+      title: '工作路程',
+      render: 'workDistance',
+    },
+  ];
   return (
     <div>
       <Table
         keygen="id"
         data={dataSource}
-        columns={columns}
+        columns={len > 3 ? columns1 : columns}
       />
 
     </div>

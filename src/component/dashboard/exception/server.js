@@ -129,9 +129,13 @@ export const staffAttendanceInitSer = (props) => {
   const len = node.id.split('.').length;
   let { areaCode } = node;
   let executor = null;
-  if (len === 3) {
+  if (len === 1) {
     areaCode = null;
+    executor = null;
+  } else if (len === 3) {
+    executor = null;
   } else {
+    areaCode = null;
     executor = node.areaCode;
   }
   const tableData = {
@@ -141,6 +145,8 @@ export const staffAttendanceInitSer = (props) => {
   const trendData = {
     startTime: moment(props.staffAttendance.trend.dateValue[0]).format('YYYY-MM-DD'),
     endTime: moment(props.staffAttendance.trend.dateValue[1]).format('YYYY-MM-DD'),
+    executor: len === 3 ? null : node.areaCode,
+    areaCode: len === 3 ? node.areaCode : null,
   };
 
   if (len === 1) {
