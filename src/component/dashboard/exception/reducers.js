@@ -295,6 +295,7 @@ const reducer = (state = defaultState, action) => {
 
 
     case types.changeTrendDaysInTab1:
+      debugger;
       return assign({}, state, {
         staffAttendance: assign({}, state.staffAttendance, {
           trend: assign({}, state.staffAttendance.trend, {
@@ -305,10 +306,11 @@ const reducer = (state = defaultState, action) => {
 
 
     case types.changeTrendDaysInTab1Success:
+      debugger;
       return assign({}, state, {
         staffAttendance: assign({}, state.staffAttendance, {
           trend: assign({}, state.staffAttendance.trend, {
-            dataSource: action.data.data.list,
+            dataSource: action.data.data.list || [],
           }),
         }),
       });

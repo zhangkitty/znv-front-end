@@ -13,12 +13,13 @@ const LineChart = (props) => {
   }
   const toList = type => selectDay.map((v, idx) => {
     console.log('mdzz');
+    console.log(dataSource);
     const temp = dataSource.filter((t) => {
       // todo 有问题;Cannot read property 'dataTime' of null
-      if (t.dataTime === v) {
+      if (t && t.dataTime === v) {
         return true;
       }
-      if (idx === selectDay.length - 1 && t.dataTime.split('-').length === 1) {
+      if (idx === selectDay.length - 1 && t && t.dataTime.split('-').length === 1) {
         return true;
       }
       return false;
