@@ -15,13 +15,15 @@ const LineChart = (props) => {
 
 
   const toList = type => selectDay.map((v, idx) => {
-    const temp = dataSource.filter((t) => {
+    const temp = dataSource.map(v =>
+      // (assign({},v,{dataTime:v.dataTime.split(':').length===2?moment().format("YYYY-MM-DD")}))
+      (Object.assign({}, v, { dataTime: v.dataTime.split(':').length === 2 ? moment().format('YYYY-MM-DD') : v.dataTime }))).filter((t) => {
       if (t.dataTime === v) {
         return true;
       }
-      if (idx === selectDay.length - 1 && t.dataTime.split('-').length === 1) {
-        return true;
-      }
+      // if (idx === selectDay.length - 1 && t.dataTime.split('-').length === 1) {
+      //   return true;
+      // }
       return false;
     });
     if (temp.length) {
@@ -162,7 +164,7 @@ const LineChart = (props) => {
         name: '入网进度',
         type: 'line',
         yAxisIndex: 1,
-        data: toList('openNum') / toList('onlineNum'),
+        data: toList('openRate'),
       },
       {
         name: '云运维FSU在线率',
