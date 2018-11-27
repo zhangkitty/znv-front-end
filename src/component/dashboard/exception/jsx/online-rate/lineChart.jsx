@@ -43,7 +43,7 @@ const LineChart = (props) => {
       feature: {
         mark: { show: true },
         dataView: { show: false, readOnly: false },
-        magicType: { show: true, type: ['line', 'bar'] },
+        magicType: { show: true, type: ['line'] },
         restore: { show: true },
         saveAsImage: { show: true },
       },
