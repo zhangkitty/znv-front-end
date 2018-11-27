@@ -144,10 +144,6 @@ const LineChart = (props) => {
         type: 'line',
         yAxisIndex: 1,
         data: toList('onlineNumRate').map(v => `${Number(v * 100).toFixed(2)}`),
-        tooltip: {
-          trigger: 'item',
-          formatter: '{b}<br/>{a}:{c}%',
-        },
       },
       {
         name: '云运维FSU在线数',
@@ -159,10 +155,6 @@ const LineChart = (props) => {
         type: 'line',
         yAxisIndex: 1,
         data: toList('onlineRate').map(v => `${Number(v * 100).toFixed(2)}`),
-        tooltip: {
-          trigger: 'item',
-          formatter: '{b}<br/>{a}:{c}%',
-        },
       },
       {
         name: 'FSU入网数',
@@ -174,20 +166,12 @@ const LineChart = (props) => {
         type: 'line',
         yAxisIndex: 1,
         data: toList('openRate').map(v => `${Number(v * 100).toFixed(2)}`),
-        tooltip: {
-          trigger: 'item',
-          formatter: '{b}<br/>{a}:{c}%',
-        },
       },
       {
         name: '云运维FSU在线率',
         type: 'line',
         yAxisIndex: 1,
         data: toList('onlineRate').map(v => `${Number(v * 100).toFixed(2)}`),
-        tooltip: {
-          trigger: 'item',
-          formatter: '{b}<br/>{a}:{c}%',
-        },
       },
 
 
@@ -235,32 +219,32 @@ const LineChart = (props) => {
       {
         name: '稳定在线数',
         type: 'line',
-        data: 'onlineStableNum',
+        data: toList('onlineStableNum'),
       },
       {
         name: '离线时间超长数量',
         type: 'line',
-        data: 'offlineOvertimeNum',
+        data: toList('offlineOvertimeNum'),
       },
       {
         name: '今日新增资产数',
         type: 'line',
-        data: 'devAdd',
+        data: toList('devAdd'),
       },
       {
         name: '今日新增广告机在线数',
         type: 'line',
-        data: 'devOnlineNumAdd',
+        data: toList('devOnlineNumAdd'),
       },
       {
         name: '今日新增广告机离线数',
         type: 'line',
-        data: 'devNotOnlineNumAdd',
+        data: toList('devNotOnlineNumAdd'),
       },
       {
         name: '净增长广告机在线数',
         type: 'line',
-        data: 'devNetAdd',
+        data: toList('devNetAdd'),
       },
     ],
   };

@@ -84,7 +84,7 @@ const LineChart = (props) => {
         name: '出勤率',
         type: 'line',
         yAxisIndex: 1,
-        data: toList('workRate'),
+        data: toList('workRate').map(v => `${Number(v * 100).toFixed(2)}`),
       },
       {
         name: '出勤人数',
