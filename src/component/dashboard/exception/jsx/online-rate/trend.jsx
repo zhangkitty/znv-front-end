@@ -35,6 +35,7 @@ const Trend = (props) => {
       <div className={styles.secendLine}>
         <div className={styles.secendTips}>请选择日期范围:</div>
         <DatePicker
+          disabled={d => d.getTime() >= Date.now() + 1000}
           clearable={false}
           range
           type="date"

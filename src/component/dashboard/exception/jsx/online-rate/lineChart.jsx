@@ -36,6 +36,7 @@ const LineChart = (props) => {
   const option = {
     tooltip: {
       trigger: 'axis',
+
     },
     toolbox: {
       show: true,
@@ -143,6 +144,10 @@ const LineChart = (props) => {
         type: 'line',
         yAxisIndex: 1,
         data: toList('onlineNumRate').map(v => `${Number(v * 100).toFixed(2)}`),
+        tooltip: {
+          trigger: 'item',
+          formatter: '{b}<br/>{a}:{c}%',
+        },
       },
       {
         name: '云运维FSU在线数',
@@ -154,6 +159,10 @@ const LineChart = (props) => {
         type: 'line',
         yAxisIndex: 1,
         data: toList('onlineRate').map(v => `${Number(v * 100).toFixed(2)}`),
+        tooltip: {
+          trigger: 'item',
+          formatter: '{b}<br/>{a}:{c}%',
+        },
       },
       {
         name: 'FSU入网数',
@@ -164,13 +173,21 @@ const LineChart = (props) => {
         name: '入网进度',
         type: 'line',
         yAxisIndex: 1,
-        data: toList('openRate'),
+        data: toList('openRate').map(v => `${Number(v * 100).toFixed(2)}`),
+        tooltip: {
+          trigger: 'item',
+          formatter: '{b}<br/>{a}:{c}%',
+        },
       },
       {
         name: '云运维FSU在线率',
         type: 'line',
         yAxisIndex: 1,
         data: toList('onlineRate').map(v => `${Number(v * 100).toFixed(2)}`),
+        tooltip: {
+          trigger: 'item',
+          formatter: '{b}<br/>{a}:{c}%',
+        },
       },
 
 

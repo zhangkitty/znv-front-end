@@ -69,6 +69,7 @@ const DeviceTable = (props) => {
       <div className={styles.secendLine}>
         <div className={styles.secendTips}>请选择日期:</div>
         <DatePicker
+          disabled={d => d.getTime() >= Date.now() + 1000}
           placeholder="Select date"
           clearable={false}
           value={choosedData}
