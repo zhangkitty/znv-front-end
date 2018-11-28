@@ -12,7 +12,7 @@ export const initSer = (props) => {
     executor: null,
   };
   const detailData = {
-    dataTime: (props.onlineRate.detailData.choosedData),
+    dataTime: moment(props.onlineRate.detailData.choosedData).format('YYYYMMDD'),
     countType: 1,
     areaCode: null,
   };
@@ -54,7 +54,7 @@ export const getExceptionRateSer = (props) => {
   };
 
   const detailData = {
-    dataTime: props.onlineRate.detailData.choosedData,
+    dataTime: moment(props.onlineRate.detailData.choosedData).format('YYYYMMDD'),
     countType: 1,
     areaCode: node && node.areaCode,
   };
@@ -83,7 +83,7 @@ export const getExceptionRateSer = (props) => {
 export const changeDetailDaySer = (props) => {
   const { node } = props;
   const detailData = {
-    dataTime: props.onlineRate.detailData.choosedData,
+    dataTime: moment(props.onlineRate.detailData.choosedData).format('YYYYMMDD'),
     countType: 1,
     areaCode: node && node.areaCode,
   };
