@@ -3,11 +3,15 @@ import HeadTable from './head-table';
 import Trend from './trend';
 import DetailData from './detail-data';
 import DeviceTable from './device-table';
+import { getExceptionRate } from '../../action';
 
 
 export default class Online extends Component {
   constructor(props) {
     super(props);
+    console.log('sb');
+    const { dispatch } = props;
+
   }
 
   render() {

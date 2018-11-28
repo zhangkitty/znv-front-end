@@ -3,7 +3,7 @@ import { Tabs } from 'shineout';
 import OnlineRate from './online-rate/online-rate';
 import StaffAttendance from './staff-attendance/staff-attendance';
 import styles from '../style.css';
-import { changeValue } from '../action';
+import { changeValue, getExceptionRate, staffAttendanceInit } from '../action';
 
 export default class Right extends React.Component {
   constructor(props) {
@@ -22,6 +22,12 @@ export default class Right extends React.Component {
           onChange={
             (key) => {
               dispatch(changeValue('TabValue', key));
+              if (key === 0) {
+                dispatch(getExceptionRate(this.props));
+              }
+              if (key === 1) {
+                dispatch(staffAttendanceInit(this.props));
+              }
               return null;
             }
           }
