@@ -303,7 +303,7 @@ const BarChart = (props) => {
             fixed="both"
             width={2500}
             data={dataSource}
-            style={{ padding: '0 20 0 20' }}
+            style={{ padding: '0 20 0 20', height: 400 }}
             rowsInView={10}
           />
           :

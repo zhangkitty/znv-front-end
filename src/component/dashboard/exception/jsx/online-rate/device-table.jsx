@@ -102,13 +102,15 @@ const DeviceTable = (props) => {
       </div>
 
       <Table
-        style={{ marginTop: 10 }}
+        style={{ marginTop: 10, height: 400 }}
         striped
         bordered
         keygen="id"
         width={1500}
         columns={newColumns}
         data={dataSource}
+        rowsInView={10}
+        fixed="both"
       />
 
 
