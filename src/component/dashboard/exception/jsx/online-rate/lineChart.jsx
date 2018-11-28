@@ -54,7 +54,7 @@ const LineChart = (props) => {
     },
     calculable: true,
     legend: {
-      type: 'scroll',
+      // type: 'scroll',
       data: [
         '广告机总数',
         '广告机在线数',
@@ -67,9 +67,9 @@ const LineChart = (props) => {
         'FSU总数',
         '未开通FSU资产数量',
         'FSU安装进度',
-        '云运维FSU离线数 ',
-        '今日新增云运维在线数 ',
-        '今日新增云运维离线数 ',
+        '云运维FSU离线数',
+        '今日新增云运维在线数',
+        '今日新增云运维离线数',
         '云运维在线数净增长',
         '频繁离线数量',
         '稳定在线数',
@@ -77,7 +77,7 @@ const LineChart = (props) => {
         '今日新增资产数',
         '今日新增广告机在线数',
         '今日新增广告机离线数',
-        '净增长广告机在线数 ',
+        '净增长广告机在线数',
       ],
       selected: {
         广告机总数: false,
