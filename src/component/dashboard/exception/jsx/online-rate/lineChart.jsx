@@ -54,7 +54,7 @@ const LineChart = (props) => {
     },
     calculable: true,
     legend: {
-      // type: 'scroll',
+      type: 'scroll',
       data: [
         '广告机总数',
         '广告机在线数',

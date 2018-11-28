@@ -87,13 +87,13 @@ const LineChart = (props) => {
       [
         {
           name: len > 3 ? null : '出勤率',
-          type: len > 3 ? null : 'line',
+          type: 'line',
           yAxisIndex: 1,
           data: len > 3 ? [] : toList('workRate').map(v => `${Number(v * 100).toFixed(2)}`),
         },
         {
           name: len > 3 ? null : '出勤人数',
-          type: len > 3 ? null : 'line',
+          type: 'line',
           data: len > 3 ? [] : toList('workNum'),
         },
         {

@@ -206,9 +206,8 @@ export const staffAttendanceInitSer = (props) => {
       request({
         url: `/rqs/attendance/persontaskdetail${getParam(detailData)}`,
       }),
-    ]);
+    ]).then(res => res);
   }
-  return null;
 };
 
 export const changeTrendDaysInTab1Ser = (props) => {

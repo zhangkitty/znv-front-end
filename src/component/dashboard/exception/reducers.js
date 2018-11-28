@@ -73,6 +73,7 @@ export const defaultState = {
     },
   },
   staffAttendance: {
+    ready: true,
     headTable: {
       dataSource: [],
     },
@@ -244,11 +245,19 @@ const reducer = (state = defaultState, action) => {
         }),
       });
 
+    case types.staffAttendanceInit:
+      return assign({}, state, {
+        staffAttendance: assign({}, state.staffAttendance, {
+          ready: false,
+        }),
+      });
+
     case types.staffAttendanceInitSuccess:
       const len = state.clickedId.split('.').length;
       if (len === 1) {
         return assign({}, state, {
           staffAttendance: assign({}, state.staffAttendance, {
+            ready: true,
             headTable: assign({}, state.staffAttendance.headTable, {
               dataSource: action.data[0].data.list,
             }),
@@ -264,6 +273,7 @@ const reducer = (state = defaultState, action) => {
       if (len === 3) {
         return assign({}, state, {
           staffAttendance: assign({}, state.staffAttendance, {
+            ready: true,
             headTable: assign({}, state.staffAttendance.headTable, {
               dataSource: action.data[0].data.list,
             }),
@@ -278,7 +288,9 @@ const reducer = (state = defaultState, action) => {
       }
       if (len > 3) {
         return assign({}, state, {
+
           staffAttendance: assign({}, state.staffAttendance, {
+            ready: true,
             headTable: assign({}, state.staffAttendance.headTable, {
               dataSource: action.data[0].data.list,
             }),
@@ -295,7 +307,7 @@ const reducer = (state = defaultState, action) => {
 
 
     case types.changeTrendDaysInTab1:
-      debugger;
+
       return assign({}, state, {
         staffAttendance: assign({}, state.staffAttendance, {
           trend: assign({}, state.staffAttendance.trend, {
@@ -306,7 +318,7 @@ const reducer = (state = defaultState, action) => {
 
 
     case types.changeTrendDaysInTab1Success:
-      debugger;
+
       return assign({}, state, {
         staffAttendance: assign({}, state.staffAttendance, {
           trend: assign({}, state.staffAttendance.trend, {
