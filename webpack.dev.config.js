@@ -66,7 +66,7 @@ module.exports = Object.assign({},config, {
         changeOrigin: true
       },
       '/aps':{
-        target: 'http://10.45.146.48:9010',
+        target: 'http://10.45.146.69:9001',
         secure: false,
         changeOrigin: true
       },

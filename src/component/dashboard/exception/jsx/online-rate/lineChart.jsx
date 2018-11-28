@@ -62,7 +62,6 @@ const LineChart = (props) => {
         '云运维FSU在线数',
         'FSU在线率',
         'FSU入网数',
-        '云运维FSU在线率',
         '入网进度',
 
         'FSU总数',
@@ -87,7 +86,6 @@ const LineChart = (props) => {
         云运维FSU在线数: false,
         FSU在线率: true,
         FSU入网数: false,
-        云运维FSU在线率: false,
         入网进度: true,
 
         FSU总数: false,
@@ -166,12 +164,6 @@ const LineChart = (props) => {
         type: 'line',
         yAxisIndex: 1,
         data: toList('openRate').map(v => `${Number(v * 100).toFixed(2)}`),
-      },
-      {
-        name: '云运维FSU在线率',
-        type: 'line',
-        yAxisIndex: 1,
-        data: toList('onlineRate').map(v => `${Number(v * 100).toFixed(2)}`),
       },
 
 

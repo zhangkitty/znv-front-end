@@ -5,6 +5,8 @@ import moment from 'moment';
 
 const LineChart = (props) => {
   const { staffAttendance: { trend: { dateValue, dataSource } } } = props;
+  const { node } = props;
+  const len = node.id.split('.').length;
 
 
   const selectDay = [];
@@ -12,10 +14,7 @@ const LineChart = (props) => {
     selectDay.push(moment(dateValue[0]).add(i, 'd').format('YYYY-MM-DD'));
   }
   const toList = type => selectDay.map((v, idx) => {
-    console.log('mdzz');
-    console.log(dataSource);
     const temp = dataSource.filter((t) => {
-      // todo 有问题;Cannot read property 'dataTime' of null
       if (t && t.dataTime === v) {
         return true;
       }
@@ -29,6 +28,7 @@ const LineChart = (props) => {
     }
     return 0;
   });
+
 
   const option = {
     tooltip: {
@@ -50,12 +50,16 @@ const LineChart = (props) => {
     },
     calculable: true,
     legend: {
-      data: [
-        '出勤率',
-        '出勤人数',
+      data: len > 3 ? [
         '平均工时',
         '平均路程',
-      ],
+      ] :
+        [
+          '出勤率',
+          '出勤人数',
+          '平均工时',
+          '平均路程',
+        ],
     },
     xAxis: [
       {
@@ -79,29 +83,30 @@ const LineChart = (props) => {
         },
       },
     ],
-    series: [
-      {
-        name: '出勤率',
-        type: 'line',
-        yAxisIndex: 1,
-        data: toList('workRate').map(v => `${Number(v * 100).toFixed(2)}`),
-      },
-      {
-        name: '出勤人数',
-        type: 'line',
-        data: toList('workNum'),
-      },
-      {
-        name: '平均工时',
-        type: 'line',
-        data: toList('workTime'),
-      },
-      {
-        name: '平均路程',
-        type: 'line',
-        data: toList('workDistance'),
-      },
-    ],
+    series:
+      [
+        {
+          name: len > 3 ? null : '出勤率',
+          type: len > 3 ? null : 'line',
+          yAxisIndex: 1,
+          data: len > 3 ? [] : toList('workRate').map(v => `${Number(v * 100).toFixed(2)}`),
+        },
+        {
+          name: len > 3 ? null : '出勤人数',
+          type: len > 3 ? null : 'line',
+          data: len > 3 ? [] : toList('workNum'),
+        },
+        {
+          name: '平均工时',
+          type: 'line',
+          data: toList('workTime'),
+        },
+        {
+          name: '平均路程',
+          type: 'line',
+          data: toList('workDistance'),
+        },
+      ],
   };
 
   return (

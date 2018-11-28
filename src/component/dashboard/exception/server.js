@@ -198,9 +198,11 @@ export const staffAttendanceInitSer = (props) => {
       request({
         url: `/rqs/attendance/rate${getParam(trendData)}`,
       }),
+      // 轨迹
       request({
         url: `/rqs/attendance/persontracedetail${getParam(detailData)}`,
       }),
+      // 任务
       request({
         url: `/rqs/attendance/persontaskdetail${getParam(detailData)}`,
       }),
