@@ -7,24 +7,24 @@ const HeadTable = (props) => {
   const { onlineRate: { headTable: { dataSource } } } = props;
 
 
-  const mydataSource = dataSource;
+  let mydataSource = dataSource;
   if (Array.isArray(dataSource)) {
     if (dataSource.length === 2) {
-      dataSource.map((v, idx) => {
+      mydataSource = dataSource.map((v, idx) => {
         if (idx === 0) {
-          Object.assign({}, v, {
+          return Object.assign({}, v, {
             devOnlineNumInc: v.devOnlineNum > dataSource[1].devOnlineNum,
             onlineNumRateInc: v.onlineNumRate > dataSource[1].onlineNumRate,
             onlineNumInc: v.onlineNum > dataSource[1].onlineNum,
             onlineRateInc: v.onlineRate > dataSource[1].onlineRate,
             openNumInc: v.openNum > dataSource[1].openNum,
           });
-        } else {
-          return v;
         }
+        return v;
       });
     }
   }
+  console.log(mydataSource, 'hhhhhhhh');
   const columns = [
     {
       title: '     ',
@@ -37,8 +37,13 @@ const HeadTable = (props) => {
     {
       title: '广告机在线数',
       render: (d, idx) => {
-        if (idx === 1) {
-          return <span>{d.devOnlineNum}{d.devOnlineNumInc ? <Icon type="rise" /> : <Icon type="fall" />}</span>;
+        if (idx === 0) {
+          return (
+            <div>
+              <span>{d.devOnlineNum}</span>
+              {d.devOnlineNumInc ? <Icon type="arrow-up" /> : <Icon type="arrow-down" />}
+            </div>
+          );
         }
         return <span>{d.devOnlineNum}</span>;
       },
@@ -46,18 +51,18 @@ const HeadTable = (props) => {
     {
       title: '广告机在线率',
       render: (d, idx) => {
-        if (idx === 1) {
-          return <span>{ `${Number(d.onlineNumRate * 100).toFixed(2)}%`}{d.onlineNumRateInc ? <Icon type="rise" /> : <Icon type="fall" />}</span>;
+        if (idx === 0) {
+          return <span>{ `${Number(d.onlineNumRate * 100).toFixed(2)}%`}{d.onlineNumRateInc ? <Icon type="arrow-up" /> : <Icon type="arrow-down" />}</span>;
         }
-        return <span>{d.onlineNumRate}</span>;
+        return <span>{ `${Number(d.onlineNumRate * 100).toFixed(2)}%`}</span>;
       },
 
     },
     {
       title: '云运维FSU在线数',
       render: (d, idx) => {
-        if (idx === 1) {
-          return <span>{d.onlineNum}{d.onlineNumInc ? <Icon type="rise" /> : <Icon type="fall" />}</span>;
+        if (idx === 0) {
+          return <span>{d.onlineNum}{d.onlineNumInc ? <Icon type="arrow-up" /> : <Icon type="arrow-down" />}</span>;
         }
         return <span>{d.onlineNum}</span>;
       },
@@ -65,17 +70,17 @@ const HeadTable = (props) => {
     {
       title: 'FSU在线率',
       render: (d, idx) => {
-        if (idx === 1) {
-          return <span>{ `${Number(d.onlineRate * 100).toFixed(2)}%`}{d.onlineRateInc ? <Icon type="rise" /> : <Icon type="fall" />}</span>;
+        if (idx === 0) {
+          return <span>{ `${Number(d.onlineRate * 100).toFixed(2)}%`}{d.onlineRateInc ? <Icon type="arrow-up" /> : <Icon type="arrow-down" />}</span>;
         }
-        return <span>{d.onlineRateInc}</span>;
+        return <span>{`${Number(d.onlineRate * 100).toFixed(2)}%`}</span>;
       },
     },
     {
       title: 'FSU入网数',
       render: (d, idx) => {
-        if (idx === 1) {
-          return <span>{d.openNum}{d.openNumInc ? <Icon type="rise" /> : <Icon type="fall" />}</span>;
+        if (idx === 0) {
+          return <span>{d.openNum}{d.openNumInc ? <Icon type="arrow-up" /> : <Icon type="arrow-down" />}</span>;
         }
         return <span>{d.openNum}</span>;
       },
