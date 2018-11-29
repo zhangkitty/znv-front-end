@@ -14,6 +14,7 @@ const HeadTable = (props) => {
       mydataSource = dataSource.map((v, idx) => {
         if (idx === 0) {
           return Object.assign({}, v, {
+            devTotalInc: compare(v.devTotal, dataSource[1].devTotal),
             devOnlineNumInc: compare(v.devOnlineNum, dataSource[1].devOnlineNum),
             onlineNumRateInc: compare(v.onlineNumRate, dataSource[1].onlineNumRate),
             onlineNumInc: compare(v.onlineNum, dataSource[1].onlineNum),
@@ -27,7 +28,6 @@ const HeadTable = (props) => {
   }
 
   const renderIcon = (str) => {
-    console.log(str);
     if (str === '>') {
       return <Icon type="arrow-up" />;
     }
@@ -44,7 +44,17 @@ const HeadTable = (props) => {
     },
     {
       title: '广告机总数',
-      render: 'devTotal',
+      render: (d, idx) => {
+        if (idx === 0) {
+          return (
+            <div>
+              <span>{d.devTotal}</span>
+              {renderIcon(d.devTotalInc)}
+            </div>
+          );
+        }
+        return <span>{d.devTotal}</span>;
+      },
     },
     {
       title: '广告机在线数',
@@ -74,7 +84,7 @@ const HeadTable = (props) => {
       title: '云运维FSU在线数',
       render: (d, idx) => {
         if (idx === 0) {
-          return <span>{d.onlineNum}{d.onlineNumInc ? <Icon type="arrow-up" /> : <Icon type="arrow-down" />}</span>;
+          return <span>{d.onlineNum}{renderIcon(d.onlineNumInc)}</span>;
         }
         return <span>{d.onlineNum}</span>;
       },
