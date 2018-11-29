@@ -70,16 +70,16 @@ const LineChart = (props) => {
     yAxis: [
       {
         type: 'value',
-        name: '数目',
+        name: len > 3 ? 'h' : '数目',
         axisLabel: {
           formatter: '{value}',
         },
       },
       {
         type: 'value',
-        name: '百分比',
+        name: len > 3 ? 'km' : '百分比',
         axisLabel: {
-          formatter: '{value} %',
+          formatter: len > 3 ? '{value}' : '{value} %',
         },
       },
     ],
@@ -97,13 +97,14 @@ const LineChart = (props) => {
           data: len > 3 ? [] : toList('workNum'),
         },
         {
-          name: '平均工时',
+          name: len > 3 ? '工作时长' : '平均工时',
           type: 'line',
           data: toList('workTime'),
         },
         {
-          name: '平均路程',
+          name: len > 3 ? '工作路程' : '平均路程',
           type: 'line',
+          yAxisIndex: len > 3 ? 1 : 0,
           data: toList('workDistance'),
         },
       ],

@@ -25,11 +25,12 @@ const HeadTable = (props) => {
     },
     {
       title: '平均工时/h',
-      render: 'workTime',
+      render: d => `${d.workTime}h`,
     },
     {
       title: '工作路程/km',
-      render: 'workDistance',
+      render: d => `${d.workDistance}km`,
+
     },
   ];
   const columns1 = [

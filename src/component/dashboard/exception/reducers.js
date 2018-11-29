@@ -20,7 +20,7 @@ export const defaultState = {
     },
     trend: {
       dateValue: [
-        moment().subtract(30, 'days').toDate(),
+        moment().subtract(1, 'days').toDate(),
         moment().toDate(),
       ],
       imensiond: [
