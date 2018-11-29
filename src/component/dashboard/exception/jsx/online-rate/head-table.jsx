@@ -24,7 +24,6 @@ const HeadTable = (props) => {
       });
     }
   }
-  console.log(mydataSource, 'hhhhhhhh');
   const columns = [
     {
       title: '     ',

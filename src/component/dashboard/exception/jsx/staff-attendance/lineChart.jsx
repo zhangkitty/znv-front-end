@@ -51,14 +51,12 @@ const LineChart = (props) => {
     calculable: true,
     legend: {
       data: len > 3 ? [
-        '平均工时',
-        '平均路程',
+        '工作时长',
+        '工作路程',
       ] :
         [
-          '出勤率',
-          '出勤人数',
           '平均工时',
-          '平均路程',
+          '出勤率',
         ],
     },
     xAxis: [
@@ -70,14 +68,14 @@ const LineChart = (props) => {
     yAxis: [
       {
         type: 'value',
-        name: len > 3 ? 'h' : '数目',
+        name: len > 3 ? '工作时长/h' : '平均工时/h',
         axisLabel: {
           formatter: '{value}',
         },
       },
       {
         type: 'value',
-        name: len > 3 ? 'km' : '百分比',
+        name: len > 3 ? '工作路程/km' : '出勤率%',
         axisLabel: {
           formatter: len > 3 ? '{value}' : '{value} %',
         },
@@ -86,26 +84,15 @@ const LineChart = (props) => {
     series:
       [
         {
-          name: len > 3 ? null : '出勤率',
-          type: 'line',
-          yAxisIndex: 1,
-          data: len > 3 ? [] : toList('workRate').map(v => `${Number(v * 100).toFixed(2)}`),
-        },
-        {
-          name: len > 3 ? null : '出勤人数',
-          type: 'line',
-          data: len > 3 ? [] : toList('workNum'),
-        },
-        {
           name: len > 3 ? '工作时长' : '平均工时',
           type: 'line',
           data: toList('workTime'),
         },
         {
-          name: len > 3 ? '工作路程' : '平均路程',
+          name: len > 3 ? '工作路程' : '出勤率',
           type: 'line',
-          yAxisIndex: len > 3 ? 1 : 0,
-          data: toList('workDistance'),
+          yAxisIndex: 1,
+          data: len > 3 ? toList('workDistance') : toList('workRate').map(v => `${Number(v * 100).toFixed(2)}`),
         },
       ],
   };
