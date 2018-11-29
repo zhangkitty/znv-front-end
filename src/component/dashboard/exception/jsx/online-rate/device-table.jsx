@@ -102,7 +102,7 @@ const DeviceTable = (props) => {
       </div>
 
       <Table
-        style={{ marginTop: 10, height: 400 }}
+        style={{ marginTop: 10, maxHeight: 400 }}
         striped
         bordered
         keygen="id"
