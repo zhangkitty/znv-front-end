@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Table } from 'shineout';
 import { Icon } from 'antd';
+import { compare } from 'utils/compare';
+
 
 const HeadTable = (props) => {
   const { staffAttendance: { headTable: { dataSource } } } = props;
@@ -14,16 +16,27 @@ const HeadTable = (props) => {
       mydataSource = dataSource.map((v, idx) => {
         if (idx === 0) {
           return Object.assign({}, v, {
-            workNumInc: v.workNumInc > dataSource[1].workNumInc,
-            workRateInc: v.workRateInc > dataSource[1].workRateInc,
-            workTimeInc: v.workTime > dataSource[1].workTime,
-            workDistanceInc: v.workDistance > dataSource[1].workDistance,
+            workNumInc: compare(v.workNum, dataSource[1].workNum),
+            workRateInc: compare(v.workRate, dataSource[1].workRate),
+            workTimeInc: compare(v.workTime, dataSource[1].workTime),
+            workDistanceInc: compare(v.workDistance, dataSource[1].workDistance),
           });
         }
         return v;
       });
     }
   }
+  const renderIcon = (str) => {
+    console.log(str);
+    if (str === '>') {
+      return <Icon type="arrow-up" />;
+    }
+    if (str === '<') {
+      return <Icon type="arrow-down" />;
+    }
+    return '';
+  };
+
   const columns = [
     {
       title: '    ',
@@ -40,7 +53,7 @@ const HeadTable = (props) => {
           return (
             <div>
               <span>{d.workNum}</span>
-              {d.workNumInc ? <Icon type="arrow-up" /> : <Icon type="arrow-down" />}
+              {renderIcon(d.workNumInc)}
             </div>
           );
         }
@@ -54,7 +67,7 @@ const HeadTable = (props) => {
           return (
             <div>
               <span>{`${Number((Math.round(d.workRate * 10000) / 100)).toFixed(2)}%`}</span>
-              {d.workRateInc ? <Icon type="arrow-up" /> : <Icon type="arrow-down" />}
+              {renderIcon(d.workRateInc)}
             </div>
           );
         }
@@ -70,7 +83,7 @@ const HeadTable = (props) => {
           return (
             <div>
               <span>{`${Number((Math.round(d.workTime * 100) / 100)).toFixed(2)}h`}</span>
-              {d.workTimeInc ? <Icon type="arrow-up" /> : <Icon type="arrow-down" />}
+              {renderIcon(d.workTimeInc)}
             </div>
           );
         }
@@ -84,7 +97,7 @@ const HeadTable = (props) => {
           return (
             <div>
               <span>{`${Number((Math.round(d.workDistance * 100) / 100)).toFixed(2)}km`}</span>
-              {d.workDistance ? <Icon type="arrow-up" /> : <Icon type="arrow-down" />}
+              {renderIcon(d.workDistanceInc)}
             </div>
           );
         }
@@ -110,7 +123,7 @@ const HeadTable = (props) => {
           return (
             <div>
               <span>{`${Number((Math.round(d.workTime * 100) / 100)).toFixed(2)}h`}</span>
-              {d.workTimeInc ? <Icon type="arrow-up" /> : <Icon type="arrow-down" />}
+              {renderIcon(d.workTimeInc)}
             </div>
           );
         }
@@ -124,7 +137,7 @@ const HeadTable = (props) => {
           return (
             <div>
               <span>{`${Number((Math.round(d.workDistance * 100) / 100)).toFixed(2)}km`}</span>
-              {d.workDistance ? <Icon type="arrow-up" /> : <Icon type="arrow-down" />}
+              {renderIcon(d.workDistance)}
             </div>
           );
         }
@@ -137,7 +150,7 @@ const HeadTable = (props) => {
     <div>
       <Table
         keygen="id"
-        data={dataSource}
+        data={mydataSource}
         columns={len > 3 ? columns1 : columns}
       />
 

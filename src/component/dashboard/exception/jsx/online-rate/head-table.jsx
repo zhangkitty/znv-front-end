@@ -2,6 +2,7 @@ import React from 'react';
 import PropType from 'prop-types';
 import { Table, Progress } from 'shineout';
 import { Icon } from 'antd';
+import { compare } from 'utils/compare';
 
 const HeadTable = (props) => {
   const { onlineRate: { headTable: { dataSource } } } = props;
@@ -13,17 +14,29 @@ const HeadTable = (props) => {
       mydataSource = dataSource.map((v, idx) => {
         if (idx === 0) {
           return Object.assign({}, v, {
-            devOnlineNumInc: v.devOnlineNum > dataSource[1].devOnlineNum,
-            onlineNumRateInc: v.onlineNumRate > dataSource[1].onlineNumRate,
-            onlineNumInc: v.onlineNum > dataSource[1].onlineNum,
-            onlineRateInc: v.onlineRate > dataSource[1].onlineRate,
-            openNumInc: v.openNum > dataSource[1].openNum,
+            devOnlineNumInc: compare(v.devOnlineNum, dataSource[1].devOnlineNum),
+            onlineNumRateInc: compare(v.onlineNumRate, dataSource[1].onlineNumRate),
+            onlineNumInc: compare(v.onlineNum, dataSource[1].onlineNum),
+            onlineRateInc: compare(v.onlineRate, dataSource[1].onlineRate),
+            openNumInc: compare(v.openNum, dataSource[1].openNum),
           });
         }
         return v;
       });
     }
   }
+
+  const renderIcon = (str) => {
+    console.log(str);
+    if (str === '>') {
+      return <Icon type="arrow-up" />;
+    }
+    if (str === '<') {
+      return <Icon type="arrow-down" />;
+    }
+    return '';
+  };
+
   const columns = [
     {
       title: '     ',
@@ -40,7 +53,7 @@ const HeadTable = (props) => {
           return (
             <div>
               <span>{d.devOnlineNum}</span>
-              {d.devOnlineNumInc ? <Icon type="arrow-up" /> : <Icon type="arrow-down" />}
+              {renderIcon(d.devOnlineNumInc)}
             </div>
           );
         }
@@ -51,7 +64,7 @@ const HeadTable = (props) => {
       title: '广告机在线率',
       render: (d, idx) => {
         if (idx === 0) {
-          return <span>{ `${Number(d.onlineNumRate * 100).toFixed(2)}%`}{d.onlineNumRateInc ? <Icon type="arrow-up" /> : <Icon type="arrow-down" />}</span>;
+          return <span>{ `${Number(d.onlineNumRate * 100).toFixed(2)}%`}{renderIcon(d.onlineNumRateInc) }</span>;
         }
         return <span>{ `${Number(d.onlineNumRate * 100).toFixed(2)}%`}</span>;
       },
@@ -70,7 +83,7 @@ const HeadTable = (props) => {
       title: 'FSU在线率',
       render: (d, idx) => {
         if (idx === 0) {
-          return <span>{ `${Number(d.onlineRate * 100).toFixed(2)}%`}{d.onlineRateInc ? <Icon type="arrow-up" /> : <Icon type="arrow-down" />}</span>;
+          return <span>{ `${Number(d.onlineRate * 100).toFixed(2)}%`}{renderIcon(d.onlineRateInc) }</span>;
         }
         return <span>{`${Number(d.onlineRate * 100).toFixed(2)}%`}</span>;
       },
@@ -79,7 +92,7 @@ const HeadTable = (props) => {
       title: 'FSU入网数',
       render: (d, idx) => {
         if (idx === 0) {
-          return <span>{d.openNum}{d.openNumInc ? <Icon type="arrow-up" /> : <Icon type="arrow-down" />}</span>;
+          return <span>{d.openNum}{renderIcon(d.openNumInc) }</span>;
         }
         return <span>{d.openNum}</span>;
       },
@@ -87,7 +100,7 @@ const HeadTable = (props) => {
     {
       title: '入网进度',
       render: d => (
-        <Progress style={{ width: 100 }} value={d.openRate * 100}>{`${d.openRate * 100}%`}</Progress>
+        <Progress style={{ width: 100 }} value={d.openRate * 100}>{`${Number(d.openRate * 100).toFixed(2)}%`}</Progress>
       ),
     },
   ];
@@ -96,7 +109,7 @@ const HeadTable = (props) => {
     <div>
       <Table
         keygen="id"
-        data={dataSource}
+        data={mydataSource}
         columns={columns}
         virticalAlign="middle"
       />

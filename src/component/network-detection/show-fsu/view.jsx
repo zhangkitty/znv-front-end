@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { init, changeValue, changePage, changePageSize } from './action';
 import Header from './jsx/header';
 import List from './jsx/list';
+import Detail from './jsx/detail';
 
 class ShowFSU extends React.Component {
   constructor(props) {
@@ -20,27 +21,35 @@ class ShowFSU extends React.Component {
     return (
       pageReady ?
         <div>
-          <Header {...this.props} />
-          <List {...this.props} />
-          <Page
-            total={total}
-            onChange={(pageValue) => {
-              dispatch(changeValue('page', pageValue));
-              dispatch(changePage(Object.assign({}, this.props, {
-                page: pageValue,
-                pageSize,
-              })));
-            }}
-            onShowSizeChange={(current, size) => {
-              dispatch(changeValue('pageSize', size));
-              dispatch(changePageSize(Object.assign({}, this.props, {
-                page: current,
-                pageSize: size,
-              })));
-            }}
-            current={page}
-            pageSize={pageSize}
-          />
+          {
+            <div>
+              <Header {...this.props} />
+              <List {...this.props} />
+              <Page
+                total={total}
+                onChange={(pageValue) => {
+                  dispatch(changeValue('page', pageValue));
+                  dispatch(changePage(Object.assign({}, this.props, {
+                    page: pageValue,
+                    pageSize,
+                  })));
+                }}
+                onShowSizeChange={(current, size) => {
+                  dispatch(changeValue('pageSize', size));
+                  dispatch(changePageSize(Object.assign({}, this.props, {
+                    page: current,
+                    pageSize: size,
+                  })));
+                }}
+                current={page}
+                pageSize={pageSize}
+              />
+              <Detail {...this.props} />
+            </div>
+
+
+          }
+
         </div>
         :
         <div style={{ textAlign: 'center' }}>
