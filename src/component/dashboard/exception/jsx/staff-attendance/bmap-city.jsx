@@ -2,341 +2,135 @@ import React from 'react';
 import ReactEcharts from 'echarts-for-react';
 import 'echarts/extension/bmap/bmap';
 import styles from './style.css';
-
+import { Progress } from 'shineout';
 
 function Color() {
-  this.r = Math.floor(Math.random() * 255);
-  this.g = Math.floor(Math.random() * 255);
-  this.b = Math.floor(Math.random() * 255);
-  this.color = `rgba(${this.r},${this.g},${this.b},0.8)`;
+  const r = Math.floor(Math.random() * 255);
+  const g = Math.floor(Math.random() * 255);
+  const b = Math.floor(Math.random() * 255);
+  const color = `rgba(${r},${g},${b},0.8)`;
+  return color;
 }
 
-const BmapCity = (props) => {
-  // const { rawData } = props;
-
-  const { staffAttendance: { detailData: { dataSource } } } = props;
-
-
-  // const lines = rawData.track.slice(0, rawData.track.length - 1).map((seg, idx) =>
-  //   [
-  //     {
-  //       coord: seg.coord,
-  //     },
-  //     {
-  //       coord: rawData.track[idx + 1].coord,
-  //     },
-  //   ]);
-  //
-  // const lines1 = rawData.track.slice(0, rawData.track.length - 1).map((seg, idx) =>
-  //   [
-  //     {
-  //       coord: seg.coord.map(v => v + 0.1),
-  //     },
-  //     {
-  //       coord: rawData.track[idx + 1].coord.map(v => v + 0.1),
-  //     },
-  //   ]);
-
-
-  let allLongitude = 0;
-  let allLatitude = 0;
-  let num = 0;
-  const lines = dataSource.map((v) => {
-    num += (v.traceInfo.length - 1);
-    if (v.traceInfo && v.traceInfo.length > 0) {
-      const x = v.traceInfo.slice(0, v.traceInfo.length - 1).map((t, idx) => {
-        allLongitude += (+t.longitude);
-        allLatitude += (+t.latitude);
-        return [
-          {
-            coord: [t.longitude, t.latitude],
-          },
-          {
-            coord: [v.traceInfo[idx + 1].longitude, v.traceInfo[idx + 1].latitude],
-          },
-        ];
-      });
-      return x;
-    }
-    return null;
-  });
-
-  // const color = lines.map(v=>Math.random())
-  if (lines.length > 0) {
+export default class BmapCity extends React.Component {
+  componentDidMount() {
+    this.reactEcharts.getEchartsInstance()
+      .getModel()
+      .getComponent('bmap')
+      .getBMap()
+      .addControl(new BMap.NavigationControl());
   }
 
-
-  const option = {
-    animation: false,
-    bmap: {
-      center: num ? [allLongitude / num, allLatitude / num] : [120.14266322374, 30.235018034923],
-      zoom: 12,
-      roam: true,
-      // mapStyle: {
-      //   styleJson: [{
-      //     featureType: 'water',
-      //     elementType: 'all',
-      //     stylers: {
-      //       color: '#d1d1d1',
-      //     },
-      //   }, {
-      //     featureType: 'land',
-      //     elementType: 'all',
-      //     stylers: {
-      //       color: '#f3f3f3',
-      //     },
-      //   }, {
-      //     featureType: 'railway',
-      //     elementType: 'all',
-      //     stylers: {
-      //       visibility: 'off',
-      //     },
-      //   }, {
-      //     featureType: 'highway',
-      //     elementType: 'all',
-      //     stylers: {
-      //       color: '#fdfdfd',
-      //     },
-      //   }, {
-      //     featureType: 'highway',
-      //     elementType: 'labels',
-      //     stylers: {
-      //       visibility: 'off',
-      //     },
-      //   }, {
-      //     featureType: 'arterial',
-      //     elementType: 'geometry',
-      //     stylers: {
-      //       color: '#fefefe',
-      //     },
-      //   }, {
-      //     featureType: 'arterial',
-      //     elementType: 'geometry.fill',
-      //     stylers: {
-      //       color: '#fefefe',
-      //     },
-      //   }, {
-      //     featureType: 'poi',
-      //     elementType: 'all',
-      //     stylers: {
-      //       visibility: 'off',
-      //     },
-      //   }, {
-      //     featureType: 'green',
-      //     elementType: 'all',
-      //     stylers: {
-      //       visibility: 'off',
-      //     },
-      //   }, {
-      //     featureType: 'subway',
-      //     elementType: 'all',
-      //     stylers: {
-      //       visibility: 'off',
-      //     },
-      //   }, {
-      //     featureType: 'manmade',
-      //     elementType: 'all',
-      //     stylers: {
-      //       color: '#d1d1d1',
-      //     },
-      //   }, {
-      //     featureType: 'local',
-      //     elementType: 'all',
-      //     stylers: {
-      //       color: '#d1d1d1',
-      //     },
-      //   }, {
-      //     featureType: 'arterial',
-      //     elementType: 'labels',
-      //     stylers: {
-      //       visibility: 'off',
-      //     },
-      //   }, {
-      //     featureType: 'boundary',
-      //     elementType: 'all',
-      //     stylers: {
-      //       color: '#fefefe',
-      //     },
-      //   }, {
-      //     featureType: 'building',
-      //     elementType: 'all',
-      //     stylers: {
-      //       color: '#d1d1d1',
-      //     },
-      //   }, {
-      //     featureType: 'label',
-      //     elementType: 'geometry.fill',
-      //     stylers: {
-      //       color: '#848484',
-      //     },
-      //   }, {
-      //     featureType: 'label',
-      //     elementType: 'geometry',
-      //     stylers: {
-      //       visibility: 'off',
-      //     },
-      //   }],
-      // },
-    },
-    tooltip: {
-      trigger: 'axis',
-    },
-
-
-    series: lines.length > 0 ? lines.map(v => (
-      {
-        type: 'lines',
-        coordinateSystem: 'bmap',
-        data: v,
-        tooltip: {
-          show: true,
-        },
-        lineStyle: {
-          normal: {
-            width: 1,
-            opacity: 1,
-            shadowColor: 'rgba(0, 0, 0, 0.5)',
-            shadowBlur: 3,
-          },
-          emphasis: {
-            color: 'blue',
-          },
-        },
-        animationDelay(idx) {
-          return idx * 20;
-        },
+  render() {
+    const { staffAttendance: { detailData: { dataSource, choosedData } } } = this.props;
+    const { staffAttendance: { trend: { dataSource: dataSource1 } } } = this.props;
+    let allLongitude = 0;
+    let allLatitude = 0;
+    let num = 0;
+    console.log(dataSource, 'pppppppppp');
+    const lines = dataSource.filter(t => t.workTime > 0).map((v) => {
+      if (v.traceInfo) {
+        num += (v.traceInfo.length - 1);
       }
-    )) :
-      [
+      if (v.traceInfo && v.traceInfo.length > 0) {
+        const x = v.traceInfo.slice(0, v.traceInfo.length - 1).map((t, idx) => {
+          allLongitude += (+t.longitude);
+          allLatitude += (+t.latitude);
+          return [
+            {
+              coord: [t.longitude, t.latitude],
+              color: Color(),
+              executorName: v.executorName,
+            },
+            {
+              coord: [v.traceInfo[idx + 1].longitude, v.traceInfo[idx + 1].latitude],
+            },
+          ];
+        });
+        return x;
+      }
+      return [
+        {
+          coord: [],
+        },
+        {
+          coord: [],
+        },
+      ];
+    });
+
+
+    const option = {
+      animation: false,
+      bmap: {
+        center: num ? [allLongitude / num, allLatitude / num] : [118.7845062719, 31.8446580547],
+        zoom: 13,
+        roam: true,
+      },
+      tooltip: {
+        trigger: 'axis',
+      },
+
+
+      series: lines.map((v, idx) => (
         {
           type: 'lines',
           coordinateSystem: 'bmap',
-          data: lines[0],
+          data: v,
           tooltip: {
             show: true,
+            formatter: () => {
+              console.log(1);
+              console.log(2);
+            },
           },
           lineStyle: {
             normal: {
-              width: 1,
+              type: 'dashed',
+              color: v[0] && v[0][0] && v[0][0].color,
+              width: 3,
               opacity: 1,
-              shadowColor: 'rgba(0, 0, 0, 0.5)',
+              // shadowColor: 'black',
               shadowBlur: 3,
-            },
-            emphasis: {
-              color: 'blue',
             },
           },
           animationDelay(idx) {
             return idx * 20;
           },
-        },
-      ],
-    // [
-    // {
-    //   type: 'lines',
-    //   coordinateSystem: 'bmap',
-    //   data: lines,
-    //   tooltip: {
-    //     show: true,
-    //   },
-    //   lineStyle: {
-    //     normal: {
-    //       width: 1,
-    //       opacity: 1,
-    //       shadowColor: 'rgba(0, 0, 0, 0.5)',
-    //       shadowBlur: 3,
-    //     },
-    //     emphasis: {
-    //       color: 'blue',
-    //     },
-    //   },
-    //   animationDelay(idx) {
-    //     return idx * 20;
-    //   },
-    // },
-    // {
-    //   type: 'lines',
-    //   coordinateSystem: 'bmap',
-    //   data: lines1,
-    //   tooltip: {
-    //     show: true,
-    //   },
-    //   lineStyle: {
-    //     normal: {
-    //       width: 1,
-    //       opacity: 1,
-    //       shadowColor: 'rgba(0, 0, 0, 0.5)',
-    //       shadowBlur: 3,
-    //     },
-    //     emphasis: {
-    //       color: 'black',
-    //     },
-    //   },
-    //   animationDelay(idx) {
-    //     return idx * 20;
-    //   },
-    // },
-    // {
-    //   type: 'lines',
-    //   coordinateSystem: 'bmap',
-    //   data: lines[0],
-    //   tooltip: {
-    //     show: true,
-    //   },
-    //   lineStyle: {
-    //     normal: {
-    //       width: 1,
-    //       opacity: 1,
-    //       shadowColor: 'rgba(0, 0, 0, 0.5)',
-    //       shadowBlur: 3,
-    //     },
-    //     emphasis: {
-    //       color: 'black',
-    //     },
-    //   },
-    //   // animationDelay(idx) {
-    //   //   return idx * 20;
-    //   // },
-    // },
-    // {
-    //   type: 'lines',
-    //   coordinateSystem: 'bmap',
-    //   data: lines[1],
-    //   tooltip: {
-    //     show: true,
-    //   },
-    //   lineStyle: {
-    //     normal: {
-    //       width: 1,
-    //       opacity: 1,
-    //       shadowColor: 'rgba(0, 0, 0, 0.5)',
-    //       shadowBlur: 3,
-    //     },
-    //     emphasis: {
-    //       color: 'red',
-    //     },
-    //   },
-    //   // animationDelay(idx) {
-    //   //   return idx * 20;
-    //   // },
-    // },
-    // ],
-  };
-  return (
-    <div className={styles.map}>
-      <div className={styles.mapLeft}>
-        {
-          dataSource.map(v => (
-            <div style={{ background: (new Color()).color }}>{v.executorName}</div>
-          ))
         }
+      )),
+    };
+    return (
+      <div className={styles.map}>
+        <div className={styles.mapLeft}>
+          <div>出勤率:</div>
+          <div style={{ marginBottom: 10 }}>{dataSource1.filter(v => v.dataTime === choosedData)[0] && `${Number(dataSource1.filter(v => v.dataTime === choosedData)[0].workRate * 100).toFixed(2)}%`}</div>
+          <div>出勤人数:</div>
+          <div style={{ marginBottom: 10 }}>{dataSource1.filter(v => v.dataTime === choosedData)[0] && dataSource1.filter(v => v.dataTime === choosedData)[0].totalNum}</div>
+          <div>平均工时/h:</div>
+          <div style={{ marginBottom: 10 }}>{dataSource1.filter(v => v.dataTime === choosedData)[0] && Number(dataSource1.filter(v => v.dataTime === choosedData)[0].workTime).toFixed(2)}</div>
+          <div>平均路程/km:</div>
+          <div style={{ marginBottom: 10 }}>{dataSource1.filter(v => v.dataTime === choosedData)[0] && Number(dataSource1.filter(v => v.dataTime === choosedData)[0].workDistance).toFixed(2)}</div>
+          <div>未出勤人员:</div>
+          {
+            dataSource.map((v) => {
+              if (v.workTime === 0) {
+                return <div>{v.executorName}:{v.executorName}</div>;
+              }
+            })
+          }
+          <div>出勤人员:</div>
+          {
+            lines.map(v => <div style={{ marginBottom: 8 }}>{v[0][0].executorName}<Progress color={v[0][0].color} value={100} style={{ width: '80%' }} /> </div>)
+          }
+        </div>
+        <ReactEcharts
+          className={styles.mapRight}
+          option={option}
+          ref={(node) => { this.reactEcharts = node; }}
+        />
       </div>
-      <ReactEcharts
-        className={styles.mapRight}
-        option={option}
-      />
-    </div>
-  );
-};
+    );
+  }
+}
 
-export default BmapCity;

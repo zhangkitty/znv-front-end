@@ -101,9 +101,10 @@ export default class BmapCity extends React.Component {
           },
           lineStyle: {
             normal: {
-              width: 1,
+              type: 'dashed',
+              width: 3,
               opacity: 1,
-              shadowColor: 'rgba(0, 0, 0, 0.5)',
+              Color: 'rgba(224, 116, 200,1)',
               shadowBlur: 3,
             },
             emphasis: {

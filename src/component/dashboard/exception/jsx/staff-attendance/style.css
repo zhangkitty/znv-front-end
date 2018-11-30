@@ -41,10 +41,12 @@
     /*padding: 30px;*/
     display: flex;
     height: 800px;
+    margin-top: 20px;
 }
 
 .mapLeft{
     flex-basis: 200px;
+    margin-left: 20px;
 }
 
 .mapRight{
