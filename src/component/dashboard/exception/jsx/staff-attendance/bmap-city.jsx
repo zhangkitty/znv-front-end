@@ -49,15 +49,19 @@ export default class BmapCity extends React.Component {
         });
         return x;
       }
-      return [
+      return [[
         {
           coord: [],
+          color: Color(),
+          executorName: v.executorName,
         },
         {
           coord: [],
         },
-      ];
+      ]];
     });
+
+    console.log(lines, 'tttt');
 
 
     const option = {
@@ -115,13 +119,13 @@ export default class BmapCity extends React.Component {
           {
             dataSource.map((v) => {
               if (v.workTime === 0) {
-                return <div>{v.executorName}:{v.executorName}</div>;
+                return <div style={{ marginBottom: 8 }}>{v.executorName}:{v.executorName}</div>;
               }
             })
           }
           <div>出勤人员:</div>
           {
-            lines.map(v => <div style={{ marginBottom: 8 }}>{v[0][0].executorName}<Progress color={v[0][0].color} value={100} style={{ width: '80%' }} /> </div>)
+            lines.map(v => <div style={{ marginBottom: 8 }}>{v && v[0] && v[0][0].executorName}<Progress color={v && v[0] && v[0][0].color} value={100} style={{ width: '80%' }} /> </div>)
           }
         </div>
         <ReactEcharts
