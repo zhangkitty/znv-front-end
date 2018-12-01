@@ -4,10 +4,16 @@ import 'echarts/extension/bmap/bmap';
 import styles from './style.css';
 import { Progress } from 'shineout';
 
+function getRandomIntInclusive(min, max) {
+  const a = Math.ceil(min);
+  const b = Math.floor(max);
+  return Math.floor(Math.random() * (a - b + 1)) + min;
+}
+
 function Color() {
-  const r = Math.floor(Math.random() * 255);
-  const g = Math.floor(Math.random() * 255);
-  const b = Math.floor(Math.random() * 255);
+  const r = Math.floor(getRandomIntInclusive(100, 255));
+  const g = Math.floor(getRandomIntInclusive(100, 255));
+  const b = Math.floor(getRandomIntInclusive(100, 255));
   const color = `rgba(${r},${g},${b},0.8)`;
   return color;
 }
