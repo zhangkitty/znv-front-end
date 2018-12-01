@@ -1,8 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactEcharts from 'echarts-for-react';
+import { Table } from 'shineout';
 
 require('echarts/map/js/china.js');
+
+function addStr(str) {
+  if (str) {
+    return str.padEnd(10, ' ');
+  }
+  return ''.padEnd(10, ' ');
+}
 
 const ChinaMap = (props) => {
   const map = {
@@ -44,13 +52,10 @@ const ChinaMap = (props) => {
     value: v.workRate,
   }));
 
-  const tipData = dataSource.map((v) => {
-    console.log(v);
-    return {
-      name: map[v.areaCode],
-      value: v.workRate,
-    };
-  });
+  const tipData = dataSource.map(v => ({
+    name: map[v.areaCode],
+    value: v.cityRateRspDto,
+  }));
 
 
   const option = {
@@ -64,9 +69,31 @@ const ChinaMap = (props) => {
     tooltip: {
       trigger: 'item',
       formatter: (params) => {
-        console.log(params.name);
-        debugger;
-        return 'sdfafa';
+        let value;
+        tipData.map((v) => {
+          if (v.name === params.name) {
+            value = v.value;
+            console.log(value, 'value');
+            return 1;
+          }
+          return 1;
+        });
+        if (value) {
+          // if (value[0].areaName !== '城市') {
+          //   value.unshift({
+          //     areaName: '城市',
+          //     workNum: '出勤人数',
+          //     workRate: '出勤率',
+          //     workTime: '平均工时',
+          //     workDistance: '平均路程',
+          //   });
+          // }
+          console.log(value, '66666666');
+
+
+          return value.map(t => `城市:${addStr(t.areaName)}|出勤人数:${addStr(t.workNum)}|出勤率${addStr(Number(t.workRate * 100).toFixed(2))}%|平均工时${addStr(t.workTime)}|平均路程${addStr(t.workDistance)}`).join('</br>');
+        }
+        return '';
       },
     },
     roam: true,

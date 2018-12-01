@@ -118,7 +118,7 @@ export default class BmapCity extends React.Component {
           <div>未出勤人员:</div>
           {
             dataSource.map((v) => {
-              if (v.workTime === 0) {
+              if (+v.workTime === 0) {
                 return <div style={{ marginBottom: 8 }}>{v.executorName}:{v.executorName}</div>;
               }
             })
