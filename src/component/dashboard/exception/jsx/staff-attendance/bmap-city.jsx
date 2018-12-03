@@ -1,8 +1,9 @@
 import React from 'react';
+import { Progress, Button } from 'shineout';
 import ReactEcharts from 'echarts-for-react';
 import 'echarts/extension/bmap/bmap';
 import styles from './style.css';
-import { Progress } from 'shineout';
+import { changeCityCenter } from '../../action';
 
 function getRandomIntInclusive(min, max) {
   const a = Math.ceil(min);
@@ -28,8 +29,9 @@ export default class BmapCity extends React.Component {
   }
 
   render() {
-    const { staffAttendance: { detailData: { dataSource, choosedData } } } = this.props;
+    const { staffAttendance: { detailData: { dataSource, choosedData, cityCenter } } } = this.props;
     const { staffAttendance: { trend: { dataSource: dataSource1 } } } = this.props;
+    const { dispatch } = this.props;
     let allLongitude = 0;
     let allLatitude = 0;
     let num = 0;
@@ -67,13 +69,14 @@ export default class BmapCity extends React.Component {
       ]];
     });
 
-    console.log(lines, 'tttt');
+    console.log(allLatitude, 'sb', allLongitude, 'mdzz');
+    console.log(num);
 
 
     const option = {
       animation: false,
       bmap: {
-        center: num ? [allLongitude / num, allLatitude / num] : [118.7845062719, 31.8446580547],
+        center: num ? cityCenter.length > 0 ? cityCenter : lines[0][0][0].coord : [118.7845062719, 31.8446580547],
         zoom: 13,
         roam: true,
       },
@@ -116,12 +119,12 @@ export default class BmapCity extends React.Component {
           <div>出勤率:</div>
           <div style={{ marginBottom: 10 }}>{dataSource1.filter(v => v.dataTime === choosedData)[0] && `${Number(dataSource1.filter(v => v.dataTime === choosedData)[0].workRate * 100).toFixed(2)}%`}</div>
           <div>出勤人数:</div>
-          <div style={{ marginBottom: 10 }}>{dataSource1.filter(v => v.dataTime === choosedData)[0] && dataSource1.filter(v => v.dataTime === choosedData)[0].totalNum}</div>
+          <div style={{ marginBottom: 10 }}>{lines.length}</div>
           <div>平均工时/h:</div>
           <div style={{ marginBottom: 10 }}>{dataSource1.filter(v => v.dataTime === choosedData)[0] && Number(dataSource1.filter(v => v.dataTime === choosedData)[0].workTime).toFixed(2)}</div>
           <div>平均路程/km:</div>
           <div style={{ marginBottom: 10 }}>{dataSource1.filter(v => v.dataTime === choosedData)[0] && Number(dataSource1.filter(v => v.dataTime === choosedData)[0].workDistance).toFixed(2)}</div>
-          <div>未出勤人员:</div>
+          <div style={{ color: 'red', fontSize: 14 }}>未出勤人员:</div>
           {
             dataSource.map((v) => {
               if (+v.workTime === 0) {
@@ -129,9 +132,23 @@ export default class BmapCity extends React.Component {
               }
             })
           }
-          <div>出勤人员:</div>
+          <div style={{ color: 'green', fontSize: 14 }}>出勤人员:</div>
           {
-            lines.map(v => <div style={{ marginBottom: 8 }}>{v && v[0] && v[0][0].executorName}<Progress color={v && v[0] && v[0][0].color} value={100} style={{ width: '80%' }} /> </div>)
+            lines.map(v => (
+              <div style={{ marginBottom: 8 }}>
+                <Button
+                  size="small"
+                  style={{ color: v && v[0] && v[0][0].color, width: 50 }}
+                  onClick={() => {
+                    console.log(lines);
+                    console.log(v);
+                    dispatch(changeCityCenter(v[0][1].coord));
+                  }}
+                >{v && v[0] && v[0][0].executorName}
+                </Button>
+                <Progress color={v && v[0] && v[0][0].color} value={100} style={{ width: '80%' }} />
+              </div>
+            ))
           }
         </div>
         <ReactEcharts

@@ -29,3 +29,5 @@ export let changeDetailDayTab1Success;
 export let changeDetailTypeTab1;
 export let changeDetailTypeTab1Success;
 
+export let changeCityCenter;
+

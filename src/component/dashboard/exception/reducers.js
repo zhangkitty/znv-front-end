@@ -111,6 +111,7 @@ export const defaultState = {
       dataSource: [],
       dataSourcePerson: [], // 人员轨迹
       dataSourceTask: [], // 任务轨迹查询
+      cityCenter: [],
     },
   },
 };
@@ -373,6 +374,15 @@ const reducer = (state = defaultState, action) => {
         staffAttendance: assign({}, state.staffAttendance, {
           detailData: assign({}, state.staffAttendance.detailData, {
             chooseType: action.props.staffAttendance.detailData.chooseType,
+          }),
+        }),
+      });
+
+    case types.changeCityCenter:
+      return assign({}, state, {
+        staffAttendance: assign({}, state.staffAttendance, {
+          detailData: assign({}, state.staffAttendance.detailData, {
+            cityCenter: action.data,
           }),
         }),
       });

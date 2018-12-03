@@ -86,7 +86,7 @@ const LineChart = (props) => {
         {
           name: len > 3 ? '工作时长' : '平均工时',
           type: 'line',
-          data: toList('workTime').map(v => `${Number(v * 100).toFixed(2)}`),
+          data: toList('workTime').map(v => `${Number(v).toFixed(2)}`),
         },
         {
           name: len > 3 ? '工作路程' : '出勤率',
