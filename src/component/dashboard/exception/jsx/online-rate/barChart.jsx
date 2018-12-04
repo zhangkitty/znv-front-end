@@ -4,9 +4,11 @@ import { Table } from 'shineout';
 
 const BarChart = (props) => {
   const { onlineRate: { detailData: { dataSource, choosedShowType } } } = props;
+  const { node } = props;
+  const len = node.id.split('.').length;
 
 
-  const X = dataSource.map(v => (v.areaName || v.executorName));
+  const X = dataSource.map(v => (v.areaName || v.executorName || '其他'));
 
   const toList = type => dataSource.map(v => v[type]);
 
@@ -85,6 +87,10 @@ const BarChart = (props) => {
       {
         type: 'category',
         data: X,
+        axisLabel: {
+          interval: 0,
+          rotate: 40,
+        },
       },
     ],
     yAxis: [
@@ -216,6 +222,10 @@ const BarChart = (props) => {
     ],
   };
   const columns = [
+    {
+      title: len === 3 ? '人员' : '城市',
+      render: d => d.areaName || d.executorName || '其他',
+    },
     {
       title: 'FSU总数',
       render: 'fsuTotal',
