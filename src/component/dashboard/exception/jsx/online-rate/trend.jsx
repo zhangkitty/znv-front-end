@@ -35,6 +35,8 @@ const Trend = (props) => {
       <div className={styles.secendLine}>
         <div className={styles.secendTips}>请选择日期范围:</div>
         <DatePicker
+          disabled={d => d.getTime() >= Date.now() + 1000}
+          clearable={false}
           range
           type="date"
           format="yyyy-MM-dd"
@@ -42,7 +44,7 @@ const Trend = (props) => {
           onChange={v => dispatch(changeTrendDays(assign({}, props, {
             onlineRate: assign({}, props.onlineRate, {
               trend: assign({}, props.onlineRate.trend, {
-                dateValue: v,
+                dateValue: v || [null, null],
               }),
             }),
           })))}
@@ -51,7 +53,9 @@ const Trend = (props) => {
 
       <div className={styles.thirdLine}>
         <div className={styles.thirdTips}>请选择图标类型:</div>
-        <RadioGroup>
+        <RadioGroup
+          data-bind="onlineRate.trend.choosedShowType"
+        >
           {
             showType.map(v => <Radio value={v.value}>{v.name}</Radio>)
           }
@@ -59,6 +63,7 @@ const Trend = (props) => {
       </div>
 
       <LineChart {...props} />
+
 
     </div>
   );

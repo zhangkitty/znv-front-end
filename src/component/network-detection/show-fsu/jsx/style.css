@@ -1,0 +1,23 @@
+.oneLine{
+    display: flex;
+    height: 32px;
+    margin-bottom: 10px;
+}
+
+.selectLine{
+    width:10%;
+}
+
+.divLine{
+    width: 5%;
+    line-height: 32px;
+    margin-left: 10px;
+    min-width: 80px;
+}
+
+.ButtonLine{
+    margin-left: 20px;
+    width: 3%;
+}
+
+

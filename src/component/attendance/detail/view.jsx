@@ -9,7 +9,6 @@ class Detail extends Component {
   constructor(props) {
     super(props);
     const { params: { id }, dispatch } = props;
-    console.log(id);
     dispatch(init(props));
   }
 

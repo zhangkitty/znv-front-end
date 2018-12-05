@@ -25,8 +25,7 @@ module.exports = Object.assign({},config, {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('development'),
-        // BASE_URI: JSON.stringify('http://127.0.0.1:8081'),
-        BASE_URI: JSON.stringify('http://127.0.0.1:8081'),
+        BASE_URI: JSON.stringify('http://0.0.0.0:8081'),
 
       }
     }),
@@ -37,13 +36,13 @@ module.exports = Object.assign({},config, {
     })
   ],
   devServer: {
-    host: '127.0.0.1',
+    host: '0.0.0.0',
     contentBase: [path.join(__dirname, './')],
     port: 8081,
     disableHostCheck: true,
     headers: {
       'Access-Control-Allow-Origin': '*',
-      "Access-Control-Allow-Headers":"Authorization,Origin, X-Requested-With, Content-Type, Accept"
+      "Access-Control-Allow-Headers":'*'
     },
     proxy: {
       '/rqs-dftc':{
@@ -67,7 +66,18 @@ module.exports = Object.assign({},config, {
         changeOrigin: true
       },
       '/aps':{
-        target: 'http://10.45.146.48:9010',
+        target: 'http://10.45.146.69:9001',
+        secure: false,
+        changeOrigin: true
+      },
+      '/omc.znv.com':{
+        target: 'http://omc.znv.com',
+        pathRewrite: { '/omc.znv.com': '' },
+        // secure: false,
+        // changeOrigin: true
+      },
+      '/oss':{
+        target: 'http://10.45.146.51:8180',
         secure: false,
         changeOrigin: true
       }

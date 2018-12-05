@@ -115,7 +115,7 @@ class MainPage extends React.PureComponent {
             </div>
           </Header>
           <Content style={{
-              margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280,
+              margin: '24px 16px', padding: 24, background: '#fff', position: 'relative',
               }}
           >
             <div>

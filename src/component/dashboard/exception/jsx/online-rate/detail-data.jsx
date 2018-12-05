@@ -35,7 +35,9 @@ const DetailData = (props) => {
       <div className={styles.secendLine}>
         <div className={styles.secendTips}>请选择日期:</div>
         <DatePicker
+          disabled={d => d.getTime() >= Date.now() + 1000}
           placeholder="Select date"
+          clearable={false}
           value={choosedData}
           onChange={v => dispatch(changeDetailDay(assign({}, props, {
             onlineRate: assign({}, props.onlineRate, {
@@ -49,7 +51,9 @@ const DetailData = (props) => {
 
       <div className={styles.thirdLine}>
         <div className={styles.thirdTips}>请选择图标类型:</div>
-        <RadioGroup>
+        <RadioGroup
+          data-bind="onlineRate.detailData.choosedShowType"
+        >
           {
             showType.map(v => <Radio value={v.value}>{v.name}</Radio>)
           }

@@ -6,7 +6,6 @@ import { push } from 'react-router-redux';
 import { Table, Button } from 'shineout';
 
 const AttendanceTable = (props) => {
-  console.log(props);
   const { dispatch } = props;
 
   const columns = [

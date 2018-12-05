@@ -1,133 +1,163 @@
 import React from 'react';
+import { Progress, Button } from 'shineout';
 import ReactEcharts from 'echarts-for-react';
 import 'echarts/extension/bmap/bmap';
+import styles from './style.css';
+import { changeCityCenter } from '../../action';
 
+function getRandomIntInclusive(min, max) {
+  const a = Math.ceil(min);
+  const b = Math.floor(max);
+  return Math.floor(Math.random() * (a - b + 1)) + min;
+}
 
-const BmapCity = (props) => {
-  const token = '0utVz0V8yEAAFsAYNgOpXGjFpiAl4ZTB';
+function Color() {
+  const r = Math.floor(getRandomIntInclusive(100, 255));
+  const g = Math.floor(getRandomIntInclusive(100, 255));
+  const b = Math.floor(getRandomIntInclusive(100, 255));
+  const color = `rgba(${r},${g},${b},0.8)`;
+  return color;
+}
 
-  const { rawData } = props;
+export default class BmapCity extends React.Component {
+  componentDidMount() {
+    this.reactEcharts.getEchartsInstance()
+      .getModel()
+      .getComponent('bmap')
+      .getBMap()
+      .addControl(new BMap.NavigationControl());
+  }
 
-  const lines = rawData.track.slice(0, rawData.track.length - 1).map((seg, idx) => [{
-    coord: seg.coord,
-    value: seg.elevation,
-  }, {
-    coord: rawData.track[idx + 1].coord,
-  }]);
-
-  const waypointsData = rawData.waypoints.map(item => ({
-    name: item.name,
-    value: item.coord.concat([item.elevation]),
-  }));
-
-
-  const option = {
-    animation: false,
-    bmap: {
-      center: [120.14266322374, 30.235018034923],
-      zoom: 13,
-      roam: true,
-    },
-    tooltip: {
-      trigger: 'axis',
-    },
-
-
-    series: [
-      {
-        type: 'lines',
-        coordinateSystem: 'bmap',
-        data: lines,
-        tooltip: {
-          show: false,
-        },
-        lineStyle: {
-          normal: {
-            width: 6,
-            opacity: 1,
-            shadowColor: 'rgba(0, 0, 0, 0.5)',
-            shadowBlur: 3,
-          },
-          emphasis: {
-            color: '#f6fd40',
-          },
-        },
-        animationDelay(idx) {
-          return idx * 20;
-        },
-      },
-      {
-        type: 'scatter',
-        coordinateSystem: 'bmap',
-        symbolSize: [10, 5],
-        symbolOffset: [7, 0],
-        silent: true,
-        tooltip: {
-          show: false,
-        },
-        itemStyle: {
-          normal: {
-            color: 'red',
-            borderWidth: 1,
-            borderColor: '#fff',
-          },
-        },
-        data: waypointsData,
-      }, {
-        type: 'scatter',
-        coordinateSystem: 'bmap',
-        symbol: 'path://M54.227,12.611c-0.338-0.336-0.736-0.505-1.196-0.505c-0.229,0-0.712,0.188-1.446,0.559  c-0.735,0.372-1.515,0.786-2.336,1.248c-0.823,0.459-1.797,0.875-2.921,1.247c-1.123,0.371-2.163,0.559-3.12,0.559  c-0.884,0-1.664-0.168-2.336-0.505c-2.229-1.044-4.168-1.823-5.814-2.337c-1.646-0.513-3.416-0.771-5.311-0.771  c-3.272,0-6.999,1.064-11.177,3.188c-0.862,0.43-1.48,0.763-1.88,1.007l-0.397-2.911c0.897-0.779,1.476-1.914,1.476-3.195  c0-2.347-1.902-4.249-4.249-4.249c-2.347,0-4.249,1.902-4.249,4.249c0,1.531,0.818,2.862,2.032,3.61l5.74,42.09  c0.171,1.253,1.243,2.162,2.474,2.162c0.112,0,0.226-0.007,0.341-0.022c1.368-0.188,2.326-1.447,2.139-2.815L19.69,38.303  c4.186-2.077,7.807-3.124,10.853-3.124c1.293,0,2.554,0.193,3.783,0.583c1.23,0.391,2.253,0.815,3.067,1.274  c0.814,0.46,1.775,0.886,2.88,1.274c1.107,0.39,2.2,0.585,3.279,0.585c2.726,0,5.991-1.027,9.796-3.08  c0.478-0.248,0.828-0.492,1.049-0.731c0.221-0.239,0.332-0.579,0.332-1.021V13.806C54.729,13.347,54.562,12.948,54.227,12.611z',
-        symbolSize: 30,
-        symbolOffset: [15, -15],
-        tooltip: {
-          show: false,
-        },
-        itemStyle: {
-          normal: {
-            color: 'black',
-            borderWidth: 1,
-            borderColor: '#fff',
-          },
-        },
-        label: {
-          normal: {
-            textStyle: {
-              fontWeight: 'bold',
-              color: '#111',
+  render() {
+    const { staffAttendance: { detailData: { dataSource, choosedData, cityCenter } } } = this.props;
+    const { staffAttendance: { trend: { dataSource: dataSource1 } } } = this.props;
+    const { dispatch } = this.props;
+    let allLongitude = 0;
+    let allLatitude = 0;
+    let num = 0;
+    console.log(dataSource, 'pppppppppp');
+    const lines = dataSource.filter(t => t.workTime > 0).map((v) => {
+      if (v.traceInfo) {
+        num += (v.traceInfo.length - 1);
+      }
+      if (v.traceInfo && v.traceInfo.length > 0) {
+        const x = v.traceInfo.slice(0, v.traceInfo.length - 1).map((t, idx) => {
+          allLongitude += (+t.longitude);
+          allLatitude += (+t.latitude);
+          return [
+            {
+              coord: [t.longitude, t.latitude],
+              color: Color(),
+              executorName: v.executorName,
             },
-            show: true,
-            position: 'right',
-            formatter: '{b}',
-          },
+            {
+              coord: [v.traceInfo[idx + 1].longitude, v.traceInfo[idx + 1].latitude],
+            },
+          ];
+        });
+        return x;
+      }
+      return [[
+        {
+          coord: [],
+          color: Color(),
+          executorName: v.executorName,
         },
-        data: waypointsData,
-      }, {
-        type: 'scatter',
-        name: 'marker',
-        coordinateSystem: 'bmap',
-        symbolSize: 100,
-        symbolOffset: [0, -50],
-        itemStyle: {
-          normal: {
-            color: 'blue',
-            borderColor: '#111',
-            borderWidth: 5,
-          },
+        {
+          coord: [],
         },
-        tooltip: {
-          show: false,
-        },
-        symbol: 'path://M21.9,15c0,0-8.7,9.9-9.5,11c-0.9,1.1-2.3,0.3-2.3,0.3  s-8.8-9.7-9.8-11.4C-0.7,13.3,1.2,13,1.2,13H6V1c0-0.6,0.4-1,1-1h8c0.6,0,1,0.4,1,1v12h4.7C23.1,13,21.9,15,21.9,15z',
-        data: [],
-      }],
-  };
-  return (
-    <div style={{ height: 600, width: 1000 }}>
-      <ReactEcharts
-        option={option}
-      />
-    </div>
-  );
-};
+      ]];
+    });
 
-export default BmapCity;
+    console.log(allLatitude, 'sb', allLongitude, 'mdzz');
+    console.log(num);
+
+
+    const option = {
+      animation: false,
+      bmap: {
+        center: num ? cityCenter.length > 0 ? cityCenter : lines[0][0][0].coord : [118.7845062719, 31.8446580547],
+        zoom: 13,
+        roam: true,
+      },
+      tooltip: {
+        trigger: 'axis',
+      },
+
+
+      series: lines.map((v, idx) => (
+        {
+          type: 'lines',
+          coordinateSystem: 'bmap',
+          data: v,
+          tooltip: {
+            show: true,
+            formatter: () => {
+              console.log(1);
+              console.log(2);
+            },
+          },
+          lineStyle: {
+            normal: {
+              type: 'dashed',
+              color: v[0] && v[0][0] && v[0][0].color,
+              width: 3,
+              opacity: 1,
+              // shadowColor: 'black',
+              shadowBlur: 3,
+            },
+          },
+          animationDelay(idx) {
+            return idx * 20;
+          },
+        }
+      )),
+    };
+    return (
+      <div className={styles.map}>
+        <div className={styles.mapLeft}>
+          <div>出勤率:</div>
+          <div style={{ marginBottom: 10 }}>{dataSource1.filter(v => v.dataTime === choosedData)[0] && `${Number(dataSource1.filter(v => v.dataTime === choosedData)[0].workRate * 100).toFixed(2)}%`}</div>
+          <div>出勤人数:</div>
+          <div style={{ marginBottom: 10 }}>{lines.length}</div>
+          <div>平均工时/h:</div>
+          <div style={{ marginBottom: 10 }}>{dataSource1.filter(v => v.dataTime === choosedData)[0] && Number(dataSource1.filter(v => v.dataTime === choosedData)[0].workTime).toFixed(2)}</div>
+          <div>平均路程/km:</div>
+          <div style={{ marginBottom: 10 }}>{dataSource1.filter(v => v.dataTime === choosedData)[0] && Number(dataSource1.filter(v => v.dataTime === choosedData)[0].workDistance).toFixed(2)}</div>
+          <div style={{ color: 'red', fontSize: 14 }}>未出勤人员:</div>
+          {
+            dataSource.map((v) => {
+              if (+v.workTime === 0) {
+                return <div style={{ marginBottom: 8 }}>{v.executorName}</div>;
+              }
+            })
+          }
+          <div style={{ color: 'green', fontSize: 14 }}>出勤人员:</div>
+          {
+            lines.map(v => (
+              <div style={{ marginBottom: 8 }}>
+                <Button
+                  size="small"
+                  style={{ color: v && v[0] && v[0][0].color, width: 50 }}
+                  onClick={() => {
+                    console.log(lines);
+                    console.log(v);
+                    dispatch(changeCityCenter(v[0][1].coord));
+                  }}
+                >{v && v[0] && v[0][0].executorName}
+                </Button>
+                <Progress color={v && v[0] && v[0][0].color} value={100} style={{ width: '80%' }} />
+              </div>
+            ))
+          }
+        </div>
+        <ReactEcharts
+          className={styles.mapRight}
+          option={option}
+          ref={(node) => { this.reactEcharts = node; }}
+        />
+      </div>
+    );
+  }
+}
+

@@ -31,6 +31,7 @@ module.exports = {
     antd: 'window.antd',
     moment: 'window.moment',
     'babel-polyfill': 'undefined',
+    sheinout:'window.sheinout'
   },
   module: {
     rules: [

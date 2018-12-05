@@ -16,12 +16,16 @@ const List2 = (props) => {
 
   const arr = [];
 
-  for (let i = props.formData.kkk[0].unix(); i <= props.formData.kkk[1].unix(); i += 3600 * 24) {
-    arr.push({
-      title: `${moment.unix(i).format('YYYY-MM-DD')}`,
-      render: `${moment.unix(i).format('YYYYMMDD')}`,
-    });
+
+  if (props.formData.kkk[0]) {
+    for (let i = props.formData.kkk[0].unix(); i <= props.formData.kkk[1].unix(); i += 3600 * 24) {
+      arr.push({
+        title: `${moment.unix(i).format('YYYY-MM-DD')}`,
+        render: `${moment.unix(i).format('YYYYMMDD')}`,
+      });
+    }
   }
+
 
   const columns = [
     {

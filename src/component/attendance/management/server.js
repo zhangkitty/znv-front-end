@@ -1,8 +1,7 @@
 import { request } from 'utils/index';
 
 
-export const initSer = (props) => {
-  console.log(props);
+export const initSer = props =>
   // return request({
   //   url: '/user/authorize',
   //   method: 'POST',
@@ -13,5 +12,5 @@ export const initSer = (props) => {
   //     grant_type: 'password',
   //   },
   // });
-  return null;
-};
+  null;
+
