@@ -49,11 +49,11 @@ const menus = [
       },
     ],
   },
-  {
-    title: '考勤管理',
-    icon: 'bars',
-    link: '/attendance/management',
-  },
+  // {
+  //   title: '考勤管理',
+  //   icon: 'bars',
+  //   link: '/attendance/management',
+  // },
   // {
   //   title: '权限管理',
   //   icon: 'bars',
