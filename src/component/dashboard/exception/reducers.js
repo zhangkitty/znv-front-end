@@ -86,7 +86,7 @@ export const defaultState = {
       ],
       dateValue: [
         moment().subtract(30, 'days').format('YYYY-MM-DD'),
-        moment().format('YYYY-MM-DD'),
+        moment().subtract(1, 'days').format('YYYY-MM-DD'),
       ],
       choosedImensiond: 0,
       dataSource: [],
