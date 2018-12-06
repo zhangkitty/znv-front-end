@@ -25,7 +25,7 @@ const Trend = (props) => {
         <div className={styles.firstTips}>请选择日期范围:</div>
         <DatePicker
           range
-          disabled={d => d.getTime() >= Date.now() + 1000}
+          disabled={d => d.getTime() >= (Date.now() - 24 * 3600 * 1000 + 1000)}
           clearable={false}
           type="date"
           format="yyyy-MM-dd"
