@@ -244,11 +244,11 @@ const BarChart = (props) => {
     },
     {
       title: '入网进度',
-      render: d => `${Number(d.openRate).toFixed(2)}%`,
+      render: d => `${Number(d.openRate * 100).toFixed(2)}%`,
     },
     {
       title: 'FSU安装进度',
-      render: d => `${Number(d.fsuInsRate).toFixed(2)}%`,
+      render: d => `${Number(d.fsuInsRate * 100).toFixed(2)}%`,
     },
     {
       title: '云运维FSU在线数',
@@ -260,7 +260,7 @@ const BarChart = (props) => {
     },
     {
       title: '云运维FSU在线率',
-      render: d => `${Number(d.onlineRate).toFixed(2)}%`,
+      render: d => `${Number(d.onlineRate * 100).toFixed(2)}%`,
     },
     {
       title: '今日新增云运维在线数',

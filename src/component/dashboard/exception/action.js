@@ -42,3 +42,5 @@ export const changeDetailTypeTab1Success = makeActionCreator(types.changeDetailT
 
 // 改变城市地图的中心
 export const changeCityCenter = makeActionCreator(types.changeCityCenter, 'data');
+
+export const changeMarker = makeActionCreator(types.changeMarker, 'data');
