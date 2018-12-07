@@ -72,7 +72,7 @@ export default class BmapCity extends React.Component {
       ]];
     });
 
-    const point = dataSource.filter(t => t.workTime > 0).map((v) => {
+    const point = dataSource.filter(t => t.workTime > 0 && t.traceInfo.length > 0).map((v) => {
       console.log(v.traceInfo.slice(-1), 'but');
       return {
         id: `${v.executor}`,
@@ -167,7 +167,15 @@ export default class BmapCity extends React.Component {
     } = this.props;
 
     function f(node, id) {
-      return node.cityList.filter(v => v.areaCode === id)[0];
+      if (node.cityList.length === 0) {
+        return null;
+      }
+      if (node.cityList.filter(v => v.areaCode === id).length === 1) {
+        return node.cityList.filter(v => v.areaCode === id)[0];
+      }
+      for (const i of node.cityList) {
+        return f(i, id);
+      }
     }
 
     return (
@@ -219,13 +227,13 @@ export default class BmapCity extends React.Component {
               if (param.data.id) {
                 console.log(param.data.id);
                 if (TabValue === 1) {
-                  console.log(node.cityList.filter(v => v.areaCode === param.data.id)[0], 'node');
+                  console.log(f(node, param.data.id), 'ooooooooooooooooooooooooo');
 
                   return dispatch(staffAttendanceInit(assign({}, this.props, {
                     node: Object.assign({}, f(node, param.data.id), {
-                      id: `${clickedId}.${param.data.id}`,
+                      id: `${f(node, param.data.id).level}.${param.data.id}`,
                     }),
-                    clickedId: `${clickedId}.${param.data.id}`,
+                    clickedId: `${f(node, param.data.id).level}.${param.data.id}`,
                   })));
                 }
               }
