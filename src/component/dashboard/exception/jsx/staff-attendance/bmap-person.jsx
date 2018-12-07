@@ -8,7 +8,7 @@ import { changeMarker } from '../../action';
 export default class BmapCity extends React.Component {
   constructor(props) {
     super(props);
-    this.marker = null;
+    this.marker = [];
   }
 
 
@@ -29,7 +29,7 @@ export default class BmapCity extends React.Component {
       const point = new BMap.Point(v.value[0], v.value[1]);
       const marker = new BMap.Marker(point);
       map.addOverlay(marker);
-      this.marker = marker;
+      this.marker.push(marker);
       console.log(v, 'ppppppp');
       const infoWindow = new BMap.InfoWindow(`资产编码:${v.assetCode}</br>任务名称:${v.name}</br>执行任务时间:${v.recordTime}`);
       marker.addEventListener('click', () => {
@@ -50,7 +50,8 @@ export default class BmapCity extends React.Component {
       value: [v.longitude, v.latitude],
     }));
     const map = this.reactEcharts.getEchartsInstance().getModel().getComponent('bmap').getBMap();
-    map.removeOverlay(this.marker);
+
+    this.marker.map(v => map.removeOverlay(v));
 
     // map.clearOverlays();
     task.map((v) => {
@@ -58,7 +59,7 @@ export default class BmapCity extends React.Component {
       const point = new BMap.Point(v.value[0], v.value[1]);
       const marker = new BMap.Marker(point);
       map.addOverlay(marker);
-      this.marker = marker;
+      this.marker.push(marker);
       const infoWindow = new BMap.InfoWindow(`资产编码:${v.assetCode}</br>任务名称:${v.name}</br>执行任务时间:${v.recordTime}`);
       marker.addEventListener('click', () => {
         map.openInfoWindow(infoWindow, point);
