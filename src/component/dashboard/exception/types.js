@@ -31,3 +31,4 @@ export let changeDetailTypeTab1Success;
 
 export let changeCityCenter;
 
+export let changeMarker;

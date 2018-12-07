@@ -108,6 +108,7 @@ export const defaultState = {
       dataSourcePerson: [], // 人员轨迹
       dataSourceTask: [], // 任务轨迹查询
       cityCenter: [],
+      marker: null,
     },
   },
 };
@@ -296,7 +297,7 @@ const reducer = (state = defaultState, action) => {
             }),
             detailData: assign({}, state.staffAttendance.detailData, {
               dataSourcePerson: action.data[2].data.list,
-              dataSourcePersonTask: action.data[3].data.list,
+              dataSourceTask: action.data[3].data.list,
             }),
           }),
         });
@@ -363,7 +364,7 @@ const reducer = (state = defaultState, action) => {
           }),
         });
       }
-
+      return null;
 
     case types.changeDetailTypeTab1:
       return assign({}, state, {
@@ -379,6 +380,15 @@ const reducer = (state = defaultState, action) => {
         staffAttendance: assign({}, state.staffAttendance, {
           detailData: assign({}, state.staffAttendance.detailData, {
             cityCenter: action.data,
+          }),
+        }),
+      });
+
+    case types.changeMarker:
+      return assign({}, state, {
+        staffAttendance: assign({}, state.staffAttendance, {
+          detailData: assign({}, state.staffAttendance.detailData, {
+            marker: action.data,
           }),
         }),
       });
