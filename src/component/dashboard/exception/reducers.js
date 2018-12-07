@@ -244,7 +244,10 @@ const reducer = (state = defaultState, action) => {
       });
 
     case types.staffAttendanceInit:
+      debugger;
       return assign({}, state, {
+        node: action.props.node,
+        clickedId: action.props.clickedId,
         staffAttendance: assign({}, state.staffAttendance, {
           ready: false,
         }),

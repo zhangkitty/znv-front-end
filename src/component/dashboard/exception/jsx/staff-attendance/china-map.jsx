@@ -91,7 +91,7 @@ const ChinaMap = (props) => {
           console.log(value, '66666666');
 
 
-          return value.map(t => `城市:${addStr(t.areaName)}|出勤人数:${addStr(t.workNum)}|出勤率${addStr(Number(t.workRate * 100).toFixed(2))}%|平均工时${addStr(Number(t.workTime * 100).toFixed(2))}h|平均路程${addStr(Number(t.workDistance * 100).toFixed(2))}km`).join('</br>');
+          return value.map(t => `城市:${addStr(t.areaName)}|出勤人数:${addStr(t.workNum)}|出勤率${addStr(Number(t.workRate * 100).toFixed(2))}%|平均工时${addStr(Number(t.workTime).toFixed(2))}h|平均路程${addStr(Number(t.workDistance).toFixed(2))}km`).join('</br>');
         }
         return '';
       },
