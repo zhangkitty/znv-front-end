@@ -65,6 +65,18 @@ const menus = [
       },
     ],
   },
+  {
+    title: '任务',
+    icon: 'bars',
+    link: '/task',
+    children: [
+      {
+        title: '任务管理',
+        link: '/task/task-manager/list',
+
+      },
+    ],
+  },
   // {
   //   title: '权限管理',
   //   icon: 'bars',

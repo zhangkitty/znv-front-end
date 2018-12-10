@@ -25,7 +25,7 @@ module.exports = Object.assign({},config, {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('development'),
-        BASE_URI: JSON.stringify('http://0.0.0.0:8081'),
+        BASE_URI: JSON.stringify('http://127.0.0.1:8081'),
 
       }
     }),
@@ -80,6 +80,12 @@ module.exports = Object.assign({},config, {
         target: 'http://10.45.146.51:8180',
         secure: false,
         changeOrigin: true
+      },
+      '/vue':{
+        target:'http://120.77.245.161:8081',
+        secure: false,
+        changeOrigin: true,
+        pathRewrite: { '/vue': '' },
       }
     },
     open: true

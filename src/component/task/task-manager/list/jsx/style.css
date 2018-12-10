@@ -1,0 +1,72 @@
+.oneLine{
+    display: flex;
+    width:80%;
+    min-width: 800px;
+    margin-bottom: 10px;
+}
+.oneOne{
+    width: 15%;
+    margin-right: 10px;
+}
+.oneTwo{
+    width: 15%;
+     margin-right: 10px;
+}
+.oneThree{
+    width: 15%;
+    margin-right: 10px;
+}
+.oneFour{
+    width: 15%;
+    margin-right: 10px;
+}
+.oneFive{
+    width: 15%;
+    margin-right: 10px;
+}
+.oneSix{
+    width: 15%;
+}
+
+.twoLine{
+    display: flex;
+    min-width: 800px;
+    margin-bottom: 10px;
+}
+.twoOne{
+    width: 12%;
+    margin-right: 10px;
+}
+.twoTwo{
+    width: 12%;
+    margin-right: 10px;
+}
+.twoThree{
+    width: 12%;
+    margin-right: 10px;
+}
+.twoFour{
+    width: 12%;
+    margin-right: 10px;
+}
+.twoFive{
+    width: 12%;
+    margin-right: 10px;
+}
+.twoSix{
+    width: 12%;
+}
+
+.threeLine{
+    display: flex;
+}
+
+.threeOne >span{
+    margin-bottom: 0px;
+    margin-right: 10px;
+}
+
+.threeTwo{
+
+}
+

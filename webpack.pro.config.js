@@ -38,7 +38,7 @@ module.exports = merge(config, {
       process: {
         env: {
           NODE_ENV: JSON.stringify('production'),
-          BASE_URI: JSON.stringify('http://120.78.72.36:8012'),
+          BASE_URI: JSON.stringify('http://report.znv.com:8012'),
         },
       },
     }),
