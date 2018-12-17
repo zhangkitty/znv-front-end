@@ -9,8 +9,11 @@ import 'style/lib/animate.css';
 
 import Nav from './nav/view';
 import Login from './login/view';
+import FSU1 from './fsu1/view';
 
 // const Home = () => <div>首页</div>;
+
+Cookie.set('backGroupId', 1);
 
 /* eslint-disable */
 const WrapperComponent = Component => props => <Component {...props} params={props.match.params} />;
@@ -62,6 +65,7 @@ const Routes = ({ history, innerStore }) => {
   return (
     <ConnectedRouter history={history}>
       <Switch>
+        <Route path="/fsu1" component={FSU1} />
         <Route path="/login" component={Login} />
         <Route path="/" component={AuthorizedRoute} />
       </Switch>

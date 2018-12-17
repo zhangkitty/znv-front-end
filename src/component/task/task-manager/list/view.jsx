@@ -3,11 +3,14 @@ import { connect } from 'react-redux';
 import Header from './jsx/header';
 import List from './jsx/list';
 import { init } from './action';
+import ModalTask from './jsx/modal-task';
 
 
 class Container extends React.Component {
   constructor(props) {
     super(props);
+    const { dispatch } = props;
+    dispatch(init(props));
   }
 
   render() {
@@ -15,6 +18,8 @@ class Container extends React.Component {
       <div>
         <Header {...this.props} />
         <List {...this.props} />
+        <ModalTask {...this.props} />
+
       </div>
     );
   }

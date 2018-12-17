@@ -31,7 +31,8 @@ module.exports = {
     antd: 'window.antd',
     moment: 'window.moment',
     'babel-polyfill': 'undefined',
-    sheinout:'window.sheinout'
+    sheinout:'window.sheinout',
+    // 'mapbox-gl':'window.mapbox-gl',
   },
   module: {
     rules: [

@@ -1,0 +1,33 @@
+.vjs-progress-control {
+    opacity: 0 !important;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.text  p {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.text  input {
+    width: 400px;
+    height: 20px;
+    margin-bottom: 30px;
+    margin-right: 20px;
+}
+
+.text button {
+    width: 80px;
+    height: 30px;
+}
+
+#rtmp-player {
+    margin: auto;
+}
+
+body {
+    width: 100vw;
+}

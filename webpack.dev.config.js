@@ -36,7 +36,7 @@ module.exports = Object.assign({},config, {
     })
   ],
   devServer: {
-    host: '0.0.0.0',
+    host: '127.0.0.1',
     contentBase: [path.join(__dirname, './')],
     port: 8081,
     disableHostCheck: true,
@@ -65,19 +65,26 @@ module.exports = Object.assign({},config, {
         secure: false,
         changeOrigin: true
       },
+      // '/aps':{
+      //   target: 'http://10.45.156.186:9001',
+      //   secure: false,
+      //   changeOrigin: true
+      // },
+
       '/aps':{
-        target: 'http://10.45.146.69:9001',
+        target: 'http://120.78.21.57:9114',
         secure: false,
         changeOrigin: true
       },
+
       '/omc.znv.com':{
         target: 'http://omc.znv.com',
         pathRewrite: { '/omc.znv.com': '' },
-        // secure: false,
-        // changeOrigin: true
+        secure: false,
+        changeOrigin: true
       },
       '/oss':{
-        target: 'http://10.45.146.51:8180',
+        target: 'http://10.45.156.171:9898',
         secure: false,
         changeOrigin: true
       },

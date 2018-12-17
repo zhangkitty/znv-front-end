@@ -63,6 +63,10 @@ const menus = [
         title: 'FSU显示',
         link: '/network-detection/show-fsu',
       },
+      {
+        title: 'FSU地图',
+        link: '/network-detection/fsu',
+      },
     ],
   },
   {

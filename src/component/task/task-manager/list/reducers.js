@@ -3,7 +3,14 @@ import * as types from './types';
 
 export const defaultState = {
   ready: true,
-  list: [],
+  areaList: [],
+  deviceTypeList: [],
+  oneThree: [],
+  oneSix: [],
+  twoOne: [],
+  twoThree: [],
+  twoFour: [],
+  dataSource: [],
   formData: {
     oneOne: '',
     oneTwo: '',
@@ -13,20 +20,88 @@ export const defaultState = {
     oneSix: '',
 
     twoOne: '',
-    twoTwo: '',
+    twoTwo: null,
     twoThree: '',
     twoFour: '',
+    twoFive: [],
 
+    pageNum: 1,
+    pageSize: 10,
+
+    total: 0,
+
+  },
+
+  modal: {
+    visible: false,
   },
 };
 
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
-    case types.init:
-      return defaultState;
     case types.changeValue:
       return assign({}, state, {
         [action.key]: action.value,
+      });
+    case types.init:
+      return defaultState;
+    case types.initSuccess:
+      return assign({}, state, {
+        areaList: action.data[0].data,
+        deviceTypeList: action.data[1],
+        oneThree: action.data[2].dispatchTypes,
+        oneSix: action.data[2].prioritys,
+        twoOne: action.data[2].states,
+      });
+
+    case types.changeFour:
+      return assign({}, state, {
+        formData: assign({}, state.formData, {
+          oneFour: action.d,
+        }),
+      });
+
+    case types.changeFourSuccess:
+      return assign({}, state, {
+        oneFive: action.data,
+      });
+
+    case types.changeProvinceSuccess:
+      return assign({}, state, {
+        twoThree: action.data.data,
+      });
+
+    case types.changeCitySuccess:
+      return assign({}, state, {
+        twoFour: action.data.data,
+      });
+
+    case types.changeTwoFive:
+      return assign({}, state, {
+        formData: assign({}, state.formData, {
+          twoFive: action.d,
+        }),
+      });
+    case types.searchSuccess:
+      return assign({}, state, {
+        dataSource: action.data.data.list,
+        formData: assign({}, state.formData, {
+          total: action.data.data.total,
+        }),
+      });
+
+    case types.openModal:
+      return assign({}, state, {
+        modal: assign({}, state.modal, {
+          visible: true,
+        }),
+      });
+
+    case types.closeModal:
+      return assign({}, state, {
+        modal: assign({}, state.modal, {
+          visible: false,
+        }),
       });
     default:
       return state;

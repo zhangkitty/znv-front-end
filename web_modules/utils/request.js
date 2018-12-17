@@ -27,7 +27,9 @@ const fetch = async (options) => {
         expires: date,
       });
       authHeader = {
-        headers: { Authorization: `Bearer ${tokenData.access_token}` },
+        headers: {
+          Authorization: `Bearer ${tokenData.access_token}`,
+        },
       };
     }
     console.log(tokenData);
@@ -60,8 +62,10 @@ const fetch = async (options) => {
   }
   switch (method.toLowerCase()) {
     case 'get':
-      return axios.get(url);
+      // return axios.get(url);
+      if (url.indexOf('vue') !== -1) { return axios.get(url, { headers: { token: 'eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NDQ0MjU5ODgsInN1YiI6IntcInVzZXJOYW1lXCI6XCJ6bnZhZG1pblwiLFwidXNlcklkXCI6XCJiN2QwYTFjZmY5ZTUxMWU3YmY0MDE4NjZkYWYyMWE1M1wifSIsImV4cCI6MTU0NTYzNTU4OCwibmJmIjoxNTQ0NDI1OTg4fQ.wJXDVMBLGM3qCi3I214X7BO7SAcZOMYhSZswZG1CLOk' } }); }
       // return axios.get(url, { params: data, ...authHeader });
+      return axios.get(url);
     case 'delete':
       return axios.delete(url, { data, ...authHeader });
     case 'head':
