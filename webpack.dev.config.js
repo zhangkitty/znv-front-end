@@ -53,6 +53,13 @@ module.exports = Object.assign({},config, {
         changeOrigin: true
       },
 
+      '/rqsonline': {
+        target: 'http://report.znv.com:8012',
+        pathRewrite:{'/rqsonline':''},
+        secure: false,
+        changeOrigin: true
+      },
+
       '/rqs': {
         target: 'http://10.45.156.186:9008',
         // target: 'http://127.0.0.1:9001',
@@ -60,13 +67,6 @@ module.exports = Object.assign({},config, {
         secure: false,
         changeOrigin: true
       },
-
-        '/report.znv.com:8012': {
-          target: 'http://report.znv.com:8012',
-          pathRewrite:{'/report.znv.com:8012':''},
-          secure: false,
-          changeOrigin: true
-        },
 
       '/icloud.web': {
         target: 'http://10.45.148.173:8089',

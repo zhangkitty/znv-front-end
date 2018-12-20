@@ -31,7 +31,7 @@ export const initSer = (props) => {
   };
 
   return request({
-    url: `/report.znv.com:8012/rqs/exception/devicecoordinate${getParam(temp)}`,
+    url: `/rqsonline/rqs/exception/devicecoordinate${getParam(temp)}`,
   });
 };
 
