@@ -3,6 +3,7 @@ import { csv } from 'd3-fetch';
 
 import { request } from 'utils/index';
 import getParam from 'utils/getParam';
+import moment from 'moment';
 
 
 // export const initSer = () => {
@@ -26,7 +27,7 @@ export const initSer = (props) => {
 
 
   const temp = {
-    dataTime: props.dataTime,
+    dataTime: moment(props.dataTime).format('YYYYMMDD'),
     quotaType: props.quotaType,
   };
 
