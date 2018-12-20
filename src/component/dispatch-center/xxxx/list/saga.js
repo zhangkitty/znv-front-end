@@ -4,14 +4,13 @@ import * as types from './types';
 import { initSer } from './server';
 
 function* initSaga(action) {
-  const data = yield initSer(action);
+  const data = yield initSer(action.props);
   yield put(initSuccess(data));
   return null;
 }
 
 function* mainSaga() {
   yield takeLatest(types.init, initSaga);
-
 }
 
 export default mainSaga;

@@ -30,6 +30,11 @@ export const changeCitySer = d => request({
   url: `/vue/userMgr/area/getAreaList?parentCode=${d.code}`,
 });
 
+
+export const openModalSer = d => request({
+  url: `/vue/taskMgr/task/process?taskId=${d.id}`,
+});
+
 export const searchSer = (props) => {
   console.log(props);
   const { formData } = props;
@@ -80,7 +85,7 @@ export const outSer = (props) => {
     token: 'eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NDQ1ODY0MzQsInN1YiI6IntcInVzZXJOYW1lXCI6XCJ6bnZhZG1pblwiLFwidXNlcklkXCI6XCJiN2QwYTFjZmY5ZTUxMWU3YmY0MDE4NjZkYWYyMWE1M1wifSIsImV4cCI6MTU0NTc5NjAzNCwibmJmIjoxNTQ0NTg2NDM0fQ.li18u768crBgRKbnYFlNHE_gAV2CAbX868E_KuNHaYs',
     exportCurPage: 1,
   };
-  for (const key in data) {
+  for (var key in data) {
     if (data[key]) {
       form.append(key, data[key]);
     }

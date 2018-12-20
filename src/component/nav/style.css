@@ -29,7 +29,11 @@
 }
 
 .antLayoutContent {
-    padding:10px;
+    position: absolute;
+    left: 25px;
+    right: 0px;
+    bottom: 0px;
+    top: 50px;
 }
 
 .antLayoutright{

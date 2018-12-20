@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, Select, DatePicker, Button, Upload, Icon } from 'shineout';
+import { Input, Select, DatePicker, Button, Upload } from 'shineout';
 import styles from './style.css';
 import { search, changeFour, changeProvince, changeCity, changeTwoFive, out } from '../action';
 

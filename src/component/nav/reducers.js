@@ -7,12 +7,27 @@ const menus = [
   {
     title: '首页',
     icon: 'mobile',
-    link: '/dashboard/xxxx',
+    link: '/dashboard/ppppp',
   },
   {
     title: '异常中心',
     icon: 'bars',
     link: '/dashboard/exception',
+  },
+  {
+    title: '调度中心',
+    icon: 'bars',
+    link: '/dispatch-center',
+    children: [
+      {
+        title: '城市调度',
+        link: '/dispatch-center/a',
+      },
+      {
+        title: '广告机',
+        link: '/dispatch-center/xxxx',
+      },
+    ],
   },
   {
     title: '报表管理',

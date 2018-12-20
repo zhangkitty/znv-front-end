@@ -21,4 +21,6 @@ export let out;
 export let outSuccess;
 
 export let openModal;
+export let openModalSuccess;
+
 export let closeModal;

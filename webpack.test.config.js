@@ -46,16 +46,16 @@ module.exports = merge(config, {
       template: './index.ejs',
       filename: '../index.html',
     }),
-    new ParallelUglifyPlugin({
-      uglifyJS: {
-        output: {
-          comments: false,
-        },
-        compress: {
-          warnings: false,
-        },
-      },
-    }),
+    // new ParallelUglifyPlugin({
+    //   uglifyJS: {
+    //     output: {
+    //       comments: false,
+    //     },
+    //     compress: {
+    //       warnings: false,
+    //     },
+    //   },
+    // }),
     new webpack.optimize.ModuleConcatenationPlugin(),
   ].concat(process.env.NODE_ENV === 'analysis' ? new BundleAnalyzerPlugin() : []),
 });

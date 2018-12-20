@@ -27,3 +27,4 @@ export const outSuccess = makeActionCreator(types.outSuccess, 'data');
 export const closeModal = makeActionCreator(types.closeModal);
 // 打开modal
 export const openModal = makeActionCreator(types.openModal, 'd');
+export const openModalSuccess = makeActionCreator(types.openModalSuccess, 'data');

@@ -1,7 +1,7 @@
 import { takeLatest, put } from 'redux-saga/effects';
 import * as types from './types';
-import { initSer, searchSer, changeFourSer, changeProvinceSer, changeCitySer, outSer } from './server';
-import { initSuccess, changeFourSuccess, changeProviceSuccess, changeCitySuccess, searchSuccess } from './action';
+import { initSer, searchSer, changeFourSer, changeProvinceSer, changeCitySer, outSer, openModalSer } from './server';
+import { initSuccess, changeFourSuccess, changeProviceSuccess, changeCitySuccess, searchSuccess, openModalSuccess } from './action';
 
 
 function* initSaga(action) {
@@ -32,6 +32,14 @@ function* searchSaga(action) {
 
 function* outSaga(action) {
   const data = yield outSer(action.props);
+  console.log(data);
+  return null;
+}
+
+function* openModalSaga(action) {
+  const data = yield openModalSer(action.d);
+
+  return yield put(openModalSuccess(data));
 }
 
 function* mainSaga() {
@@ -43,6 +51,8 @@ function* mainSaga() {
 
   yield takeLatest(types.search, searchSaga);
   yield takeLatest(types.out, outSaga);
+
+  yield takeLatest(types.openModal, openModalSaga);
 }
 
 export default mainSaga;

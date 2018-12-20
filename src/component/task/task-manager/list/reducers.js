@@ -1,7 +1,7 @@
 import assign from 'object-assign';
 import * as types from './types';
 
-export const defaultState = {
+const defaultState = {
   ready: true,
   areaList: [],
   deviceTypeList: [],
@@ -34,7 +34,12 @@ export const defaultState = {
 
   modal: {
     visible: false,
+    dataSource: [],
   },
+
+  steps: [
+
+  ],
 };
 
 const reducer = (state = defaultState, action) => {
@@ -101,6 +106,13 @@ const reducer = (state = defaultState, action) => {
       return assign({}, state, {
         modal: assign({}, state.modal, {
           visible: false,
+        }),
+      });
+
+    case types.openModalSuccess:
+      return assign({}, state, {
+        modal: assign({}, state.modal, {
+          dataSource: action.data,
         }),
       });
     default:
