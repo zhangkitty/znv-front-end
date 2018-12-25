@@ -1,20 +1,25 @@
-// import hashHistory from 'shein-lib/history';
-import { push } from 'react-router-redux';
-import { takeLatest, put } from 'redux-saga/effects';
+import { put, takeLatest } from 'redux-saga/effects';
+import { initSuccess, onHoverSuccess } from './action';
 import * as types from './types';
-import { changeValue } from './actions';
-import { submitSer } from './server';
-import { message } from 'antd';
+import { initSer, onHoverSer } from './server';
 
-function* submitSaga(action) {
-  const data = yield submitSer(action.data);
-  if (data.success !== true) {
-    return message.error(data.message);
-  }
-  // hashHistory.replace('/');
-  return yield put(push('/dashboard/a'));
+
+function* initSaga(action) {
+  const data = yield initSer(action.props);
+  yield put(initSuccess(data, action.props));
+  return null;
 }
 
-export default function* () {
-  yield takeLatest(types.SUBMIT, submitSaga);
+
+function* onHoverSaga(action) {
+  const data = yield onHoverSer(action);
+
+  yield put(onHoverSuccess(data));
 }
+
+function* mainSaga() {
+  yield takeLatest(types.init, initSaga);
+  yield takeLatest(types.onHover, onHoverSaga);
+}
+
+export default mainSaga;

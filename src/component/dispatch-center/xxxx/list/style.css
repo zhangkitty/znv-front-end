@@ -4,7 +4,7 @@
 
 .overlay{
     position: absolute;
-    right: 0px;
+    right: 20px;
     z-index: 100;
     background: white;
 
@@ -31,6 +31,18 @@
 
 .datePicker{
     width: 180px !important;
+}
+
+.sliderAll{
+    display: flex;
+    flex-direction: column;
+    width:50%;
+}
+
+.slider{
+    /*width: 100px;*/
+    margin-top: 15px;
+    width: 100%;
 }
 
 

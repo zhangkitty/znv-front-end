@@ -4,6 +4,7 @@ import * as types from './types';
 import { initSer } from './server';
 
 function* initSaga(action) {
+  console.log('bbbb');
   const data = yield initSer(action.props);
   yield put(initSuccess(data));
   return null;

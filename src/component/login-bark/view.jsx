@@ -71,5 +71,5 @@ class HorizontalLoginForm extends Component {
 const WrappedHorizontalLoginForm = Form.create()(HorizontalLoginForm);
 
 
-const mapStateToProps = state => state.fsu1;
+const mapStateToProps = state => state['login-bark'];
 export default connect(mapStateToProps)(WrappedHorizontalLoginForm);

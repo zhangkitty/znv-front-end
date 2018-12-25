@@ -23,9 +23,6 @@ function getRandomInt(max) {
 
 
 export const initSer = (props) => {
-  debugger;
-
-
   const temp = {
     dataTime: moment(props.dataTime).format('YYYYMMDD'),
     quotaType: props.quotaType,

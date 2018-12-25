@@ -1,7 +1,8 @@
 import React from 'react';
-import { Button, DatePicker } from 'shineout';
+import { Button, DatePicker, Spin } from 'shineout';
+import { Slider } from 'antd';
 import DeckGL, { LineLayer, HexagonLayer, FirstPersonView, MapView } from 'deck.gl';
-import { StaticMap } from 'react-map-gl';
+import ReactMapGL, { StaticMap } from 'react-map-gl';
 import { connect } from 'react-redux';
 import { init, change } from './action';
 import styles from './style.css';
@@ -16,9 +17,9 @@ const DATA_URL =
 
 
 export const INITIAL_VIEW_STATE = {
-  longitude: 108.9398165260,
-  latitude: 34.3412614674,
-  zoom: 4,
+  longitude: 112.4255152357,
+  latitude: 29.7208715936,
+  zoom: 5,
   // minZoom: 1,
   maxZoom: 15,
   pitch: 40.5,
@@ -130,7 +131,7 @@ class Container extends React.Component {
 
   _renderLayers() {
     const {
-      dataSource, radius = 1000, upperPercentile = 100, coverage = 1, dispatch,
+      dataSource, radius, upperPercentile = 100, coverage = 1, dispatch, elevationScale,
     } = this.props;
 
     return [
@@ -139,8 +140,8 @@ class Container extends React.Component {
         colorRange,
         coverage,
         data: dataSource,
-        elevationRange: [0, 3000],
-        elevationScale: this.state.elevationScale,
+        elevationRange: [0, 300],
+        elevationScale,
         extruded: true,
         getPosition: d => d,
         // lightSettings: LIGHT_SETTINGS,
@@ -161,41 +162,57 @@ class Container extends React.Component {
 
   render() {
     const {
-      viewState, controller = true, baseMap = true, dispatch, dataTime, quotaType,
+      viewState, controller = true, baseMap = true, dispatch, dataTime, quotaType, loading, radius, elevationScale,
     } = this.props;
 
     return (
       <div>
         <div className={styles.overlay}>
-          <Button
-            className={styles.button1}
-            type={quotaType === 1 ? 'primary' : null}
-            onClick={() => dispatch(init(Object.assign({}, this.props, {
-              quotaType: 1,
-            })))}
-          >广告机离线时间超长数
-          </Button>
-          <Button
-            className={styles.button2}
-            type={quotaType === 3 ? 'primary' : null}
-            onClick={() => dispatch(init(Object.assign({}, this.props, {
-              quotaType: 3,
-            })))}
-          >广告机稳定在线数
-          </Button>
-          <Button
-            className={styles.button3}
-            type={quotaType === 2 ? 'primary' : null}
-            onClick={() => dispatch(init(Object.assign({}, this.props, {
-              quotaType: 2,
-            })))}
-          >广告机频繁离线数
-          </Button>
-          <DatePicker
-            clearable={false}
-            className={styles.datePicker}
-            data-bind="dataTime"
-          />
+          {
+            loading ?
+              <div>
+                <Button
+                  className={styles.button1}
+                  type={quotaType === 1 ? 'primary' : null}
+                  onClick={() => dispatch(init(Object.assign({}, this.props, {
+                    quotaType: 1,
+                  })))}
+                >广告机离线时间超长数
+                </Button>
+                <Button
+                  className={styles.button2}
+                  type={quotaType === 3 ? 'primary' : null}
+                  onClick={() => dispatch(init(Object.assign({}, this.props, {
+                    quotaType: 3,
+                  })))}
+                >广告机稳定在线数
+                </Button>
+                <Button
+                  className={styles.button3}
+                  type={quotaType === 2 ? 'primary' : null}
+                  onClick={() => dispatch(init(Object.assign({}, this.props, {
+                    quotaType: 2,
+                  })))}
+                >广告机频繁离线数
+                </Button>
+                <DatePicker
+                  clearable={false}
+                  className={styles.datePicker}
+                  value={dataTime}
+                  onChange={v => dispatch(init(Object.assign({}, this.props, {
+                    dataTime: v,
+                  })))}
+                />
+                <div>
+                  <div>半径</div>
+                  <Slider onChange={v => dispatch(change('radius', v))} value={radius} min={100} max={50000} />
+                  <div>相对高度</div>
+                  <Slider onChange={v => dispatch(change('elevationScale', v))} value={elevationScale} min={1} max={3000} />
+                </div>
+              </div>
+              :
+              <Spin size="54px" name="cube-grid" color="#dc3545" />
+          }
         </div>
         <div>
           {this._renderTooltip()}
@@ -206,19 +223,18 @@ class Container extends React.Component {
           initialViewState={INITIAL_VIEW_STATE}
           viewState={viewState}
           controller={controller}
-
         >
-          <div style={{ color: 'white' }}>asfaf</div>
           {baseMap && (
-            <StaticMap
-              reuseMaps
-              mapStyle="mapbox://styles/zhangcaochao/cjpuhiw4a0crr2rmpfzoum9ks"
-              preventStyleDiffing
-              mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN}
-
-            />
-          )}
+          <StaticMap
+            reuseMaps
+            mapStyle="mapbox://styles/zhangcaochao/cjpuhiw4a0crr2rmpfzoum9ks"
+            preventStyleDiffing
+            mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN}
+          />
+         )}
         </DeckGL>
+
+
       </div>
 
 
