@@ -88,6 +88,7 @@ const reducer = (state = defaultState, action) => {
         }),
       });
     case types.searchSuccess:
+      debugger;
       return assign({}, state, {
         dataSource: action.data.data.list,
         formData: assign({}, state.formData, {
@@ -115,6 +116,22 @@ const reducer = (state = defaultState, action) => {
           dataSource: action.data,
         }),
       });
+
+    case types.changePage:
+      return assign({}, state, {
+        formData: assign({}, state.formData, {
+          pageNum: action.props.formData.pageNum,
+        }),
+      });
+
+    case types.changePageSize:
+      return assign({}, state, {
+        formData: assign({}, state.formData, {
+          pageSize: action.props.formData.pageSize,
+        }),
+      });
+
+
     default:
       return state;
   }

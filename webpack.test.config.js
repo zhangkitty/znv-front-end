@@ -38,8 +38,8 @@ module.exports = merge(config, {
       process: {
         env: {
           NODE_ENV: JSON.stringify('production'),
-          // BASE_URI: JSON.stringify('http://10.45.156.171:8012'),
-          BASE_URI: JSON.stringify('http://cocozhang.cn'),
+          BASE_URI: JSON.stringify('http://10.45.156.171:8012'),
+          // BASE_URI: JSON.stringify('http://cocozhang.cn'),
         },
       },
     }),

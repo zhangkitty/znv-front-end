@@ -24,3 +24,10 @@ export let openModal;
 export let openModalSuccess;
 
 export let closeModal;
+
+export let finish;
+
+export let changePage;
+export let changePageSuccess;
+export let changePageSize;
+export let changePageSizeSuccess;

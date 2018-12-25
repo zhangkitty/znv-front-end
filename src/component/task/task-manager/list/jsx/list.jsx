@@ -2,11 +2,10 @@ import React from 'react';
 import { Table, Button } from 'shineout';
 
 import Page from 'shein-lib/pagination';
-import { openModal } from '../action';
+import { openModal, finish, changePage, changePageSize } from '../action';
 
 
 const List = (props) => {
-  console.log(props);
   const { dispatch, dataSource, formData: { total, pageSize, pageNum } } = props;
 
 
@@ -69,7 +68,11 @@ const List = (props) => {
               onClick={() => dispatch(openModal(d))}
             >详情
             </Button>
-            <Button size="small">结束</Button>
+            <Button
+              size="small"
+              onClick={() => dispatch(finish(d))}
+            >结束
+            </Button>
           </div>
         ),
       },
@@ -86,10 +89,18 @@ const List = (props) => {
       <Page
         total={total}
         onChange={(pageValue) => {
-          console.log(pageValue);
+          dispatch(changePage(Object.assign({}, props, {
+            formData: Object.assign({}, props.formData, {
+              pageNum: pageValue,
+            }),
+          })));
         }}
         onShowSizeChange={(current, size) => {
-          console.log(current, size);
+          dispatch(changePageSize(Object.assign({}, props, {
+            formData: Object.assign({}, props.formData, {
+              pageSize: size,
+            }),
+          })));
         }}
         current={pageNum}
         pageSize={pageSize}

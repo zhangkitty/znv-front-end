@@ -36,7 +36,6 @@ export const openModalSer = d => request({
 });
 
 export const searchSer = (props) => {
-  console.log(props);
   const { formData } = props;
   const param = {
     createName: formData.oneOne,
@@ -85,7 +84,7 @@ export const outSer = (props) => {
     token: 'eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NDQ1ODY0MzQsInN1YiI6IntcInVzZXJOYW1lXCI6XCJ6bnZhZG1pblwiLFwidXNlcklkXCI6XCJiN2QwYTFjZmY5ZTUxMWU3YmY0MDE4NjZkYWYyMWE1M1wifSIsImV4cCI6MTU0NTc5NjAzNCwibmJmIjoxNTQ0NTg2NDM0fQ.li18u768crBgRKbnYFlNHE_gAV2CAbX868E_KuNHaYs',
     exportCurPage: 1,
   };
-  for (var key in data) {
+  for (const key in data) {
     if (data[key]) {
       form.append(key, data[key]);
     }
@@ -115,4 +114,16 @@ export const outSer = (props) => {
       console.log(response);
       // console.log(response);
     });
+};
+
+export const finishSer = (d) => {
+  const data = {
+    sourceId: d.id,
+    accountId: d.accountId,
+  };
+  return request({
+    url: '/vue/taskMgr/task/overTask',
+    method: 'post',
+    data,
+  });
 };

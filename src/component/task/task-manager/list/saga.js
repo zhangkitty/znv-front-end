@@ -1,6 +1,7 @@
 import { takeLatest, put } from 'redux-saga/effects';
+import { message } from 'antd';
 import * as types from './types';
-import { initSer, searchSer, changeFourSer, changeProvinceSer, changeCitySer, outSer, openModalSer } from './server';
+import { initSer, searchSer, changeFourSer, changeProvinceSer, changeCitySer, outSer, openModalSer, finishSer } from './server';
 import { initSuccess, changeFourSuccess, changeProviceSuccess, changeCitySuccess, searchSuccess, openModalSuccess } from './action';
 
 
@@ -26,13 +27,13 @@ function* changeCitySaga(action) {
 
 function* searchSaga(action) {
   const data = yield searchSer(action.props);
+
   return yield put(searchSuccess(data));
 }
 
 
 function* outSaga(action) {
   const data = yield outSer(action.props);
-  console.log(data);
   return null;
 }
 
@@ -40,6 +41,17 @@ function* openModalSaga(action) {
   const data = yield openModalSer(action.d);
 
   return yield put(openModalSuccess(data));
+}
+
+function* finishSaga(action) {
+  const data = yield finishSer(action.d);
+  if (data === 'REMOVE_TASK_SUCCESS') {
+    return message.success('成功');
+  }
+  if (data === 'REMOVE_TASK_FAIL') {
+    return message.error('失败');
+  }
+  return null;
 }
 
 function* mainSaga() {
@@ -53,6 +65,11 @@ function* mainSaga() {
   yield takeLatest(types.out, outSaga);
 
   yield takeLatest(types.openModal, openModalSaga);
+
+  yield takeLatest(types.finish, finishSaga);
+
+  yield takeLatest(types.changePage, searchSaga);
+  yield takeLatest(types.changePageSize, searchSaga);
 }
 
 export default mainSaga;
