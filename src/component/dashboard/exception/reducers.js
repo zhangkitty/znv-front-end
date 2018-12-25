@@ -128,6 +128,8 @@ const transfrom = data => data.map(v => assign({}, v, {
       cityList: [],
       level: `${a.level}.${a.areaCode}`,
       person: true,
+      lat: a.lat,
+      lng: a.lng,
     }));
     if (a.cityList.length > 0) {
       return transfrom(a.cityList);

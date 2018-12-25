@@ -39,14 +39,18 @@
     /*right: 0px;*/
     /*height: 800px;*/
     /*padding: 30px;*/
-    display: flex;
-    height: 800px;
+    height: 600px;
     margin-top: 20px;
 }
 
 .mapLeft{
-    flex-basis: 200px;
     margin-left: 20px;
+    display: flex;
+    flex-wrap:wrap;
+}
+
+.mapLeft>div {
+    width: 150px;
 }
 
 .mapRight{

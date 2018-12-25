@@ -43,7 +43,7 @@ const Sider = ({ menus, current }) => {
 
   return (
     <Menu
-      style={{ height: window.innerHeight - 40 }}
+      // style={{ height: window.innerHeight - 40 }}
       mode="inline"
       theme="dark"
       defaultSelectedKeys={defaultSelectedKeys}
