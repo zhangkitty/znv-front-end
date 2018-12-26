@@ -3,6 +3,7 @@ import ReactEcharts from 'echarts-for-react';
 import 'echarts/extension/bmap/bmap';
 import styles from './style.css';
 import { changeValue, getPicture, initContent } from '../actions';
+import blue from './blue.jpeg';
 
 export default class MyBMap extends React.Component {
   componentDidMount() {
@@ -44,6 +45,8 @@ export default class MyBMap extends React.Component {
 
     points.map((v) => {
       point = new BMap.Point(v.lng, v.lat);
+      // const myIcon = new BMap.Icon(blue, new BMap.Size(23, 25));
+      // marker = new BMap.Marker(point, { icon: myIcon });
       marker = new BMap.Marker(point);
       map.addOverlay(marker);
       console.log(v.deviceId, 'v.deviceId');
@@ -110,6 +113,7 @@ export default class MyBMap extends React.Component {
           className="react_for_echarts"
           ref={(node) => { this.reactEcharts = node; }}
         />
+        <div style={{ backgroundImage: blue }}>aa</div>
       </div>
     );
   }
