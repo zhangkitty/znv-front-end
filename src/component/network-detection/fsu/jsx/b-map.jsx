@@ -113,7 +113,6 @@ export default class MyBMap extends React.Component {
           className="react_for_echarts"
           ref={(node) => { this.reactEcharts = node; }}
         />
-        <div style={{ backgroundImage: blue }}>aa</div>
       </div>
     );
   }
