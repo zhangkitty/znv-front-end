@@ -44,3 +44,12 @@ export const changeDetailTypeTab1Success = makeActionCreator(types.changeDetailT
 export const changeCityCenter = makeActionCreator(types.changeCityCenter, 'data');
 
 export const changeMarker = makeActionCreator(types.changeMarker, 'data');
+
+// 打开Modal
+export const openWorkRateInc = makeActionCreator(types.openWorkRateInc, 'props');
+
+export const openWorkTimeInc = makeActionCreator(types.openWorkTimeInc, 'props');
+
+
+export const closeWorkRateInc = makeActionCreator(types.closeWorkRateInc);
+export const closeWorkTimeInc = makeActionCreator(types.closeWorkTimeInc);

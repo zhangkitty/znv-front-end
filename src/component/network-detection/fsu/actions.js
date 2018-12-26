@@ -20,3 +20,5 @@ export const getPictureSuccess = makeActionCreator(types.getPictureSuccess, 'dat
 
 export const live = makeActionCreator(types.live, 'props');
 export const liveSuccess = makeActionCreator(types.liveSuccess, 'data');
+
+export const intoMap = makeActionCreator(types.intoMap, 'value');

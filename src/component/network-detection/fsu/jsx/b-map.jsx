@@ -2,33 +2,68 @@ import React from 'react';
 import ReactEcharts from 'echarts-for-react';
 import 'echarts/extension/bmap/bmap';
 import styles from './style.css';
-import Content from './content';
-import { changeValue, getPicture } from '../actions';
+import { changeValue, getPicture, initContent } from '../actions';
 
 export default class MyBMap extends React.Component {
   componentDidMount() {
-    const { dispatch } = this.props;
+    console.log('componentDidMount');
+    let marker;
+    let point;
+    const { dispatch, bmap: { center, points } } = this.props;
+    if (points.length === 0) {
+      return null;
+    }
     const map = this.reactEcharts.getEchartsInstance().getModel().getComponent('bmap').getBMap();
 
     map.addControl(new BMap.NavigationControl());
 
-    const point = new BMap.Point(120.8556079834, 27.9188764652);
-    const marker = new BMap.Marker(point);
-    map.addOverlay(marker);
-    const infoWindow = new BMap.InfoWindow('');
-    marker.addEventListener('click', () => {
-      // map.openInfoWindow(infoWindow, point);
-      dispatch(changeValue('modelVisiable', true));
-      dispatch(getPicture(this.props));
+    points.map((v) => {
+      point = new BMap.Point(v.lng, v.lat);
+      marker = new BMap.Marker(point);
+      map.addOverlay(marker);
+      marker.addEventListener('click', () => {
+        dispatch(changeValue('modelVisiable', true));
+        dispatch(getPicture(this.props));
+      });
+    });
+  }
+
+  componentDidUpdate() {
+    console.log('componentDidUpdate');
+    let marker;
+    let point;
+    const { dispatch, bmap: { center, points } } = this.props;
+    const map = this.reactEcharts.getEchartsInstance().getModel().getComponent('bmap').getBMap();
+    map.addControl(new BMap.NavigationControl());
+
+    const allOverlay = map.getOverlays();
+    for (let i = 0; i < allOverlay.length - 1; i++) {
+      map.removeOverlay(allOverlay[i]);
+    }
+
+
+    points.map((v) => {
+      point = new BMap.Point(v.lng, v.lat);
+      marker = new BMap.Marker(point);
+      map.addOverlay(marker);
+      console.log(v.deviceId, 'v.deviceId');
+      marker.addEventListener('click', () => {
+        dispatch(initContent(Object.assign({}, this.props, {
+          id: v.deviceId,
+        })));
+        dispatch(changeValue('modelVisiable', true));
+        dispatch(getPicture(this.props));
+      });
     });
   }
 
 
   render() {
+    const { dispatch, bmap: { center, Points } } = this.props;
     const option = {
       animation: false,
       bmap: {
-        center: [120.8556079834, 27.9188764652],
+        center,
         zoom: 15,
         roam: true,
         NavigationControl: true,

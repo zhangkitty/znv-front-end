@@ -16,3 +16,6 @@ export let getPictureSuccess;
 
 export let live;
 export let liveSuccess;
+
+
+export let intoMap;

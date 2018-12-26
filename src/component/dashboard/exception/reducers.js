@@ -1,6 +1,7 @@
 import assign from 'object-assign';
 import moment from 'moment';
 import * as types from './types';
+import { closeWorkRateInc, openWorkTimeInc } from './action';
 
 export const defaultState = {
   ready: false,
@@ -109,6 +110,12 @@ export const defaultState = {
       dataSourceTask: [], // 任务轨迹查询
       cityCenter: [],
       marker: null,
+    },
+    workRateIncModal: {
+      visible: false,
+    },
+    workTimeIncModal: {
+      visible: false,
     },
   },
 };
@@ -393,6 +400,45 @@ const reducer = (state = defaultState, action) => {
         staffAttendance: assign({}, state.staffAttendance, {
           detailData: assign({}, state.staffAttendance.detailData, {
             marker: action.data,
+          }),
+        }),
+      });
+
+      // 打开Modal
+    case types.openWorkRateInc:
+      return assign({}, state, {
+        staffAttendance: assign({}, state.staffAttendance, {
+          workRateIncModal: assign({}, state.staffAttendance.workRateIncModal, {
+            visible: true,
+          }),
+        }),
+      });
+
+      // 关闭Modal
+    case types.closeWorkRateInc:
+      return assign({}, state, {
+        staffAttendance: assign({}, state.staffAttendance, {
+          workRateIncModal: assign({}, state.staffAttendance.workRateIncModal, {
+            visible: false,
+          }),
+        }),
+      });
+
+    case types.openWorkTimeInc:
+      return assign({}, state, {
+        staffAttendance: assign({}, state.staffAttendance, {
+          workTimeIncModal: assign({}, state.staffAttendance.workTimeIncModal, {
+            visible: true,
+          }),
+        }),
+      });
+
+
+    case types.closeWorkTimeInc:
+      return assign({}, state, {
+        staffAttendance: assign({}, state.staffAttendance, {
+          workTimeIncModal: assign({}, state.staffAttendance.workTimeIncModal, {
+            visible: false,
           }),
         }),
       });

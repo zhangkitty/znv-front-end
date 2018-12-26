@@ -32,3 +32,9 @@ export let changeDetailTypeTab1Success;
 export let changeCityCenter;
 
 export let changeMarker;
+
+export let openWorkRateInc;
+export let openWorkTimeInc;
+
+export let closeWorkRateInc;
+export let closeWorkTimeInc;

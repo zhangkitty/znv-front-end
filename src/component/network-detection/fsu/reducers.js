@@ -4,6 +4,14 @@ import * as types from './types';
 const defaultState = {
   modelVisiable: false,
   bmapShow: false,
+  // 需要提交的设备ID,
+  id: '',
+  bmap: {
+    center: [120.8556079834, 27.9188764652],
+    points: [
+
+    ],
+  },
   china: [],
   province: [],
   name: '',
@@ -101,6 +109,12 @@ const reducer = (state = defaultState, action) => {
       });
 
 
+    case types.initContent:
+      return assign({}, state, {
+        id: action.props.id,
+      });
+
+
     case types.initContentSuccess:
       const table = {
         0: '正常',
@@ -131,6 +145,20 @@ const reducer = (state = defaultState, action) => {
       return assign({}, state, {
         AlarmInfo: state.AlarmInfo.map((v, idx) => Object.assign({}, v, { imgUrl: action.data[idx].data })),
         screenUrl: action.data.slice(-1)[0].data,
+      });
+
+
+    case types.intoMap:
+      return assign({}, state, {
+        bmap: assign({}, state.bmap, {
+          center: [action.value[0], action.value[1]],
+          points: [{
+            lng: action.value[0],
+            lat: action.value[1],
+            deviceId: action.value[2],
+
+          }],
+        }),
       });
     default:
       return state;

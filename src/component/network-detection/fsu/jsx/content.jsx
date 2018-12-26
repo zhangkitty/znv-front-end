@@ -8,7 +8,7 @@ export default class Content extends React.Component {
   constructor(props) {
     super(props);
     const { dispatch } = props;
-    dispatch(initContent(props));
+    // dispatch(initContent(props));
     console.log(98989);
   }
 

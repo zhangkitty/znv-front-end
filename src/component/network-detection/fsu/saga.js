@@ -2,7 +2,7 @@ import { message } from 'antd';
 import { takeLatest, put } from 'redux-saga/effects';
 import * as types from './types';
 import { initSer, getProviceDataSer, login, initContentSer, getPictureSer, liveSer } from './server';
-import { initSuccess, getProviceDataSuccess, initContentSuccess, liveSuccess,getPictureSuccess } from './actions';
+import { initSuccess, getProviceDataSuccess, initContentSuccess, liveSuccess, getPictureSuccess } from './actions';
 
 
 function* initSaga(action) {
@@ -22,7 +22,7 @@ function* getProviceDataSaga(action) {
 
 
 function* initContentSaga(action) {
-  const data = yield initContentSer(action);
+  const data = yield initContentSer(action.props);
 
   return yield put(initContentSuccess(data));
 }
@@ -30,8 +30,7 @@ function* initContentSaga(action) {
 function* getPictureSaga(action) {
   const data = yield getPictureSer(action.props);
 
-  return yield put(getPictureSuccess(data))
-
+  return yield put(getPictureSuccess(data));
 }
 
 function* liveSaga(action) {

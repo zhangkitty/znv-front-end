@@ -268,3 +268,11 @@ export const changeDetailDayTab1Ser = (props) => {
 
   return null;
 };
+
+export const openWorkRateIncSer = (props) => {
+  console.log(props);
+  return request({
+    url: '/rqs/attendance/cityworkrate?order=1&target=1',
+
+  });
+};

@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Table } from 'shineout';
+import { Table, Button } from 'shineout';
 import { Icon } from 'antd';
 import { compare } from 'utils/compare';
+import WorkRateIncModal from './workRateInc-modal';
+import { openWorkRateInc, openWorkTimeInc } from '../../action';
 
 
 const HeadTable = (props) => {
   const { staffAttendance: { headTable: { dataSource } } } = props;
+  const { dispatch } = props;
   const { node } = props;
   const len = node.id.split('.').length;
 
@@ -66,7 +69,13 @@ const HeadTable = (props) => {
         if (idx === 0) {
           return (
             <div>
-              <span>{`${Number((Math.round(d.workRate * 10000) / 100)).toFixed(2)}%`}</span>
+              <Button
+                type="link"
+                style={{ marginLeft: -12 }}
+                onClick={() => dispatch(openWorkRateInc(props))}
+              >
+                {`${Number((Math.round(d.workRate * 10000) / 100)).toFixed(2)}%`}
+              </Button>
               {renderIcon(d.workRateInc)}
             </div>
           );
@@ -82,7 +91,13 @@ const HeadTable = (props) => {
         if (idx === 0) {
           return (
             <div>
-              <span>{`${Number((Math.round(d.workTime * 100) / 100)).toFixed(2)}h`}</span>
+              <Button
+                type="link"
+                style={{ marginLeft: -12 }}
+                onClick={() => dispatch(openWorkTimeInc(props))}
+              >
+                {`${Number((Math.round(d.workTime * 100) / 100)).toFixed(2)}h`}
+              </Button>
               {renderIcon(d.workTimeInc)}
             </div>
           );
@@ -153,7 +168,7 @@ const HeadTable = (props) => {
         data={mydataSource}
         columns={len > 3 ? columns1 : columns}
       />
-
+      <WorkRateIncModal {...props} />
     </div>
   );
 };

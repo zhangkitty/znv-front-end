@@ -36,15 +36,16 @@ export const getProviceDataSer = props => request({
 
 export const initContentSer = (props) => {
   console.log('initContentSer');
+  const { id } = props;
   return Promise.all([
     request({
-      url: '/aps/api/monitor/detail/device?deviceId=442c051f03ff',
+      url: `/aps/api/monitor/detail/device?deviceId=${id}`,
     }),
     request({
       url: '/aps/api/monitor/live/user/list',
       method: 'post',
       data: {
-        deviceId: '442c051f03ff',
+        deviceId: `${id}`,
       },
     }),
   ]);
@@ -52,12 +53,12 @@ export const initContentSer = (props) => {
 
 export const getPictureSer = (props) => {
   const { AlarmInfo } = props;
-
+  const { id } = props;
   const temp = AlarmInfo.map(v => request({
     url: '/aps/api/monitor/picture/show',
     method: 'post',
     data: {
-      deviceId: '442c051f03ff',
+      deviceId: `${id}`,
       pictureTime: v.alarmTime,
     },
   }));
@@ -66,19 +67,22 @@ export const getPictureSer = (props) => {
     url: '/aps/api/monitor/picture/show',
     method: 'post',
     data: {
-      deviceId: '442c051f03ff',
+      deviceId: `${id}`,
     },
   }));
 
   return Promise.all(temp);
 };
 
-export const liveSer = props => request({
-  method: 'post',
-  url: '/aps/cmd/execute',
-  data: {
-    deviceId: '442c051f03ff',
-    cmdType: '211',
-    accountId: 'hangmei',
-  },
-});
+export const liveSer = (props) => {
+  const { id } = props;
+  return request({
+    method: 'post',
+    url: '/aps/cmd/execute',
+    data: {
+      deviceId: `${props}`,
+      cmdType: '211',
+      accountId: 'hangmei',
+    },
+  });
+};

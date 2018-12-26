@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactEcharts from 'echarts-for-react';
-import { changeValue, getProviceData, getPicture } from '../actions';
+import { changeValue, getProviceData, getPicture, intoMap } from '../actions';
 
 require('echarts/map/js/china.js');
 require('echarts/map/js/province/jiangsu');
@@ -44,6 +44,12 @@ export default class ChinaMap extends React.Component {
     this.reactEcharts.getEchartsInstance().on('click', (params) => {
       if (params.name === '温州市') {
         dispatch(changeValue('bmapShow', true));
+        dispatch(intoMap([120.8556079834, 27.9188764652, '442c051f03ff']));
+        return null;
+      }
+      if (params.name === '深圳市') {
+        dispatch(changeValue('bmapShow', true));
+        dispatch(intoMap([114.0661345267, 22.5485544122, '442c051f0334']));
         return null;
       }
       if (params.data.groupId < 100) {
