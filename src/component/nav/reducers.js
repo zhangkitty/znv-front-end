@@ -67,7 +67,14 @@ const menus = [
   {
     title: '考勤管理',
     icon: 'bars',
-    link: '/attendance/management',
+    // link: '/attendance/management',
+    link: '/attendance',
+    children: [
+      {
+        title: '考勤数据',
+        link: '/attendance/management',
+      },
+    ],
   },
   {
     title: '全网检测',

@@ -41,3 +41,11 @@ export let openWorkTimeIncSuccess;
 
 export let closeWorkRateInc;
 export let closeWorkTimeInc;
+
+export let openCityWorkRateInc;
+export let openCityWorkRateIncSuccess;
+export let closeCityWorkRateInc;
+
+export let openCityWorkTimeInc;
+export let openCityWorkTimeIncSuccess;
+export let closeCityWorkTimeInc;

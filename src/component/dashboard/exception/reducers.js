@@ -119,6 +119,15 @@ export const defaultState = {
       visible: false,
       dataSource: [],
     },
+    workCityRateIncModal: {
+      visible: false,
+      dataSource: [],
+    },
+    workCityTimeIncModal: {
+      visible: false,
+      dataSource: [],
+    },
+
   },
 };
 
@@ -464,6 +473,32 @@ const reducer = (state = defaultState, action) => {
         }),
       });
 
+    case types.openCityWorkRateInc:
+      return assign({}, state, {
+        staffAttendance: assign({}, state.staffAttendance, {
+          workCityRateIncModal: assign({}, state.staffAttendance.workCityRateIncModal, {
+            visible: true,
+          }),
+        }),
+      });
+
+    case types.openCityWorkRateIncSuccess:
+      return assign({}, state, {
+        staffAttendance: assign({}, state.staffAttendance, {
+          workCityRateIncModal: assign({}, state.staffAttendance.workCityRateIncModal, {
+            dataSource: action.data.data.list,
+          }),
+        }),
+      });
+
+    case types.closeCityWorkRateInc:
+      return assign({}, state, {
+        staffAttendance: assign({}, state.staffAttendance, {
+          workCityRateIncModal: assign({}, state.staffAttendance.workCityRateIncModal, {
+            visible: false,
+          }),
+        }),
+      });
 
     default:
       return state;

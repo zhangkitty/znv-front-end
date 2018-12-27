@@ -294,3 +294,12 @@ export const openWorkTimeIncSer = (props) => {
     url: `/rqs/attendance/cityworkrate?order=${order}&target=2`,
   });
 };
+
+export const openCityWorkRateIncSer = (props) => {
+  const { node } = props;
+  const { staffAttendance: { headTable: { dataSource } } } = props;
+  const order = compare(dataSource[0].workRate, dataSource[1].workRate);
+  return request({
+    url: `/rqs/attendance/personworkrate?order=${order}&areaCode=${node.areaCode}`,
+  });
+};

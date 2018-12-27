@@ -45,13 +45,20 @@ export const changeCityCenter = makeActionCreator(types.changeCityCenter, 'data'
 
 export const changeMarker = makeActionCreator(types.changeMarker, 'data');
 
-// 打开Modal
+// 打开Modal(全国级别）
 export const openWorkRateInc = makeActionCreator(types.openWorkRateInc, 'props');
 export const openWorkRateIncSuccess = makeActionCreator(types.openWorkRateIncSuccess, 'data');
-
+export const closeWorkRateInc = makeActionCreator(types.closeWorkRateInc);
+// 打开Modal(全国级别）
 export const openWorkTimeInc = makeActionCreator(types.openWorkTimeInc, 'props');
 export const openWorkTimeIncSuccess = makeActionCreator(types.openWorkTimeIncSuccess, 'data');
-
-
-export const closeWorkRateInc = makeActionCreator(types.closeWorkRateInc);
 export const closeWorkTimeInc = makeActionCreator(types.closeWorkTimeInc);
+
+export const openCityWorkRateInc = makeActionCreator(types.openCityWorkRateInc, 'props');
+export const openCityWorkRateIncSuccess = makeActionCreator(types.openCityWorkRateIncSuccess, 'data');
+export const closeCityWorkRateInc = makeActionCreator(types.closeCityWorkRateInc);
+
+export const openCityWorkTimeInc = makeActionCreator(types.openCityWorkTimeInc, 'props');
+export const openCityWorkTimeIncSuccess = makeActionCreator(types.openCityWorkTimeIncSuccess, 'data');
+export const closeCityWorkTimeInc = makeActionCreator(types.closeCityWorkTimeInc);
+
