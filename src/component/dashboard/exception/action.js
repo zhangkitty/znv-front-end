@@ -47,8 +47,10 @@ export const changeMarker = makeActionCreator(types.changeMarker, 'data');
 
 // 打开Modal
 export const openWorkRateInc = makeActionCreator(types.openWorkRateInc, 'props');
+export const openWorkRateIncSuccess = makeActionCreator(types.openWorkRateIncSuccess, 'data');
 
 export const openWorkTimeInc = makeActionCreator(types.openWorkTimeInc, 'props');
+export const openWorkTimeIncSuccess = makeActionCreator(types.openWorkTimeIncSuccess, 'data');
 
 
 export const closeWorkRateInc = makeActionCreator(types.closeWorkRateInc);

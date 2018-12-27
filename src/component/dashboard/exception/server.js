@@ -4,6 +4,13 @@ import moment from 'moment';
 import getParam from 'utils/getParam';
 
 
+const compare = (a, b) => {
+  if ((+a) > (+b)) {
+    return 1;
+  }
+  return 2;
+};
+
 export const initSer = (props) => {
   const trendData = {
     startTime: moment(props.onlineRate.trend.dateValue[0]).format('YYYYMMDD'),
@@ -270,9 +277,20 @@ export const changeDetailDayTab1Ser = (props) => {
 };
 
 export const openWorkRateIncSer = (props) => {
-  console.log(props);
+  const { staffAttendance: { headTable: { dataSource } } } = props;
+  const order = compare(dataSource[0].workRate, dataSource[1].workRate);
   return request({
-    url: '/rqs/attendance/cityworkrate?order=1&target=1',
+    url: `/rqs/attendance/cityworkrate?order=${order}&target=1`,
 
+  });
+};
+
+export const openWorkTimeIncSer = (props) => {
+  const { staffAttendance: { headTable: { dataSource } } } = props;
+  const order = compare(dataSource[0].workTime, dataSource[1].workTime);
+  debugger;
+  console.log(order, 'order');
+  return request({
+    url: `/rqs/attendance/cityworkrate?order=${order}&target=2`,
   });
 };

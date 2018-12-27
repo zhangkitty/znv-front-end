@@ -9,9 +9,11 @@ import {
   staffAttendanceInitSuccess,
   changeTrendDaysInTab1Success,
   changeDetailDayTab1Success,
+  openWorkRateIncSuccess,
+  openWorkTimeIncSuccess,
 } from './action';
 import * as types from './types';
-import { openWorkRateIncSer, initSer, getExceptionRateSer, changeDetailDaySer, changeTrendDaysSer, getDevicedetailSer, staffAttendanceInitSer, changeTrendDaysInTab1Ser, changeDetailDayTab1Ser } from './server';
+import { openWorkTimeIncSer, openWorkRateIncSer, initSer, getExceptionRateSer, changeDetailDaySer, changeTrendDaysSer, getDevicedetailSer, staffAttendanceInitSer, changeTrendDaysInTab1Ser, changeDetailDayTab1Ser } from './server';
 
 function* initSaga(action) {
   const { props } = action;
@@ -114,7 +116,15 @@ function* changeDetailDayTab1Saga(action) {
 function* openWorkRateIncSaga(action) {
   const { props } = action;
   const data = yield openWorkRateIncSer(props);
+
+  yield put(openWorkRateIncSuccess(data));
+}
+
+function* openWorkTimeIncSaga(action) {
+  const { props } = action;
+  const data = yield openWorkTimeIncSer(props);
   debugger;
+  yield put(openWorkTimeIncSuccess(data));
 }
 
 
@@ -128,6 +138,7 @@ function* mainSaga() {
   yield takeLatest(types.changeTrendDaysInTab1, changeTrendDaysInTab1Saga);
   yield takeLatest(types.changeDetailDayTab1, changeDetailDayTab1Saga);
   yield takeLatest(types.openWorkRateInc, openWorkRateIncSaga);
+  yield takeLatest(types.openWorkTimeInc, openWorkTimeIncSaga);
 }
 
 export default mainSaga;

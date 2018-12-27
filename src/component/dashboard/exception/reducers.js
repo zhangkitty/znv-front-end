@@ -113,9 +113,11 @@ export const defaultState = {
     },
     workRateIncModal: {
       visible: false,
+      dataSource: [],
     },
     workTimeIncModal: {
       visible: false,
+      dataSource: [],
     },
   },
 };
@@ -414,6 +416,16 @@ const reducer = (state = defaultState, action) => {
         }),
       });
 
+
+    case types.openWorkRateIncSuccess:
+      return assign({}, state, {
+        staffAttendance: assign({}, state.staffAttendance, {
+          workRateIncModal: assign({}, state.staffAttendance.workRateIncModal, {
+            dataSource: action.data.data.list,
+          }),
+        }),
+      });
+
       // 关闭Modal
     case types.closeWorkRateInc:
       return assign({}, state, {
@@ -429,6 +441,15 @@ const reducer = (state = defaultState, action) => {
         staffAttendance: assign({}, state.staffAttendance, {
           workTimeIncModal: assign({}, state.staffAttendance.workTimeIncModal, {
             visible: true,
+          }),
+        }),
+      });
+
+    case types.openWorkTimeIncSuccess:
+      return assign({}, state, {
+        staffAttendance: assign({}, state.staffAttendance, {
+          workTimeIncModal: assign({}, state.staffAttendance.workTimeIncModal, {
+            dataSource: action.data.data.list,
           }),
         }),
       });

@@ -4,6 +4,7 @@ import { Table, Button } from 'shineout';
 import { Icon } from 'antd';
 import { compare } from 'utils/compare';
 import WorkRateIncModal from './workRateInc-modal';
+import WorkTimeIncModal from './workTimeInc-modal';
 import { openWorkRateInc, openWorkTimeInc } from '../../action';
 
 
@@ -169,6 +170,7 @@ const HeadTable = (props) => {
         columns={len > 3 ? columns1 : columns}
       />
       <WorkRateIncModal {...props} />
+      <WorkTimeIncModal {...props} />
     </div>
   );
 };

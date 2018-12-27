@@ -56,7 +56,7 @@ export default class BmapCity extends React.Component {
       if (v.traceInfo) {
         num += (v.traceInfo.length - 1);
       }
-      if (v.traceInfo && v.traceInfo.length > 0) {
+      if (v.traceInfo && v.traceInfo.length > 1) {
         const x = v.traceInfo.slice(0, v.traceInfo.length - 1).map((t, idx) => {
           allLongitude += (+t.longitude);
           allLatitude += (+t.latitude);
@@ -84,6 +84,8 @@ export default class BmapCity extends React.Component {
         },
       ]];
     });
+
+    console.log(lines, 'lines');
 
     const point = dataSource.filter(t => t.workTime > 0 && t.traceInfo.length > 0).map(v => ({
       id: `${v.executor}`,
