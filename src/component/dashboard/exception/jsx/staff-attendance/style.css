@@ -45,13 +45,15 @@
 
 .mapLeft{
     margin-left: 20px;
+    /*display: flex;*/
+}
+
+.people{
     display: flex;
     flex-wrap:wrap;
 }
 
-.mapLeft>div {
-    width: 150px;
-}
+
 
 .mapRight{
     width:100%;

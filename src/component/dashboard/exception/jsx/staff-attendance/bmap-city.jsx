@@ -192,31 +192,36 @@ export default class BmapCity extends React.Component {
         </div>
         <div className={styles.mapLeft}>
           <div style={{ color: 'red', fontSize: 14 }}>未出勤人员:</div>
-          {
-            dataSource.map((v) => {
-              if (+v.workTime === 0) {
-                return <div style={{ marginBottom: 8 }}>{v.executorName}</div>;
-              }
-            })
-          }
+          <div className={styles.people}>
+            {
+              dataSource.map((v) => {
+                if (+v.workTime === 0) {
+                  return <div style={{ margin: 4 }}>{v.executorName}</div>;
+                }
+              })
+            }
+          </div>
+
         </div>
         <div className={styles.mapLeft}>
           <div style={{ color: 'green', fontSize: 14 }}>出勤人员:</div>
-          {
-            lines.map(v => (
-              <div style={{ marginBottom: 8 }}>
-                <Button
-                  size="small"
-                  style={{ color: v && v[0] && v[0][0].color, width: 50 }}
-                  onClick={() => {
-                    dispatch(changeCityCenter(v[0][1].coord));
-                  }}
-                >{v && v[0] && v[0][0].executorName}
-                </Button>
-                <Progress color={v && v[0] && v[0][0].color} value={100} style={{ width: '80%' }} />
-              </div>
-            ))
-          }
+          <div className={styles.people}>
+            {
+              lines.map(v => (
+                <div>
+                  <Button
+                    size="small"
+                    style={{ color: v && v[0] && v[0][0].color, width: 50 }}
+                    onClick={() => {
+                      dispatch(changeCityCenter(v[0][1].coord));
+                    }}
+                  >{v && v[0] && v[0][0].executorName}
+                  </Button>
+                  {/* <Progress color={v && v[0] && v[0][0].color} value={100} style={{ width: '80%' }} /> */}
+                </div>
+              ))
+            }
+          </div>
         </div>
 
         <ReactEcharts
