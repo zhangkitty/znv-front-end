@@ -24,7 +24,7 @@ export const login = () => {
 
 
 export const initSer = (props) => {
-  console.log(props);
+  console.log(props, 'sdfafsafasdf');
   return request({
     url: '/omc.znv.com/main/fsumanage/getareaoffline.do?groupId=1',
   });
@@ -64,13 +64,13 @@ export const getPictureSer = (props) => {
     },
   }));
 
-  temp.push(request({
-    url: '/aps/api/monitor/picture/show',
-    method: 'post',
-    data: {
-      deviceId: `${id}`,
-    },
-  }));
+  // temp.push(request({
+  //   url: '/aps/api/monitor/picture/show',
+  //   method: 'post',
+  //   data: {
+  //     deviceId: `${id}`,
+  //   },
+  // }));
 
   return Promise.all(temp);
 };

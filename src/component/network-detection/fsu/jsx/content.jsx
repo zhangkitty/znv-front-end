@@ -38,20 +38,21 @@ export default class Content extends React.Component {
             {
               AlarmInfo.length > 0 && AlarmInfo.map(v =>
                 (
-                  <div style={{ display: 'flex', margin: 5 }}>
+                  <div className={styles.deviceInfoLine}>
                     <div style={{ width: '80%' }}>{v.alarmTypeDesc}:{v.alarmTime}</div>
-                    <div>
-                      {
+                    {
                         (function () {
                           const content = <img style={{ width: 450, height: 450 / 16 * 9 }} src={v.imgUrl} alt="没有图片" />;
                           return (
                             <Popover content={content} position="bottom-right" trigger="click">
+                              {
+                                /** 静静的组件Popover包含Button的时候,button的click时间失效 * */
+                              }
                               <Button>查看截屏</Button>
                             </Popover>
                           );
                         }(v))
                       }
-                    </div>
                   </div>
                 ))
             }
@@ -108,7 +109,7 @@ export default class Content extends React.Component {
                     const content = <img style={{ width: 450, height: 450 / 16 * 9 }} src={screenUrl} alt="" />;
                     return (
                       <Popover content={content} position="bottom-right" trigger="click">
-                        <Button style={{ marginLeft: 0 }}>查看截屏</Button>
+                        <Button>查看截屏</Button>
                       </Popover>
                     );
                   }())

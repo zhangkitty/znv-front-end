@@ -22,7 +22,14 @@ function* getProviceDataSaga(action) {
 
 function* initContentSaga(action) {
   const data = yield initContentSer(action.props);
-  return yield put(initContentSuccess(data));
+  yield put(initContentSuccess(data));
+  const props = Object.assign({}, action.props, {
+    AlarmInfo: data[0].data.alarmDatas,
+  });
+
+  const data1 = yield getPictureSer(props);
+  yield put(getPictureSuccess(data1));
+  return null;
 }
 
 function* getPictureSaga(action) {
