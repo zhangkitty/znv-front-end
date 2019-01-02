@@ -1,5 +1,6 @@
 import assign from 'object-assign';
 import * as types from './types';
+import moment from 'moment';
 
 const defaultState = {
   ready: true,
@@ -23,7 +24,10 @@ const defaultState = {
     twoTwo: null,
     twoThree: '',
     twoFour: '',
-    twoFive: [],
+    twoFive: [
+      new Date(moment().subtract(7, 'days')),
+      new Date(),
+    ],
 
     pageNum: 1,
     pageSize: 10,
