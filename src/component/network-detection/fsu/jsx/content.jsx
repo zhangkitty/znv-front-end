@@ -1,7 +1,9 @@
 import React from 'react';
 import { Modal, Button, Popover } from 'shineout';
-import { changeValue, initContent, getPicture, live } from '../actions';
+import { changeValue, initContent, getPicture, live, temperatureTrend, meteTrend } from '../actions';
 import styles from './style.css';
+import Temp from './temperatureEcharts';
+import Mete from './meteEcharts';
 
 
 export default class Content extends React.Component {
@@ -15,7 +17,7 @@ export default class Content extends React.Component {
   render() {
     console.log(this.props);
     const {
-      modelVisiable, dispatch, AlarmInfo, deviceId, statusName, screen, smoke, ydn, statusCode, livingFlag, picUrl, screenUrl, meteTable,
+      modelVisiable, dispatch, AlarmInfo, deviceId, statusName, screen, smoke, ydn, statusCode, livingFlag, picUrl, screenUrl, meteTable, openTime, closeTime, temperature,
     } = this.props;
     return (
       <div>
@@ -25,7 +27,12 @@ export default class Content extends React.Component {
           width={500}
           onClose={() => dispatch(changeValue('modelVisiable', false))}
         >
-          <section style={{ background: '#e6e6e6', marginTop: 15 }}>告警信息</section>
+
+          {
+            AlarmInfo.length > 0 ? <section style={{ background: '#e6e6e6', marginTop: 15 }}>告警信息</section>
+              :
+            <section style={{ color: 'blue', textAlign: 'center' }}>当前无告警信息</section>
+          }
 
           <div>
             {
@@ -50,7 +57,7 @@ export default class Content extends React.Component {
             }
           </div>
 
-          <section style={{ background: '#e6e6e6' }}>告警信息</section>
+          <section style={{ background: '#e6e6e6' }}>设备信息</section>
 
           <div>
             <div className={styles.deviceInfoLine}>
@@ -64,12 +71,12 @@ export default class Content extends React.Component {
             </div>
 
             <div className={styles.deviceInfoLine}>
-              <div style={{ width: '80%' }}>定时开机</div>
+              <div style={{ width: '80%' }}>定时开机:{openTime}</div>
               <Button type="secondary"> 配置 </Button>
             </div>
 
             <div className={styles.deviceInfoLine}>
-              <div style={{ width: '80%' }}>定时关机</div>
+              <div style={{ width: '80%' }}>定时关机:{closeTime}</div>
               <Button type="secondary" > 配置 </Button>
             </div>
 
@@ -95,6 +102,9 @@ export default class Content extends React.Component {
               <div>
                 {
                   (function () {
+                    if (screen === '正常') {
+                      return null;
+                    }
                     const content = <img style={{ width: 450, height: 450 / 16 * 9 }} src={screenUrl} alt="" />;
                     return (
                       <Popover content={content} position="bottom-right" trigger="click">
@@ -117,15 +127,34 @@ export default class Content extends React.Component {
             </div>
 
             <div className={styles.deviceInfoLine}>
-              <span>温度</span>
+              <div style={{ width: '80%' }}>温度</div>
+              {
+                <Button
+                  onClick={() => dispatch(temperatureTrend(this.props))}
+                >查看趋势
+                </Button>
+              }
+
             </div>
+            <Temp {...this.props} />
+
 
             {
-              meteTable.map(v => (
-                <div className={styles.deviceInfoLine}>
-                  <span>{v.key}:</span>
-                  <span>{v.value}</span>
+              meteTable.map((v, idx) => (
+                <div>
+                  <div className={styles.deviceInfoLine}>
+                    <div style={{ width: '80%' }}>{v.key}</div>
+                    <Button onClick={() => {
+                      dispatch(meteTrend(this.props, idx));
+                    }}
+                    >查看趋势
+                    </Button>
+                  </div>
+                  <div>
+                    <Mete {...Object.assign({}, this.props, { idx })} />
+                  </div>
                 </div>
+
               ))
             }
           </div>

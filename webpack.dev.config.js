@@ -40,8 +40,6 @@ module.exports = Object.assign({},config, {
     contentBase: [path.join(__dirname, './')],
     port: 8081,
     disableHostCheck: true,
-    hot:false,
-    inline:false,
     headers: {
       'Access-Control-Allow-Origin': '*',
       "Access-Control-Allow-Headers":'*'

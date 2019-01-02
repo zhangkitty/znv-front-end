@@ -22,3 +22,17 @@ export const live = makeActionCreator(types.live, 'props');
 export const liveSuccess = makeActionCreator(types.liveSuccess, 'data');
 
 export const intoMap = makeActionCreator(types.intoMap, 'value');
+
+
+// 查看温度趋势
+export const temperatureTrend = makeActionCreator(types.temperatureTrend, 'props');
+export const temperatureTrendSuccess = makeActionCreator(types.temperatureTrendSuccess, 'data');
+export const changeTempButton = makeActionCreator(types.changeTempButton, 'props');
+export const changeTempButtonSuccess = makeActionCreator(types.changeTempButtonSuccess, 'data');
+
+
+export const meteTrend = makeActionCreator(types.meteTrend, 'props', 'idx');
+export const meteTrendSuccess = makeActionCreator(types.meteTrendSuccess, 'data', 'idx');
+
+
+export const changeMeteButton = makeActionCreator(types.changeMeteButton, 'props', 'statType', 'idx');

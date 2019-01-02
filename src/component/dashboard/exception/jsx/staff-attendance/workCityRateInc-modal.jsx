@@ -85,6 +85,7 @@ const modal = (props) => {
     >
       <ReactEcharts
         className={styles.workRateIncModalEcharts}
+        style={{ height: data.length * 100 }}
         option={option}
       />
     </Modal>

@@ -1,6 +1,7 @@
 import { request } from 'utils/index';
 import axios from 'axios/index';
 import Cookie from 'utils/js.cookie';
+import getParam from 'utils/getParam';
 
 
 export const login = () => {
@@ -86,3 +87,7 @@ export const liveSer = (props) => {
     },
   });
 };
+
+export const trendSer = param => request({
+  url: `/aps/api/monitor/mete/trend${getParam(param)}`,
+});

@@ -23,6 +23,10 @@ const defaultState = {
   statusCode: '',
   // 设备状态
   statusName: '',
+  // 定时开机
+  openTime: '',
+  // 定时关机
+  closeTime: '',
   // 是否直播中
   livingFlag: '',
   //
@@ -40,6 +44,26 @@ const defaultState = {
   liveUrl: '',
   contentShow: false,
   meteTable: [],
+
+  temperature: {
+    isShow: false,
+    key: 2,
+    dataSource: [],
+  },
+  meteId: {
+    temperature: 10102001,
+    视频设备电压: 10105002,
+    视频设备电流: 10104002,
+    上屏电压: 10105004,
+    上屏电流: 10104004,
+    中屏电压: 10105005,
+    中屏电流: 10104005,
+    下屏电压: 10105006,
+    下屏电流: 10104006,
+    系统电压: 10105003,
+    系统电流: 10104003,
+    系统功率: 10109001,
+  },
 };
 
 
@@ -58,6 +82,9 @@ function addStr(num) {
       str += `${table[idx]}|`;
     }
   });
+  if (str === '') {
+    return '正常';
+  }
   return str.slice(0, -1);
 }
 
@@ -72,15 +99,66 @@ function culmete(obj) {
     middlescreenCurrent: '中屏电流',
     belowScreenVoltage: '下屏电压',
     belowscreenCurrent: '下屏电流',
-    eMeterVoltage: '智能电表电压',
-    eMeterCurrent: '智能电表电流',
-    eMeterPower: '智能电表功率',
+    eMeterVoltage: '系统电压',
+    eMeterCurrent: '系统电流',
+    eMeterPower: '系统功率',
+  };
+  const meteId = {
+    temperature: 10102001,
+    视频设备电压: 10105002,
+    视频设备电流: 10104002,
+    上屏电压: 10105004,
+    上屏电流: 10104004,
+    中屏电压: 10105005,
+    中屏电流: 10104005,
+    下屏电压: 10105006,
+    下屏电流: 10104006,
+    系统电压: 10105003,
+    系统电流: 10104003,
+    系统功率: 10109001,
   };
   return Object.entries(obj).filter(v => meteTable[v[0]])
     .map(t => ({
       key: meteTable[t[0]],
       value: t[1],
+      isShow: false,
+      dataSource: [],
+      statType: 2,
+      meteId: meteId[meteTable[t[0]]],
     }));
+}
+
+function changeMetaTable(meteTable, idx) {
+  return meteTable.map((v, index) => {
+    if (index === idx) {
+      return Object.assign({}, v, {
+        isShow: !v.isShow,
+      });
+    }
+    return v;
+  });
+}
+
+function changeMetaTableSuccess(meteTable, idx, data) {
+  return meteTable.map((v, index) => {
+    if (index === idx) {
+      return Object.assign({}, v, {
+        dataSource: data,
+      });
+    }
+    return v;
+  });
+}
+
+function changeStatType(meteTable, statType, idx) {
+  return meteTable.map((v, index) => {
+    if (index === idx) {
+      return Object.assign({}, v, {
+        statType,
+      });
+    }
+    return v;
+  });
 }
 
 
@@ -124,14 +202,20 @@ const reducer = (state = defaultState, action) => {
         0: '未直播',
         1: '直播中',
       };
+      const tableSmoke = {
+        0: '无烟',
+        1: '异常',
+      };
       return assign({}, state, {
         AlarmInfo: action.data[0].data.alarmDatas,
         deviceId: action.data[0].data.deviceId,
         statusCode: action.data[0].data.statusCode,
+        openTime: action.data[0].data.openTime,
+        closeTime: action.data[0].data.closeTime,
         livingFlag: table1[action.data[0].data.livingFlag],
         statusName: action.data[0].data.statusName,
         screen: addStr(action.data[0].data.mete.screen),
-        smoke: table[action.data[0].data.mete.smoke],
+        smoke: tableSmoke[action.data[0].data.mete.smoke],
         ydn: table[action.data[0].data.mete.ydn],
         meteTable: culmete(action.data[0].data.mete),
       });
@@ -156,10 +240,48 @@ const reducer = (state = defaultState, action) => {
             lng: action.value[0],
             lat: action.value[1],
             deviceId: action.value[2],
-
           }],
         }),
       });
+
+    case types.temperatureTrend:
+      return assign({}, state, {
+        temperature: assign({}, state.temperature, {
+          isShow: !state.temperature.isShow,
+        }),
+      });
+
+    case types.temperatureTrendSuccess:
+      return assign({}, state, {
+        temperature: assign({}, state.temperature, {
+          dataSource: action.data.data,
+        }),
+      });
+
+    case types.meteTrend:
+      return assign({}, state, {
+        meteTable: changeMetaTable(state.meteTable, action.idx),
+      });
+
+
+    case types.meteTrendSuccess:
+      return assign({}, state, {
+        meteTable: changeMetaTableSuccess(state.meteTable, action.idx, action.data.data),
+      });
+
+
+    case types.changeTempButton:
+      return assign({}, state, {
+        temperature: assign({}, state.temperature, {
+          key: action.props.temperature.key,
+        }),
+      });
+
+    case types.changeMeteButton:
+      return assign({}, state, {
+        meteTable: changeStatType(state.meteTable, action.statType, action.idx),
+      });
+
     default:
       return state;
   }
