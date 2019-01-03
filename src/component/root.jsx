@@ -12,6 +12,8 @@ import Login from './login/view';
 
 // const Home = () => <div>首页</div>;
 
+Cookie.set('backGroupId', 1);
+
 /* eslint-disable */
 const WrapperComponent = Component => props => <Component {...props} params={props.match.params} />;
 

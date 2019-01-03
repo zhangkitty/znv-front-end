@@ -39,15 +39,21 @@
     /*right: 0px;*/
     /*height: 800px;*/
     /*padding: 30px;*/
-    display: flex;
-    height: 800px;
+    height: 600px;
     margin-top: 20px;
 }
 
 .mapLeft{
-    flex-basis: 200px;
     margin-left: 20px;
+    /*display: flex;*/
 }
+
+.people{
+    display: flex;
+    flex-wrap:wrap;
+}
+
+
 
 .mapRight{
     width:100%;
@@ -65,4 +71,14 @@
 
 .mapPerson>div{
     height: 100% !important;
+}
+
+.workRateIncModal{
+    width: 500px;
+    height: 500px;
+    overflow: scroll;
+}
+
+.workRateIncModalEcharts{
+    /*height: 1000px !important;*/
 }

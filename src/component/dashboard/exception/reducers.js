@@ -1,6 +1,7 @@
 import assign from 'object-assign';
 import moment from 'moment';
 import * as types from './types';
+import { closeWorkRateInc, openWorkTimeInc } from './action';
 
 export const defaultState = {
   ready: false,
@@ -110,6 +111,23 @@ export const defaultState = {
       cityCenter: [],
       marker: null,
     },
+    workRateIncModal: {
+      visible: false,
+      dataSource: [],
+    },
+    workTimeIncModal: {
+      visible: false,
+      dataSource: [],
+    },
+    workCityRateIncModal: {
+      visible: false,
+      dataSource: [],
+    },
+    workCityTimeIncModal: {
+      visible: false,
+      dataSource: [],
+    },
+
   },
 };
 
@@ -128,6 +146,8 @@ const transfrom = data => data.map(v => assign({}, v, {
       cityList: [],
       level: `${a.level}.${a.areaCode}`,
       person: true,
+      lat: a.lat,
+      lng: a.lng,
     }));
     if (a.cityList.length > 0) {
       return transfrom(a.cityList);
@@ -395,6 +415,90 @@ const reducer = (state = defaultState, action) => {
         }),
       });
 
+      // 打开Modal
+    case types.openWorkRateInc:
+      return assign({}, state, {
+        staffAttendance: assign({}, state.staffAttendance, {
+          workRateIncModal: assign({}, state.staffAttendance.workRateIncModal, {
+            visible: true,
+          }),
+        }),
+      });
+
+
+    case types.openWorkRateIncSuccess:
+      return assign({}, state, {
+        staffAttendance: assign({}, state.staffAttendance, {
+          workRateIncModal: assign({}, state.staffAttendance.workRateIncModal, {
+            dataSource: action.data.data.list,
+          }),
+        }),
+      });
+
+      // 关闭Modal
+    case types.closeWorkRateInc:
+      return assign({}, state, {
+        staffAttendance: assign({}, state.staffAttendance, {
+          workRateIncModal: assign({}, state.staffAttendance.workRateIncModal, {
+            visible: false,
+          }),
+        }),
+      });
+
+    case types.openWorkTimeInc:
+      return assign({}, state, {
+        staffAttendance: assign({}, state.staffAttendance, {
+          workTimeIncModal: assign({}, state.staffAttendance.workTimeIncModal, {
+            visible: true,
+          }),
+        }),
+      });
+
+    case types.openWorkTimeIncSuccess:
+      return assign({}, state, {
+        staffAttendance: assign({}, state.staffAttendance, {
+          workTimeIncModal: assign({}, state.staffAttendance.workTimeIncModal, {
+            dataSource: action.data.data.list,
+          }),
+        }),
+      });
+
+
+    case types.closeWorkTimeInc:
+      return assign({}, state, {
+        staffAttendance: assign({}, state.staffAttendance, {
+          workTimeIncModal: assign({}, state.staffAttendance.workTimeIncModal, {
+            visible: false,
+          }),
+        }),
+      });
+
+    case types.openCityWorkRateInc:
+      return assign({}, state, {
+        staffAttendance: assign({}, state.staffAttendance, {
+          workCityRateIncModal: assign({}, state.staffAttendance.workCityRateIncModal, {
+            visible: true,
+          }),
+        }),
+      });
+
+    case types.openCityWorkRateIncSuccess:
+      return assign({}, state, {
+        staffAttendance: assign({}, state.staffAttendance, {
+          workCityRateIncModal: assign({}, state.staffAttendance.workCityRateIncModal, {
+            dataSource: action.data.data.list,
+          }),
+        }),
+      });
+
+    case types.closeCityWorkRateInc:
+      return assign({}, state, {
+        staffAttendance: assign({}, state.staffAttendance, {
+          workCityRateIncModal: assign({}, state.staffAttendance.workCityRateIncModal, {
+            visible: false,
+          }),
+        }),
+      });
 
     default:
       return state;

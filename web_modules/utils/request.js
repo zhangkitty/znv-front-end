@@ -27,7 +27,9 @@ const fetch = async (options) => {
         expires: date,
       });
       authHeader = {
-        headers: { Authorization: `Bearer ${tokenData.access_token}` },
+        headers: {
+          Authorization: `Bearer ${tokenData.access_token}`,
+        },
       };
     }
     console.log(tokenData);
@@ -60,8 +62,21 @@ const fetch = async (options) => {
   }
   switch (method.toLowerCase()) {
     case 'get':
-      return axios.get(url);
+      // return axios.get(url);
+      // if (url.indexOf('vue') !== -1) {
+      //   return axios.get(url, {});
+      // }
       // return axios.get(url, { params: data, ...authHeader });
+      // return axios.get(url);
+
+      if (url.indexOf('vue') !== -1) {
+        // return axios.get(url, {
+        //   headers: 'Content-Type',
+        // });
+        return axios.get(url);
+      }
+      // return axios.get(url, { params: data, ...authHeader });
+      return axios.get(url);
     case 'delete':
       return axios.delete(url, { data, ...authHeader });
     case 'head':
