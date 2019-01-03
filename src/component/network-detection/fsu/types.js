@@ -12,6 +12,8 @@ export let initContentSuccess;
 
 export let getPicture;
 export let getPictureSuccess;
+export let getPicture1;
+export let getPicture1Success;
 
 
 export let live;

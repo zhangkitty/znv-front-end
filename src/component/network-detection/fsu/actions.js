@@ -14,9 +14,11 @@ export const initContent = makeActionCreator(types.initContent, 'props');
 export const initContentSuccess = makeActionCreator(types.initContentSuccess, 'data');
 
 export const getPicture = makeActionCreator(types.getPicture, 'props');
+export const getPicture1 = makeActionCreator(types.getPicture1, 'props');
 
 
 export const getPictureSuccess = makeActionCreator(types.getPictureSuccess, 'data');
+export const getPicture1Success = makeActionCreator(types.getPicture1Success, 'data');
 
 export const live = makeActionCreator(types.live, 'props');
 export const liveSuccess = makeActionCreator(types.liveSuccess, 'data');

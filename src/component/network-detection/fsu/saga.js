@@ -1,8 +1,17 @@
 import { message } from 'antd';
 import { takeLatest, put } from 'redux-saga/effects';
 import * as types from './types';
-import { trendSer, initSer, getProviceDataSer, login, initContentSer, getPictureSer, liveSer } from './server';
-import { meteTrendSuccess, temperatureTrendSuccess, initSuccess, getProviceDataSuccess, initContentSuccess, liveSuccess, getPictureSuccess } from './actions';
+import { getPicture1Ser,trendSer, initSer, getProviceDataSer, login, initContentSer, getPictureSer, liveSer } from './server';
+import {
+  meteTrendSuccess,
+  temperatureTrendSuccess,
+  initSuccess,
+  getProviceDataSuccess,
+  initContentSuccess,
+  liveSuccess,
+  getPictureSuccess,
+  getPicture1Success,
+} from './actions';
 
 
 function* initSaga(action) {
@@ -36,6 +45,12 @@ function* getPictureSaga(action) {
   const data = yield getPictureSer(action.props);
   return yield put(getPictureSuccess(data));
 }
+
+function* getPicture1Saga(action) {
+  const data = yield getPicture1Ser(action.props);
+  return yield put(getPicture1Success(data));
+}
+
 
 function* liveSaga(action) {
   const data = yield liveSer(action.props);
@@ -102,4 +117,5 @@ export default function* () {
   yield takeLatest(types.meteTrend, meteTrendSaga);
   yield takeLatest(types.changeTempButton, changeTempButtonSaga);
   yield takeLatest(types.changeMeteButton, changeMeteButtonSaga);
+  yield takeLatest(types.getPicture1, getPicture1Saga);
 }

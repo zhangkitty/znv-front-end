@@ -4,3 +4,8 @@ import * as types from './types';
 export const changeValue = makeActionCreator(types.CHANGE_VALUE, 'key', 'value');
 
 export const init = makeActionCreator(types.init, 'props');
+export const initSerSuccess = makeActionCreator(types.initSerSuccess, 'data');
+
+export const changeCity = makeActionCreator(types.changeCity, 'props', 'd');
+export const changeCitySuccess = makeActionCreator(types.changeCitySuccess, 'data');
+

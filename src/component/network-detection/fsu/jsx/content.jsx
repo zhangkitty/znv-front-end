@@ -1,6 +1,7 @@
 import React from 'react';
-import { Modal, Button, Popover } from 'shineout';
-import { changeValue, initContent, getPicture, live, temperatureTrend, meteTrend } from '../actions';
+import { Modal, Button } from 'shineout';
+import { Popover } from 'antd';
+import { changeValue, initContent, getPicture, live, temperatureTrend, meteTrend, getPicture1 } from '../actions';
 import styles from './style.css';
 import Temp from './temperatureEcharts';
 import Mete from './meteEcharts';
@@ -42,9 +43,13 @@ export default class Content extends React.Component {
                     <div style={{ width: '80%' }}>{v.alarmTypeDesc}:{v.alarmTime}</div>
                     {
                         (function () {
-                          const content = <img style={{ width: 450, height: 450 / 16 * 9 }} src={v.imgUrl} alt="没有图片" />;
+                          const content = (<img
+                            style={{ width: 450, height: 450 / 16 * 9 }}
+                            src={v.imgUrl}
+                            alt="没有图片"
+                          />);
                           return (
-                            <Popover content={content} position="bottom-right" trigger="click">
+                            <Popover content={content} trigger="click" overlayClassName={styles.popover} overlayStyle={{ zIndex: 1051 }}>
                               {
                                 /** 静静的组件Popover包含Button的时候,button的click时间失效 * */
                               }
@@ -102,17 +107,22 @@ export default class Content extends React.Component {
               <div style={{ width: '80%' }}>屏幕:{screen}</div>
               <div>
                 {
-                  (function () {
+                  (function (props) {
                     if (screen === '正常') {
                       return null;
                     }
                     const content = <img style={{ width: 450, height: 450 / 16 * 9 }} src={screenUrl} alt="" />;
                     return (
-                      <Popover content={content} position="bottom-right" trigger="click">
-                        <Button>查看截屏</Button>
+                      <Popover content={content} position="bottom-right" trigger="click" overlayStyle={{ zIndex: 1051 }}>
+                        <Button onClick={() => {
+                          console.log(1);
+                          dispatch(getPicture1(props));
+                        }}
+                        >查看截屏
+                        </Button>
                       </Popover>
                     );
-                  }())
+                  }(this.props))
                 }
               </div>
             </div>

@@ -55,7 +55,7 @@ export default class MyBMap extends React.Component {
           id: v.deviceId,
         })));
         dispatch(changeValue('modelVisiable', true));
-        dispatch(getPicture(this.props));
+        // dispatch(getPicture(this.props));
       });
     });
   }

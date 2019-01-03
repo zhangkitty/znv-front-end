@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { init } from './actions';
 import { Select, DatePicker, Button } from 'shineout';
+import { connect } from 'react-redux';
+import { init,changeCity } from './actions';
 import styles from './style.css';
 import AttendanceTable from './table';
 
@@ -9,30 +9,30 @@ import AttendanceTable from './table';
 class AttendanceManagement extends Component {
   constructor(props) {
     super(props);
-    const { dispatch } = props;
+    const { dispatch, cityList } = props;
     dispatch(init(props));
   }
 
   render() {
-    const data = ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'violet'];
+    const { dispatch, cityList, personList } = this.props;
     return (
       <div>
         <div className={styles.oneLine}>
           <Select
             style={{ width: 200, marginRight: 20 }}
             keygen
-            data={data}
+            data={cityList}
             placeholder="城市"
-            onChange={d => console.log(d)}
-            onFilter={text => d => d.indexOf(text) >= 0}
+            onChange={d => dispatch(changeCity(this.props, d))}
+            renderItem={d => d.areaName}
           />
           <Select
+            disabled
             style={{ width: 200, marginRight: 20 }}
             keygen
-            data={data}
+            data={[]}
             placeholder="团队"
             onChange={d => console.log(d)}
-            onFilter={text => d => d.indexOf(text) >= 0}
           />
           <DatePicker
             style={{ width: 200, marginRight: 20 }}
@@ -42,10 +42,10 @@ class AttendanceManagement extends Component {
           <Select
             style={{ width: 200, marginRight: 20 }}
             keygen
-            data={data}
+            data={personList}
             placeholder="运维人员"
             onChange={d => console.log(d)}
-            onFilter={text => d => d.indexOf(text) >= 0}
+            renderItem={d => d.executorName}
           />
         </div>
 

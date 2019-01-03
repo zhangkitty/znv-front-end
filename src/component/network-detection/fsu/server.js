@@ -75,6 +75,17 @@ export const getPictureSer = (props) => {
   return Promise.all(temp);
 };
 
+export const getPicture1Ser = (props) => {
+  const { deviceId } = props;
+  return request({
+    url: '/aps/api/monitor/picture/show',
+    method: 'post',
+    data: {
+      deviceId,
+    },
+  });
+};
+
 export const liveSer = (props) => {
   const { id } = props;
   return request({

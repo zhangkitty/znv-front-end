@@ -1,5 +1,6 @@
 import assign from 'object-assign';
 import * as types from './types';
+import { temperatureTrendSuccess } from './actions';
 
 const defaultState = {
   modelVisiable: false,
@@ -228,7 +229,12 @@ const reducer = (state = defaultState, action) => {
     case types.getPictureSuccess:
       return assign({}, state, {
         AlarmInfo: state.AlarmInfo.map((v, idx) => Object.assign({}, v, { imgUrl: action.data[idx].data })),
-        screenUrl: action.data.slice(-1)[0] && action.data.slice(-1)[0].data,
+        // screenUrl: action.data.slice(-1)[0] && action.data.slice(-1)[0].data,
+      });
+
+    case types.getPicture1Success:
+      return assign({}, state, {
+        screenUrl: action.data.data && action.data.data.img,
       });
 
 
