@@ -1,5 +1,5 @@
 import { request } from 'utils/index';
-
+import getParam from 'utils/getParam';
 
 export const initSer = props => Promise.all([
   request({
@@ -13,8 +13,11 @@ export const initSer = props => Promise.all([
 export const changeCitySer = ({ props, d }) => {
   console.log(props);
   console.log(d);
-  request({
-    url: `/rqs/attendance/executorlist?areaCode=${d.areaCode}`,
+  const data = {
+    areaCode: d,
+  };
+  return request({
+    url: `/rqs/attendance/executorlist${getParam(data)}`,
   });
 };
 

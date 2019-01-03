@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Select, DatePicker, Button } from 'shineout';
 import { connect } from 'react-redux';
-import { init,changeCity } from './actions';
+import { search,init, changeCity, changePerson } from './actions';
 import styles from './style.css';
 import AttendanceTable from './table';
 
@@ -14,7 +14,9 @@ class AttendanceManagement extends Component {
   }
 
   render() {
-    const { dispatch, cityList, personList } = this.props;
+    const {
+      dispatch, cityList, personList, formData: { cityValue, personValue, date },
+    } = this.props;
     return (
       <div>
         <div className={styles.oneLine}>
@@ -23,8 +25,13 @@ class AttendanceManagement extends Component {
             keygen
             data={cityList}
             placeholder="城市"
-            onChange={d => dispatch(changeCity(this.props, d))}
+            onChange={(d) => {
+              dispatch(changeCity(this.props, d));
+            }}
+            defaultValue={cityValue}
             renderItem={d => d.areaName}
+            value={cityValue}
+            format={d => d.areaCode}
           />
           <Select
             disabled
@@ -37,20 +44,27 @@ class AttendanceManagement extends Component {
           <DatePicker
             style={{ width: 200, marginRight: 20 }}
             range={86400 * 10}
-            value={[new Date(), new Date()]}
+            value={date}
           />
           <Select
             style={{ width: 200, marginRight: 20 }}
             keygen
             data={personList}
             placeholder="运维人员"
-            onChange={d => console.log(d)}
+            onChange={(d) => {
+              dispatch(changePerson(this.props, d));
+            }}
             renderItem={d => d.executorName}
+            value={personValue}
+            format={d => d.executor}
           />
         </div>
 
         <div className={styles.twoLine}>
-          <Button>查询</Button>
+          <Button
+            onClick={() => dispatch(search(this.props))}
+          >查询
+          </Button>
           <Button>清空</Button>
           <Button>导出</Button>
         </div>
