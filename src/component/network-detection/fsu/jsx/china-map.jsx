@@ -49,7 +49,7 @@ export default class ChinaMap extends React.Component {
       }
       if (params.name === '深圳市') {
         dispatch(changeValue('bmapShow', true));
-        dispatch(intoMap([114.0661345267, 22.5485544122, '442c051f0334']));
+        dispatch(intoMap([113.9517284642, 22.5434981330, '442c051f0334']));
         return null;
       }
       if (params.data.groupId < 100) {
