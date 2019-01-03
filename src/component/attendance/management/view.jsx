@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Select, DatePicker, Button } from 'shineout';
 import { connect } from 'react-redux';
-import { search,init, changeCity, changePerson } from './actions';
+import { search, init, changeCity, changePerson } from './actions';
 import styles from './style.css';
 import AttendanceTable from './table';
 
@@ -45,6 +45,7 @@ class AttendanceManagement extends Component {
             style={{ width: 200, marginRight: 20 }}
             range={86400 * 10}
             value={date}
+            data-bind="formData.date"
           />
           <Select
             style={{ width: 200, marginRight: 20 }}
@@ -65,7 +66,6 @@ class AttendanceManagement extends Component {
             onClick={() => dispatch(search(this.props))}
           >查询
           </Button>
-          <Button>清空</Button>
           <Button>导出</Button>
         </div>
 

@@ -11,3 +11,8 @@ export let changePersonSuccess;
 
 export let search;
 export let searchSuccess;
+
+export let changePage;
+export let changePageSuccess;
+
+export let changePageSize;

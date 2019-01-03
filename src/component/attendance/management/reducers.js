@@ -7,6 +7,8 @@ const defaultState = {
 
   personList: [],
 
+  dataSource: [],
+
   formData: {
     cityValue: '',
     date: [
@@ -14,6 +16,9 @@ const defaultState = {
       new Date(moment()),
     ],
     personValue: null,
+    page: 1,
+    pageSize: 10,
+    total: 0,
   },
 
 };
@@ -44,6 +49,28 @@ export default (state = defaultState, action) => {
       return assign({}, state, {
         formData: assign({}, state.formData, {
           personValue: action.d,
+        }),
+      });
+
+    case types.searchSuccess:
+      return assign({}, state, {
+        dataSource: action.data.data.list,
+        formData: assign({}, state.formData, {
+          total: action.data.data.total,
+        }),
+      });
+
+    case types.changePage:
+      return assign({}, state, {
+        formData: assign({}, state.formData, {
+          page: action.pageValue,
+        }),
+      });
+
+    case types.changePageSize:
+      return assign({}, state, {
+        formData: assign({}, state.formData, {
+          pageSize: action.size,
         }),
       });
     default:

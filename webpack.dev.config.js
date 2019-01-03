@@ -60,8 +60,16 @@ module.exports = Object.assign({},config, {
         changeOrigin: true
       },
 
+      // '/rqs': {
+      //   target: 'http://10.45.156.186:9008',
+      //   // target: 'http://127.0.0.1:9001',
+      //   // pathRewrite: { '^/rqs': '' },
+      //   secure: false,
+      //   changeOrigin: true
+      // },
+
       '/rqs': {
-        target: 'http://10.45.156.186:9008',
+        target: 'http://10.45.148.82:9001',
         // target: 'http://127.0.0.1:9001',
         // pathRewrite: { '^/rqs': '' },
         secure: false,
@@ -74,11 +82,6 @@ module.exports = Object.assign({},config, {
         secure: false,
         changeOrigin: true
       },
-      // '/aps':{
-      //   target: 'http://10.45.156.186:9001',
-      //   secure: false,
-      //   changeOrigin: true
-      // },
 
       '/aps':{
         target: 'http://120.78.21.57:9114',
