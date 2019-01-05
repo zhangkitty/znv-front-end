@@ -19,6 +19,14 @@ export const changeDetailDay = makeActionCreator(types.changeDetailDay, 'props')
 export const changeDetailDaySuccess = makeActionCreator(types.changeDetailDaySuccess, 'data');
 
 // 趋势数据中选择日期(在线率）
+export const changeCityTrendDays = makeActionCreator(types.changeCityTrendDays, 'props');
+export const changeCityTrendDaysSuccess = makeActionCreator(types.changeCityTrendDaysSuccess, 'data');
+export const changeCityTrendDays1 = makeActionCreator(types.changeCityTrendDays1, 'props');
+export const changeCityTrendDays1Success = makeActionCreator(types.changeCityTrendDays1Success, 'data');
+
+export const changeCityList = makeActionCreator(types.changeCityList, 'value');
+export const changeCityList1 = makeActionCreator(types.changeCityList1, 'value');
+
 export const changeTrendDays = makeActionCreator(types.changeTrendDays, 'props');
 export const changeTrendDaysSuccess = makeActionCreator(types.changeTrendDaysSuccess, 'data');
 
