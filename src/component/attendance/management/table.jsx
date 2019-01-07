@@ -23,7 +23,7 @@ const AttendanceTable = (props) => {
       title: '操作',
       render: d =>
         (<Button
-          onClick={() => dispatch(push('/attendance/detail'))}
+          onClick={() => dispatch(push(`/attendance/detail/${d.executor}/${d.dataTime}`))}
           type="link"
         >查看详情
          </Button>),

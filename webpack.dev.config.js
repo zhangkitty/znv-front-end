@@ -54,7 +54,7 @@ module.exports = Object.assign({},config, {
       },
 
       '/rqsonline': {
-        target: 'http://report.znv.com:8012',
+        target: 'http://47.107.237.125:8012',
         pathRewrite:{'/rqsonline':''},
         secure: false,
         changeOrigin: true

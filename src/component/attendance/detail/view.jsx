@@ -8,8 +8,8 @@ import DetailMap from './jsx/detail-map';
 class Detail extends Component {
   constructor(props) {
     super(props);
-    const { params: { id }, dispatch } = props;
-    dispatch(init(props));
+    const { params: { id, dateTime }, dispatch } = props;
+    dispatch(init(id, dateTime));
   }
 
   render() {
