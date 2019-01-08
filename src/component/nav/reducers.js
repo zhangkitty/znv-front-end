@@ -15,6 +15,28 @@ const menus = [
     link: '/dashboard/exception',
   },
   {
+    title: '设备管理',
+    icon: 'bars',
+    link: '/device-management',
+    children: [
+      {
+        title: '资产列表',
+        link: '/device-management/list',
+      },
+    ],
+  },
+  {
+    title: '告警管理',
+    icon: 'bars',
+    link: '/alarm-management',
+    children: [
+      {
+        title: '告警列表',
+        link: '/alarm-management/list',
+      },
+    ],
+  },
+  {
     title: '调度中心',
     icon: 'bars',
     link: '/dispatch-center',
@@ -92,17 +114,28 @@ const menus = [
     ],
   },
   {
-    title: '任务',
+    title: '任务管理',
     icon: 'bars',
-    link: '/task',
+    link: '/task-manager',
     children: [
       {
-        title: '任务管理',
-        link: '/task/task-manager/list',
-
+        title: '工单列表',
+        link: '/task-manager/work-order-list',
       },
     ],
   },
+  // {
+  //   title: '任务',
+  //   icon: 'bars',
+  //   link: '/task',
+  //   children: [
+  //     {
+  //       title: '任务管理',
+  //       link: '/task/task-manager/list',
+  //
+  //     },
+  //   ],
+  // },
   // {
   //   title: '权限管理',
   //   icon: 'bars',
