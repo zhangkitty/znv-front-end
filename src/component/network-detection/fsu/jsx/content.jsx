@@ -93,7 +93,7 @@ export default class Content extends React.Component {
                 statusCode ?
                   <Button
                     onClick={() => {
-                    window.open(`http://120.79.12.124/dashboard/index.html#/video/${deviceId}`, '_blank');
+                    window.open(`http://120.79.12.124:9000/dashboard/index.html#/video/${deviceId}`, '_blank');
                   }}
                   >观看
                   </Button>
