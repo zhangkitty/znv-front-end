@@ -49,6 +49,37 @@ const reducer = (state = defaultState, action) => {
       return assign({}, state, {
         searchLoading: false,
         dataSource: action.data.data.list,
+        total: action.data.data.total,
+      });
+
+    case types.changePage:
+      return assign({}, state, {
+        searchLoading: true,
+        formData: assign({}, state.formData, {
+          pageNum: action.current,
+        }),
+      });
+
+    case types.changePageSuccess:
+      return assign({}, state, {
+        searchLoading: false,
+        dataSource: action.data.data.list,
+      });
+
+
+    case types.changePageSize:
+      return assign({}, state, {
+        searchLoading: true,
+        formData: assign({}, state.formData, {
+          pageSize: action.size,
+          pageNum: action.current,
+        }),
+      });
+
+    case types.changePageSizeSuccess:
+      return assign({}, state, {
+        searchLoading: false,
+        dataSource: action.data.data.list,
       });
     default:
       return state;
