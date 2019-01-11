@@ -5,6 +5,39 @@ import { Table } from 'shineout';
 
 require('echarts/map/js/china.js');
 require('echarts/map/js/province/jiangsu');
+require('echarts/map/js/province/zhejiang');
+require('echarts/map/js/province/anhui');
+require('echarts/map/js/province/aomen');
+require('echarts/map/js/province/beijing');
+require('echarts/map/js/province/chongqing');
+require('echarts/map/js/province/fujian');
+require('echarts/map/js/province/gansu');
+require('echarts/map/js/province/guangdong');
+require('echarts/map/js/province/guangxi');
+require('echarts/map/js/province/guizhou');
+require('echarts/map/js/province/hainan');
+require('echarts/map/js/province/hebei');
+require('echarts/map/js/province/heilongjiang');
+require('echarts/map/js/province/henan');
+require('echarts/map/js/province/hubei');
+require('echarts/map/js/province/hunan');
+require('echarts/map/js/province/jiangxi');
+require('echarts/map/js/province/jilin');
+require('echarts/map/js/province/liaoning');
+require('echarts/map/js/province/neimenggu');
+require('echarts/map/js/province/ningxia');
+require('echarts/map/js/province/qinghai');
+require('echarts/map/js/province/shandong');
+require('echarts/map/js/province/shanghai');
+require('echarts/map/js/province/shanxi');
+require('echarts/map/js/province/shanxi1');
+require('echarts/map/js/province/sichuan');
+require('echarts/map/js/province/taiwan');
+require('echarts/map/js/province/tianjin');
+require('echarts/map/js/province/xianggang');
+require('echarts/map/js/province/xinjiang');
+require('echarts/map/js/province/xizang');
+require('echarts/map/js/province/yunnan');
 
 function addStr(str) {
   if (str) {
@@ -14,21 +47,35 @@ function addStr(str) {
 }
 
 export default class ChinaMap extends React.Component {
+  state={
+    // 两个图层之间的跳转
+    jump: false,
+  }
+
   componentDidMount() {
+    const { staffAttendance: { detailData: { dataSource } } } = this.props;
     this.reactEcharts.getEchartsInstance().on('click', (params) => {
+      console.log(params.name);
+      if (['上海', '北京', '天津', '重庆'].includes(params.name)) {
+        return null;
+      }
+      if (params.name === '') {
+        this.setState({ jump: !this.state.jump });
+      }
+
+
+      const cityRateRspDto = params.data.dataSource.filter(v => v.areaCode === params.data.areaCode)[0].cityRateRspDto;
       this.reactEcharts.getEchartsInstance().setOption(
         {
-          // backgroundColor: '#f2f2f2',
           title: {
-            text: 'ppppp',
+            text: `${params.name}省考勤率`,
             subtext: '省级图',
             x: 'center',
             y: '5%',
           },
           series: [{
-            // name: '生猪',
             type: 'map',
-            mapType: '江苏',
+            mapType: `${params.name}`,
             roam: false,
             itemStyle: {
               normal: {
@@ -43,7 +90,10 @@ export default class ChinaMap extends React.Component {
               },
 
             },
-            data: [],
+            data: cityRateRspDto.map(v => Object.assign({}, v, {
+              name: v.areaName,
+              value: v.workRate,
+            })),
           }],
         },
         false,
@@ -54,6 +104,7 @@ export default class ChinaMap extends React.Component {
 
 
   render() {
+    console.log(this.state.visible);
     const map = {
       130000: '河北',
       370000: '山东',
@@ -91,13 +142,13 @@ export default class ChinaMap extends React.Component {
     const mydata = dataSource.map(v => ({
       name: map[v.areaCode],
       value: v.workRate,
+      areaCode: v.areaCode,
+      dataSource,
     }));
-
     const tipData = dataSource.map(v => ({
       name: map[v.areaCode],
       value: v.cityRateRspDto,
     }));
-
 
     const option = {
       // backgroundColor: '#f2f2f2',

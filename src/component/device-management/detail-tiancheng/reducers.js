@@ -3,29 +3,8 @@ import * as types from './types';
 
 export const defaultState = {
   ready: true,
-  cityData: [],
-  receiveData: [
-    { value: '', name: '全部' },
-    { value: 1, name: '已接收' },
-    { value: 0, name: '未接收' },
-  ],
-  onlineData: [
-    { value: '', name: '全部' },
-    { value: 1, name: '在线' },
-    { value: 0, name: '离线' },
-  ],
-  dataSource: [],
-  total: '',
-  formData: {
-    city: '',
-    name: '',
-    Id: '',
-    receiveState: '',
-    onlineState: '',
-    pageNum: 1,
-    pageSize: 10,
-  },
-
+  type: '天呈',
+  initData: {},
 };
 
 const reducer = (state = defaultState, action) => {
@@ -36,8 +15,8 @@ const reducer = (state = defaultState, action) => {
       });
     case types.initSuccess:
       return assign({}, state, {
-        cityData: [{ areaCode: '', areaName: '全国' }, ...action.data.data.list],
         ready: true,
+        initData: action.data.data,
       });
     default:
       return state;

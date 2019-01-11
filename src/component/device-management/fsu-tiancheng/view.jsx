@@ -3,22 +3,18 @@ import PropTypes from 'prop-types';
 import { Spin } from 'antd';
 import { connect } from 'react-redux';
 import { init } from './action';
-import AssetInfo from './jsx/assetInfo';
+import { defaultState } from './reducers';
 
 class Container extends React.Component {
-  constructor(props) {
-    super(props);
-    const { dispatch, params: { id } } = this.props;
-    console.log(id);
-    dispatch(init(this.props, id));
+  componentWillMount() {
+    this.props.dispatch(init({ defaultState }));
   }
-
   render() {
     const { ready } = this.props;
     if (ready) {
       return (
         <div>
-          <AssetInfo {...this.props} />
+          sdafafa
         </div>
       );
     }
@@ -30,6 +26,10 @@ class Container extends React.Component {
   }
 }
 
+Container.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  ready: PropTypes.bool.isRequired,
+};
 
-const stateToProp = state => state['device-management/detail-tiancheng'];
+const stateToProp = state => state['device-management/fsu-tiancheng'];
 export default connect(stateToProp)(Container);

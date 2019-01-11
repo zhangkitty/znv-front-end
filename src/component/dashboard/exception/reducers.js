@@ -117,7 +117,7 @@ export const defaultState = {
         { value: 3, name: '按季', disabled: true },
       ],
       choosedImensiond: 0,
-      choosedData: moment().format('YYYY-MM-DD'),
+      choosedData: moment().subtract(1, 'days').format('YYYY-MM-DD'),
       showType: [
         { value: 1, name: '地图' },
         { value: 2, name: '柱状图' },

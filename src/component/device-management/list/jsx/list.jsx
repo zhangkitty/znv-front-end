@@ -91,7 +91,10 @@ const List = (props) => {
       title: '操作',
       align: 'center',
       width: 100,
-      render: () => <Link to="/dashboard/ppppp">查看详情</Link>,
+      render: (text, record) => {
+        console.log(record);
+        return <Link to={`/device-management/detail-tiancheng/${record.assetCode}`}>查看详情</Link>;
+      },
     },
   ];
   return (

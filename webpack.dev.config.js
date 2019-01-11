@@ -53,6 +53,14 @@ module.exports = Object.assign({},config, {
         changeOrigin: true
       },
 
+      '/rqs-dftc':{
+        target: 'http://10.45.148.82:9009',
+        // target: 'http://127.0.0.1:9001',
+        // pathRewrite: { '^/rqs': '' },
+        secure: false,
+        changeOrigin: true
+      },
+
       '/rqsonline': {
         target: 'http://47.107.237.125:8012',
         pathRewrite:{'/rqsonline':''},
