@@ -1,50 +1,95 @@
 import React from 'react';
+import Page from 'shein-lib/pagination';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Table } from 'antd';
+import { changeSelect, changePage, changePageSize } from '../action';
 
 const List = (props) => {
   const {
-    list,
-    dataLoading,
+    dataSource,
+    tableLoading,
+    dispatch,
+    total,
+    selectedRowKeys,
+    formData: {
+      pageNum,
+      pageSize,
+    },
   } = props;
+  console.log(dataSource.length);
   const columns = [
     {
-      title: '资产ID',
+      title: '设备名称',
       width: 100,
+      dataIndex: 'name',
     },
     {
-      title: '资产名称',
+      title: '城市',
       width: 100,
+      dataIndex: 'areaName',
     },
     {
-      title: '省市区',
+      title: '更新时间',
       width: 100,
+      dataIndex: 'updateTime',
     },
     {
-      title: '接收状态',
+      title: '工单类型',
       width: 100,
+      dataIndex: 'woType',
     },
     {
-      title: '在线状态',
+      title: '工单状态',
       width: 100,
+      dataIndex: 'orderState',
     },
     {
-      title: '绑定设备',
+      title: '处理人',
       width: 100,
+      dataIndex: 'handleName',
+    },
+    {
+      title: '创建时间',
+      width: 100,
+      dataIndex: 'createTime',
     },
     {
       title: '操作',
       width: 100,
+      render: (text, record) => {
+        console.log(record);
+        return <Link to={`/task-manager/detail-tiancheng/${record.taskId}`}>查看详情</Link>;
+      },
     },
   ];
+
+  const rowSelection = {
+    selectedRowKeys,
+    onChange: v => dispatch(changeSelect(v)),
+  };
   return (
     <div>
       <Table
         bordered
-        rowKey="id"
-        dataSource={list}
-        loading={dataLoading}
+        rowKey="taskId"
+        rowSelection={rowSelection}
+        dataSource={dataSource}
+        loading={tableLoading}
         columns={columns}
+        pagination={false}
+      />
+      <Page
+        total={total}
+        current={pageNum}
+        pageSize={pageSize}
+        onChange={(current) => {
+          dispatch(changePage(props, current));
+        }}
+        onShowSizeChange={(current, size) => {
+          dispatch(changePageSize(props, current, size));
+        }}
+
       />
     </div>
   );
@@ -52,7 +97,6 @@ const List = (props) => {
 
 List.propTypes = {
   dataLoading: PropTypes.bool.isRequired,
-  list: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
 export default List;

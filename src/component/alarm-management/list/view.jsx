@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { init } from './action';
 import Header from './jsx/header';
 import List from './jsx/list';
+import MyModal from './jsx/modal';
 import { defaultState } from './reducers';
 
 class Container extends React.Component {
@@ -18,6 +19,7 @@ class Container extends React.Component {
         <div>
           <Header {...this.props} />
           <List {...this.props} />
+          <MyModal {...this.props} />
         </div>
       );
     }

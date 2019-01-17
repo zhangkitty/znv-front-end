@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Input, Select } from 'antd';
+import { Button, Input, Select, DatePicker } from 'antd';
 import { serach } from '../action';
 import styles from '../style.css';
 
 const Option = Select.Option;
+const { RangePicker } = DatePicker;
 const Header = (props) => {
   const {
     dispatch,
+    alarmType,
     cityData,
-    receiveData,
-    onlineData,
+    alarmStatus,
     formData,
   } = props;
   return (
@@ -23,6 +24,17 @@ const Header = (props) => {
             {
               cityData.map(v => (<Option value={v.areaCode}>
                 {v.areaName}
+              </Option>))
+            }
+          </Select>
+        </div>
+
+        <div className={styles.all}>
+          <span className={styles.one}>告警类型</span>
+          <Select data-bind="formData.alarmType" className={styles.two}>
+            {
+              alarmType.map(v => (<Option value={v.value}>
+                {v.name}
               </Option>))
             }
           </Select>
@@ -42,10 +54,10 @@ const Header = (props) => {
 
       <div className={styles.flexBox} style={{ paddingTop: 0 }}>
         <div className={styles.all}>
-          <span className={styles.one}>接收状态</span>
-          <Select data-bind="formData.receiveState" className={styles.two}>
+          <span className={styles.one}>告警状态</span>
+          <Select data-bind="formData.alarmStatus" className={styles.two}>
             {
-              receiveData.map(v => (
+              alarmStatus.map(v => (
                 <Option value={v.value}>
                   {v.name}
                 </Option>))
@@ -53,17 +65,16 @@ const Header = (props) => {
           </Select>
         </div>
 
+
         <div className={styles.all}>
-          <span className={styles.one}>在线状态</span>
-          <Select data-bind="formData.onlineState" className={styles.two}>
-            {
-              onlineData.map(v => (
-                <Option value={v.value}>
-                  {v.name}
-                </Option>))
-            }
-          </Select>
+          <span className={styles.one}>时间范围</span>
+          <RangePicker
+            data-bind="formData.date"
+            className={styles.two}
+            style={{ width: 250 }}
+          />
         </div>
+
 
         <div className={styles.all}>
           <span className={styles.one} />

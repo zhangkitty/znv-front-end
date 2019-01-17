@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Input, Select } from 'antd';
+import { Button, Input, Select, DatePicker } from 'antd';
 import { serach } from '../action';
 import styles from '../style.css';
 
 const Option = Select.Option;
+const { RangePicker } = DatePicker;
 const Header = (props) => {
   const {
     dispatch,
     cityData,
-    receiveData,
-    onlineData,
-    formData,
+    workOrderType,
+    workOrderStatus,
+    deviceType,
   } = props;
   return (
     <div>
@@ -29,23 +30,42 @@ const Header = (props) => {
         </div>
 
         <div className={styles.all}>
-          <span className={styles.one}>资产名称</span>
-          <Input className={styles.two} data-bind="formData.name" />
+          <span className={styles.one}>工单类型</span>
+          <Select data-bind="formData.workOrderType" className={styles.two}>
+            {
+              workOrderType.map(v => (<Option value={v.value}>
+                {v.name}
+              </Option>))
+            }
+          </Select>
         </div>
 
         <div className={styles.all}>
-          <span className={styles.one}>资产ID</span>
-          <Input className={styles.two} data-bind="formData.Id" />
+          <span className={styles.one}>工单状态</span>
+          <Select data-bind="formData.workOrderStatus" className={styles.two}>
+            {
+              workOrderStatus.map(v => (<Option value={v.dictCode}>
+                {v.dictNote}
+              </Option>))
+            }
+          </Select>
+        </div>
+
+        <div className={styles.all}>
+          <span className={styles.one}>处理人</span>
+          <Input className={styles.two} data-bind="formData.name" />
         </div>
 
       </div>
 
       <div className={styles.flexBox} style={{ paddingTop: 0 }}>
+
+
         <div className={styles.all}>
-          <span className={styles.one}>接收状态</span>
-          <Select data-bind="formData.receiveState" className={styles.two}>
+          <span className={styles.one}>设备类型</span>
+          <Select data-bind="formData.deviceType" className={styles.two}>
             {
-              receiveData.map(v => (
+              deviceType.map(v => (
                 <Option value={v.value}>
                   {v.name}
                 </Option>))
@@ -54,15 +74,13 @@ const Header = (props) => {
         </div>
 
         <div className={styles.all}>
-          <span className={styles.one}>在线状态</span>
-          <Select data-bind="formData.onlineState" className={styles.two}>
-            {
-              onlineData.map(v => (
-                <Option value={v.value}>
-                  {v.name}
-                </Option>))
-            }
-          </Select>
+          <span className={styles.one}>时间</span>
+          <RangePicker
+            allowClear={false}
+            className={styles.two}
+            style={{ width: 250 }}
+            data-bind="formData.date"
+          />
         </div>
 
         <div className={styles.all}>

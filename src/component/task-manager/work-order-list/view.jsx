@@ -9,7 +9,7 @@ import { defaultState } from './reducers';
 
 class Container extends React.Component {
   componentWillMount() {
-    this.props.dispatch(init({ defaultState }));
+    this.props.dispatch(init(defaultState));
   }
   render() {
     const { ready } = this.props;

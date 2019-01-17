@@ -78,7 +78,7 @@ module.exports = Object.assign({},config, {
 
       '/rqs': {
         target: 'http://10.45.148.82:9001',
-        // target: 'http://127.0.0.1:9001',
+        // target: 'http://127.0.0.1:8080',
         // pathRewrite: { '^/rqs': '' },
         secure: false,
         changeOrigin: true
