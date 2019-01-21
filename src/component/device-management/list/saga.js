@@ -46,7 +46,6 @@ function* changePageSaga(action) {
 
 function* changePageSizeSaga(action) {
   const { props, current, size } = action;
-  debugger;
   const data = yield serachSer(Object.assign({}, props, {
     formData: Object.assign({}, props.formData, {
       pageSize: size,

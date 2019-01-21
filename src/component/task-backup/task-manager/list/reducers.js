@@ -92,7 +92,6 @@ const reducer = (state = defaultState, action) => {
         }),
       });
     case types.searchSuccess:
-      debugger;
       return assign({}, state, {
         dataSource: action.data.data.list,
         formData: assign({}, state.formData, {

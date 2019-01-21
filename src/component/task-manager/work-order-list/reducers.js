@@ -56,7 +56,6 @@ const cal = (selectedRowKeys, data) => {
     }
   });
 
-  debugger;
   return [...map.keys()];
 };
 

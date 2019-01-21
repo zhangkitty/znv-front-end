@@ -244,7 +244,6 @@ class Container extends React.Component {
                   type={quotaType === 3 ? 'primary' : null}
                   onClick={() => {
                     const data = get(`${dataTime}-3`);
-                    debugger;
                     if (data) {
                       dispatch(change('quotaType', 3));
                       return dispatch(change('dataSource', data));
