@@ -38,20 +38,23 @@ const tmp = (props) => {
       return 0;
     });
   });
-  const b = chooseCity.map(v => timeValue.map(t => dataSource.filter(s => s.areaCode == v).filter(t => t.dataTime)[0].areaName));
+  // const b = chooseCity.map(v => timeValue.map(t => dataSource.filter(s => s.areaCode == v).filter(t => t.dataTime)[0].areaName));
+  //
+  // console.log(a, 'sb');
+  // console.log(b, 'mdzz');
+  // console.log(b.map((v) => {
+  //   const set = new Set();
+  //   v.map(t => set.add(t));
+  //   return [...set][0];
+  // }));
+  // const c = b.map((v) => {
+  //   const set = new Set();
+  //   v.map(t => set.add(t));
+  //   return [...set][0];
+  // });
 
-  console.log(a, 'sb');
-  console.log(b, 'mdzz');
-  console.log(b.map((v) => {
-    const set = new Set();
-    v.map(t => set.add(t));
-    return [...set][0];
-  }));
-  const c = b.map((v) => {
-    const set = new Set();
-    v.map(t => set.add(t));
-    return [...set][0];
-  });
+
+  const c = cityList.filter(v => chooseCity.includes(v.areaCode)).map(t => t.areaName);
 
   const option = {
     title: {
