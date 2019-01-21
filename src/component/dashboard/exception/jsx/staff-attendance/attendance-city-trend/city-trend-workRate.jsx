@@ -67,10 +67,9 @@ const tmp = (props) => {
     yAxis: {
       type: 'value',
       axisLabel: {
-        margin: 6,
+        margin: 1,
         show: true,
         interval: 'auto',
-        // rotate: 40,
         formatter: (value, index) => (`${Number(value).toFixed(0) * 100}%`),
       },
       min(value) {

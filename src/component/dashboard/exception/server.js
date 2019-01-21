@@ -2,6 +2,7 @@ import { under2Camal } from 'shein-lib/camal-case-convertor';
 import { request } from 'utils/index';
 import moment from 'moment';
 import getParam from 'utils/getParam';
+import { compare as newcompare } from 'utils/compare';
 
 
 const compare = (a, b) => {
@@ -340,13 +341,32 @@ export const changeCityTrendDays1Ser = (props) => {
   });
 };
 
-export const openDeviceOnlineRateCitySer = (props) => {
+export const mydefineActionSer = (action) => {
+  const { props, mychoose } = action;
+  const { dispatch, onlineRate: { headTable: { dataSource } } } = props;
+
+  const { node } = props;
+  const len = node.id.split('.').length;
+
+
+  const compareResult = newcompare(dataSource[0].devOnlineNum, dataSource[1].devOnlineNum);
+  const compareResultTable = {
+    '<': 2,
+    '>': 1,
+  };
+
+  const requestTable = {
+    1: '/rqs/exception/cityratediff',
+    3: '/rqs/exception/personratediff',
+  };
+
   const data = {
     type: '51010720564',
-    order: '1',
-    target: '11',
+    order: compareResultTable[compareResult],
+    target: mychoose,
   };
+
   return request({
-    url: `/rqs/exception/cityratediff${getParam(data)}`,
+    url: `${requestTable[len]}${getParam(data)}`,
   });
 };

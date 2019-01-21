@@ -1,7 +1,12 @@
 import assign from 'object-assign';
 import moment from 'moment';
 import * as types from './types';
-import { changeCityTrendDays1, closeWorkRateInc, openWorkTimeInc } from './action';
+import {
+  changeCityTrendDays1,
+  closeWorkRateInc,
+  mydefineActionSuccess,
+  openWorkTimeInc,
+} from './action';
 
 export const defaultState = {
   ready: false,
@@ -14,6 +19,10 @@ export const defaultState = {
   onlineRate: {
     headTable: {
       dataSource: [],
+      mydefineActionResult: [],
+      // mydefineActionResult是否展示
+      visiable: false,
+      mychoose: '',
     },
     cityTrend: {
       dateValue: [
@@ -582,6 +591,35 @@ const reducer = (state = defaultState, action) => {
         staffAttendance: assign({}, state.staffAttendance, {
           workCityRateIncModal: assign({}, state.staffAttendance.workCityRateIncModal, {
             visible: false,
+          }),
+        }),
+      });
+
+
+    case types.mydefineAction:
+      return assign({}, state, {
+        onlineRate: assign({}, state.onlineRate, {
+          headTable: assign({}, state.onlineRate.headTable, {
+            mychoose: action.mychoose,
+          }),
+        }),
+      });
+
+    case types.mydefineActionSuccess:
+      return assign({}, state, {
+        onlineRate: assign({}, state.onlineRate, {
+          headTable: assign({}, state.onlineRate.headTable, {
+            visiable: true,
+            mydefineActionResult: action.data.data.list,
+          }),
+        }),
+      });
+
+    case types.closeMydefineModal:
+      return assign({}, state, {
+        onlineRate: assign({}, state.onlineRate, {
+          headTable: assign({}, state.onlineRate.headTable, {
+            visiable: false,
           }),
         }),
       });

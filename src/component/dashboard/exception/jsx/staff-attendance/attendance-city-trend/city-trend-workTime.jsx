@@ -70,8 +70,6 @@ const tmp = (props) => {
         margin: 6,
         show: true,
         interval: 'auto',
-        // rotate: 40,
-        formatter: (value, index) => (`${Number(value).toFixed(0) * 100}%`),
       },
       min(value) {
         return value.min - (value.max - value.min);

@@ -71,5 +71,7 @@ export const openCityWorkTimeIncSuccess = makeActionCreator(types.openCityWorkTi
 export const closeCityWorkTimeInc = makeActionCreator(types.closeCityWorkTimeInc);
 
 
-export const openDeviceOnlineRateCity = makeActionCreator(types.openDeviceOnlineRateCity, 'props');
-export const openDeviceOnlineRatePerson = makeActionCreator(types.openDeviceOnlineRatePerson, 'props');
+export const mydefineAction = makeActionCreator(types.mydefineAction, 'props', 'mychoose');
+export const mydefineActionSuccess = makeActionCreator(types.mydefineActionSuccess, 'data');
+
+export const closeMydefineModal = makeActionCreator(types.closeMydefineModal);

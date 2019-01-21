@@ -3,7 +3,8 @@ import PropType from 'prop-types';
 import { Table, Progress, Button } from 'shineout';
 import { Icon } from 'antd';
 import { compare } from 'utils/compare';
-import { openDeviceOnlineRateCity, openDeviceOnlineRatePerson } from '../../action';
+import { mydefineAction } from '../../action';
+import DeviceOnlineRateCity from './device-onlineRate/device-onlineRate-city';
 
 const HeadTable = (props) => {
   const { dispatch, onlineRate: { headTable: { dataSource } } } = props;
@@ -89,11 +90,8 @@ const HeadTable = (props) => {
                     type="link"
                     style={{ marginLeft: -12 }}
                     onClick={() => {
-                      if (len === 3) {
-                        dispatch(openDeviceOnlineRateCity(props));
-                      } else {
-                        dispatch(openDeviceOnlineRatePerson(props));
-                      }
+                      // 各种指标变化都用这个接口
+                      dispatch(mydefineAction(props, 11));
                     }}
                   >
                     { `${Number(d.onlineNumRate * 100).toFixed(2)}%`}{renderIcon(d.onlineNumRateInc) }
@@ -131,6 +129,10 @@ const HeadTable = (props) => {
                   return (<Button
                     type="link"
                     style={{ marginLeft: -12 }}
+                    onClick={() => {
+                      // 各种指标变化都用这个接口
+                      dispatch(mydefineAction(props, 12));
+                    }}
                   >
                     { `${Number(d.onlineNumRate * 100).toFixed(2)}%`}{renderIcon(d.onlineRateInc) }
                   </Button>);
@@ -160,6 +162,10 @@ const HeadTable = (props) => {
               <Progress style={{ width: 50 }} value={d.openRate * 100} />
               <Button
                 type="link"
+                onClick={() => {
+                  // 各种指标变化都用这个接口
+                  dispatch(mydefineAction(props, 13));
+                }}
               >
                 {`${Number(d.openRate * 100).toFixed(2)}%`}
               </Button>
@@ -186,7 +192,7 @@ const HeadTable = (props) => {
         columns={columns}
         virticalAlign="middle"
       />
-
+      <DeviceOnlineRateCity {...props} />
     </div>
   );
 };

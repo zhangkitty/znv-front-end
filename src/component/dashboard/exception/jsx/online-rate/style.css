@@ -30,3 +30,9 @@
     margin-left: 20px;
     flex-basis: 150px;
 }
+
+.workRateIncModal{
+    width: 500px;
+    height: 500px;
+    overflow: scroll;
+}

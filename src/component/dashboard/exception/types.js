@@ -57,5 +57,7 @@ export let closeCityWorkTimeInc;
 export let changeCityList;
 export let changeCityList1;
 
-export let openDeviceOnlineRateCity;
-export let openDeviceOnlineRatePerson;
+export let mydefineAction;
+export let mydefineActionSuccess;
+
+export let closeMydefineModal;
