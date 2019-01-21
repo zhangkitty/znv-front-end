@@ -29,7 +29,7 @@ const tmp = (props) => {
   const seriesArray = cityList.map((v, idx) => (
     {
       name: v.areaName,
-      data: cal(cityList, 'workDistance')[idx],
+      data: cal(cityList, 'workDistance')[idx].map(v => Number(v * 100).toFixed(2)),
       type: 'line',
     }
   ));

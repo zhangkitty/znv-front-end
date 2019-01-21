@@ -16,7 +16,7 @@ export const tmp = (props) => {
   };
 
 
-  const data = mydefineActionResult.map(v => v[mychooseTable[mychoose]]).reverse();
+  const data = mydefineActionResult.map(v => v[mychooseTable[mychoose]]).reverse().map(t => t * 100);
   const ydata = mydefineActionResult.map(v => v.areaName || v.executorName).reverse();
 
 
@@ -28,8 +28,13 @@ export const tmp = (props) => {
       type: 'value',
       position: 'top',
       splitLine: { lineStyle: { type: 'dashed' } },
-
+      axisLabel: {
+        show: true,
+        interval: 'auto',
+        formatter: '{value} %',
+      },
     },
+
     yAxis: {
       type: 'category',
       axisLine: { show: false },

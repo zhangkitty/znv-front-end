@@ -30,7 +30,7 @@ const tmp = (props) => {
   const seriesArray = cityList.map((v, idx) => (
     {
       name: v.areaName,
-      data: cal(cityList, 'onlineNumRate')[idx],
+      data: cal(cityList, 'onlineNumRate')[idx].map(v => Number(v * 100).toFixed(2)),
       type: 'line',
     }
   ));
