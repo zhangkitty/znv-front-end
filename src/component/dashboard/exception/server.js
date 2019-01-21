@@ -339,3 +339,14 @@ export const changeCityTrendDays1Ser = (props) => {
     url: `/rqs/attendance/cityrate${getParam(cityTrendDate)}`,
   });
 };
+
+export const openDeviceOnlineRateCitySer = (props) => {
+  const data = {
+    type: '51010720564',
+    order: '1',
+    target: '11',
+  };
+  return request({
+    url: `/rqs/exception/cityratediff${getParam(data)}`,
+  });
+};

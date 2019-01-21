@@ -56,3 +56,6 @@ export let closeCityWorkTimeInc;
 
 export let changeCityList;
 export let changeCityList1;
+
+export let openDeviceOnlineRateCity;
+export let openDeviceOnlineRatePerson;

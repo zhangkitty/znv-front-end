@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactEcharts from 'echarts-for-react';
 import time from 'utils/time';
+import moment from 'moment';
 
 
 // FSU在线率
@@ -13,65 +14,53 @@ const tmp = (props) => {
     },
   } = props;
 
-  const data = dataSource.filter((v) => {
-    if (chooseCity.includes(v.areaCode)) {
-      return true;
-    }
-    return false;
-  });
 
-  console.log(data);
+  const timeValue = time(dateValue).map(val => moment(val).format('YYYY-MM-DD'));
 
-
-  const timeValue = time(dateValue);
-
-  // const a = chooseCity.map(v => timeValue.map(t => dataSource.filter(s => s.areaCode == v).filter(t => t.dataTime)[0].onlineRate));
-  const a = chooseCity.map((v) => {
-    const tmp = dataSource.filter(s => s.areaCode == v).reduce((accumulator, value) => {
-      accumulator[value.dataTime] = value.onlineRate;
-      return accumulator;
-    }, {});
-    return timeValue.map((v) => {
-      if (tmp[moment(v).format('YYYY-MM-DD')]) {
-        return tmp[moment(v).format('YYYY-MM-DD')];
+  const cal = (list, key) => list.map((v) => {
+    const arr = dataSource.filter(t => v.areaCode === t.areaCode);
+    const dateArr = arr.map(x => x.dataTime);
+    return timeValue.map((k) => {
+      if (dateArr.includes(k)) {
+        return arr.filter(y => y.dataTime === k)[0][key];
       }
       return 0;
     });
   });
-  // const b = chooseCity.map(v => timeValue.map(t => dataSource.filter(s => s.areaCode == v).filter(t => t.dataTime)[0].areaName));
-  //
-  // console.log(a, 'sb');
-  // console.log(b, 'mdzz');
-  // console.log(b.map((v) => {
-  //   const set = new Set();
-  //   v.map(t => set.add(t));
-  //   return [...set][0];
-  // }));
-  // const c = b.map((v) => {
-  //   const set = new Set();
-  //   v.map(t => set.add(t));
-  //   return [...set][0];
-  // });
 
-
-  const c = cityList.filter(v => chooseCity.includes(v.areaCode)).map(t => t.areaName);
+  const seriesArray = cityList.map((v, idx) => (
+    {
+      name: v.areaName,
+      data: cal(cityList, 'onlineRate')[idx],
+      type: 'line',
+    }
+  ));
 
   const option = {
     title: {
       left: 'center',
       text: 'FSU在线率',
     },
-    // grid: {
-    //   y: 50,
-    // },
+
+    tooltip: {
+      trigger: 'axis',
+      // formatter: '{a}{b}{c}',
+    },
+
     legend: {
+      selected: cityList.reduce((sum, val) => { sum[val.areaName] = chooseCity.includes(val.areaCode); return sum; }, {}),
       type: 'scroll',
-      data: c,
+      data: cityList.map(v => v.areaName),
       top: 30,
     },
+
+    // grid: {
+    //   left: '5px',
+    // },
+
     xAxis: {
       type: 'category',
-      data: timeValue.map(v => moment(v).format('YYYY-MM-DD')),
+      data: timeValue,
       axisLabel: {
         interval: 0,
         rotate: 40,
@@ -79,18 +68,20 @@ const tmp = (props) => {
     },
     yAxis: {
       type: 'value',
+      axisLabel: {
+        margin: 6,
+        show: true,
+        interval: 'auto',
+        // rotate: 40,
+        formatter: (value, index) => (`${Number(value).toFixed(0) * 100}%`),
+      },
       min(value) {
         return value.min - (value.max - value.min);
       },
     },
-    series: a.map((v, idx) => (
-      {
-        name: c[idx],
-        data: v,
-        type: 'line',
-      }
-    )),
+    series: seriesArray,
   };
+
 
   return (
     <div style={{ width: '100%' }}>

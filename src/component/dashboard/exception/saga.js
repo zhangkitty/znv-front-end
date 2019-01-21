@@ -16,7 +16,7 @@ import {
   changeCityTrendDays1Success,
 } from './action';
 import * as types from './types';
-import { changeCityTrendDays1Ser, changeCityTrendDaysSer, openCityWorkRateIncSer, openWorkTimeIncSer, openWorkRateIncSer, initSer, getExceptionRateSer, changeDetailDaySer, changeTrendDaysSer, getDevicedetailSer, staffAttendanceInitSer, changeTrendDaysInTab1Ser, changeDetailDayTab1Ser } from './server';
+import { openDeviceOnlineRateCitySer, changeCityTrendDays1Ser, changeCityTrendDaysSer, openCityWorkRateIncSer, openWorkTimeIncSer, openWorkRateIncSer, initSer, getExceptionRateSer, changeDetailDaySer, changeTrendDaysSer, getDevicedetailSer, staffAttendanceInitSer, changeTrendDaysInTab1Ser, changeDetailDayTab1Ser } from './server';
 
 function* initSaga(action) {
   const { props } = action;
@@ -153,6 +153,12 @@ function* changeCityTrendDays1Saga(action) {
   yield put(changeCityTrendDays1Success(data));
 }
 
+function* openDeviceOnlineRateCitySaga(action) {
+  const { props } = action;
+  const data = yield openDeviceOnlineRateCitySer(props);
+  debugger;
+}
+
 
 function* mainSaga() {
   yield takeLatest(types.init, initSaga);
@@ -168,6 +174,7 @@ function* mainSaga() {
   yield takeLatest(types.openCityWorkRateInc, openCityWorkRateIncSaga);
   yield takeLatest(types.changeCityTrendDays, changeCityTrendDaysSaga);
   yield takeLatest(types.changeCityTrendDays1, changeCityTrendDays1Saga);
+  yield takeLatest(types.openDeviceOnlineRateCity, openDeviceOnlineRateCitySaga);
 }
 
 export default mainSaga;

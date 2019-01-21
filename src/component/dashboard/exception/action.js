@@ -70,3 +70,6 @@ export const openCityWorkTimeInc = makeActionCreator(types.openCityWorkTimeInc, 
 export const openCityWorkTimeIncSuccess = makeActionCreator(types.openCityWorkTimeIncSuccess, 'data');
 export const closeCityWorkTimeInc = makeActionCreator(types.closeCityWorkTimeInc);
 
+
+export const openDeviceOnlineRateCity = makeActionCreator(types.openDeviceOnlineRateCity, 'props');
+export const openDeviceOnlineRatePerson = makeActionCreator(types.openDeviceOnlineRatePerson, 'props');

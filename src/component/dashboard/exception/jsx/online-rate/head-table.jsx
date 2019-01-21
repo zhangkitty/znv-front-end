@@ -1,11 +1,14 @@
 import React from 'react';
 import PropType from 'prop-types';
-import { Table, Progress } from 'shineout';
+import { Table, Progress, Button } from 'shineout';
 import { Icon } from 'antd';
 import { compare } from 'utils/compare';
+import { openDeviceOnlineRateCity, openDeviceOnlineRatePerson } from '../../action';
 
 const HeadTable = (props) => {
-  const { onlineRate: { headTable: { dataSource } } } = props;
+  const { dispatch, onlineRate: { headTable: { dataSource } } } = props;
+  const { node } = props;
+  const len = node.id.split('.').length;
 
 
   let mydataSource = dataSource;
@@ -74,7 +77,31 @@ const HeadTable = (props) => {
       title: '广告机在线率',
       render: (d, idx) => {
         if (idx === 0) {
-          return <span>{ `${Number(d.onlineNumRate * 100).toFixed(2)}%`}{renderIcon(d.onlineNumRateInc) }</span>;
+          // return <span>{ `${Number(d.onlineNumRate * 100).toFixed(2)}%`}{renderIcon(d.onlineNumRateInc) }</span>;
+          return (
+            <div>
+              {
+                (function (props) {
+                  if (renderIcon(d.onlineNumRateInc) === '') {
+                    return <span>{ `${Number(d.onlineNumRate * 100).toFixed(2)}%`}{renderIcon(d.onlineNumRateInc) }</span>;
+                  }
+                  return (<Button
+                    type="link"
+                    style={{ marginLeft: -12 }}
+                    onClick={() => {
+                      if (len === 3) {
+                        dispatch(openDeviceOnlineRateCity(props));
+                      } else {
+                        dispatch(openDeviceOnlineRatePerson(props));
+                      }
+                    }}
+                  >
+                    { `${Number(d.onlineNumRate * 100).toFixed(2)}%`}{renderIcon(d.onlineNumRateInc) }
+                          </Button>);
+                }(props))
+              }
+            </div>
+          );
         }
         return <span>{ `${Number(d.onlineNumRate * 100).toFixed(2)}%`}</span>;
       },
@@ -93,7 +120,24 @@ const HeadTable = (props) => {
       title: 'FSU在线率',
       render: (d, idx) => {
         if (idx === 0) {
-          return <span>{ `${Number(d.onlineRate * 100).toFixed(2)}%`}{renderIcon(d.onlineRateInc) }</span>;
+          // return <span>{ `${Number(d.onlineRate * 100).toFixed(2)}%`}{renderIcon(d.onlineRateInc) }</span>;
+          return (
+            <div>
+              {
+                (function (props) {
+                  if (renderIcon(d.onlineRateInc) === '') {
+                    return <span>{ `${Number(d.onlineNumRate * 100).toFixed(2)}%`}{renderIcon(d.onlineRateInc) }</span>;
+                  }
+                  return (<Button
+                    type="link"
+                    style={{ marginLeft: -12 }}
+                  >
+                    { `${Number(d.onlineNumRate * 100).toFixed(2)}%`}{renderIcon(d.onlineRateInc) }
+                  </Button>);
+                }(props))
+              }
+            </div>
+          );
         }
         return <span>{`${Number(d.onlineRate * 100).toFixed(2)}%`}</span>;
       },
@@ -109,9 +153,28 @@ const HeadTable = (props) => {
     },
     {
       title: '入网进度',
-      render: d => (
-        <Progress style={{ width: 100 }} value={d.openRate * 100}>{`${Number(d.openRate * 100).toFixed(2)}%`}</Progress>
-      ),
+      render: (d, idx) => {
+        if (idx === 0) {
+          return (
+            <div style={{ display: 'flex' }}>
+              <Progress style={{ width: 50 }} value={d.openRate * 100} />
+              <Button
+                type="link"
+              >
+                {`${Number(d.openRate * 100).toFixed(2)}%`}
+              </Button>
+            </div>
+
+          );
+        }
+        return (
+          <div style={{ display: 'flex' }}>
+            <Progress style={{ width: 50 }} value={d.openRate * 100} />
+            <div style={{ marginLeft: 13 }}>{`${Number(d.openRate * 100).toFixed(2)}%`}</div>
+          </div>
+
+        );
+      },
     },
   ];
 
