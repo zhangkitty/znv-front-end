@@ -59,7 +59,7 @@ const List = (props) => {
     },
     {
       key: 'assetCode',
-      title: '在线状态',
+      title: '广告机在线状态',
       align: 'center',
       width: 100,
       dataIndex: 'deviceOnlineStatus',
@@ -76,14 +76,16 @@ const List = (props) => {
       title: '绑定设备',
       align: 'center',
       width: 100,
-      // dataIndex: 'fsuOnlineStatus',
       render: (text, record) => {
+        if (record.fsuId === '') {
+          return null;
+        }
         const table = {
           0: '离线',
           1: '在线',
           9: '未知',
         };
-        return <Link to="/dashboard/ppppp">{table[record.fsuOnlineStatus]}</Link>;
+        return <span>{record.fsuId}:{table[record.fsuOnlineStatus]}</span>;
       },
     },
     {
