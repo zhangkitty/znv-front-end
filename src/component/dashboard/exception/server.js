@@ -346,6 +346,7 @@ export const mydefineActionSer = (action) => {
   const { dispatch, onlineRate: { headTable: { dataSource } } } = props;
 
   const { node } = props;
+  const { areaCode } = node;
   const len = node.id.split('.').length;
 
 
@@ -364,6 +365,7 @@ export const mydefineActionSer = (action) => {
     type: '51010720564',
     order: compareResultTable[compareResult],
     target: mychoose,
+    areaCode,
   };
 
   return request({

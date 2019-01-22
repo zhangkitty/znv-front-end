@@ -4,9 +4,8 @@ import { Card as CardAnt } from 'antd';
 
 const { Meta } = CardAnt;
 const tmp = (props) => {
-  console.log(1);
-
-  const { initData } = props;
+  const { initData, historyData } = props;
+  console.log(historyData, 'historyData');
   const {
     assetNumber,
     sbbm,
@@ -98,6 +97,7 @@ const tmp = (props) => {
           </Card.Body>
         </Card>
       </Card.Accordion>
+
       <Card.Accordion>
         <Card>
           <Card.Header>照片信息</Card.Header>
@@ -120,6 +120,68 @@ const tmp = (props) => {
           </Card.Body>
         </Card>
       </Card.Accordion>
+
+      {
+        historyData.length > 0 && <Card.Accordion defaultActive={2}>
+          <Card>
+            <Card.Header>历史信息</Card.Header>
+            {
+            historyData.map(t => (
+              <Card.Body style={{ display: 'flex' }}>
+                <div style={{ flexBasis: '50%' }}>
+                  {
+                    left.map(v => (
+                      <div>
+                        <span style={{
+                          display: 'inline-block',
+                          width: 100,
+                          textAlign: 'right',
+                          marginRight: 20,
+                        }}
+                        >{v.key}
+                        </span>
+                        <span style={{
+                          display: 'inline-block',
+                          textAlign: 'left',
+                        }}
+                        >{v.value}
+                        </span>
+                      </div>
+                    ))
+                  }
+                </div>
+                <div>
+                  {
+                    right.map(v => (
+                      <div>
+                        <span style={{
+                          display: 'inline-block',
+                          width: 100,
+                          textAlign: 'right',
+                          marginRight: 20,
+                        }}
+                        >{v.key}
+                        </span>
+                        <span style={{
+                          display: 'inline-block',
+                          textAlign: 'left',
+                        }}
+                        >{v.value}
+                        </span>
+                      </div>
+                    ))
+                  }
+                </div>
+              </Card.Body>
+            ))
+          }
+
+
+          </Card>
+        </Card.Accordion>
+      }
+
+
     </div>
   );
 };

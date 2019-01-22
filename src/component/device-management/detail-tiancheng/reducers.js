@@ -5,6 +5,7 @@ export const defaultState = {
   ready: true,
   type: '天呈',
   initData: {},
+  historyData: [],
 };
 
 const reducer = (state = defaultState, action) => {
@@ -16,7 +17,8 @@ const reducer = (state = defaultState, action) => {
     case types.initSuccess:
       return assign({}, state, {
         ready: true,
-        initData: action.data.data,
+        initData: action.data.data.list[0],
+        historyData: action.data.data.list.slice(1),
       });
     default:
       return state;
