@@ -52,7 +52,7 @@ const List = (props) => {
       render: (text, record) => {
         const table = {
           1: '已接收',
-          0: '未接收',
+          0: '待接收',
         };
         return table[record.stateReceive];
       },
