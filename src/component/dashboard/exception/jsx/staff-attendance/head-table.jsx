@@ -79,7 +79,7 @@ const HeadTable = (props) => {
                   }
                     return (<Button
                       type="link"
-                      style={{ marginLeft: -12 }}
+                      style={{ marginLeft: -12, paddingBottom: 0, paddingTop: 0 }}
                       onClick={
 
                         () => {

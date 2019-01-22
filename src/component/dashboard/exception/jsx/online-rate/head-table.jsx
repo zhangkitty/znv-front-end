@@ -80,7 +80,7 @@ const HeadTable = (props) => {
         if (idx === 0) {
           // return <span>{ `${Number(d.onlineNumRate * 100).toFixed(2)}%`}{renderIcon(d.onlineNumRateInc) }</span>;
           return (
-            <div>
+            <span>
               {
                 (function (props) {
                   if (renderIcon(d.onlineNumRateInc) === '') {
@@ -88,7 +88,7 @@ const HeadTable = (props) => {
                   }
                   return (<Button
                     type="link"
-                    style={{ marginLeft: -12 }}
+                    style={{ marginLeft: -12, paddingBottom: 0, paddingTop: 0 }}
                     onClick={() => {
                       // 各种指标变化都用这个接口
                       dispatch(mydefineAction(props, 11));
@@ -98,7 +98,7 @@ const HeadTable = (props) => {
                           </Button>);
                 }(props))
               }
-            </div>
+            </span>
           );
         }
         return <span>{ `${Number(d.onlineNumRate * 100).toFixed(2)}%`}</span>;
@@ -120,7 +120,7 @@ const HeadTable = (props) => {
         if (idx === 0) {
           // return <span>{ `${Number(d.onlineRate * 100).toFixed(2)}%`}{renderIcon(d.onlineRateInc) }</span>;
           return (
-            <div>
+            <span>
               {
                 (function (props) {
                   if (renderIcon(d.onlineRateInc) === '') {
@@ -128,7 +128,7 @@ const HeadTable = (props) => {
                   }
                   return (<Button
                     type="link"
-                    style={{ marginLeft: -12 }}
+                    style={{ marginLeft: -12, paddingBottom: 0, paddingTop: 0 }}
                     onClick={() => {
                       // 各种指标变化都用这个接口
                       dispatch(mydefineAction(props, 12));
@@ -138,7 +138,7 @@ const HeadTable = (props) => {
                   </Button>);
                 }(props))
               }
-            </div>
+            </span>
           );
         }
         return <span>{`${Number(d.onlineRate * 100).toFixed(2)}%`}</span>;
@@ -162,6 +162,7 @@ const HeadTable = (props) => {
               <Progress style={{ width: 50 }} value={d.openRate * 100} />
               <Button
                 type="link"
+                style={{ paddingTop: 0, lineHeight: '17px', paddingBottom: 0 }}
                 onClick={() => {
                   // 各种指标变化都用这个接口
                   dispatch(mydefineAction(props, 13));
