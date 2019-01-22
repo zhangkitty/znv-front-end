@@ -7,12 +7,12 @@ export const defaultState = {
   receiveData: [
     { value: '', name: '全部' },
     { value: 1, name: '已接收' },
-    { value: 0, name: '未接收' },
+    { value: '0', name: '待接收' },
   ],
   onlineData: [
     { value: '', name: '全部' },
     { value: 1, name: '在线' },
-    { value: 0, name: '离线' },
+    { value: '0', name: '离线' },
   ],
   dataSource: [],
   total: '',

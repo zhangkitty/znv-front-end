@@ -54,7 +54,7 @@ const Header = (props) => {
         </div>
 
         <div className={styles.all}>
-          <span className={styles.one}>在线状态</span>
+          <span className={styles.one}>广告机在线状态</span>
           <Select data-bind="formData.onlineState" className={styles.two}>
             {
               onlineData.map(v => (
