@@ -10,11 +10,9 @@ const modal = (props) => {
   console.log(props);
   const { dispatch, staffAttendance: { workRateIncModal: { visible, dataSource } } } = props;
 
-  const labelRight = {
-    normal: {
-      position: 'right',
-    },
-  };
+  const { node } = props;
+  const len = node.id.split('.').length;
+
   const ydata = dataSource.map(v => v.areaName).reverse();
   const data = dataSource.map(v => v.workRateCh * 100).reverse();
   // const data = dataSource.map(v => v.workRateCh * 100).reverse().map((t) => {
@@ -84,6 +82,9 @@ const modal = (props) => {
       visible={visible}
       onClose={() => dispatch(closeWorkRateInc())}
     >
+      {
+        len == 3 ? <div>出勤率变化每个人的贡献率</div> : <div>出勤率变化每个城市的贡献率</div>
+      }
       <ReactEcharts
         className={styles.workRateIncModalEcharts}
         style={{ height: data.length * 100 }}

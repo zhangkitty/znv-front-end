@@ -29,7 +29,7 @@ const tmp = (props) => {
   const seriesArray = cityList.map((v, idx) => (
     {
       name: v.areaName,
-      data: cal(cityList, 'workDistance')[idx].map(v => Number(v * 100).toFixed(2)),
+      data: cal(cityList, 'workDistance')[idx].map(v => Number(v).toFixed(2)),
       type: 'line',
     }
   ));
@@ -38,7 +38,7 @@ const tmp = (props) => {
   const option = {
     title: {
       left: 'center',
-      text: '平均路程',
+      text: '平均路程(km)',
     },
 
     tooltip: {

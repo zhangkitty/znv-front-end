@@ -17,8 +17,12 @@ export default class StaffAttendance extends React.Component {
 
   render() {
     const { staffAttendance: { ready } } = this.props;
-    const { node } = this.props;
+    const { node, TabValue } = this.props;
     const len = node.id.split('.').length;
+    if (TabValue !== 1) {
+      return null;
+    }
+
 
     return (
       ready ?

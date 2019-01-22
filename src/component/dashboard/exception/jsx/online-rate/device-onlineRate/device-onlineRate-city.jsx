@@ -7,6 +7,8 @@ import { closeMydefineModal } from '../../../action';
 
 export const tmp = (props) => {
   const { dispatch, onlineRate: { headTable: { mydefineActionResult, visiable, mychoose } } } = props;
+  const { node } = props;
+  const len = node.id.split('.').length;
 
 
   const mychooseTable = {
@@ -80,6 +82,9 @@ export const tmp = (props) => {
       visible={visiable}
       onClose={() => dispatch(closeMydefineModal())}
     >
+      {
+        len === 3 ? <div>每个人的贡献率</div> : <div>每个城市的贡献率</div>
+      }
       <ReactEcharts
         style={{ height: data.length * 100 }}
         option={option}

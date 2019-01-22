@@ -17,6 +17,7 @@ export const defaultState = {
   TabValue: 0,
 
   onlineRate: {
+    ready: true,
     headTable: {
       dataSource: [],
       mydefineActionResult: [],
@@ -225,9 +226,19 @@ const reducer = (state = defaultState, action) => {
         ready: true,
       });
 
+
+    case types.getExceptionRate:
+      return assign({}, state, {
+        onlineRate: assign({}, state.onlineRate, {
+          ready: false,
+        }),
+      });
+
+
     case types.getExceptionRateSuccess:
       return assign({}, state, {
         onlineRate: assign({}, state.onlineRate, {
+          ready: true,
           headTable: assign({}, state.onlineRate.headTable, {
             dataSource: action.data[0].data.list,
           }),

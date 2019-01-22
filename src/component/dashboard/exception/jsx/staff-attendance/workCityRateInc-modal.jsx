@@ -9,6 +9,9 @@ import styles from './style.css';
 const modal = (props) => {
   const { dispatch, staffAttendance: { workCityRateIncModal: { visible, dataSource } } } = props;
 
+  const { node } = props;
+  const len = node.id.split('.').length;
+
   const labelRight = {
     normal: {
       position: 'right',
@@ -83,6 +86,9 @@ const modal = (props) => {
       visible={visible}
       onClose={() => dispatch(closeCityWorkRateInc())}
     >
+      {
+        len == 3 ? <div>出勤率变化每个人的贡献率</div> : <div>出勤率变化每个城市的贡献率</div>
+      }
       <ReactEcharts
         className={styles.workRateIncModalEcharts}
         style={{ height: data.length * 100 }}
