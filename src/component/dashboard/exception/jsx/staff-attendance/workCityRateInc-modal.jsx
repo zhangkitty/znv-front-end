@@ -87,7 +87,7 @@ const modal = (props) => {
       onClose={() => dispatch(closeCityWorkRateInc())}
     >
       {
-        len == 3 ? <div>出勤率变化每个人的贡献率</div> : <div>出勤率变化每个城市的贡献率</div>
+        len == 3 ? <div>人员出勤率变化详情（今日相比昨日）</div> : <div>城市出勤率变化详情（今日相比昨日）</div>
       }
       <ReactEcharts
         className={styles.workRateIncModalEcharts}

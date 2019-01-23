@@ -17,6 +17,12 @@ export const tmp = (props) => {
     13: 'openRate',
   };
 
+  const mychooseTable_cn = {
+    11: '广告机在线率',
+    12: 'FSU在线率',
+    13: '入网进度',
+  };
+
 
   const data = mydefineActionResult.map(v => v[mychooseTable[mychoose]]).reverse().map(t => t * 100);
   const ydata = mydefineActionResult.map(v => v.areaName || v.executorName).reverse();
@@ -51,6 +57,7 @@ export const tmp = (props) => {
       {
         name: '生活费',
         type: 'bar',
+        barWidth: '10',
         stack: '总量',
         itemStyle: {
           color(params) {
@@ -83,10 +90,10 @@ export const tmp = (props) => {
       onClose={() => dispatch(closeMydefineModal())}
     >
       {
-        len === 3 ? <div>每个人的贡献率</div> : <div>每个城市的贡献率</div>
+        len === 3 ? <div>人员{mychooseTable_cn[mychoose]}变化详情（今日相比昨日）</div> : <div>城市{mychooseTable_cn[mychoose]}变化详情（今日相比昨日）</div>
       }
       <ReactEcharts
-        style={{ height: data.length * 100 }}
+        style={{ height: data.length * 25 }}
         option={option}
       />
     </Modal>

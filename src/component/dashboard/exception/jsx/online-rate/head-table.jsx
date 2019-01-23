@@ -160,16 +160,17 @@ const HeadTable = (props) => {
           return (
             <div style={{ display: 'flex' }}>
               <Progress style={{ width: 50 }} value={d.openRate * 100} />
-              <Button
-                type="link"
-                style={{ paddingTop: 0, lineHeight: '17px', paddingBottom: 0 }}
-                onClick={() => {
-                  // 各种指标变化都用这个接口
-                  dispatch(mydefineAction(props, 13));
-                }}
-              >
-                {`${Number(d.openRate * 100).toFixed(2)}%`}
-              </Button>
+              {/* <Button */}
+              {/* type="link" */}
+              {/* style={{ paddingTop: 0, lineHeight: '17px', paddingBottom: 0 }} */}
+              {/* onClick={() => { */}
+              {/* // 各种指标变化都用这个接口 */}
+              {/* dispatch(mydefineAction(props, 13)); */}
+              {/* }} */}
+              {/* > */}
+              {/* {`${Number(d.openRate * 100).toFixed(2)}%`} */}
+              {/* </Button> */}
+              <div style={{ marginLeft: 13 }}>{`${Number(d.openRate * 100).toFixed(2)}%`}</div>
             </div>
 
           );

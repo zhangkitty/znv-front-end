@@ -7,7 +7,6 @@ import { initSuccess } from './action';
 
 
 function* initSaga(action) {
-  debugger;
   const data = yield initSer(action.props);
   if (data.errCode !== 0) {
     return message.err(data.msg);
