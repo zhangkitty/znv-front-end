@@ -72,9 +72,9 @@ module.exports = Object.assign({},config, {
 
       '/rqs': {
         //测试站
-        // target: 'http://10.45.156.186:9008',
+        target: 'http://10.45.156.186:9008',
         //朱文钧电脑
-        target: 'http://10.45.148.82:9001',
+        // target: 'http://10.45.148.82:9001',
         //本地
         // target: 'http://127.0.0.1:8080',
         // pathRewrite: { '^/rqs': '' },
@@ -90,7 +90,10 @@ module.exports = Object.assign({},config, {
       },
 
       '/aps':{
-        target: 'http://120.78.21.57:9114',
+        //线上
+        // target: 'http://120.78.21.57:9114',
+        //测试站
+        target:'http://10.45.156.186:9001',
         secure: false,
         changeOrigin: true
       },

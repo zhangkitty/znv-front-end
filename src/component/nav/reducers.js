@@ -23,6 +23,10 @@ const menus = [
         title: '资产列表',
         link: '/device-management/list',
       },
+      {
+        title: '不可接收资产列表',
+        link: '/device-management/connot-receive-list',
+      },
     ],
   },
   {
