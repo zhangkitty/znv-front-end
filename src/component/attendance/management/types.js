@@ -16,3 +16,6 @@ export let changePage;
 export let changePageSuccess;
 
 export let changePageSize;
+
+export let newInit;
+export let newInitSuccess;

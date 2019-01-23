@@ -8,7 +8,9 @@ import { changePage, changePageSize } from './actions';
 import { Table, Button } from 'shineout';
 
 const AttendanceTable = (props) => {
-  const { dispatch, formData: { total, page, pageSize }, dataSource } = props;
+  const {
+    dispatch, formData: { total, page, pageSize }, dataSource, loading,
+  } = props;
 
   const columns = [
     { title: '运维人员', render: d => d.executorName },
@@ -37,7 +39,7 @@ const AttendanceTable = (props) => {
   ];
   return (
     <div>
-      <Table key="id" size="small" columns={columns} data={dataSource} />
+      <Table key="id" size="small" columns={columns} data={dataSource} loading={loading} />
       <Page
         total={total}
         current={page}

@@ -11,6 +11,30 @@ export const initSer = props => Promise.all([
   }),
 ]);
 
+export const newInitSer = (props) => {
+  const { formData } = props;
+  const data = {
+    startDate: formData.date && moment().format('YYYY-MM-DD'),
+    endDate: formData.date && moment().format('YYYY-MM-DD'),
+    areaCode: Number(props.params.city),
+    pageNum: formData.page,
+    pageSize: formData.pageSize,
+    attendanceStatus: 1,
+  };
+
+  return Promise.all([
+    request({
+      url: '/rqs/attendance/citylist',
+    }),
+    request({
+      url: '/rqs/attendance/executorlist',
+    }),
+    request({
+      url: `/rqs/attendance/persondetail${getParam(data)}`,
+    }),
+  ]);
+};
+
 export const changeCitySer = ({ props, d }) => {
   console.log(props);
   console.log(d);
@@ -33,6 +57,7 @@ export const serachSer = (props) => {
     areaCode: formData.cityValue,
     pageNum: formData.page,
     pageSize: formData.pageSize,
+    attendanceStatus: formData.isAttendance,
   };
   return request({
     url: `/rqs/attendance/persondetail${getParam(data)}`,

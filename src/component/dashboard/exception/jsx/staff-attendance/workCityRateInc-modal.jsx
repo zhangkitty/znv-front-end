@@ -56,6 +56,7 @@ const modal = (props) => {
       {
         name: '生活费',
         type: 'bar',
+        barWidth: '10',
         stack: '总量',
         itemStyle: {
           color(params) {
@@ -91,7 +92,7 @@ const modal = (props) => {
       }
       <ReactEcharts
         className={styles.workRateIncModalEcharts}
-        style={{ height: data.length * 100 }}
+        style={{ height: data.length * 25 }}
         option={option}
       />
     </Modal>

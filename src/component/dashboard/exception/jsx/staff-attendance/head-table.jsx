@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Table, Button } from 'shineout';
 import { Icon } from 'antd';
 import { compare } from 'utils/compare';
@@ -13,7 +14,7 @@ import { openWorkRateInc, openWorkTimeInc, openCityWorkRateInc, openCityWorkTime
 const HeadTable = (props) => {
   const { staffAttendance: { headTable: { dataSource } } } = props;
   const { dispatch } = props;
-  const { node } = props;
+  const { node, clickedId } = props;
   const len = node.id.split('.').length;
 
   let mydataSource = dataSource;
@@ -58,7 +59,7 @@ const HeadTable = (props) => {
         if (idx === 0) {
           return (
             <div>
-              <span>{d.workNum}</span>
+              {len === 4 ? <span>{d.workNum}</span> : <Link to={`/attendance/management/${clickedId.split('.').slice(-1)[0]}`}>{d.workNum}</Link>}
               {renderIcon(d.workNumInc)}
             </div>
           );

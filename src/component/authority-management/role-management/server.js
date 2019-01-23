@@ -6,7 +6,7 @@ import getParam from 'utils/getParam';
 
 export const initSer = (props) => {
   const data = {
-    token: 'OGYxZDdlN2MtZjU4ZS00MDViLTkyZWItN2UwZWNkZWIwYzZl',
+    token: 'YmE2MmEyNDYtMTY4NS00OGRmLTkxY2QtNjE5NmZjMmIwY2Y1',
   };
   return request({
     url: `/srm/role/query/tree${getParam(data)}`,

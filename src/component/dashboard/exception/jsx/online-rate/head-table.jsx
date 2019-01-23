@@ -82,7 +82,10 @@ const HeadTable = (props) => {
           return (
             <span>
               {
-                (function (props) {
+                len === 4 ?
+                  <span>{ `${Number(d.onlineNumRate * 100).toFixed(2)}%`}{renderIcon(d.onlineNumRateInc) }</span>
+                  :
+                  (function (props) {
                   if (renderIcon(d.onlineNumRateInc) === '') {
                     return <span>{ `${Number(d.onlineNumRate * 100).toFixed(2)}%`}{renderIcon(d.onlineNumRateInc) }</span>;
                   }
@@ -122,6 +125,9 @@ const HeadTable = (props) => {
           return (
             <span>
               {
+                len === 4 ?
+                  <span>{ `${Number(d.onlineRate * 100).toFixed(2)}%`}{renderIcon(d.onlineRateInc) }</span>
+                  :
                 (function (props) {
                   if (renderIcon(d.onlineRateInc) === '') {
                     return <span>{ `${Number(d.onlineRate * 100).toFixed(2)}%`}{renderIcon(d.onlineRateInc) }</span>;

@@ -2,8 +2,8 @@
 import { push } from 'react-router-redux';
 import { takeLatest, put } from 'redux-saga/effects';
 import * as types from './types';
-import { serachSer, initSer, changeCitySer } from './server';
-import { searchSuccess, initSerSuccess, changeCitySuccess } from './actions';
+import { newInitSer, serachSer, initSer, changeCitySer } from './server';
+import { searchSuccess, initSerSuccess, changeCitySuccess, newInitSuccess } from './actions';
 import assign from 'object-assign';
 
 
@@ -49,10 +49,17 @@ function* changePageSizeSaga(action) {
   yield put(searchSuccess(data));
 }
 
+function* newInitSaga(action) {
+  const { props } = action;
+  const data = yield newInitSer(props);
+  yield put(newInitSuccess(data));
+}
+
 export default function* () {
   yield takeLatest(types.init, initSaga);
   yield takeLatest(types.changeCity, changeCitySaga);
   yield takeLatest(types.search, searchSaga);
   yield takeLatest(types.changePage, changePageSaga);
   yield takeLatest(types.changePageSize, changePageSizeSaga);
+  yield takeLatest(types.newInit, newInitSaga);
 }

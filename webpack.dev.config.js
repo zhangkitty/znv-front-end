@@ -125,7 +125,7 @@ module.exports = Object.assign({},config, {
       },
 
       '/srm':{
-        target: 'http://10.45.146.51:9012',
+        target: 'http://127.0.0.1:9012',
         secure: false,
         changeOrigin: true
       }

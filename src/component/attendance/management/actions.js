@@ -20,3 +20,6 @@ export const changePageSuccess = makeActionCreator(types.changePageSuccess, 'dat
 
 export const changePageSize = makeActionCreator(types.changePageSize, 'props', 'size');
 
+export const newInit = makeActionCreator(types.newInit, 'props');
+export const newInitSuccess = makeActionCreator(types.newInitSuccess, 'data');
+
