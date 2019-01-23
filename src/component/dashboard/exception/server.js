@@ -372,3 +372,13 @@ export const mydefineActionSer = (action) => {
     url: `${requestTable[len]}${getParam(data)}`,
   });
 };
+
+export const getLastcoordinateSer = (action) => {
+  const data = {
+    type: '51010720564',
+    dataTime: moment().format('YYYY-MM-DD'),
+  };
+  return request({
+    url: `/rqs/attendance/lastcoordinate${getParam(data)}`,
+  });
+};

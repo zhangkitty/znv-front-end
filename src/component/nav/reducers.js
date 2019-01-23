@@ -140,21 +140,21 @@ const menus = [
   //     },
   //   ],
   // },
-  // {
-  //   title: '权限管理',
-  //   icon: 'bars',
-  //   link: '/authority-management',
-  //   children: [
-  //     {
-  //       title: '用户管理',
-  //       link: '/authority-management/user-management',
-  //     },
-  //     {
-  //       title: '角色管理',
-  //       link: '/authority-management/role-management',
-  //     },
-  //   ],
-  // },
+  {
+    title: '权限管理',
+    icon: 'bars',
+    link: '/authority-management',
+    children: [
+      // {
+      //   title: '用户管理',
+      //   link: '/authority-management/user-management',
+      // },
+      {
+        title: '角色管理',
+        link: '/authority-management/role-management',
+      },
+    ],
+  },
 ];
 
 const linkList = menus.slice(1).reduce((concated, value) => (

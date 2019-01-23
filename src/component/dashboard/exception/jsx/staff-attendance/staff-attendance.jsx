@@ -5,6 +5,7 @@ import Trend from './trend';
 import { staffAttendanceInit } from '../../action';
 import { Spin } from 'antd';
 import CityTrend from './attendance-city-trend/city-trend';
+import BMAPCOUNTRY from './bmap/country';
 
 
 export default class StaffAttendance extends React.Component {
@@ -33,6 +34,9 @@ export default class StaffAttendance extends React.Component {
           <Trend {...this.props} />
           <hr />
           <DetailData {...this.props} />
+          {
+            len === 1 && <BMAPCOUNTRY {...this.props} />
+              }
         </div>
         :
         <div style={{ textAlign: 'center' }}>

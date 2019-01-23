@@ -91,9 +91,9 @@ module.exports = Object.assign({},config, {
 
       '/aps':{
         //线上
-        // target: 'http://120.78.21.57:9114',
+        target: 'http://172.18.113.60:9004',
         //测试站
-        target:'http://10.45.156.186:9001',
+        // target:'http://10.45.156.186:9001',
         secure: false,
         changeOrigin: true
       },
@@ -122,6 +122,12 @@ module.exports = Object.assign({},config, {
         secure: false,
         changeOrigin: true,
         pathRewrite: { '/vue': '' },
+      },
+
+      '/srm':{
+        target: 'http://10.45.146.51:9012',
+        secure: false,
+        changeOrigin: true
       }
     },
     open: true

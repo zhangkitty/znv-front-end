@@ -75,3 +75,6 @@ export const mydefineAction = makeActionCreator(types.mydefineAction, 'props', '
 export const mydefineActionSuccess = makeActionCreator(types.mydefineActionSuccess, 'data');
 
 export const closeMydefineModal = makeActionCreator(types.closeMydefineModal);
+
+
+export const getLastcoordinate = makeActionCreator(types.getLastcoordinate)

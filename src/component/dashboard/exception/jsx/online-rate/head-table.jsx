@@ -84,7 +84,7 @@ const HeadTable = (props) => {
               {
                 (function (props) {
                   if (renderIcon(d.onlineNumRateInc) === '') {
-                    return <span>{ `${Number(d.onlineRate * 100).toFixed(2)}%`}{renderIcon(d.onlineNumRateInc) }</span>;
+                    return <span>{ `${Number(d.onlineNumRate * 100).toFixed(2)}%`}{renderIcon(d.onlineNumRateInc) }</span>;
                   }
                   return (<Button
                     type="link"
@@ -94,7 +94,7 @@ const HeadTable = (props) => {
                       dispatch(mydefineAction(props, 11));
                     }}
                   >
-                    { `${Number(d.onlineRate * 100).toFixed(2)}%`}{renderIcon(d.onlineNumRateInc) }
+                    { `${Number(d.onlineNumRate * 100).toFixed(2)}%`}{renderIcon(d.onlineNumRateInc) }
                           </Button>);
                 }(props))
               }
@@ -124,7 +124,7 @@ const HeadTable = (props) => {
               {
                 (function (props) {
                   if (renderIcon(d.onlineRateInc) === '') {
-                    return <span>{ `${Number(d.onlineNumRate * 100).toFixed(2)}%`}{renderIcon(d.onlineRateInc) }</span>;
+                    return <span>{ `${Number(d.onlineRate * 100).toFixed(2)}%`}{renderIcon(d.onlineRateInc) }</span>;
                   }
                   return (<Button
                     type="link"
@@ -134,7 +134,7 @@ const HeadTable = (props) => {
                       dispatch(mydefineAction(props, 12));
                     }}
                   >
-                    { `${Number(d.onlineNumRate * 100).toFixed(2)}%`}{renderIcon(d.onlineRateInc) }
+                    { `${Number(d.onlineRate * 100).toFixed(2)}%`}{renderIcon(d.onlineRateInc) }
                   </Button>);
                 }(props))
               }

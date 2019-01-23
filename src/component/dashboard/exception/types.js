@@ -61,3 +61,5 @@ export let mydefineAction;
 export let mydefineActionSuccess;
 
 export let closeMydefineModal;
+
+export let getLastcoordinate;
