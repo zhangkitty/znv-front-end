@@ -37,7 +37,7 @@ const tmp = (props) => {
   const option = {
     title: {
       left: 'center',
-      text: '平均工时',
+      text: '平均工时(h)',
     },
 
     tooltip: {
