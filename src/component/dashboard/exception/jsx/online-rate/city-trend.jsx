@@ -51,7 +51,7 @@ const tmp = (props) => {
       <div style={{ display: 'flex' }}>
         <OnlineNumRate {...props} />
         <OnlineRate {...props} />
-        <OpenRate {...props} />
+        {/* <OpenRate {...props} /> */}
       </div>
     </div>
   );

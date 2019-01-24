@@ -28,7 +28,7 @@ export const defaultState = {
     cityTrend: {
       dateValue: [
         moment().subtract(7, 'days').toDate(),
-        moment().toDate(),
+        moment().subtract(1, 'days').toDate(),
       ],
       cityList: [],
       chooseCity: ['110100', '310100', '510100'],
@@ -37,7 +37,7 @@ export const defaultState = {
     trend: {
       dateValue: [
         moment().subtract(7, 'days').toDate(),
-        moment().toDate(),
+        moment().subtract(1, 'days').toDate(),
       ],
       imensiond: [
         { value: 0, name: '按天', disabled: false },
@@ -96,7 +96,7 @@ export const defaultState = {
     cityTrend: {
       dateValue: [
         moment().subtract(7, 'days').toDate(),
-        moment().toDate(),
+        moment().subtract(1, 'days').toDate(),
       ],
       cityList: [],
       chooseCity: ['110100', '310100', '510100'],
