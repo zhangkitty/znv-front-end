@@ -35,7 +35,7 @@ export default class StaffAttendance extends React.Component {
           <hr />
           <DetailData {...this.props} />
           {
-            len === 1 && <BMAPCOUNTRY {...this.props} />
+            // len === 1 && <BMAPCOUNTRY {...this.props} />
               }
         </div>
         :
