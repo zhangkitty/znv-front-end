@@ -91,7 +91,7 @@ module.exports = Object.assign({},config, {
 
       '/aps':{
         //线上
-        target: 'http://172.18.113.60:9004',
+        target: 'http://172.18.113.59:9004',
         //测试站
         // target:'http://10.45.156.186:9001',
         secure: false,

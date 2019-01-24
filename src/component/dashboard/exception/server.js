@@ -376,9 +376,8 @@ export const mydefineActionSer = (action) => {
 export const getLastcoordinateSer = (action) => {
   const data = {
     type: '51010720564',
-    dataTime: moment().format('YYYY-MM-DD'),
   };
   return request({
-    url: `/rqs/attendance/lastcoordinate${getParam(data)}`,
+    url: `/rqs/attendance/nowcoordinate${getParam(data)}`,
   });
 };
