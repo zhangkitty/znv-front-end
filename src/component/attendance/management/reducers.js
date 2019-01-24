@@ -20,8 +20,8 @@ const defaultState = {
   formData: {
     cityValue: '',
     date: [
-      new Date(moment()),
-      new Date(moment()),
+      moment(),
+      moment(),
     ],
     personValue: null,
     isAttendance: '',

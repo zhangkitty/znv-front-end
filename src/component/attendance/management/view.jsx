@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Spin } from 'antd';
-import { Select, DatePicker, Button } from 'shineout';
+import { Spin, DatePicker } from 'antd';
+import { Select, Button } from 'shineout';
 import { connect } from 'react-redux';
 import { search, init, changeCity, changePerson, newInit } from './actions';
 import styles from './style.css';
@@ -19,6 +19,8 @@ class AttendanceManagement extends Component {
   }
 
   render() {
+    const { RangePicker } = DatePicker;
+
     const {
       dispatch, cityList, personList, attendanceList, formData: {
         cityValue, personValue, date, isAttendance, loading,
@@ -54,10 +56,8 @@ class AttendanceManagement extends Component {
               placeholder="团队"
               onChange={d => console.log(d)}
             />
-            <DatePicker
-              style={{ width: 200, marginRight: 20 }}
-              range={86400 * 10}
-              value={date}
+            <RangePicker
+              style={{ width: 250, marginRight: 20 }}
               data-bind="formData.date"
             />
             <Select
