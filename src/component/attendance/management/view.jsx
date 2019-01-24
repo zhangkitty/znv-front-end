@@ -90,7 +90,7 @@ class AttendanceManagement extends Component {
               onClick={() => dispatch(search(this.props))}
             >查询
             </Button>
-            <Button>导出</Button>
+            {/* <Button>导出</Button> */}
           </div>
 
           <hr />
