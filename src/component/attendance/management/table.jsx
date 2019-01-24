@@ -20,16 +20,16 @@ const AttendanceTable = (props) => {
     { title: '上班卡', render: d => d.startTime },
     { title: '下班卡', render: d => d.endTime },
     { title: '工时/h', render: d => Number(d.workTime).toFixed(2) },
-    { title: '路程/km', render: d => d.workDistance },
-    {
-      title: '操作',
-      render: d =>
-        (<Button
-          onClick={() => dispatch(push(`/attendance/detail/${d.executor}/${d.dataTime}`))}
-          type="link"
-        >查看详情
-         </Button>),
-    },
+    { title: '路程/km', render: d => Number(d.workDistance).toFixed(2) },
+    // {
+    //   title: '操作',
+    //   render: d =>
+    //     (<Button
+    //       onClick={() => dispatch(push(`/attendance/detail/${d.executor}/${d.dataTime}`))}
+    //       type="link"
+    //     >查看详情
+    //      </Button>),
+    // },
   ];
 
   const data = [
