@@ -61,6 +61,7 @@ class AttendanceManagement extends Component {
               data-bind="formData.date"
             />
             <Select
+              clearable
               style={{ width: 200, marginRight: 20 }}
               keygen
               data={personList}
