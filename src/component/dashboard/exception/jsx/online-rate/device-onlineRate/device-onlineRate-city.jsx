@@ -93,7 +93,7 @@ export const tmp = (props) => {
         len === 3 ? <div>人员{mychooseTable_cn[mychoose]}变化详情（今日相比昨日）</div> : <div>城市{mychooseTable_cn[mychoose]}变化详情（今日相比昨日）</div>
       }
       <ReactEcharts
-        style={{ height: data.length * 25 }}
+        style={{ height: data.length * 25, minHeight: 300 }}
         option={option}
       />
     </Modal>
