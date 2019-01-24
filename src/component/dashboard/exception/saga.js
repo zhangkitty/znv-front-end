@@ -12,9 +12,11 @@ import {
   openWorkRateIncSuccess,
   openWorkTimeIncSuccess,
   openCityWorkRateIncSuccess,
+  changeCityTrendDaysSuccess,
+  changeCityTrendDays1Success, mydefineActionSuccess,
 } from './action';
 import * as types from './types';
-import { openCityWorkRateIncSer, openWorkTimeIncSer, openWorkRateIncSer, initSer, getExceptionRateSer, changeDetailDaySer, changeTrendDaysSer, getDevicedetailSer, staffAttendanceInitSer, changeTrendDaysInTab1Ser, changeDetailDayTab1Ser } from './server';
+import { getLastcoordinateSer, mydefineActionSer, changeCityTrendDays1Ser, changeCityTrendDaysSer, openCityWorkRateIncSer, openWorkTimeIncSer, openWorkRateIncSer, initSer, getExceptionRateSer, changeDetailDaySer, changeTrendDaysSer, getDevicedetailSer, staffAttendanceInitSer, changeTrendDaysInTab1Ser, changeDetailDayTab1Ser } from './server';
 
 function* initSaga(action) {
   const { props } = action;
@@ -30,6 +32,12 @@ function* initSaga(action) {
   }
   if (data[3].errCode !== 0) {
     return message.error(data[3].msg);
+  }
+  if (data[4].errCode !== 0) {
+    return message.error(data[4].msg);
+  }
+  if (data[5].errCode !== 0) {
+    return message.error(data[5].msg);
   }
   yield put(initSuccess(data));
   return null;
@@ -124,15 +132,39 @@ function* openWorkRateIncSaga(action) {
 function* openWorkTimeIncSaga(action) {
   const { props } = action;
   const data = yield openWorkTimeIncSer(props);
-  debugger;
   yield put(openWorkTimeIncSuccess(data));
 }
 
 function* openCityWorkRateIncSaga(action) {
   const { props } = action;
   const data = yield openCityWorkRateIncSer(props);
-  debugger;
   yield put(openCityWorkRateIncSuccess(data));
+}
+
+function* changeCityTrendDaysSaga(action) {
+  const { props } = action;
+  const data = yield changeCityTrendDaysSer(props);
+  yield put(changeCityTrendDaysSuccess(data));
+}
+
+function* changeCityTrendDays1Saga(action) {
+  const { props } = action;
+  const data = yield changeCityTrendDays1Ser(props);
+  yield put(changeCityTrendDays1Success(data));
+}
+
+function* mydefineActionSaga(action) {
+  const data = yield mydefineActionSer(action);
+  if (data.errCode !== 0) {
+    return message.error(data.msg);
+  }
+  yield put(mydefineActionSuccess(data));
+  return null;
+}
+
+function* getLastcoordinateSaga(action) {
+  const data = yield getLastcoordinateSer(action);
+  return null;
 }
 
 
@@ -148,6 +180,10 @@ function* mainSaga() {
   yield takeLatest(types.openWorkRateInc, openWorkRateIncSaga);
   yield takeLatest(types.openWorkTimeInc, openWorkTimeIncSaga);
   yield takeLatest(types.openCityWorkRateInc, openCityWorkRateIncSaga);
+  yield takeLatest(types.changeCityTrendDays, changeCityTrendDaysSaga);
+  yield takeLatest(types.changeCityTrendDays1, changeCityTrendDays1Saga);
+  yield takeLatest(types.mydefineAction, mydefineActionSaga);
+  yield takeLatest(types.getLastcoordinate, getLastcoordinateSaga);
 }
 
 export default mainSaga;

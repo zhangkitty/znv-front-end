@@ -10,11 +10,9 @@ const modal = (props) => {
   console.log(props);
   const { dispatch, staffAttendance: { workRateIncModal: { visible, dataSource } } } = props;
 
-  const labelRight = {
-    normal: {
-      position: 'right',
-    },
-  };
+  const { node } = props;
+  const len = node.id.split('.').length;
+
   const ydata = dataSource.map(v => v.areaName).reverse();
   const data = dataSource.map(v => v.workRateCh * 100).reverse();
   // const data = dataSource.map(v => v.workRateCh * 100).reverse().map((t) => {
@@ -54,6 +52,7 @@ const modal = (props) => {
       {
         name: '生活费',
         type: 'bar',
+        barWidth: '10',
         stack: '总量',
         itemStyle: {
           color(params) {
@@ -84,9 +83,12 @@ const modal = (props) => {
       visible={visible}
       onClose={() => dispatch(closeWorkRateInc())}
     >
+      {
+        len == 3 ? <div>人员出勤率变化详情（今日相比昨日）</div> : <div>城市出勤率变化详情（今日相比昨日）</div>
+      }
       <ReactEcharts
         className={styles.workRateIncModalEcharts}
-        style={{ height: data.length * 100 }}
+        style={{ height: data.length * 25 }}
         option={option}
       />
     </Modal>

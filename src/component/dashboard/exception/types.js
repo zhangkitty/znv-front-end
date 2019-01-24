@@ -11,6 +11,10 @@ export let getExceptionRateSuccess;
 export let changeDetailDay;
 export let changeDetailDaySuccess;
 
+export let changeCityTrendDays;
+export let changeCityTrendDaysSuccess;
+export let changeCityTrendDays1;
+export let changeCityTrendDays1Success;
 export let changeTrendDays;
 export let changeTrendDaysSuccess;
 
@@ -49,3 +53,13 @@ export let closeCityWorkRateInc;
 export let openCityWorkTimeInc;
 export let openCityWorkTimeIncSuccess;
 export let closeCityWorkTimeInc;
+
+export let changeCityList;
+export let changeCityList1;
+
+export let mydefineAction;
+export let mydefineActionSuccess;
+
+export let closeMydefineModal;
+
+export let getLastcoordinate;

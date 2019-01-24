@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Select, DatePicker, Button } from 'shineout';
+import { Spin, DatePicker } from 'antd';
+import { Select, Button } from 'shineout';
 import { connect } from 'react-redux';
-import { search,init, changeCity, changePerson } from './actions';
+import { search, init, changeCity, changePerson, newInit } from './actions';
 import styles from './style.css';
 import AttendanceTable from './table';
 
@@ -9,70 +10,94 @@ import AttendanceTable from './table';
 class AttendanceManagement extends Component {
   constructor(props) {
     super(props);
-    const { dispatch, cityList } = props;
-    dispatch(init(props));
+    const { dispatch, cityList, params } = props;
+    if (params.city === undefined) {
+      dispatch(init(props));
+    } else {
+      dispatch(newInit(props));
+    }
   }
 
   render() {
+    const { RangePicker } = DatePicker;
+
     const {
-      dispatch, cityList, personList, formData: { cityValue, personValue, date },
+      dispatch, cityList, personList, attendanceList, formData: {
+        cityValue, personValue, date, isAttendance, loading,
+      },
     } = this.props;
     return (
-      <div>
-        <div className={styles.oneLine}>
-          <Select
-            style={{ width: 200, marginRight: 20 }}
-            keygen
-            data={cityList}
-            placeholder="城市"
-            onChange={(d) => {
-              dispatch(changeCity(this.props, d));
-            }}
-            defaultValue={cityValue}
-            renderItem={d => d.areaName}
-            value={cityValue}
-            format={d => d.areaCode}
-          />
-          <Select
-            disabled
-            style={{ width: 200, marginRight: 20 }}
-            keygen
-            data={[]}
-            placeholder="团队"
-            onChange={d => console.log(d)}
-          />
-          <DatePicker
-            style={{ width: 200, marginRight: 20 }}
-            range={86400 * 10}
-            value={date}
-          />
-          <Select
-            style={{ width: 200, marginRight: 20 }}
-            keygen
-            data={personList}
-            placeholder="运维人员"
-            onChange={(d) => {
+      loading ?
+        <div style={{ textAlign: 'center' }}>
+          <Spin size="large" />
+        </div>
+        :
+        <div>
+          <div className={styles.oneLine}>
+            <Select
+              style={{ width: 200, marginRight: 20 }}
+              keygen
+              data={cityList}
+              placeholder="城市"
+              // data-bind="formData.cityValue"
+              onChange={(d) => {
+                dispatch(changeCity(this.props, d));
+              }}
+              defaultValue={cityValue}
+              renderItem={d => d.areaName}
+              value={cityValue}
+              format={d => d.areaCode}
+            />
+            <Select
+              disabled
+              style={{ width: 200, marginRight: 20 }}
+              keygen
+              data={[]}
+              placeholder="团队"
+              onChange={d => console.log(d)}
+            />
+            <RangePicker
+              style={{ width: 250, marginRight: 20 }}
+              data-bind="formData.date"
+            />
+            <Select
+              clearable
+              style={{ width: 200, marginRight: 20 }}
+              keygen
+              data={personList}
+              placeholder="运维人员"
+              onChange={(d) => {
               dispatch(changePerson(this.props, d));
             }}
-            renderItem={d => d.executorName}
-            value={personValue}
-            format={d => d.executor}
-          />
+              renderItem={d => d.executorName}
+              value={personValue}
+              format={d => d.executor}
+            />
+            <Select
+              style={{ width: 200, marginRight: 20 }}
+              keygen
+              data={attendanceList}
+              renderItem={d => d.value}
+              value={isAttendance}
+              format={d => d.key}
+              data-bind="formData.isAttendance"
+            />
+
+          </div>
+
+          <div className={styles.twoLine}>
+            <Button
+              onClick={() => dispatch(search(this.props))}
+            >查询
+            </Button>
+            {/* <Button>导出</Button> */}
+          </div>
+
+          <hr />
+
+          <AttendanceTable {...this.props} />
         </div>
 
-        <div className={styles.twoLine}>
-          <Button
-            onClick={() => dispatch(search(this.props))}
-          >查询
-          </Button>
-          <Button>清空</Button>
-          <Button>导出</Button>
-        </div>
-
-        <hr />
-
-        <AttendanceTable {...this.props} />
-      </div>
     );
   }
 }

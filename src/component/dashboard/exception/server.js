@@ -2,6 +2,7 @@ import { under2Camal } from 'shein-lib/camal-case-convertor';
 import { request } from 'utils/index';
 import moment from 'moment';
 import getParam from 'utils/getParam';
+import { compare as newcompare } from 'utils/compare';
 
 
 const compare = (a, b) => {
@@ -12,6 +13,10 @@ const compare = (a, b) => {
 };
 
 export const initSer = (props) => {
+  const cityTrendData = {
+    startTime: moment(props.onlineRate.cityTrend.dateValue[0]).format('YYYYMMDD'),
+    endTime: moment(props.onlineRate.cityTrend.dateValue[1]).format('YYYYMMDD'),
+  };
   const trendData = {
     startTime: moment(props.onlineRate.trend.dateValue[0]).format('YYYYMMDD'),
     endTime: moment(props.onlineRate.trend.dateValue[1]).format('YYYYMMDD'),
@@ -38,6 +43,12 @@ export const initSer = (props) => {
     }),
     request({
       url: `/rqs/exception/detailrate${getParam(detailData)}`,
+    }),
+    request({
+      url: '/rqs/attendance/citylist',
+    }),
+    request({
+      url: `/rqs/exception/cityrate${getParam(cityTrendData)}`,
     }),
   ]).then(res => res);
 };
@@ -162,6 +173,10 @@ export const staffAttendanceInitSer = (props) => {
       groupType: props.staffAttendance.detailData.chooseType, // 1:按一级省（默认）  2：按二级市（柱状图的时候用这个）
       dataTime: props.staffAttendance.detailData.choosedData,
     };
+    const cityTrendDate = {
+      startTime: moment(props.staffAttendance.cityTrend.dateValue[0]).format('YYYY-MM-DD'),
+      endTime: moment(props.staffAttendance.cityTrend.dateValue[1]).format('YYYY-MM-DD'),
+    };
     return Promise.all([
       request({
         url: `/rqs/attendance/totalrate${getParam(tableData)}`,
@@ -171,6 +186,9 @@ export const staffAttendanceInitSer = (props) => {
       }),
       request({
         url: `/rqs/attendance/chinadetailrate${getParam(detailData)}`,
+      }),
+      request({
+        url: `/rqs/attendance/cityrate${getParam(cityTrendDate)}`,
       }),
     ]);
   }
@@ -288,7 +306,6 @@ export const openWorkRateIncSer = (props) => {
 export const openWorkTimeIncSer = (props) => {
   const { staffAttendance: { headTable: { dataSource } } } = props;
   const order = compare(dataSource[0].workTime, dataSource[1].workTime);
-  debugger;
   console.log(order, 'order');
   return request({
     url: `/rqs/attendance/cityworkrate?order=${order}&target=2`,
@@ -301,5 +318,66 @@ export const openCityWorkRateIncSer = (props) => {
   const order = compare(dataSource[0].workRate, dataSource[1].workRate);
   return request({
     url: `/rqs/attendance/personworkrate?order=${order}&areaCode=${node.areaCode}`,
+  });
+};
+
+export const changeCityTrendDaysSer = (props) => {
+  const cityTrendData = {
+    startTime: moment(props.onlineRate.cityTrend.dateValue[0]).format('YYYYMMDD'),
+    endTime: moment(props.onlineRate.cityTrend.dateValue[1]).format('YYYYMMDD'),
+  };
+  return request({
+    url: `/rqs/exception/cityrate${getParam(cityTrendData)}`,
+  });
+};
+
+export const changeCityTrendDays1Ser = (props) => {
+  const cityTrendDate = {
+    startTime: moment(props.staffAttendance.cityTrend.dateValue[0]).format('YYYY-MM-DD'),
+    endTime: moment(props.staffAttendance.cityTrend.dateValue[1]).format('YYYY-MM-DD'),
+  };
+  return request({
+    url: `/rqs/attendance/cityrate${getParam(cityTrendDate)}`,
+  });
+};
+
+export const mydefineActionSer = (action) => {
+  const { props, mychoose } = action;
+  const { dispatch, onlineRate: { headTable: { dataSource } } } = props;
+
+  const { node } = props;
+  const { areaCode } = node;
+  const len = node.id.split('.').length;
+
+
+  const compareResult = newcompare(dataSource[0].devOnlineNum, dataSource[1].devOnlineNum);
+  const compareResultTable = {
+    '<': 2,
+    '>': 1,
+  };
+
+  const requestTable = {
+    1: '/rqs/exception/cityratediff',
+    3: '/rqs/exception/personratediff',
+  };
+
+  const data = {
+    type: '51010720564',
+    order: compareResultTable[compareResult],
+    target: mychoose,
+    areaCode,
+  };
+
+  return request({
+    url: `${requestTable[len]}${getParam(data)}`,
+  });
+};
+
+export const getLastcoordinateSer = (action) => {
+  const data = {
+    type: '51010720564',
+  };
+  return request({
+    url: `/rqs/attendance/nowcoordinate${getParam(data)}`,
   });
 };

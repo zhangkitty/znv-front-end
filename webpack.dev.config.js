@@ -53,16 +53,30 @@ module.exports = Object.assign({},config, {
         changeOrigin: true
       },
 
+      '/rqs-dftc':{
+        target: 'http://10.45.148.82:9009',
+        // target: 'http://127.0.0.1:9001',
+        // pathRewrite: { '^/rqs': '' },
+        secure: false,
+        changeOrigin: true
+      },
+
       '/rqsonline': {
-        target: 'http://report.znv.com:8012',
+        target: 'http://47.107.237.125:8012',
         pathRewrite:{'/rqsonline':''},
         secure: false,
         changeOrigin: true
       },
 
+
+
       '/rqs': {
-        target: 'http://10.45.156.186:9008',
-        // target: 'http://127.0.0.1:9001',
+        //测试站
+        // target: 'http://10.45.156.186:9008',
+        //朱文钧电脑
+        // target: 'http://10.45.148.82:9001',
+        //本地
+        target: 'http://127.0.0.1:9001',
         // pathRewrite: { '^/rqs': '' },
         secure: false,
         changeOrigin: true
@@ -74,14 +88,12 @@ module.exports = Object.assign({},config, {
         secure: false,
         changeOrigin: true
       },
-      // '/aps':{
-      //   target: 'http://10.45.156.186:9001',
-      //   secure: false,
-      //   changeOrigin: true
-      // },
 
       '/aps':{
-        target: 'http://120.78.21.57:9114',
+        //线上
+        target: 'http://172.18.113.59:9004',
+        //测试站
+        // target:'http://10.45.156.186:9001',
         secure: false,
         changeOrigin: true
       },
@@ -110,6 +122,12 @@ module.exports = Object.assign({},config, {
         secure: false,
         changeOrigin: true,
         pathRewrite: { '/vue': '' },
+      },
+
+      '/srm':{
+        target: 'http://127.0.0.1:9012',
+        secure: false,
+        changeOrigin: true
       }
     },
     open: true

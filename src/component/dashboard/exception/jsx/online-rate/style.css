@@ -7,6 +7,7 @@
     line-height: 27px;
     margin-left: 20px;
     flex-basis: 150px;
+    flex-shrink: 0;
 }
 
 .secendLine {
@@ -28,4 +29,10 @@
     line-height: 21px;
     margin-left: 20px;
     flex-basis: 150px;
+}
+
+.workRateIncModal{
+    width: 500px;
+    height: 500px;
+    overflow: scroll;
 }

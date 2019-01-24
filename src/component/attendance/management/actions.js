@@ -15,3 +15,11 @@ export const changePersonSuccess = makeActionCreator(types.changePersonSuccess, 
 export const search = makeActionCreator(types.search, 'props');
 export const searchSuccess = makeActionCreator(types.searchSuccess, 'data');
 
+export const changePage = makeActionCreator(types.changePage, 'props', 'pageValue');
+export const changePageSuccess = makeActionCreator(types.changePageSuccess, 'data');
+
+export const changePageSize = makeActionCreator(types.changePageSize, 'props', 'size');
+
+export const newInit = makeActionCreator(types.newInit, 'props');
+export const newInitSuccess = makeActionCreator(types.newInitSuccess, 'data');
+

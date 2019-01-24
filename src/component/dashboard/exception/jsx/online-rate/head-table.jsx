@@ -1,11 +1,15 @@
 import React from 'react';
 import PropType from 'prop-types';
-import { Table, Progress } from 'shineout';
+import { Table, Progress, Button } from 'shineout';
 import { Icon } from 'antd';
 import { compare } from 'utils/compare';
+import { mydefineAction } from '../../action';
+import DeviceOnlineRateCity from './device-onlineRate/device-onlineRate-city';
 
 const HeadTable = (props) => {
-  const { onlineRate: { headTable: { dataSource } } } = props;
+  const { dispatch, onlineRate: { headTable: { dataSource } } } = props;
+  const { node } = props;
+  const len = node.id.split('.').length;
 
 
   let mydataSource = dataSource;
@@ -74,7 +78,31 @@ const HeadTable = (props) => {
       title: '广告机在线率',
       render: (d, idx) => {
         if (idx === 0) {
-          return <span>{ `${Number(d.onlineNumRate * 100).toFixed(2)}%`}{renderIcon(d.onlineNumRateInc) }</span>;
+          // return <span>{ `${Number(d.onlineNumRate * 100).toFixed(2)}%`}{renderIcon(d.onlineNumRateInc) }</span>;
+          return (
+            <span>
+              {
+                len === 4 ?
+                  <span>{ `${Number(d.onlineNumRate * 100).toFixed(2)}%`}{renderIcon(d.onlineNumRateInc) }</span>
+                  :
+                  (function (props) {
+                  if (renderIcon(d.onlineNumRateInc) === '') {
+                    return <span>{ `${Number(d.onlineNumRate * 100).toFixed(2)}%`}{renderIcon(d.onlineNumRateInc) }</span>;
+                  }
+                  return (<Button
+                    type="link"
+                    style={{ marginLeft: -12, paddingBottom: 0, paddingTop: 0 }}
+                    onClick={() => {
+                      // 各种指标变化都用这个接口
+                      dispatch(mydefineAction(props, 11));
+                    }}
+                  >
+                    { `${Number(d.onlineNumRate * 100).toFixed(2)}%`}{renderIcon(d.onlineNumRateInc) }
+                          </Button>);
+                }(props))
+              }
+            </span>
+          );
         }
         return <span>{ `${Number(d.onlineNumRate * 100).toFixed(2)}%`}</span>;
       },
@@ -93,7 +121,31 @@ const HeadTable = (props) => {
       title: 'FSU在线率',
       render: (d, idx) => {
         if (idx === 0) {
-          return <span>{ `${Number(d.onlineRate * 100).toFixed(2)}%`}{renderIcon(d.onlineRateInc) }</span>;
+          // return <span>{ `${Number(d.onlineRate * 100).toFixed(2)}%`}{renderIcon(d.onlineRateInc) }</span>;
+          return (
+            <span>
+              {
+                len === 4 ?
+                  <span>{ `${Number(d.onlineRate * 100).toFixed(2)}%`}{renderIcon(d.onlineRateInc) }</span>
+                  :
+                (function (props) {
+                  if (renderIcon(d.onlineRateInc) === '') {
+                    return <span>{ `${Number(d.onlineRate * 100).toFixed(2)}%`}{renderIcon(d.onlineRateInc) }</span>;
+                  }
+                  return (<Button
+                    type="link"
+                    style={{ marginLeft: -12, paddingBottom: 0, paddingTop: 0 }}
+                    onClick={() => {
+                      // 各种指标变化都用这个接口
+                      dispatch(mydefineAction(props, 12));
+                    }}
+                  >
+                    { `${Number(d.onlineRate * 100).toFixed(2)}%`}{renderIcon(d.onlineRateInc) }
+                  </Button>);
+                }(props))
+              }
+            </span>
+          );
         }
         return <span>{`${Number(d.onlineRate * 100).toFixed(2)}%`}</span>;
       },
@@ -109,9 +161,34 @@ const HeadTable = (props) => {
     },
     {
       title: '入网进度',
-      render: d => (
-        <Progress style={{ width: 100 }} value={d.openRate * 100}>{`${Number(d.openRate * 100).toFixed(2)}%`}</Progress>
-      ),
+      render: (d, idx) => {
+        if (idx === 0) {
+          return (
+            <div style={{ display: 'flex' }}>
+              <Progress style={{ width: 50 }} value={d.openRate * 100} />
+              {/* <Button */}
+              {/* type="link" */}
+              {/* style={{ paddingTop: 0, lineHeight: '17px', paddingBottom: 0 }} */}
+              {/* onClick={() => { */}
+              {/* // 各种指标变化都用这个接口 */}
+              {/* dispatch(mydefineAction(props, 13)); */}
+              {/* }} */}
+              {/* > */}
+              {/* {`${Number(d.openRate * 100).toFixed(2)}%`} */}
+              {/* </Button> */}
+              <div style={{ marginLeft: 13 }}>{`${Number(d.openRate * 100).toFixed(2)}%`}</div>
+            </div>
+
+          );
+        }
+        return (
+          <div style={{ display: 'flex' }}>
+            <Progress style={{ width: 50 }} value={d.openRate * 100} />
+            <div style={{ marginLeft: 13 }}>{`${Number(d.openRate * 100).toFixed(2)}%`}</div>
+          </div>
+
+        );
+      },
     },
   ];
 
@@ -123,7 +200,7 @@ const HeadTable = (props) => {
         columns={columns}
         virticalAlign="middle"
       />
-
+      <DeviceOnlineRateCity {...props} />
     </div>
   );
 };

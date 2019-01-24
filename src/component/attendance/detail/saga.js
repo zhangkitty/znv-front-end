@@ -7,8 +7,9 @@ import { message } from 'antd';
 import { initSuccess } from './actions';
 
 function* initSaga(action) {
-  const { props } = action;
-  const data = yield initSer(props);
+  const { id, dateTime } = action;
+  console.log(dateTime);
+  const data = yield initSer({ id, dateTime });
   if (data[0].errCode !== 0) {
     return message.error(data[0].msg);
   }

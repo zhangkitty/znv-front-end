@@ -1,6 +1,6 @@
 {
   "description": "",
   "crumb": [],
-  "route": "/:id?"
+  "route": "/:id?/:dateTime?"
 }
 

@@ -41,6 +41,7 @@ require('echarts/map/js/province/yunnan');
 export default class ChinaMap extends React.Component {
   componentDidMount() {
     const { province, dispatch } = this.props;
+    console.log(province, 'province');
     this.reactEcharts.getEchartsInstance().on('click', (params) => {
       if (params.name === '温州市') {
         dispatch(changeValue('bmapShow', true));

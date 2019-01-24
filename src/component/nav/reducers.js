@@ -14,21 +14,47 @@ const menus = [
     icon: 'bars',
     link: '/dashboard/exception',
   },
-  // {
-  //   title: '调度中心',
-  //   icon: 'bars',
-  //   link: '/dispatch-center',
-  //   children: [
-  //     {
-  //       title: '城市调度',
-  //       link: '/dispatch-center/a',
-  //     },
-  //     {
-  //       title: '广告机',
-  //       link: '/dispatch-center/xxxx',
-  //     },
-  //   ],
-  // },
+  {
+    title: '设备管理',
+    icon: 'bars',
+    link: '/device-management',
+    children: [
+      {
+        title: '资产列表',
+        link: '/device-management/list',
+      },
+      {
+        title: '不可接收资产列表',
+        link: '/device-management/connot-receive-list',
+      },
+    ],
+  },
+  {
+    title: '告警管理',
+    icon: 'bars',
+    link: '/alarm-management',
+    children: [
+      {
+        title: '告警列表',
+        link: '/alarm-management/list',
+      },
+    ],
+  },
+  {
+    title: '调度中心',
+    icon: 'bars',
+    link: '/dispatch-center',
+    children: [
+      {
+        title: '城市调度',
+        link: '/dispatch-center/a',
+      },
+      {
+        title: '广告机',
+        link: '/dispatch-center/xxxx',
+      },
+    ],
+  },
   {
     title: '报表管理',
     icon: 'bars',
@@ -64,30 +90,41 @@ const menus = [
       },
     ],
   },
-  // {
-  //   title: '考勤管理',
-  //   icon: 'bars',
-  //   // link: '/attendance/management',
-  //   link: '/attendance',
-  //   children: [
-  //     {
-  //       title: '考勤数据',
-  //       link: '/attendance/management',
-  //     },
-  //   ],
-  // },
+  {
+    title: '考勤管理',
+    icon: 'bars',
+    // link: '/attendance/management',
+    link: '/attendance',
+    children: [
+      {
+        title: '考勤数据',
+        link: '/attendance/management',
+      },
+    ],
+  },
   {
     title: '全网检测',
     icon: 'bars',
     link: '/network-detection',
     children: [
-      // {
-      //   title: 'FSU显示',
-      //   link: '/network-detection/show-fsu',
-      // },
+      {
+        title: 'FSU显示',
+        link: '/network-detection/show-fsu',
+      },
       {
         title: 'FSU地图',
         link: '/network-detection/fsu',
+      },
+    ],
+  },
+  {
+    title: '任务管理',
+    icon: 'bars',
+    link: '/task-manager',
+    children: [
+      {
+        title: '工单列表',
+        link: '/task-manager/work-order-list',
       },
     ],
   },
@@ -103,21 +140,21 @@ const menus = [
   //     },
   //   ],
   // },
-  // {
-  //   title: '权限管理',
-  //   icon: 'bars',
-  //   link: '/authority-management',
-  //   children: [
-  //     {
-  //       title: '用户管理',
-  //       link: '/authority-management/user-management',
-  //     },
-  //     {
-  //       title: '角色管理',
-  //       link: '/authority-management/role-management',
-  //     },
-  //   ],
-  // },
+  {
+    title: '权限管理',
+    icon: 'bars',
+    link: '/authority-management',
+    children: [
+      // {
+      //   title: '用户管理',
+      //   link: '/authority-management/user-management',
+      // },
+      {
+        title: '角色管理',
+        link: '/authority-management/role-management',
+      },
+    ],
+  },
 ];
 
 const linkList = menus.slice(1).reduce((concated, value) => (

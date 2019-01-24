@@ -4,6 +4,8 @@ import DetailData from './detail-data';
 import Trend from './trend';
 import { staffAttendanceInit } from '../../action';
 import { Spin } from 'antd';
+import CityTrend from './attendance-city-trend/city-trend';
+import BMAPCOUNTRY from './bmap/country';
 
 
 export default class StaffAttendance extends React.Component {
@@ -16,16 +18,25 @@ export default class StaffAttendance extends React.Component {
 
   render() {
     const { staffAttendance: { ready } } = this.props;
-    console.log(ready, 'mdzz');
+    const { node, TabValue } = this.props;
+    const len = node.id.split('.').length;
+    if (TabValue !== 1) {
+      return null;
+    }
+
 
     return (
       ready ?
         <div>
           <HeadTable {...this.props} />
-          <hr />
+          {len === 1 && <CityTrend {...this.props} />}
+          {len === 1 && <hr />}
           <Trend {...this.props} />
           <hr />
           <DetailData {...this.props} />
+          {
+            // len === 1 && <BMAPCOUNTRY {...this.props} />
+              }
         </div>
         :
         <div style={{ textAlign: 'center' }}>

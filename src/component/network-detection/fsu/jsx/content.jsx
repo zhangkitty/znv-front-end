@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal, Button } from 'shineout';
+import { push } from 'react-router-redux';
 import { Popover } from 'antd';
 import { changeValue, initContent, getPicture, live, temperatureTrend, meteTrend, getPicture1 } from '../actions';
 import styles from './style.css';
@@ -93,7 +94,11 @@ export default class Content extends React.Component {
                 statusCode ?
                   <Button
                     onClick={() => {
-                    window.open(`http://120.79.12.124:9000/dashboard/index.html#/video/${deviceId}`, '_blank');
+                    // dispatch(live(deviceId));
+                    //   console.log(window.location);
+                    // window.open(`window.location/#/net`, '_blank');
+                    //   dispatch(push(`/network-detection/video/${deviceId}`));
+                      window.open(`http://120.79.12.124:9000/dashboard/index.html#/video/${deviceId}`, '_blank');
                   }}
                   >观看
                   </Button>

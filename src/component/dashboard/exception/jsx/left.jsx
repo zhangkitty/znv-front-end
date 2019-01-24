@@ -38,17 +38,6 @@ export default class LeftTree extends React.Component {
               return dispatch(getExceptionRate(assign({}, this.props, {
                 node,
                 clickedId: id,
-                // onlineRate: assign({}, this.props.onlineRate, {
-                //   trend: assign({}, this.props.onlineRate.trend, {
-                //     dateValue: [
-                //       moment().subtract(30, 'days').toDate(),
-                //       moment().toDate(),
-                //     ],
-                //   }),
-                //   detailData: assign({}, this.props.onlineRate.detailData, {
-                //     choosedData: moment().format('YYYY-MM-DD'),
-                //   }),
-                // }),
               })));
             }
             if (TabValue === 1) {

@@ -49,6 +49,8 @@ export default class BmapCity extends React.Component {
     const {
       TabValue, node, clickedId, cityTree,
     } = this.props;
+
+    console.log('bmap-city-sb');
     let allLongitude = 0;
     let allLatitude = 0;
     let num = 0;
@@ -86,6 +88,11 @@ export default class BmapCity extends React.Component {
     });
 
     console.log(lines, 'lines');
+    if (!dataSource) {
+      return null;
+    }
+
+    console.log(dataSource);
 
     const point = dataSource.filter(t => t.workTime > 0 && t.traceInfo.length > 0).map(v => ({
       id: `${v.executor}`,

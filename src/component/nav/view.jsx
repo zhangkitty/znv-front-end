@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { BackTop, Button, Layout, Menu, Icon } from 'antd';
-// import { logout } from './actions';
 import MySider from './components/sider';
 import styles from './style.css';
 import Welcome from './components/welcome';
@@ -97,7 +96,9 @@ class MainPage extends React.PureComponent {
           collapsible
           collapsed={this.state.collapsed}
         >
-          <div className={styles.logo} />
+          <div className={styles.logo}>
+            <img src="http://www.dftcmedia.com/page/ic_index_logo.png" alt="" style={{ width: '100%' }} />
+          </div>
           <MySider
             current={current}
             menus={menus}

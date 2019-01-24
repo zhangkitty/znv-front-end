@@ -3,44 +3,19 @@ import { getSize } from 'shein-middlewares/pagesize';
 import * as types from './types';
 
 export const defaultState = {
-  ready: true,
-  list: [],
-  formData: {
-    kkk: '',
+  left: {
+    tree: null,
   },
-  secondaryProcess: '',
-  produceOrderId: '',
-  handleLoading1: '',
-  handleLoading2: '',
-  dataLoading: false,
-  idList: [],
-  pageIndex: 1,
-  pageSizeOptions: [20, 50, 100].map(value => String(value)),
-  perPage: getSize(),
-  recordCount: '',
 };
 
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
-    case types.init:
-      return defaultState;
-    case types.initSet:
-      return assign({}, state, action.data, {
-        ready: false,
-        list: action.data.list,
-      });
-    case types.search:
+    case types.initSuccess:
+      debugger;
       return assign({}, state, {
-        dataLoading: true,
-      });
-    case types.searchSet:
-      return assign({}, state, action.data, {
-        dataLoading: false,
-        list: action.data.list,
-      });
-    case types.changeValue:
-      return assign({}, state, {
-        [action.key]: action.value,
+        left: assign({}, state.left, {
+          tree: action.data.data,
+        }),
       });
     default:
       return state;

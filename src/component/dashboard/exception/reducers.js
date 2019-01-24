@@ -1,7 +1,12 @@
 import assign from 'object-assign';
 import moment from 'moment';
 import * as types from './types';
-import { closeWorkRateInc, openWorkTimeInc } from './action';
+import {
+  changeCityTrendDays1,
+  closeWorkRateInc,
+  mydefineActionSuccess,
+  openWorkTimeInc,
+} from './action';
 
 export const defaultState = {
   ready: false,
@@ -12,13 +17,27 @@ export const defaultState = {
   TabValue: 0,
 
   onlineRate: {
+    ready: true,
     headTable: {
+      dataSource: [],
+      mydefineActionResult: [],
+      // mydefineActionResult是否展示
+      visiable: false,
+      mychoose: '',
+    },
+    cityTrend: {
+      dateValue: [
+        moment().subtract(7, 'days').toDate(),
+        moment().subtract(1, 'days').toDate(),
+      ],
+      cityList: [],
+      chooseCity: ['110100', '310100', '510100'],
       dataSource: [],
     },
     trend: {
       dateValue: [
-        moment().subtract(30, 'days').toDate(),
-        moment().toDate(),
+        moment().subtract(7, 'days').toDate(),
+        moment().subtract(1, 'days').toDate(),
       ],
       imensiond: [
         { value: 0, name: '按天', disabled: false },
@@ -74,6 +93,15 @@ export const defaultState = {
     headTable: {
       dataSource: [],
     },
+    cityTrend: {
+      dateValue: [
+        moment().subtract(7, 'days').toDate(),
+        moment().subtract(1, 'days').toDate(),
+      ],
+      cityList: [],
+      chooseCity: ['110100', '310100', '510100'],
+      dataSource: [],
+    },
     trend: {
       imensiond: [
         { value: 0, name: '按天', disabled: false },
@@ -82,7 +110,7 @@ export const defaultState = {
         { value: 3, name: '按季', disabled: true },
       ],
       dateValue: [
-        moment().subtract(30, 'days').format('YYYY-MM-DD'),
+        moment().subtract(7, 'days').format('YYYY-MM-DD'),
         moment().subtract(1, 'days').format('YYYY-MM-DD'),
       ],
       choosedImensiond: 0,
@@ -99,7 +127,7 @@ export const defaultState = {
         { value: 3, name: '按季', disabled: true },
       ],
       choosedImensiond: 0,
-      choosedData: moment().format('YYYY-MM-DD'),
+      choosedData: moment().subtract(1, 'days').format('YYYY-MM-DD'),
       showType: [
         { value: 1, name: '地图' },
         { value: 2, name: '柱状图' },
@@ -179,6 +207,10 @@ const reducer = (state = defaultState, action) => {
           headTable: assign({}, state.onlineRate.headTable, {
             dataSource: action.data[1].data.list,
           }),
+          cityTrend: assign({}, state.onlineRate.cityTrend, {
+            cityList: action.data[4].data.list,
+            dataSource: action.data[5].data.list,
+          }),
           trend: assign({}, state.onlineRate.trend, {
             dataSource: action.data[2].data.list,
           }),
@@ -186,12 +218,27 @@ const reducer = (state = defaultState, action) => {
             dataSource: action.data[3].data.list,
           }),
         }),
+        staffAttendance: assign({}, state.staffAttendance, {
+          cityTrend: assign({}, state.staffAttendance.cityTrend, {
+            cityList: action.data[4].data.list,
+          }),
+        }),
         ready: true,
       });
+
+
+    case types.getExceptionRate:
+      return assign({}, state, {
+        onlineRate: assign({}, state.onlineRate, {
+          ready: false,
+        }),
+      });
+
 
     case types.getExceptionRateSuccess:
       return assign({}, state, {
         onlineRate: assign({}, state.onlineRate, {
+          ready: true,
           headTable: assign({}, state.onlineRate.headTable, {
             dataSource: action.data[0].data.list,
           }),
@@ -225,6 +272,62 @@ const reducer = (state = defaultState, action) => {
           }),
         }),
       });
+
+    case types.changeCityTrendDays:
+      return assign({}, state, {
+        onlineRate: assign({}, state.onlineRate, {
+          cityTrend: assign({}, state.onlineRate.cityTrend, {
+            dateValue: action.props.onlineRate.cityTrend.dateValue,
+          }),
+        }),
+      });
+
+    case types.changeCityTrendDaysSuccess:
+      return assign({}, state, {
+        onlineRate: assign({}, state.onlineRate, {
+          cityTrend: assign({}, state.onlineRate.cityTrend, {
+            dataSource: action.data.data.list,
+          }),
+        }),
+      });
+
+
+    case types.changeCityTrendDays1:
+      return assign({}, state, {
+        staffAttendance: assign({}, state.staffAttendance, {
+          cityTrend: assign({}, state.staffAttendance.cityTrend, {
+            dateValue: action.props.staffAttendance.cityTrend.dateValue,
+          }),
+        }),
+      });
+
+    case types.changeCityTrendDays1Success:
+      return assign({}, state, {
+        staffAttendance: assign({}, state.staffAttendance, {
+          cityTrend: assign({}, state.staffAttendance.cityTrend, {
+            dataSource: action.data.data.list,
+          }),
+        }),
+      });
+
+    case types.changeCityList:
+      return assign({}, state, {
+        onlineRate: assign({}, state.onlineRate, {
+          cityTrend: assign({}, state.onlineRate.cityTrend, {
+            chooseCity: action.value,
+          }),
+        }),
+      });
+
+    case types.changeCityList1:
+      return assign({}, state, {
+        staffAttendance: assign({}, state.staffAttendance, {
+          cityTrend: assign({}, state.staffAttendance.cityTrend, {
+            chooseCity: action.value,
+          }),
+        }),
+      });
+
 
     case types.changeTrendDays:
       return assign({}, state, {
@@ -280,6 +383,9 @@ const reducer = (state = defaultState, action) => {
             ready: true,
             headTable: assign({}, state.staffAttendance.headTable, {
               dataSource: action.data[0].data.list,
+            }),
+            cityTrend: assign({}, state.staffAttendance.cityTrend, {
+              dataSource: action.data[3].data.list,
             }),
             trend: assign({}, state.staffAttendance.trend, {
               dataSource: action.data[1].data.list,
@@ -496,6 +602,35 @@ const reducer = (state = defaultState, action) => {
         staffAttendance: assign({}, state.staffAttendance, {
           workCityRateIncModal: assign({}, state.staffAttendance.workCityRateIncModal, {
             visible: false,
+          }),
+        }),
+      });
+
+
+    case types.mydefineAction:
+      return assign({}, state, {
+        onlineRate: assign({}, state.onlineRate, {
+          headTable: assign({}, state.onlineRate.headTable, {
+            mychoose: action.mychoose,
+          }),
+        }),
+      });
+
+    case types.mydefineActionSuccess:
+      return assign({}, state, {
+        onlineRate: assign({}, state.onlineRate, {
+          headTable: assign({}, state.onlineRate.headTable, {
+            visiable: true,
+            mydefineActionResult: action.data.data.list,
+          }),
+        }),
+      });
+
+    case types.closeMydefineModal:
+      return assign({}, state, {
+        onlineRate: assign({}, state.onlineRate, {
+          headTable: assign({}, state.onlineRate.headTable, {
+            visiable: false,
           }),
         }),
       });

@@ -28,6 +28,7 @@
     "d3-request": "^1.0.6",
     "deck.gl": "^6.3.1",
     "echarts": "^4.2.0-rc.2",
+    "echarts-amap": "^1.0.0-rc.6",
     "echarts-for-react": "^2.0.15-beta.0",
     "file-saver": "^2.0.0-rc.3",
     "history": "^4.7.2",
