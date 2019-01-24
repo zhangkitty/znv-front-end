@@ -37,10 +37,10 @@ class AttendanceManagement extends Component {
               keygen
               data={cityList}
               placeholder="城市"
-              data-bind="formData.cityValue"
-            // onChange={(d) => {
-            //   dispatch(changeCity(this.props, d));
-            // }}
+              // data-bind="formData.cityValue"
+              onChange={(d) => {
+                dispatch(changeCity(this.props, d));
+              }}
               defaultValue={cityValue}
               renderItem={d => d.areaName}
               value={cityValue}

@@ -22,12 +22,17 @@ export const newInitSer = (props) => {
     attendanceStatus: 1,
   };
 
+  const data2 = {
+    type: '51010720564',
+    areaCode: Number(props.params.city),
+  };
+
   return Promise.all([
     request({
       url: '/rqs/attendance/citylist',
     }),
     request({
-      url: '/rqs/attendance/executorlist',
+      url: `/rqs/attendance/executorlist${getParam(data2)}`,
     }),
     request({
       url: `/rqs/attendance/persondetail${getParam(data)}`,
