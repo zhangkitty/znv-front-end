@@ -66,6 +66,14 @@ export default (state = defaultState, action) => {
       });
 
 
+    case types.changeCity:
+      return assign({}, state, {
+        formData: assign({}, state.formData, {
+          cityValue: action.d,
+        }),
+      });
+
+
     case types.changeCitySuccess:
       return assign({}, state, {
         personList: action.data.data.list,
