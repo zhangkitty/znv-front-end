@@ -22,7 +22,7 @@ module.exports = {
   },
   resolve: {
     modules: ['node_modules', 'web_modules'],
-    extensions: ['.js', '.jsx', 'css', '.json'],
+    extensions: ['.js', '.jsx', '.css', '.json'],
   },
   externals: {
     lodash: 'window._',
@@ -119,7 +119,7 @@ module.exports = {
       id: 'styles',
       threadPool: happyPackPool,
       loaders: ['style-loader',
-        'css-loader?modules&importLoaders=1&localIdentName=[path]__[local]-[hash:base64:5]',
+        'css-loader?modules&importLoaders=1&localIdentName=[path]__[local]-[hash:base64:5]&url=false',
         'postcss-loader',
       ],
     }),

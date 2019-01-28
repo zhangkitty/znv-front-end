@@ -60,23 +60,13 @@ const fetch = async (options) => {
     // const href = window.location.href.split('#')[0];
     // window.open(`${href}#/login`, '_self');
   }
+  const token = localStorage.getItem('token');
   switch (method.toLowerCase()) {
     case 'get':
-      // return axios.get(url);
-      // if (url.indexOf('vue') !== -1) {
-      //   return axios.get(url, {});
-      // }
-      // return axios.get(url, { params: data, ...authHeader });
-      // return axios.get(url);
-
-      if (url.indexOf('vue') !== -1) {
-        // return axios.get(url, {
-        //   headers: 'Content-Type',
-        // });
-        return axios.get(url);
+      if (url.indexOf('?') !== -1) {
+        return axios.get(`${url}&token=${token}`);
       }
-      // return axios.get(url, { params: data, ...authHeader });
-      return axios.get(url);
+      return axios.get(`${url}?token=${token}`);
     case 'delete':
       return axios.delete(url, { data, ...authHeader });
     case 'head':
@@ -86,7 +76,7 @@ const fetch = async (options) => {
       for (const key in data) {
         params.append(key, data[key]);
       }
-      return axios.post(url, data, Object.assign(authHeader, _options));
+      return axios.post(`${url}?token=${token}`, data, Object.assign(authHeader, _options));
     }
     case 'put':
       return axios.put(url, data, Object.assign(authHeader, _options));

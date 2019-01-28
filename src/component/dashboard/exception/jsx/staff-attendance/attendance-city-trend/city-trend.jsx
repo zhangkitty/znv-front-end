@@ -10,7 +10,6 @@ import WorkDistance from './city-trend-workDistance';
 
 
 const tmp = (props) => {
-  console.log(props);
   const {
     dispatch, staffAttendance: {
       cityTrend: {

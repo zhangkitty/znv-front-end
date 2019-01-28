@@ -19,3 +19,7 @@
 .handleBox {
     margin: 10px 10px 15px 0;
 }
+
+.test{
+    background-image: url('./ic_index_logo.png');
+}

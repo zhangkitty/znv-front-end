@@ -6,6 +6,9 @@ import { init } from './action';
 import Header from './jsx/header';
 import List from './jsx/list';
 import { defaultState } from './reducers';
+import styles from './style.css';
+import { Popover, Button } from 'shineout';
+
 
 class Container extends React.Component {
   componentWillMount() {
@@ -18,6 +21,10 @@ class Container extends React.Component {
         <div>
           <Header {...this.props} />
           <List {...this.props} />
+          <Popover content="sdaff" trigger="click" style={{ marginRight: 12 }}>
+            <Button onClick={() => console.log('pppppppp')}>Click me</Button>
+          </Popover>
+
         </div>
       );
     }

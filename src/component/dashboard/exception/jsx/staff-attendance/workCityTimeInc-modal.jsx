@@ -18,8 +18,6 @@ const modal = (props) => {
   const ydata = dataSource.map(v => v.areaName).reverse();
   const data = dataSource.map(v => v.workTimeCh).reverse();
 
-  console.log(ydata);
-  console.log(data);
 
   const option = {
 

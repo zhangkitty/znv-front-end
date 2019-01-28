@@ -55,7 +55,6 @@ export default class ChinaMap extends React.Component {
   componentDidMount() {
     const { staffAttendance: { detailData: { dataSource } } } = this.props;
     this.reactEcharts.getEchartsInstance().on('click', (params) => {
-      console.log(params.name);
       if (['上海', '北京', '天津', '重庆'].includes(params.name)) {
         return null;
       }
@@ -165,7 +164,6 @@ export default class ChinaMap extends React.Component {
           tipData.map((v) => {
             if (v.name === params.name) {
               value = v.value;
-              console.log(value, 'value');
               return 1;
             }
             return 1;

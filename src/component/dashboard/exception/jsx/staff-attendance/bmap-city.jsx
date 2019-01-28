@@ -22,7 +22,6 @@ function Color() {
 
 export default class BmapCity extends React.Component {
   componentDidMount() {
-    console.log('componentDidMount');
     const Instance = this.reactEcharts.getEchartsInstance();
     Instance
       .getModel()
@@ -32,7 +31,6 @@ export default class BmapCity extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log('componentDidUpdate');
     const Instance = this.reactEcharts.getEchartsInstance();
     Instance
       .getModel()
@@ -87,7 +85,6 @@ export default class BmapCity extends React.Component {
       ]];
     });
 
-    console.log(lines, 'lines');
     if (!dataSource) {
       return null;
     }
@@ -123,18 +120,16 @@ export default class BmapCity extends React.Component {
             tooltip: {
               show: true,
               formatter: () => {
-                console.log(1);
-                console.log(2);
               },
             },
             lineStyle: {
               normal: {
-                type: 'dashed',
+                type: 'dotted',
                 color: v[0] && v[0][0] && v[0][0].color,
-                width: 3,
-                opacity: 1,
+                width: 2,
+                // opacity: 1,
                 // shadowColor: 'black',
-                shadowBlur: 3,
+                // shadowBlur: 3,
               },
             },
             animationDelay(idx) {

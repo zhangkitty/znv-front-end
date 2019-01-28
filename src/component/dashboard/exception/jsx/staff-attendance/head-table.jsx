@@ -34,7 +34,6 @@ const HeadTable = (props) => {
     }
   }
   const renderIcon = (str) => {
-    console.log(str);
     if (str === '>') {
       return <Icon type="arrow-up" />;
     }

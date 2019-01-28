@@ -3,6 +3,8 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = require('./webpack.base.config.js');
+const ExtractPlugin = require('extract-text-webpack-plugin');
+
 
 module.exports = Object.assign({},config, {
   output: {
@@ -16,6 +18,7 @@ module.exports = Object.assign({},config, {
       ...config.module.rules,
       {
         test: /\.css$/,
+        // exclude: /node_modules/,
         loaders: ['happypack/loader?id=styles']
       }
     ]
@@ -72,11 +75,11 @@ module.exports = Object.assign({},config, {
 
       '/rqs': {
         //测试站
-        // target: 'http://10.45.156.186:9008',
+        target: 'http://10.45.156.186:9008',
         //朱文钧电脑
         // target: 'http://10.45.148.82:9001',
         //本地
-        target: 'http://127.0.0.1:9001',
+        // target: 'http://127.0.0.1:9001',
         // pathRewrite: { '^/rqs': '' },
         secure: false,
         changeOrigin: true

@@ -7,7 +7,6 @@ import styles from './style.css';
 
 
 const modal = (props) => {
-  console.log(props);
   const { dispatch, staffAttendance: { workRateIncModal: { visible, dataSource } } } = props;
 
   const { node } = props;

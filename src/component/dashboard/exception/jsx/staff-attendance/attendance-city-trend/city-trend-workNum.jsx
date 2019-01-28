@@ -4,7 +4,6 @@ import time from 'utils/time';
 
 
 const tmp = (props) => {
-  console.log(props);
   const {
     dispatch, staffAttendance: {
       cityTrend: {

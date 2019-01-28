@@ -13,7 +13,9 @@ import {
   openWorkTimeIncSuccess,
   openCityWorkRateIncSuccess,
   changeCityTrendDaysSuccess,
-  changeCityTrendDays1Success, mydefineActionSuccess,
+  changeCityTrendDays1Success,
+  mydefineActionSuccess,
+  getLastcoordinateSuccess,
 } from './action';
 import * as types from './types';
 import { getLastcoordinateSer, mydefineActionSer, changeCityTrendDays1Ser, changeCityTrendDaysSer, openCityWorkRateIncSer, openWorkTimeIncSer, openWorkRateIncSer, initSer, getExceptionRateSer, changeDetailDaySer, changeTrendDaysSer, getDevicedetailSer, staffAttendanceInitSer, changeTrendDaysInTab1Ser, changeDetailDayTab1Ser } from './server';
@@ -164,7 +166,7 @@ function* mydefineActionSaga(action) {
 
 function* getLastcoordinateSaga(action) {
   const data = yield getLastcoordinateSer(action);
-  return null;
+  yield put(getLastcoordinateSuccess(data));
 }
 
 

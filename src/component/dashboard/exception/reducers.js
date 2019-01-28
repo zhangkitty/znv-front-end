@@ -155,6 +155,9 @@ export const defaultState = {
       visible: false,
       dataSource: [],
     },
+    lastcoordinate: [
+
+    ],
 
   },
 };
@@ -632,6 +635,14 @@ const reducer = (state = defaultState, action) => {
           headTable: assign({}, state.onlineRate.headTable, {
             visiable: false,
           }),
+        }),
+      });
+
+
+    case types.getLastcoordinateSuccess:
+      return assign({}, state, {
+        staffAttendance: assign({}, state.staffAttendance, {
+          lastcoordinate: action.data.data.list,
         }),
       });
 

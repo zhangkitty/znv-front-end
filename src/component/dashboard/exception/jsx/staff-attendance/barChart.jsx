@@ -5,7 +5,6 @@ import ReactEcharts from 'echarts-for-react';
 export default class BarChart extends React.Component {
   constructor(props) {
     super(props);
-    console.log(1);
   }
 
   onChartClick = (param, echarts) => {
@@ -93,8 +92,6 @@ export default class BarChart extends React.Component {
           option={option}
           onEvents={{
             click: (param, echarts) => {
-              console.log(param);
-              console.log(echarts);
             },
           }}
         />

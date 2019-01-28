@@ -78,3 +78,4 @@ export const closeMydefineModal = makeActionCreator(types.closeMydefineModal);
 
 
 export const getLastcoordinate = makeActionCreator(types.getLastcoordinate)
+export const getLastcoordinateSuccess = makeActionCreator(types.getLastcoordinateSuccess,'data');
