@@ -35,7 +35,7 @@ export default class RightUserList extends React.Component {
         const uploadProps = {
             name: 'template',
             accept: '.xls,.xlsx',
-            action: '/srm/user/batch/import?token='+this.props.token,
+            action: '/srm/user/batch/import?token=' + localStorage.getItem('token'),
             showUploadList : false,
             onChange(info) {
                 if (info.file.status === 'done') {

@@ -10,7 +10,6 @@ export const defaultState = {
   orgTree: [],
   editOrgTreeData: [],
   roleTreeData: [],
-  token: 'ZWMzNTQ2Y2ItZDFjZS00NjE1LTllYmQtMzA5NDAwNWM1ZjQ3',
   user: {
     userId: '',
     userName: '',

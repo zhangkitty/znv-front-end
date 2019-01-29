@@ -1,12 +1,12 @@
 import { request } from 'utils/index';
 
 export const getOrgTreeSer = (props) => request({
-  url: `/srm/org/query/tree?token=${props.token}`,
+  url: `/srm/org/query/tree`,
   method: `get`,
 });
 
 export const addOrgSer = (props) => request({
-  url: `/srm/org/add?token=${props.token}`,
+  url: `/srm/org/add`,
   method: `post`,
   data: {
     topOrgId: props.topOrgId,
@@ -16,7 +16,7 @@ export const addOrgSer = (props) => request({
 });
 
 export const editOrgSer = (props) => request({
-  url: `/srm/org/update?token=${props.token}`,
+  url: `/srm/org/update`,
   method: `post`,
   data: {
     orgId: props.clickedId.split('.')[0],
@@ -25,7 +25,7 @@ export const editOrgSer = (props) => request({
 });
 
 export const deleteOrgSer = (props) => request({
-  url: `/srm/org/delete?token=${props.token}`,
+  url: `/srm/org/delete`,
   method: `post`,
   data: {
     orgId: props.clickedId.split('.')[0],
@@ -54,7 +54,7 @@ export const getUsersSer = (props, orgId) => {
 };
 
 export const addUserSer = (props) => request({
-  url: `/srm/user/add?token=${props.token}`,
+  url: `/srm/user/add`,
   method: `post`,
   data: {
     topOrgId: props.topOrgId,
@@ -68,7 +68,7 @@ export const addUserSer = (props) => request({
 });
 
 export const editUserSer = (props) => request({
-  url: `/srm/user/update?token=${props.token}`,
+  url: `/srm/user/update`,
   method: `post`,
   data: {
     userId: props.userId,
@@ -82,7 +82,7 @@ export const editUserSer = (props) => request({
 });
 
 export const deleteUserSer = ({ props, userId }) => request({
-  url: `/srm/user/delete?token=${props.token}`,
+  url: `/srm/user/delete`,
   method: `post`,
   data: {
     userId: userId,
@@ -90,7 +90,7 @@ export const deleteUserSer = ({ props, userId }) => request({
 });
 
 export const chgUserStatusSer = ({ props, userId, status }) => request({
-  url: `/srm/user/update?token=${props.token}`,
+  url: `/srm/user/update`,
   method: `post`,
   data: {
     userId: userId,
@@ -99,12 +99,12 @@ export const chgUserStatusSer = ({ props, userId, status }) => request({
 });
 
 export const getUserDetailSer = (props, userId) => request({
-  url: `/srm/user/query/detail?token=${props.token}&userId=${userId}`,
+  url: `/srm/user/query/detail?userId=${userId}`,
   method: `get`,
 });
 
 export const resetPwdSer = (props) => request({
-  url: `/srm/user/pwd/reset?token=${props.token}`,
+  url: `/srm/user/pwd/reset`,
   method: `post`,
   data: {
     userId: props.userId,
@@ -113,6 +113,6 @@ export const resetPwdSer = (props) => request({
 });
 
 export const getRoleTreeSer = (props) => request({
-  url: `/srm/role/query/tree?token=${props.token}`,
+  url: `/srm/role/query/tree`,
   method: `get`,
 });
