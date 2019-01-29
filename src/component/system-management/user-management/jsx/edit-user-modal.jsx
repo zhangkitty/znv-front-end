@@ -46,8 +46,8 @@ class EditUserForm extends React.Component {
     const { dispatch, editUserModal: { visible, destroy }, topOrgId, orgId } = this.props;
     const { getFieldDecorator } = this.props.form;
     const formItemLayout = {
-      labelCol: { span: 6 },
-      wrapperCol: { span: 18 },
+      labelCol: { span: 5 },
+      wrapperCol: { span: 19 },
     };
 
     return (
@@ -84,7 +84,7 @@ class EditUserForm extends React.Component {
                     { required: true, message: '请选择部门' },
                   ],
                 })(<TreeSelect
-                  style={{ width: 300 }}
+                  style={{ width: 340 }}
                   treeData={this.props.editOrgTreeData}
                   dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
                   disabled={this.props.userId !== ''}
@@ -105,7 +105,7 @@ class EditUserForm extends React.Component {
                     { required: true, message: '请输入姓名' },
                   ],
                 })(<Input
-                  style={{ width: 300 }}
+                  style={{ width: 340 }}
                   placeholder="请输入姓名"
                   onChange={this.changeFullName}
                 />)}
@@ -121,7 +121,7 @@ class EditUserForm extends React.Component {
                     { required: true, message: '请输入手机号' },
                   ],
                 })(<Input
-                  style={{ width: 300 }}
+                  style={{ width: 340 }}
                   placeholder="请输入手机号"
                   onChange={this.changePhone}
                 />)}
@@ -137,7 +137,7 @@ class EditUserForm extends React.Component {
                     { required: true, message: '请输入用户名' },
                   ],
                 })(<Input
-                  style={{ width: 300 }}
+                  style={{ width: 340 }}
                   placeholder="请输入用户名"
                   disabled={this.props.userId !== ''}
                   onChange={this.changeUserName}
@@ -151,7 +151,7 @@ class EditUserForm extends React.Component {
                 {getFieldDecorator('email', {
                   initialValue: `${this.props.user.email === null ? '' : this.props.user.email}`,
                 })(<Input
-                  style={{ width: 300 }}
+                  style={{ width: 340 }}
                   placeholder="请输入邮箱"
                   onChange={this.changeEmail}
                 />)}
@@ -181,7 +181,7 @@ class EditUserForm extends React.Component {
             <Col span={24}>
               <Form.Item {...formItemLayout} label="角色">
                 {(<TreeSelect
-                  style={{ width: 300 }}
+                  style={{ width: 340 }}
                   value={this.props.checkedRoleIds}
                   treeData={this.props.roleTreeData}
                   dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
@@ -195,7 +195,7 @@ class EditUserForm extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col span={24} offset={6}>
+            <Col span={24} offset={5}>
               <Button type="primary" htmlType="submit">保存</Button>
             </Col>
           </Row>

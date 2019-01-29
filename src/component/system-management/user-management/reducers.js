@@ -5,11 +5,12 @@ export const defaultState = {
   ready: false,
   clickedId: '',
   clickedOrgLevel: '',
+  topOrgId: '',
   node: null,
   orgTree: [],
   editOrgTreeData: [],
   roleTreeData: [],
-  token: 'MTAzM2YzMjEtNDgxMS00YWU3LTlkZWYtZmNkNGRkYTZhYTFm',
+  token: 'ZWMzNTQ2Y2ItZDFjZS00NjE1LTllYmQtMzA5NDAwNWM1ZjQ3',
   user: {
     userId: '',
     userName: '',
@@ -70,6 +71,7 @@ const transformRoleTreeData = data => data.map(v => assign({}, v, {
   title: `${v.name}`,
   key: `${v.id}`,
   value: `${v.id}`,
+  selectable: `${v.parentId}` !== '0',
   children: (function (a) {
     if (a.children === undefined || a.children === null) {
       return null;
@@ -125,7 +127,7 @@ const reducer = (state = defaultState, action) => {
       });
     case types.getRoleTreeSuccess:
       return assign({}, state, {
-        roleTreeData: transformRoleTreeData(action.data.data[0].children),
+        roleTreeData: transformRoleTreeData(action.data.data),
       });
     case types.getUsersSuccess:
       return assign({}, state, {
