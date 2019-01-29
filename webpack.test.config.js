@@ -25,7 +25,7 @@ module.exports = merge(config, {
         use: ExtractPlugin.extract({
           fallback: 'style-loader',
           use:
-              'css-loader?minimize&modules&importLoaders=1&localIdentName=[path]__[local]-[hash:base64:5]!postcss-loader',
+              'css-loader?minimize&url=false&modules&importLoaders=1&localIdentName=[path]__[local]-[hash:base64:5]!postcss-loader',
         }),
       },
     ],
