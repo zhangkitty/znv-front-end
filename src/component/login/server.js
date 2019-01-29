@@ -1,4 +1,5 @@
 import { request } from 'utils/index';
+import { MD5 } from 'utils/index';
 
 
 export const submitSer = data => request({
@@ -6,6 +7,6 @@ export const submitSer = data => request({
   method: 'POST',
   data: {
     userName: data.userName,
-    password: data.password,
+    password: MD5(data.password),
   },
 });

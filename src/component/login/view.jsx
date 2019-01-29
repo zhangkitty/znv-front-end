@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, Icon, Input, Button } from 'antd';
 import { submit } from './actions';
+import styles from './style.css';
 
 
 const FormItem = Form.Item;
@@ -10,7 +11,7 @@ function hasErrors(fieldsError) {
   return Object.keys(fieldsError).some(field => fieldsError[field]);
 }
 
-class HorizontalLoginForm extends Component {
+class NormalLoginForm extends Component {
   componentDidMount() {
     // To disabled submit button at the beginning.
     this.props.form.validateFields();
@@ -34,10 +35,10 @@ class HorizontalLoginForm extends Component {
     const userNameError = isFieldTouched('userName') && getFieldError('userName');
     const passwordError = isFieldTouched('password') && getFieldError('password');
     return (
-      <Form
-        layout="inline"
+      <Form className={styles["login-form"]}
         onSubmit={e => this.handleSubmit(e)}
       >
+        <h3 className={styles["login-form-title"]}>ÏµÍ³µÇÂ¼</h3>
         <FormItem
           validateStatus={userNameError ? 'error' : ''}
           help={userNameError || ''}
@@ -58,6 +59,7 @@ class HorizontalLoginForm extends Component {
           <Button
             type="primary"
             htmlType="submit"
+            className={styles["login-form-button"]}
             disabled={hasErrors(getFieldsError())}
           >
               Log in
@@ -68,8 +70,8 @@ class HorizontalLoginForm extends Component {
   }
 }
 
-const WrappedHorizontalLoginForm = Form.create()(HorizontalLoginForm);
+const WrappedNormalLoginForm = Form.create()(NormalLoginForm);
 
 
 const mapStateToProps = state => state['login-bark'];
-export default connect(mapStateToProps)(WrappedHorizontalLoginForm);
+export default connect(mapStateToProps)(WrappedNormalLoginForm);
