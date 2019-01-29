@@ -13,7 +13,9 @@ class EditOrgForm extends React.Component {
       return;
     }
     const tmpParentId = parseInt(value.split('.')[0]);
+    const tmpTopId = parseInt(value.split('.')[1]);
     this.props.dispatch(changeValue('parentOrgId', tmpParentId));
+    this.props.dispatch(changeValue('topOrgId', tmpTopId));
   }
 
   changeOrgName = (e) => {
@@ -83,7 +85,6 @@ class EditOrgForm extends React.Component {
                   ],
                 })(<Input
                   style={{ width: 260 }}
-                  defaultValue=""
                   placeholder="请输入部门名称"
                   onBlur={this.changeOrgName}
                 />)}

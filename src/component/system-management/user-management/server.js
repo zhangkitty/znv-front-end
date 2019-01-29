@@ -9,6 +9,7 @@ export const addOrgSer = (props) => request({
   url: `/srm/org/add?token=${props.token}`,
   method: `post`,
   data: {
+    topOrgId: props.topOrgId,
     parentOrgId: props.parentOrgId,
     orgName: props.orgName,
   },

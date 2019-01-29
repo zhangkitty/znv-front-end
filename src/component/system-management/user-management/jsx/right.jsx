@@ -5,185 +5,185 @@ import { Button } from 'shineout';
 import { Table, Divider, Popconfirm, Upload, Icon, message } from 'antd';
 import styles from '../style.css';
 import {
-  changeValue,
-  getRoleTree,
-  openEditUser,
-  deleteUser,
-  chgUserStatus,
-  getUserDetail,
-  clearUserDetail,
-  changePage,
-  changePageSize,
+    changeValue,
+    getRoleTree,
+    openEditUser,
+    deleteUser,
+    chgUserStatus,
+    getUserDetail,
+    clearUserDetail,
+    changePage,
+    changePageSize,
 } from '../action';
 
 export default class RightUserList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+    constructor(props) {
+        super(props);
+    }
 
-  state = {
-    fileList: [],
-    uploading: false,
-  }
+    state = {
+        fileList: [],
+        uploading: false,
+    }
 
-  render() {
-    const {
-      dataSource, dispatch, total, page, pageSize,
-      topOrgId, orgId, userId, phone,
-    } = this.props;
+    render() {
+        const {
+            dataSource, dispatch, total, page, pageSize,
+            topOrgId, orgId, userId, phone,
+        } = this.props;
 
-    const uploadProps = {
-      name: 'template',
-      accept: '.xls,.xlsx',
-      action: '/srm/user/batch/import?token='+this.props.token,
-      showUploadList : false,
-      onChange(info) {
-        if (info.file.status === 'done') {
-          if (info.file.response.success === true) {
-            message.success(`${info.file.name} µ¼Èë³É¹¦¡£`);
-          } else {
-            message.error(`${info.file.response.msg}`);
-          }
-        } else if (info.file.status === 'error') {
-          message.error(`${info.file.name} µ¼ÈëÊ§°Ü¡£`);
-        }
-      },
-    };
+        const uploadProps = {
+            name: 'template',
+            accept: '.xls,.xlsx',
+            action: '/srm/user/batch/import?token='+this.props.token,
+            showUploadList : false,
+            onChange(info) {
+                if (info.file.status === 'done') {
+                    if (info.file.response.success === true) {
+                        message.success(`${info.file.name} å¯¼å…¥æˆåŠŸã€‚`);
+                    } else {
+                        message.error(`${info.file.response.msg}`);
+                    }
+                } else if (info.file.status === 'error') {
+                    message.error(`${info.file.name} å¯¼å…¥å¤±è´¥ã€‚`);
+                }
+            },
+        };
 
-    const columns = [
-      {
-        title: '²¿ÃÅ',
-        dataIndex: 'orgName',
-      },
-      {
-        title: 'ĞÕÃû',
-        dataIndex: 'fullName',
-      },
-      {
-        title: 'ÊÖ»úºÅÂë',
-        dataIndex: 'phone',
-      },
-      {
-        title: 'ÓÃ»§Ãû',
-        dataIndex: 'userName',
-      },
-      {
-        title: '×´Ì¬',
-        align: 'center',
-        dataIndex: 'statusName',
-      },
-      {
-        title: '²Ù×÷',
-        align: 'center',
-        dataIndex: 'statusCode',
-        width: 200,
-        render: (text, record) => {
-          const table = {
-            0: 'Í£ÓÃ',
-            1: 'ÆôÓÃ',
-          };
-          const chgStatusTable = {
-            0: 'È·ÈÏÒªÍ£ÓÃ¸ÃÓÃ»§Âğ£¿',
-            1: 'È·ÈÏÒªÖØĞÂÆôÓÃ¸ÃÓÃ»§Âğ£¿',
-          };
-          return (
-            <span>
+        const columns = [
+            {
+                title: 'éƒ¨é—¨',
+                dataIndex: 'orgName',
+            },
+            {
+                title: 'å§“å',
+                dataIndex: 'fullName',
+            },
+            {
+                title: 'æ‰‹æœºå·ç ',
+                dataIndex: 'phone',
+            },
+            {
+                title: 'ç”¨æˆ·å',
+                dataIndex: 'userName',
+            },
+            {
+                title: 'çŠ¶æ€',
+                align: 'center',
+                dataIndex: 'statusName',
+            },
+            {
+                title: 'æ“ä½œ',
+                align: 'center',
+                dataIndex: 'statusCode',
+                width: 200,
+                render: (text, record) => {
+                    const table = {
+                        0: 'åœç”¨',
+                        1: 'å¯ç”¨',
+                    };
+                    const chgStatusTable = {
+                        0: 'ç¡®è®¤è¦åœç”¨è¯¥ç”¨æˆ·å—ï¼Ÿ',
+                        1: 'ç¡®è®¤è¦é‡æ–°å¯ç”¨è¯¥ç”¨æˆ·å—ï¼Ÿ',
+                    };
+                    return (
+                        <span>
               <a onClick={() => {
-                dispatch(changeValue('title', '±à¼­ÓÃ»§'));
-                dispatch(getRoleTree(this.props));
-                dispatch(changeValue('userId', record.userId));
-                const { userId } = record;
-                dispatch(changeValue('user', dispatch(getUserDetail(this.props, userId))));
-                dispatch(openEditUser(this.props));
+                  dispatch(changeValue('title', 'ç¼–è¾‘ç”¨æˆ·'));
+                  dispatch(getRoleTree(this.props));
+                  dispatch(changeValue('userId', record.userId));
+                  const { userId } = record;
+                  dispatch(changeValue('user', dispatch(getUserDetail(this.props, userId))));
+                  dispatch(openEditUser(this.props));
               }}
-              >±à¼­
+              >ç¼–è¾‘
               </a>
               <Divider type="vertical" />
               <Popconfirm
-                title={chgStatusTable[record.statusCode]}
-                onConfirm={() => {
-                  const { userId, statusCode } = record;
-                  const status = statusCode === 0 ? 1 : 0;
-                  const orgId = this.props.clickedId.split('.')[0];
-                  dispatch(chgUserStatus(this.props, userId, status, orgId));
-                }}
-                okText="È·ÈÏ"
-                cancelText="È¡Ïû"
+                  title={chgStatusTable[record.statusCode]}
+                  onConfirm={() => {
+                      const { userId, statusCode } = record;
+                      const status = statusCode === 0 ? 1 : 0;
+                      const orgId = this.props.clickedId.split('.')[0];
+                      dispatch(chgUserStatus(this.props, userId, status, orgId));
+                  }}
+                  okText="ç¡®è®¤"
+                  cancelText="å–æ¶ˆ"
               >
                 <a href="#">{table[record.statusCode]}</a>
               </Popconfirm>
               <Divider type="vertical" />
               <Popconfirm
-                title="È·ÈÏÒªÉ¾³ı¸ÃÓÃ»§Âğ?"
-                onConfirm={() => {
-                  const { userId } = record;
-                  const orgId = this.props.clickedId.split('.')[0];
-                  dispatch(deleteUser(this.props, userId, orgId));
-                }}
-                onCancel={() => {}}
-                okText="È·ÈÏ"
-                cancelText="È¡Ïû"
+                  title="ç¡®è®¤è¦åˆ é™¤è¯¥ç”¨æˆ·å—?"
+                  onConfirm={() => {
+                      const { userId } = record;
+                      const orgId = this.props.clickedId.split('.')[0];
+                      dispatch(deleteUser(this.props, userId, orgId));
+                  }}
+                  onCancel={() => {}}
+                  okText="ç¡®è®¤"
+                  cancelText="å–æ¶ˆ"
               >
-                <a href="#">É¾³ı</a>
+                <a href="#">åˆ é™¤</a>
               </Popconfirm>
             </span>);
-        },
-      },
-    ];
+                },
+            },
+        ];
 
-    return (
-      <div className={styles.right}>
-        <div className={styles.rightDiv}>
-          <Button
-            type="primary"
-            disabled={this.props.clickedId === ''}
-            onClick={() => {
-              dispatch(changeValue('title', 'ĞÂÔöÓÃ»§'));
-              dispatch(changeValue('checkedOrgId', this.props.clickedId));
-              dispatch(changeValue('orgId', this.props.clickedId.split('.')[0]));
-              dispatch(changeValue('topOrgId', this.props.clickedId.split('.')[1]));
-              dispatch(changeValue('userId', ''));
-              dispatch(clearUserDetail());
-              dispatch(getRoleTree(this.props));
-              dispatch(openEditUser(this.props));
-            }}
-          >Ìí¼Ó</Button>
-          <Button
-            type="primary"
-            onClick={() => {
-               window.location.href = './template/batch_add_user_template.xlsx';
-            }}
-          >ÏÂÔØÄ£°å
-          </Button>
-          <Upload {...uploadProps} style={{marginLeft: 10}}>
-            <Button>
-              <Icon type="upload" />ÅúÁ¿µ¼Èë
-            </Button>
-          </Upload>
-          <EditUserModal {...this.props} />
-        </div>
-        <br />
-        <Table
-          bordered
-          rowKey="userId"
-          pagination={false}
-          columns={columns}
-          dataSource={dataSource}
-        />
-        <Page
-          total={total}
-          current={page}
-          pageSize={pageSize}
-          onChange={(current) => {
-            const orgId = this.props.clickedId.split('.')[0];
-            dispatch(changePage(this.props, current, orgId));
-          }}
-          onShowSizeChange={(current, size) => {
-            const orgId = this.props.clickedId.split('.')[0];
-            dispatch(changePageSize(this.props, current, size, orgId));
-          }}
-        />
-      </div>
-    );
-  }
+        return (
+            <div className={styles.right}>
+                <div className={styles.rightDiv}>
+                    <Button
+                        type="primary"
+                        disabled={this.props.clickedId === ''}
+                        onClick={() => {
+                            dispatch(changeValue('title', 'æ–°å¢ç”¨æˆ·'));
+                            dispatch(changeValue('checkedOrgId', this.props.clickedId));
+                            dispatch(changeValue('orgId', this.props.clickedId.split('.')[0]));
+                            dispatch(changeValue('topOrgId', this.props.clickedId.split('.')[1]));
+                            dispatch(changeValue('userId', ''));
+                            dispatch(clearUserDetail());
+                            dispatch(getRoleTree(this.props));
+                            dispatch(openEditUser(this.props));
+                        }}
+                    >æ·»åŠ </Button>
+                    <Button
+                        type="primary"
+                        onClick={() => {
+                            window.location.href = './template/batch_add_user_template.xlsx';
+                        }}
+                    >ä¸‹è½½æ¨¡æ¿
+                    </Button>
+                    <Upload {...uploadProps} style={{marginLeft: 10}}>
+                        <Button>
+                            <Icon type="upload" />æ‰¹é‡å¯¼å…¥
+                        </Button>
+                    </Upload>
+                    <EditUserModal {...this.props} />
+                </div>
+                <br />
+                <Table
+                    bordered
+                    rowKey="userId"
+                    pagination={false}
+                    columns={columns}
+                    dataSource={dataSource}
+                />
+                <Page
+                    total={total}
+                    current={page}
+                    pageSize={pageSize}
+                    onChange={(current) => {
+                        const orgId = this.props.clickedId.split('.')[0];
+                        dispatch(changePage(this.props, current, orgId));
+                    }}
+                    onShowSizeChange={(current, size) => {
+                        const orgId = this.props.clickedId.split('.')[0];
+                        dispatch(changePageSize(this.props, current, size, orgId));
+                    }}
+                />
+            </div>
+        );
+    }
 }
