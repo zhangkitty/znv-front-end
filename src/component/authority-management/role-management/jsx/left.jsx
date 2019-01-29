@@ -2,20 +2,23 @@ import React from 'react';
 import { Tree, Button } from 'shineout';
 import { Popconfirm } from 'antd';
 import styles from './style.css';
-import { changeValue, openAddRoleModal, openModifyRoleModal, deleteRole, getRoleDetail } from '../action';
+import { changeValue, openAddRoleModal, openModifyRoleModal, deleteRole, getRoleDetail, getCompanyDetail } from '../action';
 import AddRole from './addRole';
 import ModifyRole from './modifyRole';
 
 const tmp = (props) => {
   console.log(props);
-  const { clickedId, dispatch, left: { tree } } = props;
+  const { clickNode, dispatch, left: { tree } } = props;
 
   return (
     <div className={styles.left}>
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <div style={{
+ display: 'flex', justifyContent: 'space-between', fontSize: '14px', marginBottom: 10,
+}}
+      >
         <span>角色列表</span>
         {
-          clickedId === 1 &&
+          clickNode.level === 0 &&
           <Button
             type="link"
             style={{ padding: 0, marginLeft: 0, paddingRight: 10 }}
@@ -25,7 +28,7 @@ const tmp = (props) => {
           </Button>
         }
         {
-          clickedId !== 1 &&
+          clickNode.level === 1 &&
           <div>
             <Button
               type="link"
@@ -46,13 +49,18 @@ const tmp = (props) => {
       <div>
         <Tree
           data={tree}
-          defaultExpanded={[1]}
+          defaultExpanded={[]}
           line={false}
           keygen="id"
-          renderItem={v => (<span className={clickedId === v.id ? styles.leftItem : null}>{v.name}</span>)}
+          renderItem={v => (<span className={clickNode.id === v.id ? styles.leftItem : null}>{v.name}</span>)}
           onClick={(node, id) => {
-            dispatch(changeValue('clickedId', id));
-            dispatch(getRoleDetail(id));
+            dispatch(changeValue('clickNode', node));
+            if (node.level === 1) {
+              dispatch(getRoleDetail(id));
+            }
+            if (node.level === 0) {
+              dispatch(getCompanyDetail());
+            }
           }}
         />
       </div>

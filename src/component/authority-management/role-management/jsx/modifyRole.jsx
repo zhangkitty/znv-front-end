@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, Input, Spin } from 'antd';
-import { closeModifyRoleModal } from '../action';
+import { closeModifyRoleModal, modifyRole } from '../action';
 
 
 const tmp = (props) => {
@@ -13,7 +13,7 @@ const tmp = (props) => {
         dispatch(closeModifyRoleModal());
       }}
       onOk={() => {
-        // dispatch(addRole(props));
+        dispatch(modifyRole(props));
       }}
 
     >

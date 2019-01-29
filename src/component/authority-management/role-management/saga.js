@@ -1,8 +1,8 @@
 import { message } from 'antd';
 import { take, put, fork, takeLatest } from 'redux-saga/effects';
-import { initSuccess, openModifyRoleModalSuccess, deleteRoleSuccess, getRoleDetailSuccess } from './action';
+import { initSuccess, openModifyRoleModalSuccess, deleteRoleSuccess, getRoleDetailSuccess, addRoleSuccess, modifyRoleSagaSuccess } from './action';
 import * as types from './types';
-import { initSer, addRoleSer, openModifyRoleModalSer, deleteRoleSer, getRoleDetailSer } from './server';
+import { initSer, addRoleSer, openModifyRoleModalSer, deleteRoleSer, getRoleDetailSer, submitSer, modifyRoleSer } from './server';
 
 function* init() {
   while (true) {
@@ -15,7 +15,12 @@ function* init() {
 function* addRoleSaga(action) {
   const { props } = action;
   const data = yield addRoleSer(props);
-  debugger;
+  if (data.errCode !== 0) {
+    return message.error(data.msg);
+  }
+  const data1 = yield initSer(action.props);
+  yield put(addRoleSuccess(data1));
+  return message.success('新增角色成功');
 }
 
 function* openModifyRoleModalSaga(action) {
@@ -33,7 +38,9 @@ function* deleteRoleSaga(action) {
   if (data.errCode !== 0) {
     return message.error(data.msg);
   }
-  return yield put(deleteRoleSuccess(data));
+  const data1 = yield initSer(action.props);
+  yield put(deleteRoleSuccess(data1));
+  return message.success('删除角色成功');
 }
 
 function* getRoleDetailSaga(action) {
@@ -45,6 +52,29 @@ function* getRoleDetailSaga(action) {
   return yield put(getRoleDetailSuccess(data));
 }
 
+function* submitSaga(action) {
+  const { props } = action;
+  const data = yield submitSer(props);
+  if (data[0].errCode !== 0) {
+    return message.error(data[0].msg);
+  }
+  if (data[1].errCode !== 0) {
+    return message.error(data[1].msg);
+  }
+  return message.success('配置成功');
+}
+
+function* modifyRoleSaga(action) {
+  const { props } = action;
+  const data = yield modifyRoleSer(props);
+  if (data.errCode !== 0) {
+    return message.error(data.msg);
+  }
+  const data1 = yield initSer(action.props);
+  yield put(modifyRoleSagaSuccess(data1));
+  return message.success('修改角色成功');
+}
+
 function* mainSaga() {
   yield fork(init);
   yield takeLatest(types.addRole, addRoleSaga);
@@ -52,6 +82,9 @@ function* mainSaga() {
   yield takeLatest(types.deleteRole, deleteRoleSaga);
 
   yield takeLatest(types.getRoleDetail, getRoleDetailSaga);
+
+  yield takeLatest(types.submit, submitSaga);
+  yield takeLatest(types.modifyRole, modifyRoleSaga);
 }
 
 export default mainSaga;

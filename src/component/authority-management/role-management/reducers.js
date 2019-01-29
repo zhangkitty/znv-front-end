@@ -1,10 +1,11 @@
 import assign from 'object-assign';
 import { getSize } from 'shein-middlewares/pagesize';
 import * as types from './types';
+import { deleteRoleSuccess } from './action';
 
 export const defaultState = {
   loading: false,
-  clickedId: 1,
+  clickNode: '',
   // 新增角色
   addRole: {
     isShow: false,
@@ -26,6 +27,7 @@ export const defaultState = {
     menuTree: [],
     checkedMenuTree: [],
     userTree: [],
+    checkedUserTree: [],
   },
 };
 
@@ -105,7 +107,53 @@ const reducer = (state = defaultState, action) => {
       return assign({}, state, {
         right: assign({}, state.right, {
           ready: true,
-          checkedMenuTree: action.data.data.resourceList,
+          checkedMenuTree: action.data.data.resourceList.map(v => v.resourceId),
+          checkedUserTree: [],
+        }),
+      });
+
+    case types.addRole:
+      return assign({}, state, {
+        addRole: assign({}, state.addRole, {
+          roleName: '',
+          roleDes: '',
+        }),
+      });
+
+    case types.addRoleSuccess:
+      return assign({}, state, {
+        left: assign({}, state.left, {
+          tree: (action.data)[0].data,
+        }),
+        addRole: assign({}, state.addRole, {
+          isShow: false,
+        }),
+      });
+
+    case types.deleteRoleSuccess:
+      return assign({}, state, {
+        clickNode: '',
+        left: assign({}, state.left, {
+          tree: (action.data)[0].data,
+        }),
+        right: assign({}, state.right, {
+          checkedMenuTree: [],
+          checkedUserTree: [],
+        }),
+      });
+
+    case types.modifyRoleSuccess:
+      return assign({}, state, {
+        left: assign({}, state.left, {
+          tree: (action.data)[0].data,
+        }),
+      });
+
+    case types.getCompanyDetail:
+      return assign({}, state, {
+        right: assign({}, state.right, {
+          checkedMenuTree: [],
+          checkedUserTree: [],
         }),
       });
     default:

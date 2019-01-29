@@ -2,9 +2,16 @@ import React from 'react';
 import { Tree, Checkbox } from 'shineout';
 import { Button, Spin } from 'antd';
 import styles from './style.css';
+import { submit } from '../action';
 
 const tmp = (props) => {
-  const { right: { ready, menuTree, userTree } } = props;
+  const {
+    dispatch,
+    clickNode,
+    right: {
+      ready, menuTree, userTree, checkedMenuTree, checkedUserTree,
+    },
+  } = props;
 
 
   if (menuTree.length == 0) {
@@ -35,7 +42,9 @@ const tmp = (props) => {
         <Button
           style={{
         }}
+          disabled={clickNode.level !== 1}
           type="primary"
+          onClick={() => dispatch(submit(props))}
         >提交
         </Button>
       </div>
@@ -46,10 +55,9 @@ const tmp = (props) => {
           <Tree
             data={menuTree}
             keygen="id"
-            defaultExpanded={[1]}
             line={false}
             renderItem={n => n.name}
-            onChange={value => console.log(value)}
+            data-bind="right.checkedMenuTree"
           />
         </div>
         <div className={styles.userTree}>
@@ -60,7 +68,7 @@ const tmp = (props) => {
             line={false}
             defaultExpanded={[1]}
             renderItem={n => n.name}
-            onChange={value => console.log(value)}
+            data-bind="right.checkedUserTree"
           />
         </div>
       </div>
