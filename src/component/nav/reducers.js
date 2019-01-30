@@ -145,10 +145,10 @@ const menus = [
     icon: 'bars',
     link: '/authority-management',
     children: [
-      // {
-      //   title: '用户管理',
-      //   link: '/authority-management/user-management',
-      // },
+      {
+        title: '用户管理',
+        link: '/system-management/user-management',
+      },
       {
         title: '角色管理',
         link: '/authority-management/role-management',
