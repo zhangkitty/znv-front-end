@@ -3,6 +3,7 @@ import * as types from './types';
 
 const defaultState = {
   ready: true,
+  loading: true,
   type: '51010720564',
   dataSource: [],
   total: 30,
@@ -22,13 +23,14 @@ const reducer = (state = defaultState, action) => {
     case types.initSuccess:
       return assign({}, state, {
         ready: true,
+        loading: true,
         total: action.data.data.total,
         dataSource: action.data.data.list,
       });
 
     case types.changePage:
       return assign({}, state, {
-        ready: false,
+        loading: false,
         formData: assign({}, state.formData, {
           pageNum: action.props.formData.pageNum,
         }),
@@ -36,7 +38,7 @@ const reducer = (state = defaultState, action) => {
 
     case types.changePageSize:
       return assign({}, state, {
-        ready: false,
+        loading: false,
         formData: assign({}, state.formData, {
           pageNum: action.props.formData.pageNum,
           pageSize: action.props.formData.pageSize,

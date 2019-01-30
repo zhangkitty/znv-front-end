@@ -9,7 +9,7 @@ const tmp = (props) => {
   console.log(props);
 
   const {
-    dispatch, dataSource, ready, total,
+    dispatch, dataSource, loading, total,
     formData: { pageNum, pageSize },
   } = props;
 
@@ -72,7 +72,7 @@ const tmp = (props) => {
         dataSource={dataSource}
         columns={columns}
         pagination={false}
-        loading={!ready}
+        loading={!loading}
       />
 
       <Page

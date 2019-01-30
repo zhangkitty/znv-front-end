@@ -61,6 +61,10 @@ const fetch = async (options) => {
     // window.open(`${href}#/login`, '_self');
   }
   const token = localStorage.getItem('token');
+  if (!token) {
+    const href = window.location.href.split('#')[0];
+    window.open(`${href}#/login`, '_self');
+  }
   switch (method.toLowerCase()) {
     case 'get':
       if (url.indexOf('?') !== -1) {
