@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal } from 'shineout';
-import { Form, Input, TreeSelect, Row, Col, Button, } from 'antd';
+import { Form, Input, TreeSelect, Row, Col, Button } from 'antd';
 import styles from './style.css';
 import { closeEditUser, addUser, editUser, resetPwd, changeValue } from '../action';
 
@@ -36,10 +36,24 @@ class EditUserForm extends React.Component {
     this.props.dispatch(changeValue('checkedRoleIds', value));
   }
 
-  confirm() {
-  }
-
-  cancel() {
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        if (this.props.title === '新增用户') {
+          if (this.props.clickedId === '' && this.props.orgId === '') {
+            return;
+          }
+          if (this.props.orgId === '') {
+            this.props.dispatch(changeValue('orgId', this.props.clickedId.split('.')[0]));
+          }
+          this.props.dispatch(addUser(this.props));
+        } else {
+          const orgId = this.props.clickedId.split('.')[0];
+          this.props.dispatch(editUser(this.props, orgId));
+        }
+      }
+    });
   }
 
   render() {
@@ -58,21 +72,7 @@ class EditUserForm extends React.Component {
         visible={this.props.editUserModal.visible}
         onClose={() => dispatch(closeEditUser())}
       >
-        <Form onSubmit={() => {
-          if (this.props.title === '新增用户') {
-            if (this.props.clickedId === '' && this.props.orgId === '') {
-              return;
-            }
-            if (this.props.orgId === '') {
-              dispatch(changeValue('orgId', this.props.clickedId.split('.')[0]));
-            }
-            dispatch(addUser(this.props));
-          } else {
-            const orgId = this.props.clickedId.split('.')[0];
-            dispatch(editUser(this.props, orgId));
-          }
-        }}
-        >
+        <Form onSubmit={e => this.handleSubmit(e)} >
           {getFieldDecorator('id')(<Input type="hidden" />)}
           <Row>
             <Col span={24}>

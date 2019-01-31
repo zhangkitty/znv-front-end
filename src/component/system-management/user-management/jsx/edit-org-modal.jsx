@@ -6,7 +6,6 @@ import {
 import styles from './style.css';
 import { closeEditOrg, addOrg, editOrg, deleteOrg, changeValue } from '../action';
 
-
 class EditOrgForm extends React.Component {
   onChange = (value) => {
     if (value === undefined || value === '') {
@@ -22,11 +21,17 @@ class EditOrgForm extends React.Component {
     this.props.dispatch(changeValue('orgName', e.target.value));
   }
 
-  confirm() {
-    this.props.dispatch(deleteOrg(this.props));
-  }
-
-  cancel() {
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        if (this.props.clickedId !== '' && this.props.clickedOrgLevel !== 1) {
+          this.props.dispatch(editOrg(this.props));
+        } else {
+          this.props.dispatch(addOrg(this.props));
+        }
+      }
+    });
   }
 
   render() {
@@ -45,14 +50,7 @@ class EditOrgForm extends React.Component {
         visible={this.props.editOrgModal.visible}
         onClose={() => dispatch(closeEditOrg())}
       >
-        <Form onSubmit={() => {
-          if (this.props.clickedId !== '' && this.props.clickedOrgLevel !== 1) {
-            dispatch(editOrg(this.props));
-          } else {
-            dispatch(addOrg(this.props));
-          }
-        }}
-        >
+        <Form onSubmit={e => this.handleSubmit(e)} >
           {getFieldDecorator('id')(<Input type="hidden" />)}
           <Row>
             <Col span={13}>
