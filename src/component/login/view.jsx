@@ -38,7 +38,7 @@ class NormalLoginForm extends Component {
       <Form className={styles["login-form"]}
         onSubmit={e => this.handleSubmit(e)}
       >
-        <h3 className={styles["login-form-title"]}>ϵͳ��¼</h3>
+        <h3 className={styles["login-form-title"]}>系统登录</h3>
         <FormItem
           validateStatus={userNameError ? 'error' : ''}
           help={userNameError || ''}
