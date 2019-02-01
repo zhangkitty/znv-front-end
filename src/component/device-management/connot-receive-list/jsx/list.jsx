@@ -3,7 +3,6 @@ import assign from 'object-assign';
 import { Table } from 'antd';
 import Page from 'shein-lib/pagination';
 import { changePage, changePageSize } from '../action';
-import styles from '../style.css';
 
 
 const tmp = (props) => {
