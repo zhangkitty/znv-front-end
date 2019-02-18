@@ -2,6 +2,7 @@ import axios from 'axios';
 import qs from 'qs';
 import config from './config';
 import Cookie from './js.cookie';
+import checkToken from './checkToken';
 
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -59,12 +60,14 @@ const fetch = async (options) => {
     Cookie.remove('SESSION_TOKEN');
     // const href = window.location.href.split('#')[0];
     // window.open(`${href}#/login`, '_self');
-  }
+  };
+
   const token = localStorage.getItem('token');
-  if (!token) {
+  if (!checkToken()) {
     const href = window.location.href.split('#')[0];
     window.open(`${href}#/login`, '_self');
   }
+
   switch (method.toLowerCase()) {
     case 'get':
       if (url.indexOf('?') !== -1) {

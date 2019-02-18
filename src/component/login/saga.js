@@ -12,6 +12,7 @@ function* submitSaga(action) {
     return message.error(data.msg);
   }
   localStorage.setItem('token', data.data.token);
+  localStorage.setItem('tokenDate', new Date().format('yyyy-MM-dd'));
   return yield put(push('/dashboard/ppppp'));
 }
 

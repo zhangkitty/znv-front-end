@@ -19,7 +19,10 @@ const UserLand = ({ dispatch, userName }) => (
         // dispatch(logout)
         Cookie.remove('SESSION_NP');
         Cookie.remove('SESSION_TOKEN');
-        window.open(`${window.location.href}login`, '_self');
+        localStorage.setItem('token', '');
+        localStorage.setItem('tokenDate', '');
+        const href = window.location.href.split('#')[0];
+        window.open(`${href}#/login`, '_self');
       }}
     >
      注销

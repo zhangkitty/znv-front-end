@@ -4,11 +4,13 @@ import { ConnectedRouter } from 'react-router-redux';
 import { Route as RawRoute, Switch, Redirect } from 'react-router-dom';
 import injectStore from 'rrc-loader-helper/lib/inj-dispatch';
 import Cookie from 'utils/js.cookie';
+import checkToken from 'utils/checkToken';
 import 'style/index.less';
 import 'style/lib/animate.css';
 
 import Nav from './nav/view';
 import Login from './login/view';
+
 
 // const Home = () => <div>首页</div>;
 
@@ -47,8 +49,7 @@ const NavWrapper = props => (
 );
 
 const AuthorizedRoute = (props) => {
-  const isLogged = true;
-  // const isLogged = Cookie.get('SESSION_TOKEN') && Cookie.get('SESSION_NP');
+  const isLogged = checkToken();
   return (
     isLogged ?
       <NavWrapper {...props} />
