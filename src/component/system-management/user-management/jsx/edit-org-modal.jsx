@@ -11,10 +11,7 @@ class EditOrgForm extends React.Component {
     if (value === undefined || value === '') {
       return;
     }
-    const tmpParentId = parseInt(value.split('.')[0]);
-    const tmpTopId = parseInt(value.split('.')[1]);
-    this.props.dispatch(changeValue('parentOrgId', tmpParentId));
-    this.props.dispatch(changeValue('topOrgId', tmpTopId));
+    this.props.dispatch(changeValue('parentOrgId', value));
   }
 
   changeOrgName = (e) => {
@@ -25,7 +22,7 @@ class EditOrgForm extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        if (this.props.clickedId !== '' && this.props.clickedOrgLevel !== 1) {
+        if (this.props.title === '编辑部门') {
           this.props.dispatch(editOrg(this.props));
         } else {
           this.props.dispatch(addOrg(this.props));
@@ -65,7 +62,7 @@ class EditOrgForm extends React.Component {
                   treeData={this.props.editOrgTreeData}
                   dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
                   placeholder="请选择上级部门"
-                  disabled={this.props.clickedId !== '' && this.props.clickedOrgLevel !== 1}
+                  disabled={this.props.clickedId !== ''}
                   allowClear
                   treeDefaultExpandAll
                   onChange={this.onChange}
@@ -84,6 +81,7 @@ class EditOrgForm extends React.Component {
                 })(<Input
                   style={{ width: 260 }}
                   placeholder="请输入部门名称"
+                  maxLength={20}
                   onBlur={this.changeOrgName}
                 />)}
               </Form.Item>
@@ -92,8 +90,9 @@ class EditOrgForm extends React.Component {
           <Row>
             <Col span={13} offset={6}>
               <Button
-                disabled={this.props.clickedId === '' || this.props.clickedOrgLevel === 1}
+                disabled={this.props.title === '新增部门'}
                 onClick={() => {
+                  dispatch(changeValue('clickedId', ''));
                   dispatch(deleteOrg(this.props));
                 }}
               >删除

@@ -46,3 +46,9 @@
     display: block;
     text-align: right;
 }
+
+.linkButton {
+    width: 30px;
+    margin-left: 3px;
+    padding-left: 0px;
+}

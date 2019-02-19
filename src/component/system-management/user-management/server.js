@@ -9,8 +9,8 @@ export const addOrgSer = (props) => request({
   url: `/srm/org/add`,
   method: `post`,
   data: {
-    topOrgId: props.topOrgId,
-    parentOrgId: props.parentOrgId,
+    topOrgId: props.parentOrgId.indexOf('.') !== -1 ? props.parentOrgId.split('.')[1] : props.topOrgId,
+    parentOrgId: props.parentOrgId.indexOf('.') !== -1 ? props.parentOrgId.split('.')[0] : props.parentOrgId,
     orgName: props.orgName,
   },
 });
