@@ -64,7 +64,6 @@ class EditOrgForm extends React.Component {
                   placeholder="请选择上级部门"
                   disabled={this.props.clickedId !== ''}
                   allowClear
-                  treeDefaultExpandAll
                   onChange={this.onChange}
                 />)}
               </Form.Item>
