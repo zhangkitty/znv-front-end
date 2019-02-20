@@ -87,10 +87,8 @@ class EditUserForm extends React.Component {
                   style={{ width: 340 }}
                   treeData={this.props.editOrgTreeData}
                   dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
-                  disabled={this.props.userId !== ''}
                   placeholder="请选择部门"
                   allowClear
-                  treeDefaultExpandAll
                   onChange={this.onChange}
                 />)}
               </Form.Item>
