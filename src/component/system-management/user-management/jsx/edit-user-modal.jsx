@@ -36,6 +36,30 @@ class EditUserForm extends React.Component {
     this.props.dispatch(changeValue('checkedRoleIds', value));
   }
 
+  // 自定义校验用户名方法
+  checkUserName = (rule, value, callback) => {
+    if (value) {
+      if (!/^[a-zA-Z0-9_]{4,18}$/g.test(value)) {
+        callback(new Error('请输入4-18位字母、数字或下划线!'));
+      }
+    } else {
+      callback(new Error('请输入用户名'));
+    }
+    callback();
+  };
+
+  // 自定义校验手机号码
+  checkPhone = (rule, value, callback) => {
+    if (value) {
+      if (!/^[1][3,4,5,7,8][0-9]{9}$/g.test(value)) {
+        callback(new Error('请输入正确的手机号码!'));
+      }
+    } else {
+      callback(new Error('请输入手机号'));
+    }
+    callback();
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -49,8 +73,9 @@ class EditUserForm extends React.Component {
           }
           this.props.dispatch(addUser(this.props));
         } else {
-          const orgId = this.props.clickedId.split('.')[0];
-          this.props.dispatch(editUser(this.props, orgId));
+          this.props.dispatch(changeValue('orgId', this.props.clickedId.split('.')[0]));
+          this.props.dispatch(changeValue('topOrgId', this.props.clickedId.split('.')[1]));
+          this.props.dispatch(editUser(this.props));
         }
       }
     });
@@ -117,6 +142,7 @@ class EditUserForm extends React.Component {
                   initialValue: `${this.props.user.phone}`,
                   rules: [
                     { required: true, message: '请输入手机号' },
+                    { validator: this.checkPhone, trigger: 'blur' },
                   ],
                 })(<Input
                   style={{ width: 340 }}
@@ -133,6 +159,7 @@ class EditUserForm extends React.Component {
                   initialValue: `${this.props.user.userName}`,
                   rules: [
                     { required: true, message: '请输入用户名' },
+                    { validator: this.checkUserName, trigger: 'blur' },
                   ],
                 })(<Input
                   style={{ width: 340 }}

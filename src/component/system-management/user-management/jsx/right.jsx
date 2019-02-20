@@ -104,8 +104,7 @@ export default class RightUserList extends React.Component {
                   onConfirm={() => {
                       const { userId, statusCode } = record;
                       const status = statusCode === 0 ? 1 : 0;
-                      const orgId = this.props.clickedId.split('.')[0];
-                      dispatch(chgUserStatus(this.props, userId, status, orgId));
+                      dispatch(chgUserStatus(this.props, userId, status));
                   }}
                   okText="确认"
                   cancelText="取消"
@@ -117,8 +116,7 @@ export default class RightUserList extends React.Component {
                   title="确认要删除该用户吗?"
                   onConfirm={() => {
                       const { userId } = record;
-                      const orgId = this.props.clickedId.split('.')[0];
-                      dispatch(deleteUser(this.props, userId, orgId));
+                      dispatch(deleteUser(this.props, userId));
                   }}
                   onCancel={() => {}}
                   okText="确认"

@@ -77,6 +77,7 @@ export const editUserSer = (props) => request({
     phone: props.phone,
     email: props.email,
     orgId: props.orgId,
+    topOrgId: props.topOrgId,
     roleList: props.checkedRoleIds,
   },
 });
@@ -89,12 +90,13 @@ export const deleteUserSer = ({ props, userId }) => request({
   },
 });
 
-export const chgUserStatusSer = ({ props, userId, status }) => request({
-  url: `/srm/user/update`,
+export const chgUserStatusSer = ({ props, userId, status, topOrgId }) => request({
+  url: `/srm/user/disable`,
   method: `post`,
   data: {
     userId: userId,
     status: status,
+    topOrgId: topOrgId,
   },
 });
 

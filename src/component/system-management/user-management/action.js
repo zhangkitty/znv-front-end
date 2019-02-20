@@ -34,9 +34,9 @@ export const openEditUserSuccess = makeActionCreator(types.openEditUserSuccess, 
 export const closeEditUser = makeActionCreator(types.closeEditUser);
 
 export const addUser = makeActionCreator(types.addUser, 'props');
-export const editUser = makeActionCreator(types.editUser, 'props', 'orgId');
-export const deleteUser = makeActionCreator(types.deleteUser, 'props', 'userId', 'orgId');
-export const chgUserStatus = makeActionCreator(types.chgUserStatus, 'props', 'userId', 'status', 'orgId');
+export const editUser = makeActionCreator(types.editUser, 'props');
+export const deleteUser = makeActionCreator(types.deleteUser, 'props', 'userId');
+export const chgUserStatus = makeActionCreator(types.chgUserStatus, 'props', 'userId', 'status');
 export const resetPwd = makeActionCreator(types.resetPwd, 'props');
 
 
