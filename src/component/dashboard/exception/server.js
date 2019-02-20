@@ -373,12 +373,12 @@ export const mydefineActionSer = (action) => {
   });
 };
 
-export const getLastcoordinateSer = (action) => {
+export const getNowtracelistSer = (action) => {
   const data = {
     type: '51010720564',
-    dataTime: '2019-01-23',
+    dataTime: moment().format('YYYY-MM-DD'),
   };
   return request({
-    url: `/rqs/attendance/lastcoordinate${getParam(data)}`,
+    url: `/rqs/attendance/nowtracelist${getParam(data)}`,
   });
 };

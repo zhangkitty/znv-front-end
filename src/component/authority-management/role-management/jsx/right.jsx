@@ -28,15 +28,14 @@ const tmp = (props) => {
       </div>
     );
   }
-  console.log(menuTree);
-  console.log(userTree);
 
   return (
 
-    <div>
+    <div style={{ overflow: 'scroll', width: '100%' }}>
       <div style={{
         display: 'flex',
         flexDirection: 'row-reverse',
+        marginRight: '40px',
       }}
       >
         <Button

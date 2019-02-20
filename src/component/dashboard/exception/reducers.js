@@ -155,7 +155,7 @@ export const defaultState = {
       visible: false,
       dataSource: [],
     },
-    lastcoordinate: [
+    nowtracelist: [
 
     ],
 
@@ -639,10 +639,10 @@ const reducer = (state = defaultState, action) => {
       });
 
 
-    case types.getLastcoordinateSuccess:
+    case types.getNowtracelistSuccess:
       return assign({}, state, {
         staffAttendance: assign({}, state.staffAttendance, {
-          lastcoordinate: action.data.data.list,
+          nowtracelist: action.data.data.list,
         }),
       });
 

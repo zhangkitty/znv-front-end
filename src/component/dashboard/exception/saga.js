@@ -15,10 +15,10 @@ import {
   changeCityTrendDaysSuccess,
   changeCityTrendDays1Success,
   mydefineActionSuccess,
-  getLastcoordinateSuccess,
+  getNowtracelistSuccess,
 } from './action';
 import * as types from './types';
-import { getLastcoordinateSer, mydefineActionSer, changeCityTrendDays1Ser, changeCityTrendDaysSer, openCityWorkRateIncSer, openWorkTimeIncSer, openWorkRateIncSer, initSer, getExceptionRateSer, changeDetailDaySer, changeTrendDaysSer, getDevicedetailSer, staffAttendanceInitSer, changeTrendDaysInTab1Ser, changeDetailDayTab1Ser } from './server';
+import { getNowtracelistSer, mydefineActionSer, changeCityTrendDays1Ser, changeCityTrendDaysSer, openCityWorkRateIncSer, openWorkTimeIncSer, openWorkRateIncSer, initSer, getExceptionRateSer, changeDetailDaySer, changeTrendDaysSer, getDevicedetailSer, staffAttendanceInitSer, changeTrendDaysInTab1Ser, changeDetailDayTab1Ser } from './server';
 
 function* initSaga(action) {
   const { props } = action;
@@ -164,9 +164,9 @@ function* mydefineActionSaga(action) {
   return null;
 }
 
-function* getLastcoordinateSaga(action) {
-  const data = yield getLastcoordinateSer(action);
-  yield put(getLastcoordinateSuccess(data));
+function* getNowtracelistSaga(action) {
+  const data = yield getNowtracelistSer(action);
+  yield put(getNowtracelistSuccess(data));
 }
 
 
@@ -185,7 +185,7 @@ function* mainSaga() {
   yield takeLatest(types.changeCityTrendDays, changeCityTrendDaysSaga);
   yield takeLatest(types.changeCityTrendDays1, changeCityTrendDays1Saga);
   yield takeLatest(types.mydefineAction, mydefineActionSaga);
-  yield takeLatest(types.getLastcoordinate, getLastcoordinateSaga);
+  yield takeLatest(types.getNowtracelist, getNowtracelistSaga);
 }
 
 export default mainSaga;
