@@ -18,7 +18,6 @@ class Container extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log(123);
     const { url } = this.props;
     // url = 'rtmp://202.69.69.180:443/webcast/bshdlive-pc';
     let player;

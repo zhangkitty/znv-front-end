@@ -77,5 +77,5 @@ export const mydefineActionSuccess = makeActionCreator(types.mydefineActionSucce
 export const closeMydefineModal = makeActionCreator(types.closeMydefineModal);
 
 
-export const getLastcoordinate = makeActionCreator(types.getLastcoordinate)
-export const getLastcoordinateSuccess = makeActionCreator(types.getLastcoordinateSuccess,'data');
+export const getNowtracelist = makeActionCreator(types.getNowtracelist)
+export const getNowtracelistSuccess = makeActionCreator(types.getNowtracelistSuccess,'data');

@@ -12,6 +12,7 @@ export default class StaffAttendance extends React.Component {
   constructor(props) {
     super(props);
     const { dispatch } = props;
+    console.log('StaffAttendance');
     // dispatch(staffAttendanceInit(props));
   }
 
