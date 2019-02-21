@@ -46,7 +46,6 @@ const { Header, Sider, Content } = Layout;
 class MainPage extends React.PureComponent {
   constructor(props) {
     super(props);
-    debugger;
     const { dispatch } = this.props;
     dispatch(getResource(this.props));
   }

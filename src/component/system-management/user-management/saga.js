@@ -58,11 +58,11 @@ function* editOrgSaga(action) {
 function* deleteOrgSaga(action) {
   const { props } = action;
   const data = yield deleteOrgSer(props);
+  yield put(closeEditOrg(data));
   if (data.success !== true) {
     return message.error(data.msg);
   }
 
-  yield put(closeEditOrg(data));
   const data2 = yield getOrgTreeSer(props);
   if (data2.success !== true) {
     return message.error(data2.msg);

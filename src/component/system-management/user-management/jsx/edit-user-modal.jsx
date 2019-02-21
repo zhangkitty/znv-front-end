@@ -17,7 +17,6 @@ class EditUserForm extends React.Component {
 
     // 用户所属一级部门(公司)发生变化时，重新加载角色树
     if (value.split('.')[1] !== this.props.clickedId.split('.')[1]) {
-      console.log('changeRoleTree');
       this.props.dispatch(getRoleTree(this.props, tmpTopOrgId));
       this.props.dispatch(changeValue('checkedRoleIds', []));
     }
