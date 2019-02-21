@@ -118,6 +118,7 @@ class EditUserForm extends React.Component {
                   ],
                 })(<TreeSelect
                   style={{ width: 340 }}
+                  value={this.props.checkedRoleIds}
                   treeData={this.props.editOrgTreeData}
                   dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
                   placeholder="请选择部门"
