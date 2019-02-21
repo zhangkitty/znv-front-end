@@ -4,7 +4,11 @@ import showMessage from 'shein-lib/modal';
 
 import * as types from './types';
 import { changeValue } from './actions';
-import logout from './server';
+import { logout, getResourceSer } from './server';
+import { message } from 'antd/lib/index';
+import {
+  getResourceSuccess,
+} from './actions';
 
 function* logoutWorker() {
   const data = yield logout();
@@ -17,6 +21,15 @@ function* logoutWorker() {
   }
 }
 
+function* getResourceSaga(action) {
+  const data = yield getResourceSer(action.props);
+  if (data.errCode !== 0) {
+    return message.error(data.msg);
+  }
+  return yield put(getResourceSuccess(data));
+}
+
 export default function* () {
   yield takeLatest(types.LOGOUT, logoutWorker);
+  yield takeLatest(types.GETRESOURCE, getResourceSaga);
 }

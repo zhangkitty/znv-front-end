@@ -7,27 +7,34 @@ import { BackTop, Button, Layout, Menu, Icon } from 'antd';
 import MySider from './components/sider';
 import styles from './style.css';
 import Welcome from './components/welcome';
+import { getResource } from './actions';
 
-const UserLand = ({ dispatch, userName }) => (
-  <div className={styles.antLayoutright}>
-    <span className={styles.logout}>{userName}</span>
-    <Button
-      type="ghost"
-      size="small"
-      className={styles.logout}
-      onClick={() => {
-        // dispatch(logout)
-        Cookie.remove('SESSION_NP');
-        Cookie.remove('SESSION_TOKEN');
-        localStorage.setItem('token', '');
-        localStorage.setItem('tokenDate', '');
-        const href = window.location.href.split('#')[0];
-        window.open(`${href}#/login`, '_self');
-      }}
-    >
-     注销
-    </Button>
-  </div>);
+const UserLand = ({ dispatch, userName }) => {
+  userName = localStorage.getItem('userName');
+  return (
+    <div className={styles.antLayoutright}>
+      <span className={styles.logout}>{userName}</span>
+      <span style={{ marginRight: 10 }}>|</span>
+      <Button
+        type="ghost"
+        size="small"
+        className={styles.logout}
+        onClick={() => {
+          // dispatch(logout)
+          Cookie.remove('SESSION_NP');
+          Cookie.remove('SESSION_TOKEN');
+          localStorage.setItem('token', '');
+          localStorage.setItem('tokenDate', '');
+          const href = window.location.href.split('#')[0];
+          window.open(`${href}#/login`, '_self');
+        }}
+      >
+        注销
+      </Button>
+    </div>
+  );
+};
+
 
 UserLand.propTypes = {
   userName: PropTypes.string.isRequired,
@@ -37,6 +44,13 @@ UserLand.propTypes = {
 const { Header, Sider, Content } = Layout;
 
 class MainPage extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    debugger;
+    const { dispatch } = this.props;
+    dispatch(getResource(this.props));
+  }
+
   state = {
     collapsed: false,
   };

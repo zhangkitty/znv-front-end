@@ -167,6 +167,18 @@ const routerMatch = current => linkList
 
 // const routerMatch = current => linkList.filter(({ link }) => link === `${current}`);
 
+const transform = (arr) => {
+  if (!Array.isArray(arr) || arr.length == 0) {
+    return [];
+  }
+  return arr.map(v => ({
+    title: v.name,
+    icon: 'bars',
+    link: v.url,
+    children: transform(v.children),
+  }));
+};
+
 const defaultState = {
   current: '/',
   menus,
@@ -186,6 +198,12 @@ export default (state = defaultState, action) => {
       return Object.assign({}, state, {
         current: action.payload.pathname,
         pathList: menus.slice(0, 1).concat(routerMatch(action.payload.pathname)),
+      });
+
+    case types.GETRESOURCESUCCESS:
+      console.log(transform(action.data.data));
+      return assign({}, state, {
+        menus: transform(action.data.data),
       });
     default:
       return state;

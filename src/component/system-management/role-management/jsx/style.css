@@ -1,0 +1,34 @@
+.left{
+    flex-basis: 13%;
+    margin-right: 40px;
+    border-right: 5px solid black;
+    flex-shrink:0;
+    height: 100%;
+
+}
+.leftItem{
+    font-size: 18px;
+    color:#1890ff;
+}
+
+
+.right{
+    /*border: 1px solid black;*/
+    flex-grow:1;
+    width: 85%;
+    padding-right: 20px;
+    overflow: scroll;
+    display: flex;
+    min-width: 800px;
+}
+
+.menuTree{
+   width:50%;
+}
+
+.userTree{
+
+    width:50%;
+
+}
+

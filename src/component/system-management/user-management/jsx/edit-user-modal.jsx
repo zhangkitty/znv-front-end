@@ -19,7 +19,7 @@ class EditUserForm extends React.Component {
     if (value.split('.')[1] !== this.props.clickedId.split('.')[1]) {
       console.log('changeRoleTree');
       this.props.dispatch(getRoleTree(this.props, tmpTopOrgId));
-      this.props.dispatch(changeValue('checkedRoleIds', ''));
+      this.props.dispatch(changeValue('checkedRoleIds', []));
     }
     this.props.dispatch(changeValue('clickedId', value));
   }
@@ -90,7 +90,9 @@ class EditUserForm extends React.Component {
   }
 
   render() {
-    const { dispatch, editUserModal: { visible, destroy }, topOrgId, orgId } = this.props;
+    const {
+      dispatch, editUserModal: { visible, destroy }, topOrgId, orgId,
+    } = this.props;
     const { getFieldDecorator } = this.props.form;
     const formItemLayout = {
       labelCol: { span: 5 },
@@ -112,7 +114,7 @@ class EditUserForm extends React.Component {
               <Form.Item {...formItemLayout} label="部门">
                 {getFieldDecorator('orgId', {
                   initialValue: `${this.props.user.orgId === '' ? this.props.clickedId
-                    : this.props.user.orgId + '.' + this.props.clickedId.split('.')[1] }`,
+                    : `${this.props.user.orgId}.${this.props.clickedId.split('.')[1]}`}`,
                   rules: [
                     { required: true, message: '请选择部门' },
                   ],
@@ -207,8 +209,10 @@ class EditUserForm extends React.Component {
                       dispatch(changeValue('orgId', this.props.clickedId.split('.')[0]));
                       dispatch(resetPwd(this.props));
                     }}
-                  >重置密码</Button> }
-                  系统自动生成发送至手机</span>)}
+                  >重置密码
+                  </Button> }
+                  系统自动生成发送至手机
+                </span>)}
               </Form.Item>
             </Col>
           </Row>

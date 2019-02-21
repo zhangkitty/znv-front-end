@@ -13,6 +13,7 @@ function* submitSaga(action) {
   }
   localStorage.setItem('token', data.data.token);
   localStorage.setItem('tokenDate', new Date().format('yyyy-MM-dd'));
+  localStorage.setItem('userName', data.data.userName);
   return yield put(push('/dashboard/ppppp'));
 }
 
