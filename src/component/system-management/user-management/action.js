@@ -16,7 +16,7 @@ export const openEditOrg = makeActionCreator(types.openEditOrg, 'props');
 export const openEditOrgSuccess = makeActionCreator(types.openEditOrgSuccess, 'data');
 export const closeEditOrg = makeActionCreator(types.closeEditOrg);
 
-export const getRoleTree = makeActionCreator(types.getRoleTree, 'props');
+export const getRoleTree = makeActionCreator(types.getRoleTree, 'props', 'topOrgId');
 export const getRoleTreeSuccess = makeActionCreator(types.getRoleTreeSuccess, 'data');
 
 export const getUsers = makeActionCreator(types.getUsers, 'props', 'orgId');

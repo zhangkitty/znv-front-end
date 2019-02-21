@@ -2,17 +2,25 @@ import React from 'react';
 import { Modal } from 'shineout';
 import { Form, Input, TreeSelect, Row, Col, Button } from 'antd';
 import styles from './style.css';
-import { closeEditUser, addUser, editUser, resetPwd, changeValue } from '../action';
+import { closeEditUser, addUser, editUser, resetPwd, changeValue, getRoleTree } from '../action';
 
 class EditUserForm extends React.Component {
   onChange = (value) => {
     if (value === undefined || value === '' || value.split('.').length < 2) {
       return;
     }
+
     const tmpOrgId = parseInt(value.split('.')[0]);
     const tmpTopOrgId = parseInt(value.split('.')[1]);
     this.props.dispatch(changeValue('orgId', tmpOrgId));
     this.props.dispatch(changeValue('topOrgId', tmpTopOrgId));
+
+    // 用户所属一级部门(公司)发生变化时，重新加载角色树
+    if (value.split('.')[1] !== this.props.clickedId.split('.')[1]) {
+      console.log('changeRoleTree');
+      this.props.dispatch(getRoleTree(this.props, tmpTopOrgId));
+      this.props.dispatch(changeValue('checkedRoleIds', ''));
+    }
     this.props.dispatch(changeValue('clickedId', value));
   }
 
@@ -129,6 +137,7 @@ class EditUserForm extends React.Component {
                   ],
                 })(<Input
                   style={{ width: 340 }}
+                  maxLength={20}
                   placeholder="请输入姓名"
                   onChange={this.changeFullName}
                 />)}
@@ -213,7 +222,6 @@ class EditUserForm extends React.Component {
                   placeholder="请选择角色"
                   allowClear
                   multiple
-                  treeDefaultExpandAll
                   onChange={this.changeRoleIds}
                 />)}
               </Form.Item>

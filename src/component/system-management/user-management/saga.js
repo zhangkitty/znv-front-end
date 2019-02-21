@@ -72,8 +72,8 @@ function* deleteOrgSaga(action) {
 }
 
 function* getRoleTreeSaga(action) {
-  const { props } = action;
-  const data = yield getRoleTreeSer(props);
+  const { topOrgId } = action;
+  const data = yield getRoleTreeSer(topOrgId);
   if (data.success !== true) {
     return message.error(data.msg);
   }
@@ -119,6 +119,14 @@ function* changePageSizeSaga(action) {
 function* openEditUserSaga(action) {
   const { props } = action;
   yield put(openEditUserSuccess(props));
+
+  const topOrgId = props.clickedId.split('.')[1];
+  const data = yield getRoleTreeSer(topOrgId);
+  if (data.success !== true) {
+    return message.error(data.msg);
+  }
+
+  yield put(getRoleTreeSuccess(data));
   return null;
 }
 

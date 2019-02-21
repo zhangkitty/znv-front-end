@@ -114,7 +114,7 @@ export const resetPwdSer = (props) => request({
   }
 });
 
-export const getRoleTreeSer = (props) => request({
-  url: `/srm/role/query/tree`,
+export const getRoleTreeSer = (topOrgId) => request({
+  url: `/srm/role/query/tree?topOrgId=${topOrgId}`,
   method: `get`,
 });
