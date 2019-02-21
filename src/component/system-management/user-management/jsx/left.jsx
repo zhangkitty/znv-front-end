@@ -19,9 +19,8 @@ export default class LeftTree extends React.Component {
         <div>
           <span className={styles.leftSpan}>部门列表</span>
           <span className={styles.rightSpan}>
-            <Button
+            <a
               className={styles.linkButton}
-              type="link"
               onClick={() => {
                 if (this.props.clickedId === null || this.props.clickedId === '') {
                   dispatch(changeValue('parentOrgId', ''));
@@ -32,21 +31,21 @@ export default class LeftTree extends React.Component {
                 dispatch(changeValue('orgName', ''));
                 dispatch(openEditOrg(this.props));
               }}
-            >添加</Button>
-            /
-            <Button
+            >添加</a>
+            <a
               className={styles.linkButton}
-              type="link"
               disabled={this.props.clickedId === '' || this.props.clickedOrgLevel === 1}
               onClick={() => {
                 dispatch(changeValue('title', '编辑部门'));
 
                 const parentId = `${this.props.node.parentId}.${this.props.node.topId}`;
                 dispatch(changeValue('parentOrgId', parentId));
-                dispatch(changeValue('orgName', this.props.node.name));
+                if (this.props.orgName === '') {
+                  dispatch(changeValue('orgName', this.props.node.name));
+                }
                 dispatch(openEditOrg(this.props));
               }}
-            >编辑</Button>
+            >编辑</a>
           </span>
           <EditOrgModal {...this.props} />
         </div>
@@ -60,6 +59,7 @@ export default class LeftTree extends React.Component {
             dispatch(changeValue('clickedId', id));
             dispatch(changeValue('clickedOrgLevel', node.level));
             dispatch(changeValue('node', node));
+            dispatch(changeValue('orgName', node.name));
 
             const orgId = id.split('.')[0];
             dispatch(getUsers(this.props, orgId));
