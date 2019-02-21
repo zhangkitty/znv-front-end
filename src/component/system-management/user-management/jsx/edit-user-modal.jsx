@@ -60,13 +60,13 @@ class EditUserForm extends React.Component {
     if (value) {
       if (!/^[1][3,4,5,7,8][0-9]{9}$/g.test(value)) {
         callback(new Error('请输入正确的手机号码!'));
-        document.getElementById('resetPwdBtn').disabled = true;
+        this.props.dispatch(changeValue('resetPwdDisable', true));
       } else {
-        document.getElementById('resetPwdBtn').disabled = false;
+        this.props.dispatch(changeValue('resetPwdDisable', false));
       }
     } else {
       callback(new Error('请输入手机号'));
-      document.getElementById('resetPwdBtn').disabled = true;
+      this.props.dispatch(changeValue('resetPwdDisable', true));
     }
     callback();
   }
@@ -95,7 +95,7 @@ class EditUserForm extends React.Component {
 
   render() {
     const {
-      dispatch, editUserModal: { visible, destroy }, topOrgId, orgId,
+      dispatch, editUserModal: { visible, destroy }, topOrgId, orgId, resetPwdDisable
     } = this.props;
     const { getFieldDecorator } = this.props.form;
     const formItemLayout = {
@@ -205,8 +205,7 @@ class EditUserForm extends React.Component {
                   { this.props.userId === '' ? '' :
                   <Button
                     type="primary"
-                    id="resetPwdBtn"
-                    disabled={false}
+                    disabled={this.props.resetPwdDisable }
                     onClick={() => {
                       if (this.props.phone === undefined || this.props.phone === '') {
                         dispatch(changeValue('phone', this.props.user.phone));
