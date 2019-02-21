@@ -72,11 +72,12 @@ class EditUserForm extends React.Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         if (this.props.title === '新增用户') {
-          if (this.props.clickedId === '' && this.props.orgId === '') {
+          if (this.props.clickedId === '' && (this.props.orgId === undefined || this.props.orgId === '')) {
             return;
           }
-          if (this.props.orgId === '') {
+          if (this.props.orgId === undefined || this.props.orgId === '') {
             this.props.dispatch(changeValue('orgId', this.props.clickedId.split('.')[0]));
+            this.props.dispatch(changeValue('topOrgId', this.props.clickedId.split('.')[1]));
           }
           this.props.dispatch(addUser(this.props));
         } else {
@@ -119,7 +120,6 @@ class EditUserForm extends React.Component {
                   ],
                 })(<TreeSelect
                   style={{ width: 340 }}
-                  value={this.props.checkedRoleIds}
                   treeData={this.props.editOrgTreeData}
                   dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
                   placeholder="请选择部门"
