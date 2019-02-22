@@ -4,7 +4,6 @@ import getParam from 'utils/getParam';
 
 export const getResourceSer = (props) => {
   const data = {
-    token: localStorage.getItem('token'),
     typeCode: 1,
     module: 'OSS',
   };

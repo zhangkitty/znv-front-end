@@ -36,7 +36,7 @@ const tmp = (props) => {
               onClick={() => dispatch(openModifyRoleModal(props))}
             >修改
             </Button>
-            <span>\</span>
+            <span />
             <Popconfirm title="是否要删除这个角色?" onConfirm={() => dispatch(deleteRole(props))} onCancel={() => console.log(2)} okText="Yes" cancelText="No">
               <Button type="link" style={{ padding: 0, marginLeft: 0, paddingRight: 10 }}>删除</Button>
             </Popconfirm>
