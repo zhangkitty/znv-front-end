@@ -75,10 +75,34 @@ export const getPermissionAndUserDetailSer = (id) => {
 };
 
 export const submitSer = (props) => {
+  const menuTree = props.right.menuTree;
+  const checkedMenuTree = props.right.checkedMenuTree;
+  const tmp = [];
+  const addcrumb = (arr, crumb) => arr.map((v) => {
+    if (v == null) {
+      return null;
+    }
+    return Object.assign({}, v, {
+      crumb: `${crumb},${v.id}`,
+      children: v.children ? addcrumb(v.children, `${crumb},${v.id}`) : null,
+    });
+  });
+  const result = addcrumb(menuTree, 0);
+  const transform = arr => arr.map((v) => {
+    if (checkedMenuTree.includes(v.id)) {
+      tmp.push(v.crumb.split(',').map(t => Number(t)));
+    }
+    if (v.children == null) {
+      return null;
+    }
+    transform(v.children);
+  });
+  transform(result);
+  const res = tmp.reduce((sum, val) => sum = sum.concat(val), []);
   const data = {
     roleId: props.clickNode.id,
     roleName: props.clickNode.name,
-    resourceList: props.right.checkedMenuTree,
+    resourceList: [...new Set(props.right.checkedMenuTree.concat(res).filter(v => v != 0))],
   };
 
   const data1 = {
