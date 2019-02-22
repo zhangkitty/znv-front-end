@@ -2,7 +2,7 @@ import React from 'react';
 import { Tree, Button } from 'shineout';
 import { Popconfirm } from 'antd';
 import styles from './style.css';
-import { changeValue, openAddRoleModal, openModifyRoleModal, deleteRole, getRoleDetail, getCompanyDetail } from '../action';
+import { changeValue, openAddRoleModal, openModifyRoleModal, deleteRole, getPermissionAndUserDetail, getCompanyDetail } from '../action';
 import AddRole from './addRole';
 import ModifyRole from './modifyRole';
 
@@ -54,7 +54,7 @@ const tmp = (props) => {
           onClick={(node, id) => {
             dispatch(changeValue('clickNode', node));
             if (node.level === 1) {
-              dispatch(getRoleDetail(id));
+              dispatch(getPermissionAndUserDetail(id));
             }
             if (node.level === 0) {
               dispatch(getCompanyDetail());

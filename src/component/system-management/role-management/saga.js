@@ -1,8 +1,8 @@
 import { message } from 'antd';
 import { take, put, fork, takeLatest } from 'redux-saga/effects';
-import { initSuccess, openModifyRoleModalSuccess, deleteRoleSuccess, getRoleDetailSuccess, addRoleSuccess, modifyRoleSuccess } from './action';
+import { initSuccess, openModifyRoleModalSuccess, deleteRoleSuccess, getPermissionAndUserDetailSuccess, addRoleSuccess, modifyRoleSuccess } from './action';
 import * as types from './types';
-import { initSer, addRoleSer, openModifyRoleModalSer, deleteRoleSer, getRoleDetailSer, submitSer, modifyRoleSer } from './server';
+import { initSer, addRoleSer, openModifyRoleModalSer, deleteRoleSer, getPermissionAndUserDetailSer, submitSer, modifyRoleSer } from './server';
 
 function* init() {
   while (true) {
@@ -43,13 +43,14 @@ function* deleteRoleSaga(action) {
   return message.success('删除角色成功');
 }
 
-function* getRoleDetailSaga(action) {
+function* getPermissionAndUserDetailSaga(action) {
   const { id } = action;
-  const data = yield getRoleDetailSer(id);
-  if (data.errCode !== 0) {
-    return message.error(data.msg);
-  }
-  return yield put(getRoleDetailSuccess(data));
+  const data = yield getPermissionAndUserDetailSer(id);
+  debugger
+  // if (data.errCode !== 0) {
+  //   return message.error(data.msg);
+  // }
+  return yield put(getPermissionAndUserDetailSuccess(data));
 }
 
 function* submitSaga(action) {
@@ -81,7 +82,7 @@ function* mainSaga() {
   yield takeLatest(types.openModifyRoleModal, openModifyRoleModalSaga);
   yield takeLatest(types.deleteRole, deleteRoleSaga);
 
-  yield takeLatest(types.getRoleDetail, getRoleDetailSaga);
+  yield takeLatest(types.getPermissionAndUserDetail, getPermissionAndUserDetailSaga);
 
   yield takeLatest(types.submit, submitSaga);
   yield takeLatest(types.modifyRole, modifyRoleSaga);

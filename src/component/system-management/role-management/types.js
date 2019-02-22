@@ -17,8 +17,8 @@ export let closeModifyRoleModal;
 export let deleteRole;
 export let deleteRoleSuccess;
 
-export let getRoleDetail;
-export let getRoleDetailSuccess;
+export let getPermissionAndUserDetail;
+export let getPermissionAndUserDetailSuccess;
 
 export let submit;
 export let submitSuccess;

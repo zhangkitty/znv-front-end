@@ -21,8 +21,8 @@ export const closeModifyRoleModal = makeActionCreator(types.closeModifyRoleModal
 export const deleteRole = makeActionCreator(types.deleteRole, 'props');
 export const deleteRoleSuccess = makeActionCreator(types.deleteRoleSuccess, 'data');
 
-export const getRoleDetail = makeActionCreator(types.getRoleDetail, 'id');
-export const getRoleDetailSuccess = makeActionCreator(types.getRoleDetailSuccess, 'data');
+export const getPermissionAndUserDetail = makeActionCreator(types.getPermissionAndUserDetail, 'id');
+export const getPermissionAndUserDetailSuccess = makeActionCreator(types.getPermissionAndUserDetailSuccess, 'data');
 
 export const submit = makeActionCreator(types.submit, 'props');
 export const submitSuccess = makeActionCreator(types.submitSuccess, 'data');

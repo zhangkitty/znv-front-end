@@ -60,13 +60,18 @@ export const deleteRoleSer = (props) => {
   });
 };
 
-export const getRoleDetailSer = (id) => {
+export const getPermissionAndUserDetailSer = (id) => {
   const data = {
     roleId: id,
   };
-  return request({
-    url: `/srm/role/detail${getParam(data)}`,
-  });
+  return Promise.all([
+    request({
+      url: `/srm/role/detail${getParam(data)}`,
+    }),
+    request({
+      url: `/srm/role/user/query${getParam(data)}`,
+    }),
+  ]).then(res => res);
 };
 
 export const submitSer = (props) => {
@@ -78,7 +83,8 @@ export const submitSer = (props) => {
 
   const data1 = {
     roleId: props.clickNode.id,
-    userList: props.right.checkedUserTree.filter(v => v > 10000000),
+    addList: props.right.checkedUserTree,
+    delList: props.right.checkedUserTreeBark.filter(v => !props.right.checkedUserTree.includes(v)),
   };
 
   return Promise.all([

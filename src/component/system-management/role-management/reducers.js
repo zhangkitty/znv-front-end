@@ -28,6 +28,7 @@ export const defaultState = {
     checkedMenuTree: [],
     userTree: [],
     checkedUserTree: [],
+    checkedUserTreeBark: [],
   },
 };
 
@@ -96,19 +97,20 @@ const reducer = (state = defaultState, action) => {
         }),
       });
 
-    case types.getRoleDetail:
+    case types.getPermissionAndUserDetail:
       return assign({}, state, {
         right: assign({}, state.right, {
           ready: false,
         }),
       });
 
-    case types.getRoleDetailSuccess:
+    case types.getPermissionAndUserDetailSuccess:
       return assign({}, state, {
         right: assign({}, state.right, {
           ready: true,
-          checkedMenuTree: action.data.data.resourceList.map(v => v.resourceId),
-          checkedUserTree: [],
+          checkedMenuTree: action.data[0].data.resourceList.map(v => v.resourceId),
+          checkedUserTree: action.data[1].data,
+          checkedUserTreeBark: action.data[1].data,
         }),
       });
 
