@@ -19,11 +19,11 @@ export const closeEditOrg = makeActionCreator(types.closeEditOrg);
 export const getRoleTree = makeActionCreator(types.getRoleTree, 'props', 'topOrgId');
 export const getRoleTreeSuccess = makeActionCreator(types.getRoleTreeSuccess, 'data');
 
-export const getUsers = makeActionCreator(types.getUsers, 'props', 'orgId');
+export const getUsers = makeActionCreator(types.getUsers, 'props', 'orgId', 'topOrgId');
 export const getUsersSuccess = makeActionCreator(types.getUsersSuccess, 'data');
 
-export const changePage = makeActionCreator(types.changePage, 'props', 'current', 'orgId');
-export const changePageSize = makeActionCreator(types.changePageSize, 'props', 'current', 'size', 'orgId');
+export const changePage = makeActionCreator(types.changePage, 'props', 'current', 'orgId', 'topOrgId');
+export const changePageSize = makeActionCreator(types.changePageSize, 'props', 'current', 'size', 'orgId', 'topOrgId');
 
 export const getUserDetail = makeActionCreator(types.getUserDetail, 'props', 'userId');
 export const getUserDetailSuccess = makeActionCreator(types.getUserDetailSuccess, 'data');

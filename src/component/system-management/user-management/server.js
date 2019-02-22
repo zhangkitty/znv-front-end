@@ -32,12 +32,16 @@ export const deleteOrgSer = (props) => request({
   },
 });
 
-export const getUsersSer = (props, orgId) => {
+export const getUsersSer = (props, orgId, topOrgId) => {
   const test = {
     pageSize: props.pageSize,
     pageNo: props.page,
     token: props.token,
     orgId: orgId,
+    topOrgId: topOrgId,
+    fullName: props.queryUserFormData.fullName,
+    phone: props.queryUserFormData.phone,
+    status: props.queryUserFormData.status,
   };
 
   const arr = [];

@@ -17,7 +17,6 @@ class EditUserForm extends React.Component {
 
     // 用户所属一级部门(公司)发生变化时，重新加载角色树
     if (value.split('.')[1] !== this.props.clickedId.split('.')[1]) {
-      console.log('changeRoleTree');
       this.props.dispatch(getRoleTree(this.props, tmpTopOrgId));
       this.props.dispatch(changeValue('checkedRoleIds', []));
     }
@@ -61,9 +60,13 @@ class EditUserForm extends React.Component {
     if (value) {
       if (!/^[1][3,4,5,7,8][0-9]{9}$/g.test(value)) {
         callback(new Error('请输入正确的手机号码!'));
+        this.props.dispatch(changeValue('resetPwdDisable', true));
+      } else {
+        this.props.dispatch(changeValue('resetPwdDisable', false));
       }
     } else {
       callback(new Error('请输入手机号'));
+      this.props.dispatch(changeValue('resetPwdDisable', true));
     }
     callback();
   }
@@ -73,11 +76,12 @@ class EditUserForm extends React.Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         if (this.props.title === '新增用户') {
-          if (this.props.clickedId === '' && this.props.orgId === '') {
+          if (this.props.clickedId === '' && (this.props.orgId === undefined || this.props.orgId === '')) {
             return;
           }
-          if (this.props.orgId === '') {
+          if (this.props.orgId === undefined || this.props.orgId === '') {
             this.props.dispatch(changeValue('orgId', this.props.clickedId.split('.')[0]));
+            this.props.dispatch(changeValue('topOrgId', this.props.clickedId.split('.')[1]));
           }
           this.props.dispatch(addUser(this.props));
         } else {
@@ -91,7 +95,7 @@ class EditUserForm extends React.Component {
 
   render() {
     const {
-      dispatch, editUserModal: { visible, destroy }, topOrgId, orgId,
+      dispatch, editUserModal: { visible, destroy }, topOrgId, orgId, resetPwdDisable
     } = this.props;
     const { getFieldDecorator } = this.props.form;
     const formItemLayout = {
@@ -120,7 +124,6 @@ class EditUserForm extends React.Component {
                   ],
                 })(<TreeSelect
                   style={{ width: 340 }}
-                  value={this.props.checkedRoleIds}
                   treeData={this.props.editOrgTreeData}
                   dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
                   placeholder="请选择部门"
@@ -202,11 +205,13 @@ class EditUserForm extends React.Component {
                   { this.props.userId === '' ? '' :
                   <Button
                     type="primary"
+                    disabled={this.props.resetPwdDisable }
                     onClick={() => {
                       if (this.props.phone === undefined || this.props.phone === '') {
                         dispatch(changeValue('phone', this.props.user.phone));
                       }
                       dispatch(changeValue('orgId', this.props.clickedId.split('.')[0]));
+                      dispatch(changeValue('topOrgId', this.props.clickedId.split('.')[1]));
                       dispatch(resetPwd(this.props));
                     }}
                   >重置密码

@@ -2,7 +2,7 @@ import React from 'react';
 import Page from 'shein-lib/pagination';
 import EditUserModal from './edit-user-modal';
 import { Button } from 'shineout';
-import { Table, Divider, Popconfirm, Upload, Icon, message } from 'antd';
+import { Table, Divider, Popconfirm, Upload, Icon, message, Select, Input } from 'antd';
 import styles from '../style.css';
 import {
   changeValue,
@@ -14,6 +14,7 @@ import {
   clearUserDetail,
   changePage,
   changePageSize,
+  getUsers,
 } from '../action';
 
 export default class RightUserList extends React.Component {
@@ -29,7 +30,7 @@ export default class RightUserList extends React.Component {
   render() {
     const {
         dataSource, dispatch, total, page, pageSize,
-        topOrgId, orgId, userId, phone,
+        topOrgId, orgId, userId, phone, queryUserFormData,
       } = this.props;
 
     const uploadProps = {
@@ -157,6 +158,43 @@ export default class RightUserList extends React.Component {
           <EditUserModal {...this.props} />
         </div>
         <br />
+        <div className={styles.flexBox} style={{ paddingTop: 0 }}>
+          <div className={styles.all}>
+            <span className={styles.one}>姓名</span>
+            <Input data-bind="queryUserFormData.fullName" className={styles.two}>
+            </Input>
+          </div>
+          <div className={styles.all}>
+            <span className={styles.one}>手机号码</span>
+            <Input className={styles.two} data-bind="queryUserFormData.phone" />
+          </div>
+          <div className={styles.all}>
+            <span className={styles.one}>状态</span>
+            <Select className={styles.two} data-bind="queryUserFormData.status">
+              <Select.Option value="">全部</Select.Option>
+              <Select.Option value="0">正常</Select.Option>
+              <Select.Option value="1">停用</Select.Option>
+            </Select>
+          </div>
+          <div className={styles.all}>
+            <span className={styles.one} />
+            <Button
+              className={styles.two}
+              style={{ width: 80 }}
+              type="primary"
+              onClick={() => {
+                let tmpOrgId = '';
+                let tmpTopOrgId = '';
+                if (this.props.clickedId !== '') {
+                  tmpOrgId = this.props.clickedId.split('.')[0];
+                  tmpTopOrgId = this.props.clickedId.split('.')[1];
+                }
+                dispatch(getUsers(this.props, tmpOrgId, tmpTopOrgId));
+              }}
+            >查询
+            </Button>
+          </div>
+        </div>
         <Table
           bordered
           rowKey="userId"
@@ -170,11 +208,13 @@ export default class RightUserList extends React.Component {
           pageSize={pageSize}
           onChange={(current) => {
             const orgId = this.props.clickedId.split('.')[0];
-            dispatch(changePage(this.props, current, orgId));
+            const topOrgId = this.props.clickedId.split('.')[1];
+            dispatch(changePage(this.props, current, orgId, topOrgId));
           }}
           onShowSizeChange={(current, size) => {
             const orgId = this.props.clickedId.split('.')[0];
-            dispatch(changePageSize(this.props, current, size, orgId));
+            const topOrgId = this.props.clickedId.split('.')[1];
+            dispatch(changePageSize(this.props, current, size, orgId, topOrgId));
           }}
         />
       </div>
