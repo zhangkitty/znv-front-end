@@ -83,8 +83,8 @@ function* getRoleTreeSaga(action) {
 }
 
 function* getUsersSaga(action) {
-  const { props, orgId } = action;
-  const data = yield getUsersSer(props, orgId);
+  const { props, orgId, topOrgId } = action;
+  const data = yield getUsersSer(props, orgId, topOrgId);
   if (data.success !== true) {
     return message.error(data.msg);
   }
@@ -94,8 +94,8 @@ function* getUsersSaga(action) {
 }
 
 function* changePageSaga(action) {
-  const { props, current, orgId } = action;
-  const data = yield getUsersSer(Object.assign({}, props, { page: current, }), orgId);
+  const { props, current, orgId, topOrgId } = action;
+  const data = yield getUsersSer(Object.assign({}, props, { page: current, }), orgId, topOrgId);
   if (data.success !== true) {
     return message.error(data.msg);
   }
@@ -104,11 +104,11 @@ function* changePageSaga(action) {
 }
 
 function* changePageSizeSaga(action) {
-  const { props, current, size, orgId } = action;
+  const { props, current, size, orgId, topOrgId } = action;
   const data = yield getUsersSer(Object.assign({}, props, {
       pageSize: size,
       page: current,
-    }), orgId);
+    }), orgId, topOrgId);
   if (data.success !== true) {
     return message.error(data.msg);
   }
@@ -138,8 +138,8 @@ function* addUserSaga(action) {
   }
 
   yield put(closeEditUser(data));
-  const { orgId } = props;
-  const data2 = yield getUsersSer(props, orgId);
+  const { orgId, topOrgId } = props;
+  const data2 = yield getUsersSer(props, orgId, topOrgId);
   if (data2.success !== true) {
     return message.error(data2.msg);
   }
@@ -155,8 +155,8 @@ function* editUserSaga(action) {
   }
 
   yield put(closeEditUser(data));
-  const { orgId } = props;
-  const data2 = yield getUsersSer(props, orgId);
+  const { orgId, topOrgId } = props;
+  const data2 = yield getUsersSer(props, orgId, topOrgId);
   if (data2.success !== true) {
     return message.error(data2.msg);
   }
@@ -172,7 +172,8 @@ function* deleteUserSaga(action) {
   }
 
   const orgId = props.clickedId.split('.')[0];
-  const data2 = yield getUsersSer(props, orgId);
+  const topOrgId = props.clickedId.split('.')[1];
+  const data2 = yield getUsersSer(props, orgId, topOrgId);
   if (data2.success !== true) {
     return message.error(data2.msg);
   }
@@ -181,7 +182,7 @@ function* deleteUserSaga(action) {
 }
 
 function* chgUserStatusSaga(action) {
-  const {props, userId, status } = action;
+  const { props, userId, status } = action;
   const orgId = props.clickedId.split('.')[0];
   const topOrgId = props.clickedId.split('.')[1];
   const data = yield chgUserStatusSer({props, userId, status, topOrgId});
@@ -189,7 +190,7 @@ function* chgUserStatusSaga(action) {
     return message.error(data.msg);
   }
 
-  const data2 = yield getUsersSer(props, orgId);
+  const data2 = yield getUsersSer(props, orgId, topOrgId);
   if (data2.success !== true) {
     return message.error(data2.msg);
   }
@@ -215,8 +216,8 @@ function* resetPwdSaga(action) {
     return message.error(data.msg);
   }
 
-  const { orgId } = props;
-  const data2 = yield getUsersSer(props, orgId);
+  const { orgId, topOrgId } = props;
+  const data2 = yield getUsersSer(props, orgId, topOrgId);
   if (data2.success !== true) {
     return message.error(data2.msg);
   }

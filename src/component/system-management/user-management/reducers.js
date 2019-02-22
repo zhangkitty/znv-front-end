@@ -18,6 +18,13 @@ export const defaultState = {
     email: '',
     orgId: '',
   },
+
+  queryUserFormData: {
+    fullName: '',
+    phone: '',
+    status: null,
+  },
+
   checkedRoleIds: [],
 
   editOrgModal: {

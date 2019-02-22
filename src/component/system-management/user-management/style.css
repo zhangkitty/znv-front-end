@@ -52,3 +52,26 @@
     margin-left: 3px;
     padding-left: 0px;
 }
+
+.flexBox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 15px;
+}
+
+.all{
+    display: flex;
+    /*width: 300px;*/
+}
+
+.one{
+    width: 100px;
+    text-align: right;
+    line-height: 32px;
+}
+
+.two{
+    width: 180px;
+    margin-left: 10px;
+}

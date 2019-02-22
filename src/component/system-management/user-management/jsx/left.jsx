@@ -62,7 +62,8 @@ export default class LeftTree extends React.Component {
             dispatch(changeValue('orgName', node.name));
 
             const orgId = id.split('.')[0];
-            dispatch(getUsers(this.props, orgId));
+            const topOrgId = id.split('.')[1];
+            dispatch(getUsers(this.props, orgId, topOrgId));
           }}
         />
       </div>
