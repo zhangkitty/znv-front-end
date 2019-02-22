@@ -37,7 +37,10 @@ export default class StaffAttendance extends React.Component {
           {len === 1 && <hr />}
           <Trend {...this.props} />
           <hr />
-          <DetailData {...this.props} />
+          {
+            len === 1 && <DetailData {...this.props} />
+          }
+
 
         </div>
         :
