@@ -6,7 +6,6 @@ import { Table, Divider, Popconfirm, Upload, Icon, message, Select, Input } from
 import styles from '../style.css';
 import {
   changeValue,
-  getRoleTree,
   openEditUser,
   deleteUser,
   chgUserStatus,
@@ -41,7 +40,18 @@ export default class RightUserList extends React.Component {
       onChange(info) {
         if (info.file.status === 'done') {
           if (info.file.response.success === true) {
-            message.success(`${info.file.name} 导入成功。`);
+            let content = `${info.file.name} 导入完成(共${info.file.response.data.total}条数据：
+                           成功${info.file.response.data.success}条，失败${info.file.response.data.failed}条)。`;
+            message.success(content);
+            if (info.file.response.data.failed > 0) {
+              const size = `${info.file.response.data.failedList.length}`;
+              for (var i=0; i< size; i++) {
+                content = `${content}<br>第${info.file.response.data.failedList[i].index}条失败，
+                           原因：${info.file.response.data.failedList[i].reason}`;
+              }
+              const win = window.open('about:blank');
+              win.document.write(content);
+            }
           } else {
             message.error(`${info.file.response.msg}`);
           }
