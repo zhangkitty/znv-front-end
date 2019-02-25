@@ -32,6 +32,20 @@ export const defaultState = {
   },
 };
 
+
+const checkedMenuTreeChildren = (checkedArray, menuTree) => {
+  console.log(menuTree);
+  const arr = [];
+  const trans = array => array.map((v) => {
+    if (v.children == null) {
+      return arr.push(v.id);
+    }
+    trans(v.children);
+  });
+  trans(menuTree);
+  return checkedArray.filter(v => arr.includes(v));
+};
+
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
     case types.changeValue:
@@ -105,10 +119,11 @@ const reducer = (state = defaultState, action) => {
       });
 
     case types.getPermissionAndUserDetailSuccess:
+
       return assign({}, state, {
         right: assign({}, state.right, {
           ready: true,
-          checkedMenuTree: action.data[0].data.resourceList.map(v => v.resourceId),
+          checkedMenuTree: checkedMenuTreeChildren(action.data[0].data.resourceList.map(v => v.resourceId), state.right.menuTree),
           checkedUserTree: action.data[1].data,
           checkedUserTreeBark: action.data[1].data,
         }),
