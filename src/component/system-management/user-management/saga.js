@@ -94,7 +94,9 @@ function* getUsersSaga(action) {
 }
 
 function* changePageSaga(action) {
-  const { props, current, orgId, topOrgId } = action;
+  const { props, current } = action;
+  const orgId = props.clickedId === '' ? props.orgId : props.clickedId.split('.')[0];
+  const topOrgId = props.clickedId === '' ? props.topOrgId : props.clickedId.split('.')[1];
   const data = yield getUsersSer(Object.assign({}, props, { page: current, }), orgId, topOrgId);
   if (data.success !== true) {
     return message.error(data.msg);
@@ -104,7 +106,9 @@ function* changePageSaga(action) {
 }
 
 function* changePageSizeSaga(action) {
-  const { props, current, size, orgId, topOrgId } = action;
+  const { props, current, size } = action;
+  const orgId = props.clickedId === '' ? props.orgId : props.clickedId.split('.')[0];
+  const topOrgId = props.clickedId === '' ? props.topOrgId : props.clickedId.split('.')[1];
   const data = yield getUsersSer(Object.assign({}, props, {
       pageSize: size,
       page: current,
@@ -218,7 +222,8 @@ function* resetPwdSaga(action) {
     return message.error(data.msg);
   }
 
-  const { orgId, topOrgId } = props;
+  const orgId = props.clickedId.split('.')[0];
+  const topOrgId = props.clickedId.split('.')[1];
   const data2 = yield getUsersSer(props, orgId, topOrgId);
   if (data2.success !== true) {
     return message.error(data2.msg);
