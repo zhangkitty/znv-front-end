@@ -138,7 +138,8 @@ function* addUserSaga(action) {
   }
 
   yield put(closeEditUser(data));
-  const { orgId, topOrgId } = props;
+  const orgId = props.clickedId.split('.')[0];
+  const topOrgId = props.clickedId.split('.')[1];
   const data2 = yield getUsersSer(props, orgId, topOrgId);
   if (data2.success !== true) {
     return message.error(data2.msg);
@@ -155,7 +156,8 @@ function* editUserSaga(action) {
   }
 
   yield put(closeEditUser(data));
-  const { orgId, topOrgId } = props;
+  const orgId = props.clickedId.split('.')[0];
+  const topOrgId = props.clickedId.split('.')[1];
   const data2 = yield getUsersSer(props, orgId, topOrgId);
   if (data2.success !== true) {
     return message.error(data2.msg);
