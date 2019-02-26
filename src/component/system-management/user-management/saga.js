@@ -212,8 +212,8 @@ function* getUserDetailSaga(action) {
 }
 
 function* resetPwdSaga(action) {
-  const { props } = action;
-  const data = yield resetPwdSer(props);
+  const { props, phone } = action;
+  const data = yield resetPwdSer(props, phone);
   if (data.success !== true) {
     return message.error(data.msg);
   }

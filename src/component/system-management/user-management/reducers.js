@@ -18,6 +18,7 @@ export const defaultState = {
     email: '',
     orgId: '',
   },
+  phone: '',
 
   queryUserFormData: {
     fullName: '',
@@ -130,6 +131,7 @@ const reducer = (state = defaultState, action) => {
           visible: false,
           destroy: true,
         }),
+        phone: '',
       });
     case types.getRoleTreeSuccess:
       return assign({}, state, {
@@ -168,6 +170,7 @@ const reducer = (state = defaultState, action) => {
           orgId: '',
         },
         checkedRoleIds: [],
+        phone: '',
       });
     default:
       return state;

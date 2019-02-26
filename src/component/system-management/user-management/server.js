@@ -111,12 +111,12 @@ export const getUserDetailSer = (props, userId) => request({
   method: 'get',
 });
 
-export const resetPwdSer = props => request({
+export const resetPwdSer = (props, phone) => request({
   url: '/srm/user/pwd/reset',
   method: 'post',
   data: {
     userId: props.userId,
-    phone: props.phone,
+    phone,
   },
 });
 

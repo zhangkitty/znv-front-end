@@ -207,12 +207,14 @@ class EditUserForm extends React.Component {
                     type="primary"
                     disabled={this.props.resetPwdDisable }
                     onClick={() => {
+                      let tmpPhone = this.props.phone;
                       if (this.props.phone === undefined || this.props.phone === '') {
                         dispatch(changeValue('phone', this.props.user.phone));
+                        tmpPhone = this.props.user.phone;
                       }
                       dispatch(changeValue('orgId', this.props.clickedId.split('.')[0]));
                       dispatch(changeValue('topOrgId', this.props.clickedId.split('.')[1]));
-                      dispatch(resetPwd(this.props));
+                      dispatch(resetPwd(this.props, tmpPhone));
                     }}
                   >重置密码
                   </Button> }
