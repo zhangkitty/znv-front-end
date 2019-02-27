@@ -37,6 +37,6 @@ export const addUser = makeActionCreator(types.addUser, 'props');
 export const editUser = makeActionCreator(types.editUser, 'props');
 export const deleteUser = makeActionCreator(types.deleteUser, 'props', 'userId');
 export const chgUserStatus = makeActionCreator(types.chgUserStatus, 'props', 'userId', 'status');
-export const resetPwd = makeActionCreator(types.resetPwd, 'props');
+export const resetPwd = makeActionCreator(types.resetPwd, 'props', 'phone');
 
 
