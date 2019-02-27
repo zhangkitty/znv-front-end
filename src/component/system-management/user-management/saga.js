@@ -218,18 +218,11 @@ function* getUserDetailSaga(action) {
 function* resetPwdSaga(action) {
   const { props, phone } = action;
   const data = yield resetPwdSer(props, phone);
-  if (data.success !== true) {
+  if (data.success === true) {
+    return message.success('重置密码成功');
+  } else {
     return message.error(data.msg);
   }
-
-  const orgId = props.clickedId.split('.')[0];
-  const topOrgId = props.clickedId.split('.')[1];
-  const data2 = yield getUsersSer(props, orgId, topOrgId);
-  if (data2.success !== true) {
-    return message.error(data2.msg);
-  }
-  yield put(getUsersSuccess(data2.data));
-  return null;
 }
 
 function* mainSaga() {
