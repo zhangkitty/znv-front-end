@@ -187,10 +187,9 @@ export default class RightUserList extends React.Component {
             </Select>
           </div>
           <div className={styles.all}>
-            <span className={styles.one} />
             <Button
               className={styles.two}
-              style={{ width: 80 }}
+              style={{ width: 80, marginLeft: 20 }}
               type="primary"
               onClick={() => {
                 let tmpOrgId = '';
