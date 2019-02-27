@@ -195,7 +195,9 @@ export default class RightUserList extends React.Component {
               onClick={() => {
                 let tmpOrgId = '';
                 let tmpTopOrgId = '';
-                if (this.props.clickedId !== '') {
+                if (this.props.clickedId === '') {
+                  return message.warn('请先选择左侧部门!');
+                } else {
                   tmpOrgId = this.props.clickedId.split('.')[0];
                   tmpTopOrgId = this.props.clickedId.split('.')[1];
                 }
