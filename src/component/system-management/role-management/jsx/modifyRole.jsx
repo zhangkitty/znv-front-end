@@ -4,7 +4,11 @@ import { closeModifyRoleModal, modifyRole } from '../action';
 
 
 const tmp = (props) => {
-  const { dispatch, modifyRole: { isShow, ready, roleName } } = props;
+  const {
+    dispatch, modifyRole: {
+      isShow, ready, roleName, roleDes,
+    },
+  } = props;
   return (
     <Modal
       visible={isShow}
@@ -13,6 +17,15 @@ const tmp = (props) => {
         dispatch(closeModifyRoleModal());
       }}
       onOk={() => {
+        if (!roleName) {
+          return message.error('请输入必要的信息');
+        }
+        if (roleName.length > 20) {
+          return message.error('输入角色名太长');
+        }
+        if (roleDes.length > 50) {
+          return message.error('输入描述太长');
+        }
         dispatch(modifyRole(props));
       }}
 

@@ -3,7 +3,7 @@ import { Modal, Input, message } from 'antd';
 import { choseAddRoleModal, addRole } from '../action';
 
 const tmp = (props) => {
-  const { dispatch, addRole: { isShow, roleName } } = props;
+  const { dispatch, addRole: { isShow, roleName, roleDes } } = props;
   return (
     <Modal
       visible={isShow}
@@ -15,8 +15,11 @@ const tmp = (props) => {
         if (!roleName) {
           return message.error('请输入必要的信息');
         }
-        if (roleName.length > 10) {
+        if (roleName.length > 20) {
           return message.error('输入角色名太长');
+        }
+        if (roleDes.length > 50) {
+          return message.error('输入描述太长');
         }
         dispatch(addRole(props));
       }}
