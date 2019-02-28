@@ -59,7 +59,7 @@ const List = (props) => {
     },
     {
       key: 'assetCode',
-      title: '广告机在线状态',
+      title: '被监控设备在线状态',
       align: 'center',
       width: 100,
       dataIndex: 'deviceOnlineStatus',

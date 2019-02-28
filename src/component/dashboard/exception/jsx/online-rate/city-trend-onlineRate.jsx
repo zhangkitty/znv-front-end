@@ -4,7 +4,7 @@ import time from 'utils/time';
 import moment from 'moment';
 
 
-// FSU在线率
+// 监控单元在线率
 const tmp = (props) => {
   const {
     dispatch, onlineRate: {
@@ -39,7 +39,7 @@ const tmp = (props) => {
   const option = {
     title: {
       left: 'center',
-      text: 'FSU在线率',
+      text: '监控单元在线率',
     },
 
     tooltip: {

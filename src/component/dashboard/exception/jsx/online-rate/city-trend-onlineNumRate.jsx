@@ -4,7 +4,7 @@ import time from 'utils/time';
 import moment from 'moment';
 
 
-// 广告机在线率图
+// 被监控设备在线率图
 const tmp = (props) => {
   const {
     dispatch, onlineRate: {
@@ -39,7 +39,7 @@ const tmp = (props) => {
   const option = {
     title: {
       left: 'center',
-      text: '广告机在线率',
+      text: '被监控设备在线率',
     },
 
     tooltip: {

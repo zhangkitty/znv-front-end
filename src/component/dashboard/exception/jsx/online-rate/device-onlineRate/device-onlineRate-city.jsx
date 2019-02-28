@@ -18,8 +18,8 @@ export const tmp = (props) => {
   };
 
   const mychooseTable_cn = {
-    11: '广告机在线率',
-    12: 'FSU在线率',
+    11: '被监控设备在线率',
+    12: '监控单元在线率',
     13: '入网进度',
   };
 

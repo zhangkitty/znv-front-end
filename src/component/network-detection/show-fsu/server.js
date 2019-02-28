@@ -48,8 +48,8 @@ export const searchSer = (props) => {
   form.append('length', props.pageSize);
   const data = {
     aids: props.formData.choosedArea.id, // 区域
-    id: props.formData.FSUNum, // FSU序列号
-    fsuid: props.formData.FSUID, // FSUID
+    id: props.formData.监控单元Num, // 监控单元序列号
+    fsuid: props.formData.监控单元ID, // 监控单元ID
     station: props.formData.siteName, // 站址名称
     state: props.formData.status, //
     fsukind: props.formData.type,

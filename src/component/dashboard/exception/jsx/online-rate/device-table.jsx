@@ -39,11 +39,11 @@ const DeviceTable = (props) => {
       render: 'address',
     },
     {
-      title: '广告机当前状态',
+      title: '被监控设备当前状态',
       render: d => (+d.deviceOnlineStatus === 1 ? '在线' : '离线'),
     },
     {
-      title: 'FSU当前状态',
+      title: '监控单元当前状态',
       render: d => (+d.fsuOnlineStatus === 1 ? '在线' : '离线'),
     },
   ];

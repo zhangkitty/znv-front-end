@@ -27,7 +27,7 @@ const List1 = (props) => {
     {
       title: '资产类型',
       width: 80,
-      render: () => ('广告机'),
+      render: () => ('被监控设备'),
     },
     {
       title: '市电停电工单数',
@@ -35,7 +35,7 @@ const List1 = (props) => {
       render: 'powerOffNum',
     },
     {
-      title: 'FSU中断工单数',
+      title: '监控单元中断工单数',
       width: 100,
       render: 'interruptNum',
     },

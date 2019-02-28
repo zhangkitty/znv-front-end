@@ -59,7 +59,7 @@ export default class ChinaMap extends React.Component {
         this.reactEcharts.getEchartsInstance().setOption(
           {
             title: {
-              text: `${params.name}FSU离线率`,
+              text: `${params.name}监控单元离线率`,
               subtext: '市级图',
               x: 'center',
               y: '5%',
@@ -127,7 +127,7 @@ export default class ChinaMap extends React.Component {
     const option = {
       // backgroundColor: '#f2f2f2',
       title: {
-        text: '全国FSU离线率',
+        text: '全国监控单元离线率',
         subtext: '省级图',
         x: 'center',
         y: '5%',

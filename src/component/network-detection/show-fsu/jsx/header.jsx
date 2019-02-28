@@ -21,15 +21,15 @@ const Header = (props) => {
           onFilter={text => d => d.name.indexOf(text) >= 0}
           data-bind="formData.choosedArea"
         />
-        <div className={styles.divLine}>FSU序列号:</div>
+        <div className={styles.divLine}>监控单元序列号:</div>
         <Input
           className={styles.selectLine}
-          data-bind="formData.FSUNum"
+          data-bind="formData.监控单元Num"
         />
-        <div className={styles.divLine}>FSUID:</div>
+        <div className={styles.divLine}>监控单元ID:</div>
         <Input
           className={styles.selectLine}
-          data-bind="formData.FSUID"
+          data-bind="formData.监控单元ID"
         />
       </div>
       <div className={styles.oneLine}>

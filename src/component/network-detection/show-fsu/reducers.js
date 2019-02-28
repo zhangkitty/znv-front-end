@@ -31,8 +31,8 @@ export const defaultState = {
   ],
   formData: {
     choosedArea: {},
-    FSUNum: '',
-    FSUID: '',
+    监控单元Num: '',
+    监控单元ID: '',
     siteName: '',
     status: '',
     type: '',

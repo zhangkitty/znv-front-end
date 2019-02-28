@@ -8,7 +8,7 @@ import Header from './jsx/header';
 import List from './jsx/list';
 import Detail from './jsx/detail';
 
-class ShowFSU extends React.Component {
+class Show监控单元 extends React.Component {
   constructor(props) {
     super(props);
     this.props.dispatch(init(this.props));
@@ -59,9 +59,9 @@ class ShowFSU extends React.Component {
   }
 }
 
-ShowFSU.propTypes = {
+Show监控单元.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
 const stateToProp = state => state['network-detection/show-fsu'];
-export default connect(stateToProp)(ShowFSU);
+export default connect(stateToProp)(Show监控单元);

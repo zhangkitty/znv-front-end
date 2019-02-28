@@ -5,7 +5,7 @@ import BMap from './jsx/b-map';
 import Content from './jsx/content';
 import { init, changeValue } from './actions';
 
-class FSU extends Component {
+class 监控单元 extends Component {
   constructor(props) {
     console.log(1);
     super(props);
@@ -32,4 +32,4 @@ class FSU extends Component {
 
 
 const mapStateToProps = state => state['network-detection/fsu'];
-export default connect(mapStateToProps)(FSU);
+export default connect(mapStateToProps)(监控单元);

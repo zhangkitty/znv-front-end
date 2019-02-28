@@ -41,11 +41,11 @@ const List1 = (props) => {
       render: 'handoverNum',
     },
     {
-      title: '近20天交接未安装FSU设备数',
+      title: '近20天交接未安装监控单元设备数',
       render: 'handoverUninstalNum',
     },
     {
-      title: '未安装FSU设备数',
+      title: '未安装监控单元设备数',
       render: 'uninstalNum',
     },
     {

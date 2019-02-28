@@ -21,7 +21,7 @@ export const defaultState = {
 
   ],
   deviceType: [
-    { value: '10016', name: '广告机' },
+    { value: '10016', name: '被监控设备' },
 
   ],
   tableLoading: false,

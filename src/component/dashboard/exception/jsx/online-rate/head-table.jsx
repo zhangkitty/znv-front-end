@@ -47,7 +47,7 @@ const HeadTable = (props) => {
       render: 'dataTime',
     },
     {
-      title: '广告机总数',
+      title: '被监控设备总数',
       render: (d, idx) => {
         if (idx === 0) {
           return (
@@ -61,7 +61,7 @@ const HeadTable = (props) => {
       },
     },
     {
-      title: '广告机在线数',
+      title: '被监控设备在线数',
       render: (d, idx) => {
         if (idx === 0) {
           return (
@@ -75,7 +75,7 @@ const HeadTable = (props) => {
       },
     },
     {
-      title: '广告机在线率',
+      title: '被监控设备在线率',
       render: (d, idx) => {
         if (idx === 0) {
           // return <span>{ `${Number(d.onlineNumRate * 100).toFixed(2)}%`}{renderIcon(d.onlineNumRateInc) }</span>;
@@ -109,7 +109,7 @@ const HeadTable = (props) => {
 
     },
     {
-      title: '云运维FSU在线数',
+      title: '监控单元在线数',
       render: (d, idx) => {
         if (idx === 0) {
           return <span>{d.onlineNum}{renderIcon(d.onlineNumInc)}</span>;
@@ -118,7 +118,7 @@ const HeadTable = (props) => {
       },
     },
     {
-      title: 'FSU在线率',
+      title: '监控单元在线率',
       render: (d, idx) => {
         if (idx === 0) {
           // return <span>{ `${Number(d.onlineRate * 100).toFixed(2)}%`}{renderIcon(d.onlineRateInc) }</span>;
@@ -151,7 +151,7 @@ const HeadTable = (props) => {
       },
     },
     {
-      title: 'FSU入网数',
+      title: '监控单元入网数',
       render: (d, idx) => {
         if (idx === 0) {
           return <span>{d.openNum}{renderIcon(d.openNumInc) }</span>;
@@ -160,12 +160,12 @@ const HeadTable = (props) => {
       },
     },
     {
-      title: '入网进度',
+      title: '监控单元安装进度',
       render: (d, idx) => {
         if (idx === 0) {
           return (
             <div style={{ display: 'flex' }}>
-              <Progress style={{ width: 50 }} value={d.openRate * 100} />
+              <Progress style={{ width: 50 }} value={d.fsuInsRate * 100} />
               {/* <Button */}
               {/* type="link" */}
               {/* style={{ paddingTop: 0, lineHeight: '17px', paddingBottom: 0 }} */}
@@ -176,15 +176,15 @@ const HeadTable = (props) => {
               {/* > */}
               {/* {`${Number(d.openRate * 100).toFixed(2)}%`} */}
               {/* </Button> */}
-              <div style={{ marginLeft: 13 }}>{`${Number(d.openRate * 100).toFixed(2)}%`}</div>
+              <div style={{ marginLeft: 13 }}>{`${Number(d.fsuInsRate * 100).toFixed(2)}%`}</div>
             </div>
 
           );
         }
         return (
           <div style={{ display: 'flex' }}>
-            <Progress style={{ width: 50 }} value={d.openRate * 100} />
-            <div style={{ marginLeft: 13 }}>{`${Number(d.openRate * 100).toFixed(2)}%`}</div>
+            <Progress style={{ width: 50 }} value={d.fsuInsRate * 100} />
+            <div style={{ marginLeft: 13 }}>{`${Number(d.fsuInsRate * 100).toFixed(2)}%`}</div>
           </div>
 
         );

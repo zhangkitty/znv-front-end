@@ -177,7 +177,7 @@ class Container extends React.Component {
                   onClick={() => dispatch(init(Object.assign({}, this.props, {
                     quotaType: 1,
                   })))}
-                >广告机离线时间超长数
+                >被监控设备离线时间超长数
                 </Button>
                 <Button
                   className={styles.button2}
@@ -185,7 +185,7 @@ class Container extends React.Component {
                   onClick={() => dispatch(init(Object.assign({}, this.props, {
                     quotaType: 3,
                   })))}
-                >广告机稳定在线数
+                >被监控设备稳定在线数
                 </Button>
                 <Button
                   className={styles.button3}
@@ -193,7 +193,7 @@ class Container extends React.Component {
                   onClick={() => dispatch(init(Object.assign({}, this.props, {
                     quotaType: 2,
                   })))}
-                >广告机频繁离线数
+                >被监控设备频繁离线数
                 </Button>
                 <DatePicker
                   clearable={false}

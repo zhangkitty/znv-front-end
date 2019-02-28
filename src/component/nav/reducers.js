@@ -50,7 +50,7 @@ const menus = [
   //       link: '/dispatch-center/a',
   //     },
   //     {
-  //       title: '广告机',
+  //       title: '被监控设备',
   //       link: '/dispatch-center/xxxx',
   //     },
   //   ],
@@ -108,11 +108,11 @@ const menus = [
   //   link: '/network-detection',
   //   children: [
   //     {
-  //       title: 'FSU显示',
+  //       title: '监控单元显示',
   //       link: '/network-detection/show-fsu',
   //     },
   //     {
-  //       title: 'FSU地图',
+  //       title: '监控单元地图',
   //       link: '/network-detection/fsu',
   //     },
   //   ],

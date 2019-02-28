@@ -8,11 +8,11 @@ const List = (props) => {
   } = props;
   const columns = [
     {
-      title: 'FSU序列号',
+      title: '监控单元序列号',
       render: '0',
     },
     {
-      title: 'FSUID',
+      title: '监控单元ID',
       render: '1',
     },
     {
