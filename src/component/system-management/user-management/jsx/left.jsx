@@ -16,9 +16,11 @@ export default class LeftTree extends React.Component {
 
     return (
       <div className={styles.left}>
-        <div>
-          <span className={styles.leftSpan}>部门列表</span>
-          <span className={styles.rightSpan}>
+        <div style={{
+          display: 'flex', justifyContent: 'space-between', fontSize: '14px', marginBottom: 10,
+        }}>
+          <span>部门列表</span>
+          <div>
             <a
               className={styles.linkButton}
               onClick={() => {
@@ -46,7 +48,7 @@ export default class LeftTree extends React.Component {
                 dispatch(openEditOrg(this.props));
               }}
             >编辑</a>
-          </span>
+          </div>
           <EditOrgModal {...this.props} />
         </div>
         <Tree

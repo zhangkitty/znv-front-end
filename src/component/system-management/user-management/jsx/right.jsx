@@ -187,15 +187,16 @@ export default class RightUserList extends React.Component {
             </Select>
           </div>
           <div className={styles.all}>
-            <span className={styles.one} />
             <Button
               className={styles.two}
-              style={{ width: 80 }}
+              style={{ width: 80, marginLeft: 20 }}
               type="primary"
               onClick={() => {
                 let tmpOrgId = '';
                 let tmpTopOrgId = '';
-                if (this.props.clickedId !== '') {
+                if (this.props.clickedId === '') {
+                  return message.warn('请先选择左侧部门!');
+                } else {
                   tmpOrgId = this.props.clickedId.split('.')[0];
                   tmpTopOrgId = this.props.clickedId.split('.')[1];
                 }
