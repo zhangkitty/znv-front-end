@@ -30,15 +30,16 @@ export default class StaffAttendance extends React.Component {
       ready ?
         <div>
           <HeadTable {...this.props} />
-          {
-            len === 1 && <AMAPCOUNTRY {...this.props} />
-          }
+          {/* { */}
+          {/* len === 1 && <AMAPCOUNTRY {...this.props} /> */}
+          {/* } */}
           {len === 1 && <CityTrend {...this.props} />}
           {len === 1 && <hr />}
           <Trend {...this.props} />
           <hr />
           {
-            len === 1 && <DetailData {...this.props} />
+            // len === 1 && <DetailData {...this.props} />
+            <DetailData {...this.props} />
           }
 
 

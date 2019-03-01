@@ -85,12 +85,12 @@ const DetailData = (props) => {
       {
         (function (len, chooseType) {
           if (len > 3) {
-            return null;
+            // return null;
             return <BmapPerson {...props} />;
           }
           if (chooseType === 1) {
             if (len === 3) {
-              return null;
+              // return null;
               return <BmapCity {...props} />;
             }
             if (len < 3) {
