@@ -58,7 +58,7 @@ class EditUserForm extends React.Component {
   // 自定义校验手机号码
   checkPhone = (rule, value, callback) => {
     if (value) {
-      if (!/^[1][3,4,5,7,8][0-9]{9}$/g.test(value)) {
+      if (!/^[1][0-9]{10}$/g.test(value)) {
         callback(new Error('请输入正确的手机号码!'));
         this.props.dispatch(changeValue('resetPwdDisable', true));
       } else {
