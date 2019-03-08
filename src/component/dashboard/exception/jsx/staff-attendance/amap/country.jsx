@@ -214,7 +214,7 @@ class UIMarker extends React.Component {
           iconStyle: 'lightgray',
           // ...其他Marker选项...，不包括content
           map,
-          position: [Number(v.longitude) + Math.random() * 0.1, Number(v.latitude) + Math.random() * 0.1],
+          position: [Number(v.longitude) + Math.random() * 0.01, Number(v.latitude) + Math.random() * 0.01],
         });
       } else {
         const marker = new SimpleMarker({
