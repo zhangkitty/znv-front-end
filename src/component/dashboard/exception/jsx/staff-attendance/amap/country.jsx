@@ -196,7 +196,8 @@ class UIMarker extends React.Component {
     const { nowtracelist } = this.props.staffAttendance;
     // 创建SimpleMarker实例
     nowtracelist.map((v) => {
-      if (v.traceList == null) {
+      if (v.attendanceStatus == 0) {
+        debugger;
         new SimpleMarker({
           // 前景文字
           iconLabel: {
@@ -210,10 +211,10 @@ class UIMarker extends React.Component {
           // 图标主题
           iconTheme: 'fresh',
           // 背景图标样式
-          iconStyle: 'red',
+          iconStyle: 'lightgray',
           // ...其他Marker选项...，不包括content
           map,
-          position: [v.longitude, v.latitude],
+          position: [Number(v.longitude) + Math.random() * 0.01, Number(v.latitude) + Math.random() * 0.01],
         });
       } else {
         const marker = new SimpleMarker({
@@ -230,7 +231,7 @@ class UIMarker extends React.Component {
           // 图标主题
           iconTheme: 'fresh',
           // 背景图标样式
-          iconStyle: 'black',
+          iconStyle: 'green',
           // ...其他Marker选项...，不包括content
           map,
           position: JSON.parse(`[${v.traceList}]`)[0],
