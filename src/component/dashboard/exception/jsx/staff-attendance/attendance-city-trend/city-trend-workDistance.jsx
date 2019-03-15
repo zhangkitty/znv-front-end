@@ -14,6 +14,8 @@ const tmp = (props) => {
 
 
   const timeValue = time(dateValue).map(val => moment(val).format('YYYY-MM-DD'));
+  console.log(timeValue, 'timeValue');
+  console.log(dataSource, 'dataSource');
 
   const cal = (list, key) => list.map((v) => {
     const arr = dataSource.filter(t => v.areaCode === t.areaCode);
@@ -33,6 +35,8 @@ const tmp = (props) => {
       type: 'line',
     }
   ));
+
+  console.log(seriesArray, 'seriesArray');
 
 
   const option = {

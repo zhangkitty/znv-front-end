@@ -31,61 +31,12 @@ class UIMarker extends React.Component {
   fly(PathSimplifier, val) {
     const map = this.props.__map__;
 
-    // const { nowtracelist } = this.props.staffAttendance;
-
-
-    // pathSimplifierIns.setData(nowtracelist.filter(v => v.traceList != null).map((t, idx) => (
-    //   {
-    //     name: t.executorName,
-    //     path: JSON.parse(`[${t.traceList ? t.traceList : `[${t.longitude},${t.latitude}]`}]`).reverse(),
-    //   }
-    // )));
-
     pathSimplifierIns.setData([
       {
         name: val.executorName,
         path: JSON.parse(`[${val.traceList ? val.traceList : `[${val.longitude},${val.latitude}]`}]`).reverse(),
       },
     ]);
-
-
-    // nowtracelist.filter(v => v.traceList != null).map((t, idx) => {
-    //   function onload() {
-    //     pathSimplifierIns.renderLater();
-    //   }
-    //
-    //   function onerror(e) {
-    //     alert('图片加载失败！');
-    //   }
-    //   const navg0 = pathSimplifierIns.createPathNavigator(idx, {
-    //     loop: true, // 循环播放
-    //     speed: 1000,
-    //     pathNavigatorStyle: {
-    //       autoRotate: true, // 禁止调整方向
-    //       pathLinePassedStyle: null,
-    //       width: 12,
-    //       height: 12,
-    //       content: PathSimplifier.Render.Canvas.getImageContent(car, onload, onerror),
-    //       strokeStyle: null,
-    //       fillStyle: null,
-    //     },
-    //   });
-    //
-    //   navg0.start();
-    // });
-    //
-    // nowtracelist.filter(v => v.traceList != null && v.taskList != null)
-    //   .map((t, idx) => {
-    //     t.taskList.split('|').map((v) => {
-    //       if (v.slice(1, -1).split(',')[0] !== '' && v.slice(1, -1).split(',')[1] !== '') {
-    //         const marker = new AMap.Marker({
-    //           map,
-    //           zIndex: 1,
-    //           position: [v.slice(1, -1).split(',')[0], v.slice(1, -1).split(',')[1]],
-    //         });
-    //       }
-    //     });
-    //   });
   }
 
   allfly(PathSimplifier) {
@@ -197,7 +148,6 @@ class UIMarker extends React.Component {
     // 创建SimpleMarker实例
     nowtracelist.map((v) => {
       if (v.attendanceStatus == 0) {
-        debugger;
         new SimpleMarker({
           // 前景文字
           iconLabel: {
@@ -371,10 +321,6 @@ export default class tmp extends React.Component {
     super(props);
     const { dispatch } = props;
     dispatch(getNowtracelist());
-    // setInterval(
-    //   () => dispatch(getNowtracelist()),
-    //   100000,
-    // );
   }
 
 

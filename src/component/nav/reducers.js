@@ -184,6 +184,7 @@ const defaultState = {
   menus,
   linkList,
   userName: '',
+  type: '',
   expandable: true,
   pathList: [],
 };
