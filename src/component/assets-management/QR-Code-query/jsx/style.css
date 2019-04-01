@@ -1,0 +1,34 @@
+.one{
+    display: flex;
+}
+
+
+
+.one .left{
+    display: flex;
+    width: 250px;
+}
+
+
+
+.one .left>span{
+    line-height: 32px;
+    margin-right: 10px;
+}
+
+.one .left .select{
+    width: 150px;
+}
+
+.one .right{
+    display: flex;
+}
+
+.one .right>span{
+    line-height: 32px;
+    margin-right: 10px;
+}
+
+.two{
+    margin-top: 10px;
+}

@@ -1,0 +1,48 @@
+.one{
+    display: flex;
+}
+
+.oneLeft{
+    display: flex;
+    width: 400px;
+}
+
+.oneLeft>span {
+    line-height: 32px;
+    flex-basis: 80px;
+}
+
+.oneRight{
+    display: flex;
+    width: 400px;
+}
+
+.oneRight>span{
+    line-height: 32px;
+    flex-basis: 80px;
+}
+
+.two{
+    display: flex;
+    margin-top: 10px;
+}
+
+.twoLeft{
+    display: flex;
+    width: 400px;
+}
+
+.twoLeft>span{
+    line-height: 32px;
+    flex-basis: 80px;
+}
+
+.twoRight{
+    display: flex;
+    width: 400px;
+}
+
+.twoRight>span{
+    line-height: 32px;
+    flex-basis: 80px;
+}

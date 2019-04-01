@@ -127,6 +127,18 @@ module.exports = Object.assign({},config, {
         target:'http://10.45.156.171:9012',
         secure: false,
         changeOrigin: true
+      },
+      '/wgs':{
+        // target:'http://127.0.0.1:9017',
+        target:'http://10.45.156.221:9017',
+        secure: false,
+        changeOrigin: true
+      },
+      '/ams':{
+        target:'http://10.45.156.221:9016',
+        // target:'http://127.0.0.1:9016',
+        secure: false,
+        changeOrigin: true
       }
     },
     open: true

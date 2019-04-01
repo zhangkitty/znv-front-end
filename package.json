@@ -38,6 +38,7 @@
     "mapbox-gl": "^0.52.0-beta.2",
     "object-assign": "^4.1.1",
     "prop-types": "^15.6.0",
+    "qrcode.react": "^0.9.3",
     "query-string": "^6.2.0",
     "react": "^16.2.0",
     "react-amap": "^1.2.8",

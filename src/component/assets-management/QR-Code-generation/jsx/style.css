@@ -1,0 +1,18 @@
+.one{
+    display: flex;
+}
+
+.one .label{
+    flex-basis: 100px;
+    line-height: 32px;
+    margin-right: 10px;
+}
+
+.one .input{
+    flex-basis: 100px;
+    margin-right: 10px;
+}
+
+.one .button{
+
+}
