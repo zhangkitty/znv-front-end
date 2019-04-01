@@ -1,0 +1,16 @@
+.one {
+    display: flex;
+}
+
+
+.left{
+    width: 250px;
+}
+
+.right{
+    width: 250px;
+}
+
+.two{
+    margin-top: 10px;
+}

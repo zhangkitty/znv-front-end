@@ -3,16 +3,48 @@ import Cookie from 'utils/js.cookie';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { BackTop, Button, Layout, Menu, Icon } from 'antd';
+import { BackTop, Button, Layout, Menu, Icon, Select } from 'antd';
 import MySider from './components/sider';
 import styles from './style.css';
 import Welcome from './components/welcome';
-import { getResource } from './actions';
+import { getResource, changeValue } from './actions';
 
-const UserLand = ({ dispatch, userName }) => {
+
+const Option = Select.Option;
+
+const UserLand = ({ dispatch, userName, type }) => {
+  const org = [
+    {
+      type: '51010720564', name: '天呈',
+    },
+    {
+      type: '11000020917', name: '航美',
+    },
+  ];
   userName = localStorage.getItem('userName');
+  const isAdmin = localStorage.getItem('isAdmin');
   return (
     <div className={styles.antLayoutright}>
+      {
+        isAdmin === false ? null : <Select
+          style={{ width: 80, marginRight: 20 }}
+          value={type}
+          onChange={(value) => {
+            localStorage.setItem('type', value);
+            dispatch(changeValue('type', value));
+          }}
+        >
+          {
+            org.map(v => (<Option
+              value={v.type}
+            >
+              {
+                v.name
+              }
+            </Option>))
+          }
+                                   </Select>
+      }
       <span className={styles.logout}>{userName}</span>
       <span style={{ marginRight: 10 }}>|</span>
       <Button
@@ -25,6 +57,8 @@ const UserLand = ({ dispatch, userName }) => {
           Cookie.remove('SESSION_TOKEN');
           localStorage.setItem('token', '');
           localStorage.setItem('tokenDate', '');
+          localStorage.setItem('type', '');
+          localStorage.setItem('isAdmin', null);
           const href = window.location.href.split('#')[0];
           window.open(`${href}#/login`, '_self');
         }}
@@ -48,6 +82,11 @@ class MainPage extends React.PureComponent {
     super(props);
     const { dispatch } = this.props;
     dispatch(getResource(this.props));
+    if (localStorage.getItem('type')) {
+      dispatch(changeValue('type', localStorage.getItem('type')));
+    } else {
+      dispatch(changeValue('type', '12341412'));
+    }
   }
 
   state = {
@@ -141,7 +180,7 @@ class MainPage extends React.PureComponent {
                 type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
                 onClick={this.toggle}
               />
-              <UserLand userName={userName} dispatch={dispatch} />
+              <UserLand {...this.props} />
             </div>
           </Header>
           <Content style={{

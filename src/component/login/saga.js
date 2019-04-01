@@ -15,6 +15,8 @@ function* submitSaga(action) {
   localStorage.setItem('tokenDate', new Date().format('yyyy-MM-dd'));
   localStorage.setItem('userName', data.data.userName);
   localStorage.setItem('topOrgId', data.data.topOrgId);
+  data.data.topOrgId ? localStorage.setItem('type', data.data.topOrgId) : localStorage.setItem('type', '51010720564');
+  data.data.topOrgId ? localStorage.setItem('isAdmin', false) : localStorage.setItem('isAdmin', true);
   return yield put(push('/dashboard/ppppp'));
 }
 

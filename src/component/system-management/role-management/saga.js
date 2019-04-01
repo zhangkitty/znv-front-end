@@ -46,7 +46,6 @@ function* deleteRoleSaga(action) {
 function* getPermissionAndUserDetailSaga(action) {
   const { id } = action;
   const data = yield getPermissionAndUserDetailSer(id);
-  debugger
   // if (data.errCode !== 0) {
   //   return message.error(data.msg);
   // }

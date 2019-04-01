@@ -34,5 +34,5 @@ Container.propTypes = {
   ready: PropTypes.bool.isRequired,
 };
 
-const stateToProp = state => state['device-management/list'];
+const stateToProp = state => state['device-management/device-list'];
 export default connect(stateToProp)(Container);

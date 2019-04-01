@@ -1,0 +1,22 @@
+.headerAll{
+
+}
+
+.one{
+    display:flex;
+}
+
+.one>span {
+    line-height: 32px;
+    margin-right: 10px;
+}
+
+
+.deviceType{
+    width: 150px;
+}
+
+
+.two{
+    margin-top: 10px;
+}
