@@ -113,7 +113,20 @@ class MainPage extends React.PureComponent {
           collapsed={this.state.collapsed}
         >
           <div className={styles.logo}>
-            <img src="http://www.dftcmedia.com/page/ic_index_logo.png" alt="" style={{ width: '100%' }} />
+            {
+              (function () {
+                const topOrgId = localStorage.getItem('topOrgId');
+                if (topOrgId == 'null') {
+                  return <img src="http://www.znv.com.cn/skins/ico/logo.png" alt="" style={{ width: '100%', height: '100%' }} />;
+                }
+                if (topOrgId == 11000002) {
+                  return <img src="http://www.dftcmedia.com/page/ic_index_logo.png" alt="" style={{ width: '100%' }} />;
+                }
+                if (topOrgId == 11000008) {
+                  return <img src="http://www.xinchao.com/img/logo.9cee6484.png" alt="" style={{ width: '100%' }} />;
+                }
+              }())
+            }
           </div>
           <MySider
             current={current}
