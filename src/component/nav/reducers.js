@@ -4,31 +4,31 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 import * as types from './types';
 
 const menus = [
-  {
-    title: '首页',
-    icon: 'mobile',
-    link: '/dashboard/ppppp',
-  },
-  {
-    title: '异常中心',
-    icon: 'bars',
-    link: '/dashboard/exception',
-  },
-  {
-    title: '设备管理',
-    icon: 'bars',
-    link: '/device-management',
-    children: [
-      {
-        title: '资产列表',
-        link: '/device-management/list',
-      },
-      {
-        title: '不可接收资产列表',
-        link: '/device-management/connot-receive-list',
-      },
-    ],
-  },
+  // {
+  //   title: '首页',
+  //   icon: 'mobile',
+  //   link: '/dashboard/index',
+  // },
+  // {
+  //   title: '异常中心',
+  //   icon: 'bars',
+  //   link: '/dashboard/exception',
+  // },
+  // {
+  //   title: '设备管理',
+  //   icon: 'bars',
+  //   link: '/device-management',
+  //   children: [
+  //     {
+  //       title: '资产列表',
+  //       link: '/device-management/list',
+  //     },
+  //     {
+  //       title: '不可接收资产列表',
+  //       link: '/device-management/connot-receive-list',
+  //     },
+  //   ],
+  // },
   // {
   //   title: '告警管理',
   //   icon: 'bars',
@@ -55,53 +55,53 @@ const menus = [
   //     },
   //   ],
   // },
-  {
-    title: '报表管理',
-    icon: 'bars',
-    link: '/report-management',
-    children: [
-      {
-        title: '资产接收进度统计',
-        link: '/report-management/asset-receipt',
-      },
-      {
-        title: '监播进度统计',
-        link: '/report-management/monitoring-statistics',
-      },
-      {
-        title: '巡检进度统计',
-        link: '/report-management/inspection-statistics',
-      },
-      {
-        title: '工单类型统计',
-        link: '/report-management/work-order-type',
-      },
-      {
-        title: '工单效率月度考核',
-        link: '/report-management/work-order-efficiency-monthly',
-      },
-      {
-        title: '工作量月度考核',
-        link: '/report-management/workload-monthly',
-      },
-      {
-        title: '结算详情',
-        link: '/report-management/settlement-detail',
-      },
-    ],
-  },
-  {
-    title: '考勤管理',
-    icon: 'bars',
-    // link: '/attendance/management',
-    link: '/attendance',
-    children: [
-      {
-        title: '考勤数据',
-        link: '/attendance/management',
-      },
-    ],
-  },
+  // {
+  //   title: '报表管理',
+  //   icon: 'bars',
+  //   link: '/report-management',
+  //   children: [
+  //     {
+  //       title: '资产接收进度统计',
+  //       link: '/report-management/asset-receipt',
+  //     },
+  //     {
+  //       title: '监播进度统计',
+  //       link: '/report-management/monitoring-statistics',
+  //     },
+  //     {
+  //       title: '巡检进度统计',
+  //       link: '/report-management/inspection-statistics',
+  //     },
+  //     {
+  //       title: '工单类型统计',
+  //       link: '/report-management/work-order-type',
+  //     },
+  //     {
+  //       title: '工单效率月度考核',
+  //       link: '/report-management/work-order-efficiency-monthly',
+  //     },
+  //     {
+  //       title: '工作量月度考核',
+  //       link: '/report-management/workload-monthly',
+  //     },
+  //     {
+  //       title: '结算详情',
+  //       link: '/report-management/settlement-detail',
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: '考勤管理',
+  //   icon: 'bars',
+  //   // link: '/attendance/management',
+  //   link: '/attendance',
+  //   children: [
+  //     {
+  //       title: '考勤数据',
+  //       link: '/attendance/management',
+  //     },
+  //   ],
+  // },
   // {
   //   title: '全网检测',
   //   icon: 'bars',
@@ -140,21 +140,21 @@ const menus = [
   //     },
   //   ],
   // },
-  {
-    title: '权限管理',
-    icon: 'bars',
-    link: '/authority-management',
-    children: [
-      {
-        title: '用户管理',
-        link: '/system-management/user-management',
-      },
-      {
-        title: '角色管理',
-        link: '/authority-management/role-management',
-      },
-    ],
-  },
+  // {
+  //   title: '权限管理',
+  //   icon: 'bars',
+  //   link: '/authority-management',
+  //   children: [
+  //     {
+  //       title: '用户管理',
+  //       link: '/system-management/user-management',
+  //     },
+  //     {
+  //       title: '角色管理',
+  //       link: '/authority-management/role-management',
+  //     },
+  //   ],
+  // },
 ];
 
 const linkList = menus.slice(1).reduce((concated, value) => (

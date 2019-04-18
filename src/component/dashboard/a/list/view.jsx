@@ -22,7 +22,7 @@ class Container extends React.Component {
           <Header {...this.props} />
           <List {...this.props} />
           <Popover content="sdaff" trigger="click" style={{ marginRight: 12 }}>
-            <Button onClick={() => console.log('pppppppp')}>Click me</Button>
+            <Button onClick={() => console.log('indexppp')}>Click me</Button>
           </Popover>
 
         </div>

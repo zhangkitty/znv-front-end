@@ -64,7 +64,7 @@ export const searchSer = (props) => {
 };
 
 export const outSer = (props) => {
-  console.log('pppppppp');
+  console.log('indexppp');
   const { formData } = props;
   const form = new FormData();
   const data = {

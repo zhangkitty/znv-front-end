@@ -15,10 +15,10 @@ const Option = Select.Option;
 const UserLand = ({ dispatch, userName, type }) => {
   const org = [
     {
-      type: '51010720564', name: '天呈',
+      type: '11000002', name: '天呈',
     },
     {
-      type: '11000020917', name: '航美',
+      type: '11000008', name: '新潮',
     },
   ];
   userName = localStorage.getItem('userName');
@@ -26,7 +26,7 @@ const UserLand = ({ dispatch, userName, type }) => {
   return (
     <div className={styles.antLayoutright}>
       {
-        isAdmin === false ? null : <Select
+        isAdmin === 'false' ? null : <Select
           style={{ width: 80, marginRight: 20 }}
           value={type}
           onChange={(value) => {
@@ -43,7 +43,7 @@ const UserLand = ({ dispatch, userName, type }) => {
               }
             </Option>))
           }
-                                   </Select>
+        </Select>
       }
       <span className={styles.logout}>{userName}</span>
       <span style={{ marginRight: 10 }}>|</span>

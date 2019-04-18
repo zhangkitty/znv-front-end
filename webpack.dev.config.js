@@ -70,12 +70,22 @@ module.exports = Object.assign({},config, {
       '/rqs': {
         // target: 'http://47.107.237.125:8012',
         //测试站
-        target: 'http://10.45.156.186:9008',
+        // target: 'http://10.45.156.186:9008',
         //朱文钧电脑
-        //target: 'http://10.45.148.82:9001',
+        target: 'http://10.45.148.82:9001',
         //本地
         // target: 'http://127.0.0.1:9001',
         // pathRewrite: { '^/rqs': '' },
+        secure: false,
+        changeOrigin: true
+      },
+
+
+
+      '/ods':{
+        //聂桂桂的电脑
+        target:'http://127.0.0.1:9005',
+        //target:'http://10.45.149.20:9005',
         secure: false,
         changeOrigin: true
       },
@@ -89,9 +99,20 @@ module.exports = Object.assign({},config, {
 
       '/aps':{
         //线上
-        target: 'http://172.18.113.59:9004',
+        // target: 'http://172.18.113.59:9004',
         //测试站
-        // target:'http://10.45.156.186:9001',
+        target:'http://10.45.148.173:9014',
+        secure: false,
+        changeOrigin: true
+      },
+
+      '/wgs':{
+        target:'http://10.45.148.173:9017',
+        secure: false,
+        changeOrigin: true
+      },
+      '/auc':{
+        target:'http://10.45.148.173:9013',
         secure: false,
         changeOrigin: true
       },
@@ -123,14 +144,7 @@ module.exports = Object.assign({},config, {
       },
 
       '/srm':{
-        // target: 'http://127.0.0.1:9012',
-        target:'http://10.45.156.171:9012',
-        secure: false,
-        changeOrigin: true
-      },
-      '/wgs':{
-        // target:'http://127.0.0.1:9017',
-        target:'http://10.45.156.221:9017',
+        target:'http://10.45.148.173:9012',
         secure: false,
         changeOrigin: true
       },
