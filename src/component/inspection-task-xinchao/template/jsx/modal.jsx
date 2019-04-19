@@ -47,7 +47,7 @@ const tmp = (props) => {
           }}
         >
           {
-            personList.map(v=><Option value={v.userId}>{v.userName}</Option>)
+            personList.map(v => <Option value={v.userId}>{v.userName}</Option>)
           }
         </Select>
 
