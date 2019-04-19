@@ -2,18 +2,47 @@ import { request } from 'utils/index';
 import getParam from 'utils/getParam';
 
 
-export const initSer = (props) => {
+export const searchSer = (props) => {
   console.log(props);
+  const { formData: { pageSize, pageNum, projectName }, params } = props;
 
   const data = {
-    pageSize: 100000000,
-    pageNum: 1,
-    taskType: 13,
-    taskMode: 1,
+    pageSize,
+    pageNum,
+    itemName: projectName,
+    taskId: params.taskId,
   };
-
   return request({
-    url: `/ods/api/task/list/query${getParam(data)}`,
+    url: `/ods/api/patrol/item/query${getParam(data)}`,
+  });
+};
+
+export const changePageSer = (action) => {
+  const { props, current } = action;
+  const { formData: { pageSize, projectName }, params } = props;
+  const data = {
+    pageSize,
+    pageNum: current,
+    itemName: projectName,
+    taskId: params.taskId,
+  };
+  return request({
+    url: `/ods/api/patrol/item/query${getParam(data)}`,
+  });
+};
+
+export const changePageSizeSer = (action) => {
+  const { props, current, size } = action;
+  const { formData: { pageSize, pageNum, projectName }, params } = props;
+  const data = {
+    pageSize: size,
+    pageNum: current,
+    itemName: projectName,
+    taskId: params.taskId,
+
+  };
+  return request({
+    url: `/ods/api/patrol/item/query${getParam(data)}`,
   });
 };
 

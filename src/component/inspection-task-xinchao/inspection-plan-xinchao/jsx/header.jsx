@@ -1,6 +1,6 @@
 import React from 'react';
 import { TreeSelect, Select, DatePicker, Button } from 'antd';
-import { changeDept } from '../action';
+import { changeDept,search } from '../action';
 
 const TreeNode = TreeSelect.TreeNode;
 const Option = Select.Option;
@@ -10,7 +10,7 @@ const { RangePicker } = DatePicker;
 const header = (props) => {
   console.log(1);
   const {
-    dispatch, dept, person, formData: { chooseDept, choosePerson },
+    dispatch, dept, person, title, formData: { chooseDept, choosePerson },
   } = props;
 
 
@@ -37,12 +37,21 @@ const header = (props) => {
         }
       </Select>
 
-      <DatePicker
-        style={{ marginRight: 10 }}
-        onChange={v => console.log(v)}
-      />
+      <Select
+        style={{ width: 200, marginRight: 10 }}
+        allowClear
+        data-bind="formData.title"
+      >
+        {
+          title.map(v => (
+            <Option value={v}>{v}</Option>
+          ))
+        }
+      </Select>
 
-      <Button >
+      <Button
+        onClick={() => dispatch(search(props))}
+      >
         查询
       </Button>
     </div>

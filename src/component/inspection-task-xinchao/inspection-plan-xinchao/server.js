@@ -11,6 +11,11 @@ export const initSer = (props) => {
     orgId: props.formData.chooseDept,
   };
 
+  const data1 = {
+    taskType: 13,
+    taskMode: 2,
+  };
+
   return Promise.all([
     request({
       url: '/srm/org/query/tree',
@@ -18,6 +23,9 @@ export const initSer = (props) => {
 
     request({
       url: `/srm/user/query/list${getParam(data)}`,
+    }),
+    request({
+      url: `/wgs/xc/task/title/list/query${getParam(data1)}`,
     }),
   ]).then(res => res);
 };

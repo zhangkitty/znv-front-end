@@ -1,21 +1,31 @@
 import { Modal } from 'antd';
 import { take, put, takeLatest } from 'redux-saga/effects';
-import { initSuccess } from './action';
+import { searchSuccess } from './action';
 import * as types from './types';
-import { initSer } from './server';
+import { searchSer } from './server';
+import { changePageSer, changePageSizeSer } from './server';
 
-function* initSaga(action) {
+
+function* searchSaga(action) {
   const { props } = action;
-  const data = yield initSer(props);
-  return yield put(initSuccess(data));
+  const data = yield searchSer(props);
+  return yield put(searchSuccess(data));
 }
 
+function* changePageSaga(action) {
+  const data = yield changePageSer(action);
+  return yield put(searchSuccess(data));
+}
 
-
-
+function* changePageSizeSaga(action) {
+  const data = yield changePageSizeSer(action);
+  return yield put(searchSuccess(data));
+}
 
 function* mainSaga() {
-  yield takeLatest(types.init, initSaga);
+  yield takeLatest(types.search, searchSaga);
+  yield takeLatest(types.changePage, changePageSaga);
+  yield takeLatest(types.changePageSize, changePageSizeSaga);
 }
 
 export default mainSaga;

@@ -6,18 +6,13 @@ import List from './jsx/list';
 
 class Container extends React.Component {
   componentWillMount() {
-    this.props.dispatch(init(this.props));
+
   }
+
   render() {
-    const { ready } = this.props;
-    if (ready) {
-      return (
-        <List {...this.props} />
-      );
-    }
     return (
-      <div style={{ textAlign: 'center' }}>
-        <Spin size="large" />
+      <div>
+        <List {...this.props} />
       </div>
     );
   }

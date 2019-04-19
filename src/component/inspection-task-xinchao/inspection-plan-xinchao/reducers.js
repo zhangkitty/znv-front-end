@@ -6,10 +6,12 @@ export const defaultState = {
   ready: true,
   dept: [],
   person: [],
+  title: [],
   formData: {
     chooseDept: 11000008,
     choosePerson: '',
     date: [],
+    title: '',
   },
 };
 
@@ -41,6 +43,7 @@ const reducer = (state = defaultState, action) => {
         ready: true,
         dept: trans(action.data[0].data),
         person: action.data[1].data.list,
+        title: action.data[2].data,
       });
 
 

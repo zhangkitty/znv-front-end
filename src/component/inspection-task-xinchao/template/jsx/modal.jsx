@@ -10,7 +10,9 @@ const tmp = (props) => {
   const {
     dispatch, modal: {
       visiable,
+      personList,
     },
+
   } = props;
   return (
     <Modal
@@ -38,11 +40,16 @@ const tmp = (props) => {
       <div style={{ display: 'flex' }}>
         <span style={{ flexBasis: 200 }}>巡检人员：</span>
         <Select
+          data-bind="modal.chooseUser"
           style={{
             width: 200,
             lineHeight: 32,
           }}
-        />
+        >
+          {
+            personList.map(v=><Option value={v.userId}>{v.userName}</Option>)
+          }
+        </Select>
 
       </div>
 
