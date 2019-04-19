@@ -40,3 +40,25 @@ export const changeDeptSer = (props, v) => {
     url: `/srm/user/query/list${getParam(data)}`,
   });
 };
+
+export const searchSer = (action) => {
+  const {
+    props: {
+      person,
+      formData: {
+        pageSize, pageNum, title, choosePerson,
+      },
+    },
+  } = action;
+  const data = {
+    pageNum,
+    pageSize,
+    taskType: 13,
+    taskMode: 2,
+    taskName: title,
+    staffName: choosePerson && (person.filter(v => v.userId === choosePerson)[0]).userName,
+  };
+  return request({
+    url: `/ods/api/task/list/query${getParam(data)}`,
+  });
+};

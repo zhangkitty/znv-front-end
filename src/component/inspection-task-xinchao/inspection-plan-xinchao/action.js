@@ -9,3 +9,4 @@ export const changeDept = makeActionCreator(types.changeDept, 'props', 'v');
 export const changeDeptSuccess = makeActionCreator(types.changeDeptSuccess, 'data');
 
 export const search = makeActionCreator(types.search, 'props');
+export const searchSuccess = makeActionCreator(types.searchSuccess,'data');

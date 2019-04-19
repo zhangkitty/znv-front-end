@@ -4,38 +4,55 @@ import { Table } from 'antd';
 
 const List = (props) => {
   const {
-    list,
-    dataLoading,
+    table: {
+      dataSouce,
+      loading,
+    },
   } = props;
-  const columns = [{
-    title: '入库单号',
-    dataIndex: 'inStorageNo',
-    width: 100,
-  }, {
-    title: '生产制单',
-    dataIndex: 'produceOrderId',
-    width: 100,
-  }, {
-    title: '生产组',
-    dataIndex: 'productionGroup',
-    width: 100,
-  }];
+  const columns = [
+    {
+      title: '入库单号',
+      dataIndex: 'inStorageNo',
+      width: 100,
+    },
+    {
+      title: '生产制单',
+      dataIndex: 'produceOrderId',
+      width: 100,
+    },
+    {
+      title: '生产组',
+      dataIndex: 'productionGroup',
+      width: 100,
+    },
+    {
+      title: '入库单号',
+      dataIndex: 'inStorageNo',
+      width: 100,
+    },
+    {
+      title: '生产制单',
+      dataIndex: 'produceOrderId',
+      width: 100,
+    },
+    {
+      title: '生产组',
+      dataIndex: 'productionGroup',
+      width: 100,
+    },
+  ];
   return (
     <div>
       <Table
         bordered
         rowKey="id"
-        dataSource={list}
-        loading={dataLoading}
+        dataSource={dataSouce}
+        loading={loading}
         columns={columns}
       />
     </div>
   );
 };
 
-List.propTypes = {
-  dataLoading: PropTypes.bool.isRequired,
-  list: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-};
 
 export default List;
