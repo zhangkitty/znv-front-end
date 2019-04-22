@@ -1,7 +1,7 @@
 import React from 'react';
 import Page from 'shein-lib/pagination';
 
-import { Table, Button, Input } from 'antd';
+import { Table, Button, Input, Popconfirm } from 'antd';
 import { Link } from 'react-router-dom';
 import { changePage, changePageSize, changeTableValue, create, search } from '../action';
 
@@ -92,11 +92,13 @@ const List = (props) => {
         pageSize={pageSize}
       />
 
-      <Button
-        onClick={() => dispatch(create(props))}
-      >
-        确定
-      </Button>
+
+      <Popconfirm title="是否要确认" onConfirm={() => dispatch(create(props))} okText="Yes" >
+        <Button>
+          确定
+        </Button>
+      </Popconfirm>,
+
     </div>
   );
 };

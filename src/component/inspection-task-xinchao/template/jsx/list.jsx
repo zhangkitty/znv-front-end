@@ -17,7 +17,7 @@ const List = (props) => {
     },
     {
       title: '巡检人员',
-      dataIndex: 'staffName',
+      render: v => (`${v.staffName}(${v.staffNo})`),
       align: 'center',
     },
     {
