@@ -10,3 +10,6 @@ export const changeDeptSuccess = makeActionCreator(types.changeDeptSuccess, 'dat
 
 export const search = makeActionCreator(types.search, 'props');
 export const searchSuccess = makeActionCreator(types.searchSuccess,'data');
+
+export const queryDeviceDetail = makeActionCreator(types.queryDeviceDetail,'props');
+export const queryDeviceDetailSuccess = makeActionCreator(types.queryDeviceDetailSuccess,'data');

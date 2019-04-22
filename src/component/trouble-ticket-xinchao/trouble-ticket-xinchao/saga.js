@@ -1,8 +1,8 @@
-import { Modal } from 'antd';
+import { Modal, message } from 'antd';
 import { take, put, fork, takeLatest } from 'redux-saga/effects';
-import { initSuccess, changeDeptSuccess, searchSuccess } from './action';
+import { initSuccess, changeDeptSuccess, searchSuccess,queryDeviceDetailSuccess } from './action';
 import * as types from './types';
-import { initSer, changeDeptSer, searchSer } from './server';
+import { initSer, changeDeptSer, searchSer, queryDeviceDetailSer } from './server';
 
 function* initSaga(action) {
   const { props } = action;
@@ -19,7 +19,18 @@ function* changeDeptSaga(action) {
 
 function* searchSaga(action) {
   const data = yield searchSer(action);
+  if (data.errCode !== 0) {
+    return message.error(`${data.msg}`);
+  }
   return yield put(searchSuccess(data));
+}
+
+function* queryDeviceDetailSaga(action) {
+  const data = yield queryDeviceDetailSer(action);
+  if (data.errCode !== 0) {
+    return message.error(`${data.msg}`);
+  }
+  return yield put(queryDeviceDetailSuccess(data));
 }
 
 
@@ -27,6 +38,7 @@ function* mainSaga() {
   yield takeLatest(types.init, initSaga);
   yield takeLatest(types.changeDept, changeDeptSaga);
   yield takeLatest(types.search, searchSaga);
+  yield takeLatest(types.queryDeviceDetail, queryDeviceDetailSaga);
 }
 
 export default mainSaga;

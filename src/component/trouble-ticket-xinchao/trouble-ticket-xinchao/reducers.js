@@ -19,6 +19,14 @@ export const defaultState = {
   table: {
     loading: false,
   },
+  modal: {
+    deviceId: '',
+    projectName: '',
+    tenementType: '',
+    region: '',
+    address: '',
+    description: '',
+  },
 };
 
 const trans = arr => arr.map((v) => {
@@ -78,6 +86,16 @@ const reducer = (state = defaultState, action) => {
         total: action.data.data.total,
         table: assign({}, state.table, {
           loading: false,
+        }),
+      });
+
+    case types.queryDeviceDetailSuccess:
+      return assign({}, state, {
+        modal: assign({}, state.modal, {
+          projectName: action.data.data.itemName,
+          tenementType: action.data.data.propertyType,
+          region: action.data.data.region,
+          address: action.data.data.address,
         }),
       });
     default:

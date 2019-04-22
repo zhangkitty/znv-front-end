@@ -83,9 +83,9 @@ module.exports = Object.assign({},config, {
 
 
       '/ods':{
-        //聂桂桂的电脑
-        target:'http://127.0.0.1:9005',
+        // target:'http://127.0.0.1:9005',
         //target:'http://10.45.149.20:9005',
+        target:'http://10.45.146.127:9005',
         secure: false,
         changeOrigin: true
       },

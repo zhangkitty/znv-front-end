@@ -37,7 +37,9 @@ const List = (props) => {
     },
     {
       title: '故障类别',
-      dataIndex: 'productionGroup',
+      render: v => (
+        v.detailDto.faultDesc
+      ),
       align: 'center',
     },
     {

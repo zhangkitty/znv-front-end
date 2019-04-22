@@ -7,3 +7,7 @@ export let changeDeptSuccess;
 
 export let search;
 export let searchSuccess;
+
+
+export let queryDeviceDetail;
+export let queryDeviceDetailSuccess;

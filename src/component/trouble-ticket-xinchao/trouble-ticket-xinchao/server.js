@@ -58,3 +58,15 @@ export const searchSer = (action) => {
     data,
   });
 };
+
+export const queryDeviceDetailSer = (action) => {
+  const { props: { modal: { deviceId } } } = action;
+  const data = {
+    deviceId,
+  };
+  return request({
+    url: '/ods/xcworkorder/device/detail',
+    data,
+    method: 'post',
+  });
+};

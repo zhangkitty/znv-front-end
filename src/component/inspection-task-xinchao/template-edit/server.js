@@ -59,8 +59,7 @@ export const changePageSizeSer = (action) => {
 export const createSer = (acton) => {
   const { props: { params, table: { selectedRowKeys } } } = acton;
   const data = {
-    taskType: 13,
-    taskMode: 1,
+    taskId: params.taskId,
     taskName: params.taskName,
     itemList: selectedRowKeys.map(v => ({
       areaCode: v.split(',')[0],
@@ -70,10 +69,9 @@ export const createSer = (acton) => {
     })),
     staffId: params.staffId,
     staffName: params.staffName,
-    createBy: localStorage.getItem('userId'),
   };
   return request({
-    url: '/ods/api/task/create',
+    url: '/ods/api/task/update',
     method: 'post',
     data,
   });
