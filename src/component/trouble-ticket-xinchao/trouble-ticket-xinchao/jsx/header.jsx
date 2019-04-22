@@ -1,6 +1,6 @@
 import React from 'react';
-import { TreeSelect, Select, DatePicker, Button } from 'antd';
-import { changeDept } from '../action';
+import { TreeSelect, Select, DatePicker, Button, Input } from 'antd';
+import { changeDept,search } from '../action';
 
 const TreeNode = TreeSelect.TreeNode;
 const Option = Select.Option;
@@ -47,7 +47,14 @@ const header = (props) => {
         // onOk={onOk}
       />
 
-      <Button >
+      <Input
+        style={{ width: 200, marginRight: 10 }}
+        data-bind="formData.projectName"
+      />
+
+      <Button
+        onClick={()=>dispatch(search(props))}
+      >
         查询
       </Button>
     </div>

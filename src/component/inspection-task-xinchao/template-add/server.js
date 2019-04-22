@@ -71,7 +71,7 @@ export const createTaskSer = (action) => {
   const { modal: { tempTitle, chooseUserId, personList }, table: { selectedRows } } = props;
   const data = {
     taskType: 13,
-    taskMode: 2,
+    taskMode: 1,
     taskName: tempTitle,
     staffId: chooseUserId,
     staffName: (personList.filter(v => chooseUserId === v.userId)[0]).userName,

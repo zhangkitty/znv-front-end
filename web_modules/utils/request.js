@@ -35,8 +35,14 @@ const fetch = async (options) => {
     }
     console.log(tokenData);
   } else if (!url.includes('/user/authorize') && Cookie.get('SESSION_NP')) {
+    const token = localStorage.getItem('token');
     if (Cookie.get('SESSION_TOKEN')) {
-      authHeader = { headers: { Authorization: Cookie.get('SESSION_TOKEN') } };
+      authHeader = {
+        headers: {
+          Authorization: Cookie.get('SESSION_TOKEN'),
+          token,
+        },
+      };
     } else {
       let temparr = Cookie.get('SESSION_NP');
       temparr = atob(temparr);
@@ -50,7 +56,10 @@ const fetch = async (options) => {
           expires: date,
         });
         authHeader = {
-          headers: { Authorization: `Bearer ${tokenData.access_token}` },
+          headers: {
+            Authorization: `Bearer ${tokenData.access_token}`,
+            token,
+          },
         };
         console.log(tokenData);
       }
@@ -60,7 +69,7 @@ const fetch = async (options) => {
     Cookie.remove('SESSION_TOKEN');
     // const href = window.location.href.split('#')[0];
     // window.open(`${href}#/login`, '_self');
-  };
+  }
 
   const token = localStorage.getItem('token');
   if (!checkToken()) {
@@ -71,7 +80,14 @@ const fetch = async (options) => {
   switch (method.toLowerCase()) {
     case 'get':
       if (url.indexOf('?') !== -1) {
-        return axios.get(`${url}&token=${token}`);
+        return axios.get(
+          `${url}&token=${token}`,
+          {
+            headers: {
+              token,
+            },
+          },
+        );
       }
       return axios.get(`${url}?token=${token}`);
     case 'delete':
@@ -83,7 +99,11 @@ const fetch = async (options) => {
       for (const key in data) {
         params.append(key, data[key]);
       }
-      return axios.post(`${url}?token=${token}`, data, Object.assign(authHeader, _options));
+      return axios.post(`${url}?token=${token}`, data, Object.assign(authHeader, _options, {
+        header: {
+          token,
+        },
+      }));
     }
     case 'put':
       return axios.put(url, data, Object.assign(authHeader, _options));

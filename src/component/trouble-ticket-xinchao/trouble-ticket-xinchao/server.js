@@ -1,5 +1,6 @@
 import { request } from 'utils/index';
 import getParam from 'utils/getParam';
+import moment from 'moment';
 
 
 export const initSer = (props) => {
@@ -30,5 +31,30 @@ export const changeDeptSer = (props, v) => {
   };
   return request({
     url: `/srm/user/query/list${getParam(data)}`,
+  });
+};
+
+export const searchSer = (action) => {
+  const {
+    props: {
+      formData: {
+        projectName, pageNum, pageSize, choosePerson, date,
+      },
+    },
+  } = action;
+  const data = {
+    itemName: projectName,
+    pageNum,
+    pageSize,
+    staffId: choosePerson,
+    loginStaffId: localStorage.getItem('userId'),
+    taskType: 15,
+    beginTime: moment(date[0]).format('YYYY-MM-DD'),
+    endTime: moment(date[1]).format('YYYY-MM-DD'),
+  };
+  return request({
+    url: `/wgs/xc/workorder/list/query${getParam(data)}`,
+    method: 'post',
+    data,
   });
 };

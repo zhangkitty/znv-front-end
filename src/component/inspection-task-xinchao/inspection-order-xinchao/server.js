@@ -62,7 +62,7 @@ export const searchSer = (action) => {
   };
   return request({
     method: 'post',
-    url: '/ods/workorder/list/query',
+    url: '/wgs/xc/workorder/list/query',
     data,
   });
 };
