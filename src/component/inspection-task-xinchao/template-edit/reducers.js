@@ -34,7 +34,7 @@ const reducer = (state = defaultState, action) => {
         total: action.data[0].data.total,
         dataSource: action.data[0].data.list,
         table: assign({}, state.table, {
-          selectedRowKeys: action.data[1].data.map(record => (`${record.arecCode},${record.itemName},${record.propertyType},${record.quantity}`)),
+          selectedRowKeys: action.data[1].data.map(record => (`${record.areaCode},${record.itemName},${record.propertyType},${record.quantity}`)),
         }),
       });
 
