@@ -73,7 +73,7 @@ const reducer = (state = defaultState, action) => {
         modal: assign({}, state.modal, {
           buttonLoading: false,
           visiable: true,
-          personList: action.data.data.list,
+          personList: action.data.data,
         }),
       });
 

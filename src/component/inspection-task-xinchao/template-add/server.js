@@ -45,12 +45,10 @@ export const changePageSizeSer = (action) => {
 
 export const openModalSer = (action) => {
   const data = {
-    pageSize: 100000,
-    pageNum: 1,
-    orgId: 11000008,
+    roleId: 101,
   };
   return request({
-    url: `/srm/user/query/list${getParam(data)}`,
+    url: `/srm/role/user/list/query${getParam(data)}`,
   });
 };
 
@@ -75,6 +73,7 @@ export const createTaskSer = (action) => {
     taskName: tempTitle,
     staffId: chooseUserId,
     staffName: (personList.filter(v => chooseUserId === v.userId)[0]).userName,
+    staffNo: (personList.filter(v => chooseUserId === v.userId)[0]).empNo,
     createBy: localStorage.getItem('userId'),
     itemList: selectedRows,
   };

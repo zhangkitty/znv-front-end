@@ -15,7 +15,6 @@ export const defaultState = {
 
   table: {
     selectedRowKeys: [],
-    selectedRows: [],
   },
 };
 
@@ -44,6 +43,7 @@ const reducer = (state = defaultState, action) => {
         formData: assign({}, state.formData, {
           pageNum: action.current,
         }),
+        dataSource: [],
       });
 
     case types.changePageSuccess:
@@ -61,6 +61,7 @@ const reducer = (state = defaultState, action) => {
           pageNum: action.current,
           pageSize: action.size,
         }),
+        dataSource: [],
       });
 
     case types.changePageSizeSuccess:

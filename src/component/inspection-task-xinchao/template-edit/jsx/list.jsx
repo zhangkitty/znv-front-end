@@ -52,7 +52,6 @@ const List = (props) => {
   const rowSelection = {
     onChange: (a, b) => {
       dispatch(changeTableValue('selectedRowKeys', a));
-      dispatch(changeTableValue('selectedRows', b));
     },
     getCheckboxProps: record => ({
       disabled: record.staffName !== null && record.staffName !== params.staffName,
