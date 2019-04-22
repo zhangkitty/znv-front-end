@@ -101,7 +101,7 @@ const reducer = (state = defaultState, action) => {
     case types.queryTaskDetailSuccess:
       debugger;
       const person = action.props.modal.personList.filter(v => v.userId === action.v)[0];
-      const b = `${person.userName}(${person.empNo})`;
+      const b = `${person.fullName}(${person.empNo})`;
       return assign({}, state, {
         modal: assign({}, state.modal, {
           tempTitle: action.data.data ? action.data.data.taskName : choose(null, b),
