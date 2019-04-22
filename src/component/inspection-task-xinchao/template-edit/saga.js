@@ -1,8 +1,8 @@
-import { Modal } from 'antd';
+import { Modal, message } from 'antd';
 import { take, put, takeLatest } from 'redux-saga/effects';
 import { searchSuccess, changePageSuccess, changePageSizeSuccess } from './action';
 import * as types from './types';
-import { changePageSer, changePageSizeSer, searchSer,createSer} from './server';
+import { changePageSer, changePageSizeSer, searchSer, createSer } from './server';
 
 
 function* searchSaga(action) {
@@ -22,15 +22,18 @@ function* changePageSizeSaga(action) {
 }
 
 function* createSaga(action) {
-  const data  = yield createSer(action);
-
+  const data = yield createSer(action);
+  if (data.errCode == 0) {
+    return message.success('编辑成功');
+  }
+  return message.error(`${data.msg}`);
 }
 
 function* mainSaga() {
   yield takeLatest(types.search, searchSaga);
   yield takeLatest(types.changePage, changePageSaga);
   yield takeLatest(types.changePageSize, changePageSizeSaga);
-  yield takeLatest(types.create,createSaga);
+  yield takeLatest(types.create, createSaga);
 }
 
 export default mainSaga;

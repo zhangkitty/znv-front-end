@@ -17,6 +17,7 @@ export const defaultState = {
     personList: [],
     chooseUserId: '',
     tempTitle: '',
+    date: [],
   },
 
   create: {
@@ -94,7 +95,7 @@ const reducer = (state = defaultState, action) => {
     case types.queryTaskDetailSuccess:
       return assign({}, state, {
         modal: assign({}, state.modal, {
-          tempTitle: action.data.data.taskName,
+          tempTitle: action.data && action.data.taskName,
         }),
       });
 

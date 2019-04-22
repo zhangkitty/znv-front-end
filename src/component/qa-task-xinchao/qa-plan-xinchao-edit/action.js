@@ -21,7 +21,7 @@ export const closeModal = makeActionCreator(types.closeModal, 'props');
 
 
 export const queryTaskDetail = makeActionCreator(types.queryTaskDetail, 'props', 'v');
-export const queryTaskDetailSuccess = makeActionCreator(types.queryTaskDetailSuccess, 'data', 'props', 'v');
+export const queryTaskDetailSuccess = makeActionCreator(types.queryTaskDetailSuccess, 'data');
 
 export const createTask = makeActionCreator(types.createTask, 'props');
 export const createTaskSuccess = makeActionCreator(types.createTaskSuccess, 'data');

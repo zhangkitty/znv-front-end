@@ -4,12 +4,13 @@ import getParam from 'utils/getParam';
 
 export const searchSer = (props) => {
   console.log(props);
-  const { formData: { pageSize, pageNum, projectName } } = props;
+  const { params, formData: { pageSize, pageNum, projectName } } = props;
 
   const data = {
     pageSize,
     pageNum,
     itemName: projectName,
+    taskId: params.taskId,
   };
   return request({
     url: `/ods/api/inspect/item/query${getParam(data)}`,

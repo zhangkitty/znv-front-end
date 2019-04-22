@@ -27,7 +27,7 @@ function* openModalSaga(action) {
 
 function* queryTaskDetailSaga(action) {
   const data = yield queryTaskDetailSer(action);
-  return yield put(queryTaskDetailSuccess(data, action.props, action.v));
+  return yield put(queryTaskDetailSuccess(data));
 }
 
 function* createTaskSaga(action) {

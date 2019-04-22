@@ -27,7 +27,7 @@ const List = (props) => {
     },
     {
       title: '计划巡检数',
-      dataIndex: 'finishCount', // todo 计划巡检数
+      dataIndex: 'deviceCount',
       align: 'center',
     },
     {
@@ -37,7 +37,12 @@ const List = (props) => {
     },
     {
       title: '完成率',
-      dataIndex: 'deviceCount',
+      render: (v) => {
+        if (v.deviceCount == 0) {
+          return '0.00%';
+        }
+        return `${Number((Math.round(v.finishCount / v.deviceCount * 10000) / 100)).toFixed(2)}%`;
+      },
       align: 'center',
     },
   ];

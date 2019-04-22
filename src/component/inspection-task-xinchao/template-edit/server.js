@@ -61,16 +61,21 @@ export const createSer = (acton) => {
   const data = {
     taskType: 13,
     taskMode: 1,
-    taskName: params.taskId,
+    taskName: params.taskName,
     itemList: selectedRowKeys.map(v => ({
       areaCode: v.split(',')[0],
-      itemName: v.splist(',')[1],
-      propertyType: v.splist(',')[2],
+      itemName: v.split(',')[1],
+      propertyType: v.split(',')[2],
       quantity: v.split(',')[3],
     })),
     staffId: params.staffId,
-    staffName: '',
+    staffName: params.staffName,
     createBy: localStorage.getItem('userId'),
   };
+  return request({
+    url: '/ods/api/task/create',
+    method: 'post',
+    data,
+  });
 };
 

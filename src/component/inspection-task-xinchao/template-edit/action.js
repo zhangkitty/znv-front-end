@@ -15,5 +15,5 @@ export const changePageSizeSuccess = makeActionCreator(types.changePageSizeSucce
 
 export const changeTableValue = makeActionCreator(types.changeTableValue, 'key', 'value');
 
-export const create = makeActionCreator(types.create, 'create');
+export const create = makeActionCreator(types.create, 'props');
 
