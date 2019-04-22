@@ -6,7 +6,7 @@ const List = (props) => {
   const {
     dataSource,
     total,
-    dataLoading,
+    table: { loading },
   } = props;
   const columns = [
     {
@@ -75,16 +75,12 @@ const List = (props) => {
         bordered
         rowKey="id"
         dataSource={dataSource}
-        loading={dataLoading}
+        loading={loading}
         columns={columns}
       />
     </div>
   );
 };
 
-List.propTypes = {
-  dataLoading: PropTypes.bool.isRequired,
-  list: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-};
 
 export default List;

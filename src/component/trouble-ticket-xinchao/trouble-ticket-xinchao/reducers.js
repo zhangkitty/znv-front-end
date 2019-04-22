@@ -16,6 +16,9 @@ export const defaultState = {
     pageSize: 10,
     pageNum: 1,
   },
+  table: {
+    loading: false,
+  },
 };
 
 const trans = arr => arr.map((v) => {
@@ -62,10 +65,20 @@ const reducer = (state = defaultState, action) => {
         person: action.data.data.list,
       });
 
+    case types.search:
+      return assign({}, state, {
+        table: assign({}, state.table, {
+          loading: true,
+        }),
+      });
+
     case types.searchSuccess:
       return assign({}, state, {
         dataSource: action.data.data.list,
         total: action.data.data.total,
+        table: assign({}, state.table, {
+          loading: false,
+        }),
       });
     default:
       return state;
