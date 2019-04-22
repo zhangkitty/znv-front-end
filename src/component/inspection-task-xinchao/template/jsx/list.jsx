@@ -38,7 +38,7 @@ const List = (props) => {
           <Link to={`/inspection-task-xinchao/template-edit/${v.id}/${v.taskName}/${v.staffId}/${v.staffName}`}>编辑</Link>
           <SheinButton
             type="link"
-            onClick={() => dispatch(openModal(props, v.taskName))}
+            onClick={() => dispatch(openModal(props, v))}
           >转移他人
           </SheinButton>
         </div>

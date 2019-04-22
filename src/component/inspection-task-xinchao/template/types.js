@@ -6,3 +6,5 @@ export let openModalSuccess;
 
 export let choseModal;
 
+export let update;
+

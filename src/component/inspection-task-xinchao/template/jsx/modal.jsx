@@ -1,7 +1,7 @@
 import React from 'react';
 import assign from 'object-assign';
 import { Modal, Select, Input } from 'antd';
-import { choseModal } from '../action';
+import { choseModal, update } from '../action';
 
 
 const Option = Select.Option;
@@ -19,6 +19,7 @@ const tmp = (props) => {
       title="转移他人"
       visible={visiable}
       onCancel={() => dispatch(choseModal(props))}
+      onOk={() => dispatch(update(props))}
     >
 
       <div style={{
@@ -47,7 +48,7 @@ const tmp = (props) => {
           }}
         >
           {
-            personList.map(v => <Option value={v.userId}>{v.userName}</Option>)
+            personList.map(v => <Option value={v.userId}>{v.fullName}</Option>)
           }
         </Select>
 

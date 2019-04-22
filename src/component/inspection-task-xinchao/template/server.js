@@ -20,12 +20,35 @@ export const initSer = (props) => {
 
 export const openModalSer = (props) => {
   const data = {
-    pageSize: 100000,
-    pageNum: 1,
-    orgId: 11000008,
+    roleId: 101,
   };
   return request({
-    url: `/srm/user/query/list${getParam(data)}`,
+    url: `/srm/role/user/list/query${getParam(data)}`,
+  });
+};
+
+export const updateSer = (action) => {
+  const {
+    props: {
+      modal: {
+        chooseUser,
+        chooseItem: {
+          id, taskName, staffId, staffName,
+        },
+      },
+    },
+  } = action;
+  const data = {
+    taskId: id,
+    taskName,
+    staffId,
+    staffName,
+    toStaffId: chooseUser,
+  };
+  return request({
+    url: '/ods/api/task/update',
+    method: 'post',
+    data,
   });
 };
 

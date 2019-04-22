@@ -9,6 +9,7 @@ export const defaultState = {
   modal: {
     visiable: false,
     tempTitle: '',
+    chooseItem: '',
     personList: [],
     chooseUser: '',
   },
@@ -31,14 +32,15 @@ const reducer = (state = defaultState, action) => {
     case types.openModal:
       return assign({}, state, {
         modal: assign({}, state.modal, {
-          tempTitle: action.taskName,
+          tempTitle: action.v.taskName,
+          chooseItem: action.v,
         }),
       });
     case types.openModalSuccess:
       return assign({}, state, {
         modal: assign({}, state.modal, {
           visiable: true,
-          personList: action.data.data.list,
+          personList: action.data.data,
         }),
       });
 
