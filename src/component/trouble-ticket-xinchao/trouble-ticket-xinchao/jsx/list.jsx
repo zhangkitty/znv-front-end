@@ -4,64 +4,67 @@ import { Table, Button } from 'antd';
 
 const List = (props) => {
   const {
-    list,
+    dataSource,
+    total,
     dataLoading,
   } = props;
   const columns = [
     {
       title: '创建时间',
       dataIndex: 'createTime',
-      width: 100,
+      align: 'center',
     },
     {
       title: '创建人',
-      dataIndex: 'produceOrderId',
-      width: 100,
+      dataIndex: 'creatorName',
+      align: 'center',
     },
     {
       title: '省市区',
-      dataIndex: 'productionGroup',
-      width: 100,
+      render: v => `${v.region}${v.city}${v.area}`,
+      align: 'center',
     },
     {
       title: '设备编号',
-      dataIndex: 'inStorageNo',
-      width: 100,
+      dataIndex: 'deviceId',
+      align: 'center',
     },
     {
       title: '项目名称',
       dataIndex: 'itemName',
-      width: 100,
+
+      align: 'center',
     },
     {
       title: '故障类别',
       dataIndex: 'productionGroup',
-      width: 100,
+      align: 'center',
     },
     {
       title: '工单状态',
-      dataIndex: 'productionGroup',
-      width: 100,
+      dataIndex: 'statusName',
+      align: 'center',
     },
     {
       title: '是否超时',
-      dataIndex: 'productionGroup',
-      width: 100,
+      dataIndex: 'expiredFlag',
+      align: 'center',
     },
     {
       title: '当前处理人',
-      dataIndex: 'productionGroup',
-      width: 100,
+      dataIndex: 'staffName',
+      align: 'center',
     },
     {
       title: '最新更新时间',
-      dataIndex: 'productionGroup',
-      width: 100,
+      dataIndex: 'updateTime',
+      align: 'center',
+
     },
   ];
   return (
-    <div>
-      <div>
+    <div style={{ marginRight: 10 }}>
+      <div style={{ marginTop: 10, marginBottom: 10 }}>
         <Button
           onClick={() => console.log(1)}
         >
@@ -71,7 +74,7 @@ const List = (props) => {
       <Table
         bordered
         rowKey="id"
-        dataSource={list}
+        dataSource={dataSource}
         loading={dataLoading}
         columns={columns}
       />

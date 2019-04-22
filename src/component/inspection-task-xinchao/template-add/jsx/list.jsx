@@ -83,7 +83,7 @@ const List = (props) => {
         loading={loading}
         rowSelection={rowSelection}
         rowKey={
-          record => (`${record.arecCode},${record.itemName},${record.propertyType},${record.quantity}`)
+          record => (`${record.areaCode},${record.itemName},${record.propertyType},${record.quantity}`)
         }
         pagination={false}
         dataSource={dataSource}
