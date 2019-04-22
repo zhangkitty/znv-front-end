@@ -1,5 +1,5 @@
 {
   "description": "",
   "crumb": [],
-  "route":"/:taskId?/:staffId?/"
+  "route":"/:taskId?/"
 }

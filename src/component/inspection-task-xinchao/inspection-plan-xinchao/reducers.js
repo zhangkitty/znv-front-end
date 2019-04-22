@@ -81,7 +81,7 @@ const reducer = (state = defaultState, action) => {
       return assign({}, state, {
         table: assign({}, state.table, {
           loading: false,
-          dataSouece: action.data.data.list,
+          dataSource: action.data.data.list,
           total: action.data.data.total,
         }),
       });

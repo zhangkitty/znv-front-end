@@ -5,48 +5,48 @@ import { Table } from 'antd';
 const List = (props) => {
   const {
     table: {
-      dataSouce,
+      dataSource,
       loading,
     },
   } = props;
   const columns = [
     {
-      title: '入库单号',
-      dataIndex: 'inStorageNo',
-      width: 100,
+      title: '计划标题',
+      dataIndex: 'taskName',
+      align: 'center',
     },
     {
-      title: '生产制单',
-      dataIndex: 'produceOrderId',
-      width: 100,
+      title: '任务周期',
+      render: v => `${v.beginTime}-${v.endTime}`,
+      align: 'center',
     },
     {
-      title: '生产组',
-      dataIndex: 'productionGroup',
-      width: 100,
+      title: '巡检人员',
+      dataIndex: 'staffName',
+      align: 'center',
     },
     {
-      title: '入库单号',
-      dataIndex: 'inStorageNo',
-      width: 100,
+      title: '计划巡检数',
+      dataIndex: 'finishCount', // todo 计划巡检数
+      align: 'center',
     },
     {
-      title: '生产制单',
-      dataIndex: 'produceOrderId',
-      width: 100,
+      title: '实际巡检数',
+      dataIndex: 'finishCount',
+      align: 'center',
     },
     {
-      title: '生产组',
-      dataIndex: 'productionGroup',
-      width: 100,
+      title: '完成率',
+      dataIndex: 'deviceCount',
+      align: 'center',
     },
   ];
   return (
-    <div>
+    <div style={{ marginTop: 10, marginRight: 10 }}>
       <Table
         bordered
         rowKey="id"
-        dataSource={dataSouce}
+        dataSource={dataSource}
         loading={loading}
         columns={columns}
       />

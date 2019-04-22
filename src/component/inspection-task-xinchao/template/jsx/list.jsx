@@ -35,7 +35,7 @@ const List = (props) => {
       align: 'center',
       render: v => (
         <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-          <Link to={`/template-edit/${v.Id}`}>编辑</Link>
+          <Link to={`/inspection-task-xinchao/template-edit/${v.id}/${v.staffId}`}>编辑</Link>
           <SheinButton
             type="link"
             onClick={() => dispatch(openModal(props, v.taskName))}

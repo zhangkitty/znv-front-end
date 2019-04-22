@@ -1,6 +1,6 @@
 import React from 'react';
 import { TreeSelect, Select, DatePicker, Button } from 'antd';
-import { changeDept,search } from '../action';
+import { changeDept, search } from '../action';
 
 const TreeNode = TreeSelect.TreeNode;
 const Option = Select.Option;

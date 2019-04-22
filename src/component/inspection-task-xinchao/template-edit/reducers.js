@@ -31,8 +31,11 @@ const reducer = (state = defaultState, action) => {
     case types.searchSuccess:
       return assign({}, state, {
         loading: false,
-        total: action.data.data.total,
-        dataSource: action.data.data.list,
+        total: action.data[0].data.total,
+        dataSource: action.data[0].data.list,
+        table: assign({}, state.table, {
+          selectedRowKeys: action.data[1].data.map(record => (`${record.arecCode},${record.itemName},${record.propertyType},${record.quantity}`)),
+        }),
       });
 
     case types.changePage:
@@ -43,6 +46,13 @@ const reducer = (state = defaultState, action) => {
         }),
       });
 
+    case types.changePageSuccess:
+      return assign({}, state, {
+        loading: false,
+        total: action.data.data.total,
+        dataSource: action.data.data.list,
+      });
+
 
     case types.changePageSize:
       return assign({}, state, {
@@ -51,6 +61,13 @@ const reducer = (state = defaultState, action) => {
           pageNum: action.current,
           pageSize: action.size,
         }),
+      });
+
+    case types.changePageSizeSuccess:
+      return assign({}, state, {
+        loading: false,
+        total: action.data.data.total,
+        dataSource: action.data.data.list,
       });
 
     case types.changeTableValue:

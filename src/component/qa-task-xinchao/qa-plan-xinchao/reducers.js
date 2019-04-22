@@ -6,10 +6,14 @@ export const defaultState = {
   ready: true,
   dept: [],
   person: [],
+  dataSource: [],
+  total: '',
   formData: {
     chooseDept: 11000008,
     choosePerson: '',
     date: [],
+    pageSize: 10,
+    pageNum: 1,
   },
 };
 
@@ -55,6 +59,12 @@ const reducer = (state = defaultState, action) => {
     case types.changeDeptSuccess:
       return assign({}, state, {
         person: action.data.data.list,
+      });
+
+    case types.searchSuccess:
+      return assign({}, state, {
+        dataSource: action.data.data.list,
+        total: action.data.data.total,
       });
     default:
       return state;

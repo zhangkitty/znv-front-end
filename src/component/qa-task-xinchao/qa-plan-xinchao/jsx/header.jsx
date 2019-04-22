@@ -1,6 +1,6 @@
 import React from 'react';
 import { TreeSelect, Select, DatePicker, Button } from 'antd';
-import { changeDept } from '../action';
+import { changeDept, search } from '../action';
 
 const TreeNode = TreeSelect.TreeNode;
 const Option = Select.Option;
@@ -37,8 +37,15 @@ const header = (props) => {
         }
       </Select>
 
-      <Button >
+      <Button
+        onClick={() => dispatch(search(props))}
+      >
         查询
+      </Button>
+      <hr style={{ margin: 10 }} />
+
+      <Button>
+        新增质检计划
       </Button>
     </div>
   );

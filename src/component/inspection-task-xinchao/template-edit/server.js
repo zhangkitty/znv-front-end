@@ -12,9 +12,19 @@ export const searchSer = (props) => {
     itemName: projectName,
     taskId: params.taskId,
   };
-  return request({
-    url: `/ods/api/patrol/item/query${getParam(data)}`,
-  });
+
+  const data1 = {
+    taskId: params.taskId,
+  };
+
+  return Promise.all([
+    request({
+      url: `/ods/api/patrol/item/query${getParam(data)}`,
+    }),
+    request({
+      url: `/ods/api/task/item/query${getParam(data1)}`,
+    }),
+  ]);
 };
 
 export const changePageSer = (action) => {
@@ -44,5 +54,23 @@ export const changePageSizeSer = (action) => {
   return request({
     url: `/ods/api/patrol/item/query${getParam(data)}`,
   });
+};
+
+export const createSer = (acton) => {
+  const { props: { params, table: { selectedRowKeys } } } = acton;
+  const data = {
+    taskType: 13,
+    taskMode: 1,
+    taskName: params.taskId,
+    itemList: selectedRowKeys.map(v => ({
+      areaCode: v.split(',')[0],
+      itemName: v.splist(',')[1],
+      propertyType: v.splist(',')[2],
+      quantity: v.split(',')[3],
+    })),
+    staffId: params.staffId,
+    staffName: '',
+    createBy: localStorage.getItem('userId'),
+  };
 };
 

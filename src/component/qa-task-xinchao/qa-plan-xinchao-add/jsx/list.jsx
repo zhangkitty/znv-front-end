@@ -3,23 +3,25 @@ import Page from 'shein-lib/pagination';
 
 import { Table, Button, Input } from 'antd';
 import { Link } from 'react-router-dom';
-import { changePage, changePageSize, changeTableValue, create, search } from '../action';
+import {
+  search,
+  changePage,
+  changePageSize,
+  openModal,
+  changeTableValue,
+} from '../action';
+
 
 const List = (props) => {
   const {
     dataSource,
     dispatch,
     total,
-    formData: {
-      pageSize,
-      pageNum,
-    },
     loading,
-    table: {
-      selectedRowKeys,
-    },
+    table: { selectedRowKeys },
+    modal: { buttonLoading },
+    formData: { pageSize, pageNum },
   } = props;
-
   const columns = [
     {
       title: '省市区',
@@ -41,11 +43,6 @@ const List = (props) => {
       dataIndex: 'quantity',
       align: 'center',
     },
-    {
-      title: '巡检人员',
-      align: 'center',
-      dataIndex: 'staffName',
-    },
   ];
 
   const rowSelection = {
@@ -53,18 +50,29 @@ const List = (props) => {
       dispatch(changeTableValue('selectedRowKeys', a));
       dispatch(changeTableValue('selectedRows', b));
     },
+    getCheckboxProps: record => ({
+      disabled: record.staffName !== null,
+    }),
     selectedRowKeys,
   };
-
-
   return (
     <div style={{ marginRight: 10 }}>
-      <Input
-        data-bind="formData.projectName"
-        style={{ width: 200, marginBottom: 10 }}
-        placeholder="输入项目名称进行搜素"
-        onPressEnter={() => dispatch(search(props))}
-      />
+      <div style={{ display: 'flex', marginBottom: 20 }}>
+        <Button
+          onClick={() => dispatch(openModal(props))}
+          loading={buttonLoading}
+        >
+          分配质检人员
+        </Button>
+
+        <Input
+          data-bind="formData.projectName"
+          style={{ width: 200, marginLeft: 20 }}
+          placeholder="输入项目名称进行搜素"
+          onPressEnter={() => dispatch(search(props))}
+        />
+      </div>
+
       <Table
         bordered
         loading={loading}
@@ -88,12 +96,6 @@ const List = (props) => {
         current={pageNum}
         pageSize={pageSize}
       />
-
-      <Button
-        onClick={() => dispatch(cearte(props))}
-      >
-        确定
-      </Button>
     </div>
   );
 };
