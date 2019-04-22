@@ -32,6 +32,7 @@ export const updateSer = (action) => {
     props: {
       modal: {
         chooseUser,
+        personList,
         chooseItem: {
           id, taskName, staffId, staffName,
         },
@@ -44,6 +45,7 @@ export const updateSer = (action) => {
     staffId,
     staffName,
     toStaffId: chooseUser,
+    toStaffName: personList.filter(v => v.userId == chooseUser)[0].fullName,
   };
   return request({
     url: '/ods/api/task/update',
