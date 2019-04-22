@@ -25,7 +25,7 @@ const tmp = (props) => {
           onChange={v => dispatch(queryTaskDetail(props, v))}
         >
           {
-           personList.map(v => <Option value={v.userId}>{`${v.userName}(${v.empNo})`}</Option>)
+           personList.map(v => <Option value={v.userId}>{`${v.fullName}(${v.empNo})`}</Option>)
          }
         </Select>
 
