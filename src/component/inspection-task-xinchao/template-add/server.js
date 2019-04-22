@@ -66,16 +66,21 @@ export const queryTaskDetailSer = (action) => {
 
 export const createTaskSer = (action) => {
   const { props } = action;
-  const { modal: { tempTitle, chooseUserId, personList }, table: { selectedRows } } = props;
+  const { modal: { tempTitle, chooseUserId, personList }, table: { selectedRowKeys } } = props;
   const data = {
     taskType: 13,
     taskMode: 1,
     taskName: tempTitle,
     staffId: chooseUserId,
-    staffName: (personList.filter(v => chooseUserId === v.userId)[0]).userName,
+    staffName: (personList.filter(v => chooseUserId === v.userId)[0]).fullName,
     staffNo: (personList.filter(v => chooseUserId === v.userId)[0]).empNo,
     createBy: localStorage.getItem('userId'),
-    itemList: selectedRows,
+    itemList: selectedRowKeys.map(v => ({
+      areaCode: v.split(',')[0],
+      itemName: v.split(',')[1],
+      propertyType: v.split(',')[2],
+      quantity: v.split(',')[3],
+    })),
   };
 
   return request({

@@ -24,7 +24,6 @@ export const defaultState = {
   },
   table: {
     selectedRowKeys: [],
-    selectedRows: [],
   },
 };
 
@@ -53,6 +52,7 @@ const reducer = (state = defaultState, action) => {
 
     case types.changePage:
       return assign({}, state, {
+        dataSource: [],
         loading: true,
         formData: assign({}, state.formData, {
           pageNum: action.current,
@@ -62,6 +62,7 @@ const reducer = (state = defaultState, action) => {
     case types.changePageSize:
       return assign({}, state, {
         loading: true,
+        dataSource: [],
         formData: assign({}, state.formData, {
           pageNum: action.current,
           pageSize: action.size,
@@ -99,7 +100,6 @@ const reducer = (state = defaultState, action) => {
       });
 
     case types.queryTaskDetailSuccess:
-      debugger;
       const person = action.props.modal.personList.filter(v => v.userId === action.v)[0];
       const b = `${person.fullName}(${person.empNo})`;
       return assign({}, state, {
@@ -129,7 +129,7 @@ const reducer = (state = defaultState, action) => {
     case types.changeTableValue:
       return assign({}, state, {
         table: assign({}, state.table, {
-          [action.key]: action.value,
+          [action.key]: [...new Set([...action.value, ...state.table.selectedRowKeys])],
         }),
       });
 

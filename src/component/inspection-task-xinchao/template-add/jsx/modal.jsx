@@ -1,6 +1,6 @@
 import React from 'react';
 import assign from 'object-assign';
-import { Modal, Select, Input } from 'antd';
+import { Modal, Select, Input, message } from 'antd';
 import { closeModal, queryTaskDetail, createTask } from '../action';
 
 
@@ -8,13 +8,18 @@ const Option = Select.Option;
 
 const tmp = (props) => {
   const {
-    dispatch, formData, modal: { visiable, personList }, create: { buttonLoading },
+    dispatch, formData, modal: { visiable, personList }, create: { buttonLoading }, table: { selectedRowKeys },
   } = props;
   return (
     <Modal
       title="分配巡检人员"
       visible={visiable}
-      onOk={() => dispatch(createTask(props))}
+      onOk={() => {
+        if (selectedRowKeys.length == 0) {
+          return message.info('请选择项目');
+        }
+        dispatch(createTask(props));
+      }}
       onCancel={() => dispatch(closeModal(props))}
       confirmLoading={buttonLoading}
     >
