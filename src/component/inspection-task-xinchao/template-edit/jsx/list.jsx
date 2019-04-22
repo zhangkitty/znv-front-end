@@ -10,6 +10,7 @@ const List = (props) => {
     dataSource,
     dispatch,
     total,
+    params,
     formData: {
       pageSize,
       pageNum,
@@ -53,6 +54,9 @@ const List = (props) => {
       dispatch(changeTableValue('selectedRowKeys', a));
       dispatch(changeTableValue('selectedRows', b));
     },
+    getCheckboxProps: record => ({
+      disabled: record.staffName !== null && record.staffName !== params.staffName,
+    }),
     selectedRowKeys,
   };
 
