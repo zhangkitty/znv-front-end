@@ -19,17 +19,6 @@ const header = (props) => {
       <div style={{ marginTop: 10 }}>
         <Select
           style={{ width: 200, marginRight: 10 }}
-          data-bind="formData.chooseTitle"
-        >
-          {
-            title.map(v => (
-              <Option value={v}>{v}</Option>
-            ))
-          }
-        </Select>
-
-        <Select
-          style={{ width: 200, marginRight: 10 }}
           data-bind="formData.chooseState"
         >
           {

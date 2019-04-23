@@ -1,8 +1,9 @@
 import { Modal } from 'antd';
 import { take, put, fork, takeLatest } from 'redux-saga/effects';
-import { initSuccess, changeDeptSuccess } from './action';
+import { initSuccess, changeDeptSuccess, searchSuccess } from './action';
 import * as types from './types';
 import { initSer, changeDeptSer, searchSer } from './server';
+import { message } from 'antd/lib/index';
 
 function* initSaga(action) {
   const { props } = action;
@@ -19,6 +20,10 @@ function* changeDeptSaga(action) {
 
 function* searchSaga(action) {
   const data = yield searchSer(action);
+  if (data.errCode !== 0) {
+    return message.error(data.msg);
+  }
+  return yield put(searchSuccess(data));
 }
 
 

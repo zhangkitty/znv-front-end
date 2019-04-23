@@ -1,12 +1,15 @@
 import assign from 'object-assign';
-import { getSize } from 'shein-middlewares/pagesize';
 import * as types from './types';
 
 export const defaultState = {
   ready: true,
   dept: [],
   person: [],
-  title: [],
+  table: {
+    loading: false,
+    total: '',
+    dataSource: [],
+  },
   status: [
     {
       id: 1,
@@ -38,12 +41,14 @@ export const defaultState = {
     },
   ],
   formData: {
+    pageNum: 1,
+    pageSize: 10,
     chooseDept: 11000008,
     choosePerson: '',
     date: [],
     chooseTitle: '',
-    chooseState:'',
-    projectName:'',
+    chooseState: '',
+    projectName: '',
   },
 };
 
@@ -75,7 +80,6 @@ const reducer = (state = defaultState, action) => {
         ready: true,
         dept: trans(action.data[0].data),
         person: action.data[1].data.list,
-        title: action.data[2].data,
       });
 
 
@@ -90,6 +94,14 @@ const reducer = (state = defaultState, action) => {
     case types.changeDeptSuccess:
       return assign({}, state, {
         person: action.data.data.list,
+      });
+
+    case types.searchSuccess:
+      return assign({}, state, {
+        table: assign({}, state.table, {
+          dataSouce: action.data.data.list,
+          total: action.data.data.total,
+        }),
       });
     default:
       return state;

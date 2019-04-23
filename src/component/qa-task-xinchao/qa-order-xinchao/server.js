@@ -1,21 +1,14 @@
 import { request } from 'utils/index';
 import getParam from 'utils/getParam';
+import moment from 'moment';
 
 
 export const initSer = (props) => {
-  console.log(props);
-
   const data = {
     pageSize: 1000,
     pageNo: 1,
     orgId: props.formData.chooseDept,
   };
-
-  const data1 = {
-    taskType: 13,
-    taskMode: 2,
-  };
-
   return Promise.all([
     request({
       url: '/srm/org/query/tree',
@@ -23,10 +16,6 @@ export const initSer = (props) => {
 
     request({
       url: `/srm/user/query/list${getParam(data)}`,
-    }),
-
-    request({
-      url: `/wgs/xc/task/title/list/query${getParam(data1)}`,
     }),
   ]).then(res => res);
 };
@@ -53,16 +42,13 @@ export const searchSer = (action) => {
   const data = {
     pageNum,
     pageSize,
-    taskId: '',
-    taskType: 13,
+    taskType: 14,
     statusCodes: [1],
-    beginTime: date[0],
-    endTime: date[1],
+    beginTime: moment(date[0]).format('YYYY-MM-DD'),
+    endTime: moment(date[1]).format('YYYY-MM-DD'),
     loginStaffId: localStorage.getItem('userId'),
     staffId: choosePerson,
     itemName: projectName,
-
-
   };
   return request({
     method: 'post',

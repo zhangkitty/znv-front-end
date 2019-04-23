@@ -7,19 +7,88 @@ const List = (props) => {
     list,
     dataLoading,
   } = props;
-  const columns = [{
-    title: '入库单号',
-    dataIndex: 'inStorageNo',
-    width: 100,
-  }, {
-    title: '生产制单',
-    dataIndex: 'produceOrderId',
-    width: 100,
-  }, {
-    title: '生产组',
-    dataIndex: 'productionGroup',
-    width: 100,
-  }];
+  const columns = [
+    {
+      title: '任务周期',
+      dataIndex: 'inStorageNo',
+      width: 100,
+    },
+    {
+      title: '质检人员',
+      dataIndex: 'produceOrderId',
+      width: 100,
+    },
+    {
+      title: '省市区',
+      dataIndex: 'productionGroup',
+      width: 100,
+    },
+    {
+      title: '项目名称',
+      dataIndex: 'inStorageNo',
+      width: 100,
+    },
+    {
+      title: '物业类型',
+      dataIndex: 'produceOrderId',
+      width: 100,
+    },
+    {
+      title: '设备编号',
+      dataIndex: 'productionGroup',
+      width: 100,
+    },
+    {
+      title: '任务周期',
+      dataIndex: 'inStorageNo',
+      width: 100,
+    },
+    {
+      title: '状态',
+      dataIndex: 'produceOrderId',
+      width: 100,
+    },
+    {
+      title: '错漏刊指标',
+      dataIndex: 'produceOrderId',
+      width: 100,
+    },
+    {
+      title: '屏幕清洁度指标',
+      dataIndex: 'produceOrderId',
+      width: 100,
+    },
+    {
+      title: '形象品质指标',
+      dataIndex: 'produceOrderId',
+      width: 100,
+    },
+    {
+      title: '设备声音指标',
+      dataIndex: 'produceOrderId',
+      width: 100,
+    },
+    {
+      title: '广告播放同步',
+      dataIndex: 'produceOrderId',
+      width: 100,
+    },
+    {
+      title: '照片',
+      dataIndex: 'produceOrderId',
+      width: 100,
+    },
+    {
+      title: '故障指标',
+      dataIndex: 'produceOrderId',
+      width: 100,
+    },
+    {
+      title: '完成时间',
+      dataIndex: 'produceOrderId',
+      width: 100,
+    },
+  ];
   return (
     <div>
       <Table

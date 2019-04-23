@@ -38,12 +38,14 @@ export const defaultState = {
     },
   ],
   formData: {
+    pageNum: 1,
+    pageSize: 10,
     chooseDept: 11000008,
     choosePerson: '',
     date: [],
     chooseTitle: '',
-    chooseState:'',
-    projectName:'',
+    chooseState: '',
+    projectName: '',
   },
 };
 

@@ -1,5 +1,6 @@
 import { request } from 'utils/index';
 import getParam from 'utils/getParam';
+import moment from 'moment';
 
 
 export const searchSer = (props) => {
@@ -66,12 +67,18 @@ export const queryTaskDetailSer = (action) => {
 
 export const createTaskSer = (action) => {
   const { props } = action;
-  const { modal: { tempTitle, chooseUserId, personList }, table: { selectedRowKeys } } = props;
+  const {
+    modal: {
+      tempTitle, chooseUserId, personList, date,
+    }, table: { selectedRowKeys },
+  } = props;
   const data = {
     taskType: 14,
     taskMode: 1,
     taskName: tempTitle,
     staffId: chooseUserId,
+    beginTime: moment(date[0]).format('YYYY-MM-DD hh:mm:ss'),
+    endTime: moment(date[1]).format('YYYY-MM-DD hh:mm:ss'),
     staffName: (personList.filter(v => chooseUserId === v.userId)[0]).fullName,
     createBy: localStorage.getItem('userId'),
     itemList: selectedRowKeys.map(v => ({
