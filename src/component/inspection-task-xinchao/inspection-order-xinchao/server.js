@@ -46,19 +46,23 @@ export const searchSer = (action) => {
   const {
     props: {
       formData: {
-        choosePerson, pageSize, pageNum, projectName,
+        choosePerson, pageSize, pageNum, projectName, date,
       },
     },
   } = action;
   const data = {
-    sourceId: 3003,
-    woTypes: 13,
-    statusCodes: [1],
-    staffId: choosePerson,
-    queryType: 1,
-    pageSize,
     pageNum,
+    pageSize,
+    taskId: '',
+    taskType: 13,
+    statusCodes: [1],
+    beginTime: date[0],
+    endTime: date[1],
+    loginStaffId: localStorage.getItem('userId'),
+    staffId: choosePerson,
     itemName: projectName,
+
+
   };
   return request({
     method: 'post',

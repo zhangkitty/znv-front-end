@@ -31,5 +31,5 @@ Container.propTypes = {
   ready: PropTypes.bool.isRequired,
 };
 
-const stateToProp = state => state['qa-task-xinchao/qa-order-xinchao'];
+const stateToProp = state => state['inspection-task-xinchao/qa-order-xinchao'];
 export default connect(stateToProp)(Container);

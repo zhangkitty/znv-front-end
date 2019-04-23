@@ -32,7 +32,7 @@ const header = (props) => {
       >
         {
           person.map(v => (
-            <Option value={v.userId}>{v.userName}</Option>
+            <Option value={v.userId}>{`${v.fullName}(${v.empNo})`}</Option>
             ))
         }
       </Select>

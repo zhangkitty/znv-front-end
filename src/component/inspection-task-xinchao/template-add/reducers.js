@@ -119,6 +119,8 @@ const reducer = (state = defaultState, action) => {
       return assign({}, state, {
         modal: assign({}, state.modal, {
           visiable: false,
+          chooseUserId: '',
+          tempTitle: '',
         }),
         create: assign({}, state.create, {
           buttonLoading: false,
