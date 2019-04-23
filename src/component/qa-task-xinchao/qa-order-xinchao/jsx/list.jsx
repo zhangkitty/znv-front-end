@@ -20,72 +20,102 @@ const List = (props) => {
     },
     {
       title: '省市区',
-      dataIndex: 'productionGroup',
+      render: v => `${v.region}${v.city}${v.area}`,
       align: 'center',
     },
     {
       title: '项目名称',
-      dataIndex: 'inStorageNo',
+      dataIndex: 'itemName',
       align: 'center',
     },
     {
       title: '物业类型',
-      dataIndex: 'produceOrderId',
+      dataIndex: 'propertyName',
       align: 'center',
     },
     {
       title: '设备编号',
-      dataIndex: 'productionGroup',
-      align: 'center',
-    },
-    {
-      title: '任务周期',
-      dataIndex: 'inStorageNo',
+      dataIndex: 'deviceId',
       align: 'center',
     },
     {
       title: '状态',
-      dataIndex: 'produceOrderId',
+      dataIndex: 'statusName',
       align: 'center',
     },
     {
       title: '错漏刊指标',
-      dataIndex: 'produceOrderId',
+      render: (v) => {
+        if (v.DetailDto.publish.name) {
+          return v.DetailDto.publish.name;
+        }
+        return '';
+      },
       align: 'center',
     },
     {
       title: '屏幕清洁度指标',
-      dataIndex: 'produceOrderId',
+      render: (v) => {
+        if (v.DetailDto.cleanness.name) {
+          return v.DetailDto.cleanness.name;
+        }
+        return '';
+      },
       align: 'center',
     },
     {
       title: '形象品质指标',
-      dataIndex: 'produceOrderId',
+      render: (v) => {
+        if (v.DetailDto.quality.name) {
+          return v.DetailDto.quality.name;
+        }
+        return '';
+      },
       align: 'center',
     },
     {
       title: '设备声音指标',
-      dataIndex: 'produceOrderId',
+      render: (v) => {
+        if (v.DetailDto.sound.name) {
+          return v.DetailDto.sound.name;
+        }
+        return '';
+      },
       align: 'center',
     },
     {
       title: '广告播放同步',
-      dataIndex: 'produceOrderId',
+      render: (v) => {
+        if (v.DetailDto.playSync.name) {
+          return v.DetailDto.playSync.name;
+        }
+        return '';
+      },
       align: 'center',
     },
     {
       title: '照片',
-      dataIndex: 'produceOrderId',
+      render: (v) => {
+        if (v.DetailDto.photo.name) {
+          return v.DetailDto.photo.name;
+        }
+        return '';
+      },
       align: 'center',
     },
     {
       title: '故障指标',
-      dataIndex: 'produceOrderId',
+      render: (v) => {
+        if (v.DetailDto.fault.name) {
+          return v.DetailDto.fault.name;
+        }
+        return '';
+      },
       align: 'center',
     },
     {
       title: '完成时间',
-      dataIndex: 'produceOrderId',
+      dataIndex: 'finishTime',
       align: 'center',
     },
   ];
