@@ -77,8 +77,8 @@ export const createTaskSer = (action) => {
     taskMode: 1,
     taskName: tempTitle,
     staffId: chooseUserId,
-    beginTime: moment(date[0]).format('YYYY-MM-DD hh:mm:ss'),
-    endTime: moment(date[1]).format('YYYY-MM-DD hh:mm:ss'),
+    beginTime: `${moment(date[0]).format('YYYY-MM-DD')} 00:00:00`,
+    endTime: `${moment(date[1]).format('YYYY-MM-DD')} 23:59:59 `,
     staffName: (personList.filter(v => chooseUserId === v.userId)[0]).fullName,
     createBy: localStorage.getItem('userId'),
     itemList: selectedRowKeys.map(v => ({
