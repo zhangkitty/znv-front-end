@@ -44,7 +44,7 @@ const header = (props) => {
       >
         {
           title.map(v => (
-            <Option value={v.taskName}>{v.taskName}</Option>
+            <Option value={v}>{v}</Option>
           ))
         }
       </Select>
