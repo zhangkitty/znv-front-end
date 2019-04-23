@@ -4,6 +4,7 @@ import * as types from './types';
 
 export const defaultState = {
   ready: true,
+  dataSource: '',
 
 };
 
@@ -13,6 +14,12 @@ const reducer = (state = defaultState, action) => {
     case types.init:
       return assign({}, state, {
         ready: false,
+      });
+
+    case types.initSuccess:
+      return assign({}, state, {
+        ready: true,
+        dataSource: action.dataSource,
       });
     default:
       return state;

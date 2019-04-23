@@ -63,7 +63,6 @@ const List = (props) => {
       title: '最新更新时间',
       dataIndex: 'updateTime',
       align: 'center',
-
     },
   ];
   return (
@@ -83,7 +82,7 @@ const List = (props) => {
         columns={columns}
         onRow={record => ({
             onClick: (event) => {
-              console.log(record, event);
+              window.location.hash = `/trouble-ticket-xinchao/trouble-ticket-xinchao-detail/${record.workOrderId}`;
             },
           })}
       />

@@ -10,10 +10,38 @@ class Container extends React.Component {
   }
   render() {
     const { ready } = this.props;
+    const {dataSource:{
+      deviceId,
+    }} = this.props
     if (ready) {
       return (
         <div>
-          asdfa
+          <h1>工单信息</h1>
+          <div style={{ display: 'flex' }}>
+            <span>设备编码:</span>
+            <span></span>
+          </div>
+          <div>
+            <span>项目名称:</span>
+          </div>
+          <div>
+            <span>物业类型:</span>
+          </div>
+          <div>
+            <span>省市区:</span>
+          </div>
+          <div>
+            <span>详细地址:</span>
+          </div>
+          <div>
+            <span>故障类型:</span>
+          </div>
+          <div>
+            <span>处理结果:</span>
+          </div>
+          <hr />
+          <h1>操作日志</h1>
+
         </div>
       );
     }
