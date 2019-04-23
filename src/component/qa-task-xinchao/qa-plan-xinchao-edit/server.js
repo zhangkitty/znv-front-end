@@ -2,6 +2,28 @@ import { request } from 'utils/index';
 import getParam from 'utils/getParam';
 
 
+export const initSer = (action) => {
+  const { props } = action;
+  const { params, formData: { pageSize, pageNum } } = props;
+  const data = {
+    pageSize,
+    pageNum,
+    taskId: params.taskId,
+  };
+  const data1 = {
+    taskId: params.taskId,
+  };
+  return Promise.all([
+    request({
+      url: `/ods/api/inspect/item/query${getParam(data)}`,
+    }),
+    request({
+      url: `/ods/api/task/item/query${getParam(data1)}`,
+    }),
+  ]);
+};
+
+
 export const searchSer = (props) => {
   console.log(props);
   const { params, formData: { pageSize, pageNum, projectName } } = props;
@@ -26,7 +48,7 @@ export const changePageSer = (action) => {
     itemName: projectName,
   };
   return request({
-    url: `/ods/api/patrol/item/query${getParam(data)}`,
+    url: `/ods/api/inspect/item/query${getParam(data)}`,
   });
 };
 
@@ -40,7 +62,7 @@ export const changePageSizeSer = (action) => {
 
   };
   return request({
-    url: `/ods/api/patrol/item/query${getParam(data)}`,
+    url: `/ods/api/inspect/item/query${getParam(data)}`,
   });
 };
 
@@ -58,7 +80,7 @@ export const openModalSer = (action) => {
 export const queryTaskDetailSer = (action) => {
   const { props, v } = action;
   const data = {
-    taskType: 13,
+    taskType: 14,
     taskMode: 1,
     staffId: v,
   };
@@ -71,7 +93,7 @@ export const createTaskSer = (action) => {
   const { props } = action;
   const { modal: { tempTitle, chooseUserId, personList }, table: { selectedRows } } = props;
   const data = {
-    taskType: 13,
+    taskType: 14,
     taskMode: 2,
     taskName: tempTitle,
     staffId: chooseUserId,
@@ -82,6 +104,25 @@ export const createTaskSer = (action) => {
 
   return request({
     url: '/ods/api/task/create',
+    method: 'post',
+    data,
+  });
+};
+
+export const updateSer = (action) => {
+  const { props: { table: { selectedRowKeys }, params: { taskId, taskName } } } = action;
+  const data = {
+    taskId,
+    taskName,
+    itemList: selectedRowKeys.map(v => ({
+      areaCode: v.split(',')[0],
+      itemName: v.split(',')[1],
+      propertyType: v.split(',')[2],
+      quantity: v.split(',')[3],
+    })),
+  };
+  return request({
+    url: '/ods/api/task/update',
     method: 'post',
     data,
   });

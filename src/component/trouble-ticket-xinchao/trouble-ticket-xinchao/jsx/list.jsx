@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Table, Button } from 'antd';
+import { openModal } from '../action';
 
 const List = (props) => {
   const {
     dataSource,
     total,
+    dispatch,
     table: { loading },
   } = props;
   const columns = [
@@ -68,7 +70,7 @@ const List = (props) => {
     <div style={{ marginRight: 10 }}>
       <div style={{ marginTop: 10, marginBottom: 10 }}>
         <Button
-          onClick={() => console.log(1)}
+          onClick={() => dispatch(openModal(props))}
         >
           创建故障工单
         </Button>

@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import List from './jsx/list';
+import { search } from './action';
 
 class Container extends React.Component {
   componentWillMount() {
-
+    const { dispatch } = this.props;
+    dispatch(search(this.props));
   }
   render() {
     return (

@@ -20,6 +20,7 @@ export const defaultState = {
     loading: false,
   },
   modal: {
+    visiable: false,
     deviceId: '',
     projectName: '',
     tenementType: '',
@@ -96,6 +97,33 @@ const reducer = (state = defaultState, action) => {
           tenementType: action.data.data.propertyType,
           region: action.data.data.region,
           address: action.data.data.address,
+        }),
+      });
+
+    case types.openModal:
+      return assign({}, state, {
+        modal: assign({}, state.modal, {
+          visiable: true,
+        }),
+      });
+
+    case types.closeModal:
+      return assign({}, state, {
+        modal: assign({}, state.modal, {
+          visiable: false,
+        }),
+      });
+
+    case types.createSuccess:
+      return assign({}, state, {
+        modal: assign({}, state.modal, {
+          visiable: false,
+          deviceId: '',
+          projectName: '',
+          tenementType: '',
+          region: '',
+          address: '',
+          description: '',
         }),
       });
     default:

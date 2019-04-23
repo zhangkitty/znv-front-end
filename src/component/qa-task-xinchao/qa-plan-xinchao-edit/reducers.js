@@ -25,13 +25,21 @@ export const defaultState = {
   },
   table: {
     selectedRowKeys: [],
-    selectedRows: [],
   },
 };
 
 
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
+    case types.initSuccess:
+      return assign({}, state, {
+        total: action.data[0].data.total,
+        dataSource: action.data[0].data.list,
+        table: assign({}, state.table, {
+          selectedRowKeys: action.data[1].data.map(record => `${record.arecCode},${record.itemName},${record.propertyType},${record.quantity}`),
+        }),
+      });
+
     case types.search: {
       return assign({}, state, {
         loading: true,
@@ -120,7 +128,7 @@ const reducer = (state = defaultState, action) => {
     case types.changeTableValue:
       return assign({}, state, {
         table: assign({}, state.table, {
-          [action.key]: action.value,
+          [action.key]: [...new Set([...state.table.selectedRowKeys, ...action.value])],
         }),
       });
 

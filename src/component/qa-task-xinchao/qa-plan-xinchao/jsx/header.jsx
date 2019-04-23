@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { TreeSelect, Select, DatePicker, Button } from 'antd';
 import { changeDept, search } from '../action';
 
@@ -44,9 +45,11 @@ const header = (props) => {
       </Button>
       <hr style={{ margin: 10 }} />
 
-      <Button>
-        新增质检计划
-      </Button>
+      <Link to="/qa-task-xinchao/qa-plan-xinchao-add">
+        <Button>
+          新增质检计划
+        </Button>
+      </Link>
     </div>
   );
 };

@@ -25,7 +25,6 @@ export const defaultState = {
   },
   table: {
     selectedRowKeys: [],
-    selectedRows: [],
   },
 };
 
@@ -48,6 +47,7 @@ const reducer = (state = defaultState, action) => {
     case types.changePage:
       return assign({}, state, {
         loading: true,
+        dataSource: [],
         formData: assign({}, state.formData, {
           pageNum: action.current,
         }),
@@ -56,6 +56,7 @@ const reducer = (state = defaultState, action) => {
     case types.changePageSize:
       return assign({}, state, {
         loading: true,
+        dataSource: [],
         formData: assign({}, state.formData, {
           pageNum: action.current,
           pageSize: action.size,
@@ -74,7 +75,7 @@ const reducer = (state = defaultState, action) => {
         modal: assign({}, state.modal, {
           buttonLoading: false,
           visiable: true,
-          personList: action.data.data.list,
+          personList: action.data.data,
         }),
       });
 
@@ -120,7 +121,7 @@ const reducer = (state = defaultState, action) => {
     case types.changeTableValue:
       return assign({}, state, {
         table: assign({}, state.table, {
-          [action.key]: action.value,
+          [action.key]: [...new Set([...state.table.selectedRowKeys, ...action.value])],
         }),
       });
 

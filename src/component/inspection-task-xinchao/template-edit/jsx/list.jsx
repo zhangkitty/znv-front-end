@@ -97,7 +97,7 @@ const List = (props) => {
         <Button>
           确定
         </Button>
-      </Popconfirm>,
+      </Popconfirm>
 
     </div>
   );

@@ -1,12 +1,13 @@
 import React from 'react';
 import Page from 'shein-lib/pagination';
-import { Table, Button, Input } from 'antd';
+import { Table, Button, Input, Popconfirm } from 'antd';
 
 import {
   search,
   changePage,
   changePageSize,
   changeTableValue,
+  update,
 } from '../action';
 
 
@@ -51,7 +52,6 @@ const List = (props) => {
   const rowSelection = {
     onChange: (a, b) => {
       dispatch(changeTableValue('selectedRowKeys', a));
-      dispatch(changeTableValue('selectedRows', b));
     },
     getCheckboxProps: record => ({
       disabled: record.staffName !== null,
@@ -92,6 +92,12 @@ const List = (props) => {
         current={pageNum}
         pageSize={pageSize}
       />
+
+      <Popconfirm title="是否要确认" onConfirm={() => dispatch(update(props))} okText="Yes" >
+        <Button>
+          确定
+        </Button>
+      </Popconfirm>
     </div>
   );
 };

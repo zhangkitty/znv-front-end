@@ -12,3 +12,4 @@ export const openModalSuccess = makeActionCreator(types.openModalSuccess, 'data'
 export const choseModal = makeActionCreator(types.choseModal, 'props');
 
 export const update = makeActionCreator(types.update, 'props');
+export const updateSuccess = makeActionCreator(types.updateSuccess, 'data');

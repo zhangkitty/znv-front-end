@@ -51,6 +51,11 @@ const reducer = (state = defaultState, action) => {
         }),
       });
 
+    case types.updateSuccess:
+      return assign({}, state, {
+        visiable: false,
+      });
+
 
     default:
       return state;

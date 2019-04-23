@@ -58,7 +58,7 @@ export const openModalSer = (action) => {
 export const queryTaskDetailSer = (action) => {
   const { props, v } = action;
   const data = {
-    taskType: 13,
+    taskType: 14,
     taskMode: 1,
     staffId: v,
   };
@@ -71,7 +71,7 @@ export const createTaskSer = (action) => {
   const { props } = action;
   const { modal: { tempTitle, chooseUserId, personList }, table: { selectedRows } } = props;
   const data = {
-    taskType: 13,
+    taskType: 14,
     taskMode: 2,
     taskName: tempTitle,
     staffId: chooseUserId,

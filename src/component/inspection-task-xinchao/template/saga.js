@@ -1,8 +1,8 @@
-import { Modal } from 'antd';
+import { Modal, message } from 'antd';
 import { take, put, takeLatest } from 'redux-saga/effects';
-import { initSuccess, openModalSuccess } from './action';
+import { initSuccess, openModalSuccess, updateSuccess } from './action';
 import * as types from './types';
-import { initSer, openModalSer,updateSer } from './server';
+import { initSer, openModalSer, updateSer } from './server';
 
 function* initSaga(action) {
   const { props } = action;
@@ -18,7 +18,10 @@ function* openModalSaga(action) {
 
 function* updateSaga(action) {
   const data = yield updateSer(action);
-
+  if (data.errCode == 0) {
+    return message.success('成功');
+  }
+  return yield put(updateSuccess(data));
 }
 
 

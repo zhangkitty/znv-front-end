@@ -1,8 +1,8 @@
 import { Modal, message } from 'antd';
 import { take, put, fork, takeLatest } from 'redux-saga/effects';
-import { initSuccess, changeDeptSuccess, searchSuccess,queryDeviceDetailSuccess } from './action';
+import { initSuccess, changeDeptSuccess, searchSuccess, queryDeviceDetailSuccess, createSuccess } from './action';
 import * as types from './types';
-import { initSer, changeDeptSer, searchSer, queryDeviceDetailSer } from './server';
+import { initSer, changeDeptSer, searchSer, queryDeviceDetailSer, createSer } from './server';
 
 function* initSaga(action) {
   const { props } = action;
@@ -33,12 +33,22 @@ function* queryDeviceDetailSaga(action) {
   return yield put(queryDeviceDetailSuccess(data));
 }
 
+function* createSaga(action) {
+  const data = yield createSer(action);
+  if (data.errCode !== 0) {
+    return message.error(`${data.msg}`);
+  }
+  message.success('故障工单创建成功');
+  return yield put(createSuccess(data));
+}
+
 
 function* mainSaga() {
   yield takeLatest(types.init, initSaga);
   yield takeLatest(types.changeDept, changeDeptSaga);
   yield takeLatest(types.search, searchSaga);
   yield takeLatest(types.queryDeviceDetail, queryDeviceDetailSaga);
+  yield takeLatest(types.create, createSaga);
 }
 
 export default mainSaga;

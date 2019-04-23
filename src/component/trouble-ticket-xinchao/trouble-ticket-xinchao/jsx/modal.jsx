@@ -1,15 +1,17 @@
 import React from 'react';
 import { Modal, Input } from 'antd';
-import { queryDeviceDetail } from '../action';
+import { queryDeviceDetail, closeModal,create } from '../action';
 
 
 const { TextArea } = Input;
 const tmp = (props) => {
-  const { formData, dispatch } = props;
+  const { formData, dispatch, modal: { visiable } } = props;
   return (
     <Modal
       title="创建工单"
-      visible
+      visible={visiable}
+      onCancel={() => dispatch(closeModal(props))}
+      onOk={() => dispatch(create(props))}
     >
       <div style={{ display: 'flex', margin: 5 }}>
         <span style={{ flexBasis: '100px' }}>设备编号:</span>

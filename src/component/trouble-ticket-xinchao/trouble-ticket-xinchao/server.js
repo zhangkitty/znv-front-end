@@ -70,3 +70,34 @@ export const queryDeviceDetailSer = (action) => {
     method: 'post',
   });
 };
+
+export const createSer = (action) => {
+  const {
+    props: {
+      modal: {
+        deviceId,
+        projectName,
+        tenementType,
+        region,
+        address,
+        description,
+      },
+    },
+  } = action;
+  const data = {
+    sourceId: 3003,
+    woType: 15,
+    deviceId,
+    detailObject: {
+      faultType: 2001,
+      question: description,
+      itemName: projectName,
+      propertyName: tenementType,
+    },
+  };
+  return request({
+    url: '/ods/workorder/create',
+    method: 'post',
+    data,
+  });
+};

@@ -7,4 +7,5 @@ export let openModalSuccess;
 export let choseModal;
 
 export let update;
+export let updateSuccess;
 

@@ -25,7 +25,7 @@ export const changePageSer = (action) => {
     itemName: projectName,
   };
   return request({
-    url: `/ods/api/patrol/item/query${getParam(data)}`,
+    url: `/ods/api/inspect/item/query${getParam(data)}`,
   });
 };
 
@@ -39,25 +39,23 @@ export const changePageSizeSer = (action) => {
 
   };
   return request({
-    url: `/ods/api/patrol/item/query${getParam(data)}`,
+    url: `/ods/api/inspect/item/query${getParam(data)}`,
   });
 };
 
 export const openModalSer = (action) => {
   const data = {
-    pageSize: 100000,
-    pageNum: 1,
-    orgId: 11000008,
+    roleId: 105,
   };
   return request({
-    url: `/srm/user/query/list${getParam(data)}`,
+    url: `/srm/role/user/list/query${getParam(data)}`,
   });
 };
 
 export const queryTaskDetailSer = (action) => {
   const { props, v } = action;
   const data = {
-    taskType: 13,
+    taskType: 14,
     taskMode: 1,
     staffId: v,
   };
@@ -68,15 +66,20 @@ export const queryTaskDetailSer = (action) => {
 
 export const createTaskSer = (action) => {
   const { props } = action;
-  const { modal: { tempTitle, chooseUserId, personList }, table: { selectedRows } } = props;
+  const { modal: { tempTitle, chooseUserId, personList }, table: { selectedRowKeys } } = props;
   const data = {
-    taskType: 13,
-    taskMode: 2,
+    taskType: 14,
+    taskMode: 1,
     taskName: tempTitle,
     staffId: chooseUserId,
-    staffName: (personList.filter(v => chooseUserId === v.userId)[0]).userName,
+    staffName: (personList.filter(v => chooseUserId === v.userId)[0]).fullName,
     createBy: localStorage.getItem('userId'),
-    itemList: selectedRows,
+    itemList: selectedRowKeys.map(v => ({
+      areaCode: v.split(',')[0],
+      itemName: v.split(',')[1],
+      propertyType: v.split(',')[2],
+      quantity: v.split(',')[3],
+    })),
   };
 
   return request({

@@ -11,3 +11,9 @@ export let searchSuccess;
 
 export let queryDeviceDetail;
 export let queryDeviceDetailSuccess;
+
+export let openModal;
+export let closeModal;
+
+export let create;
+export let createSuccess;

@@ -48,7 +48,6 @@ const List = (props) => {
   const rowSelection = {
     onChange: (a, b) => {
       dispatch(changeTableValue('selectedRowKeys', a));
-      dispatch(changeTableValue('selectedRows', b));
     },
     getCheckboxProps: record => ({
       disabled: record.staffName !== null,
@@ -78,7 +77,7 @@ const List = (props) => {
         loading={loading}
         rowSelection={rowSelection}
         rowKey={
-          record => (`${record.arecCode},${record.itemName},${record.propertyType},${record.quantity}`)
+          record => (`${record.areaCode},${record.itemName},${record.propertyType},${record.quantity}`)
         }
         pagination={false}
         dataSource={dataSource}

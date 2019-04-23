@@ -72,7 +72,7 @@ const List = (props) => {
       <Table
         bordered
         loading={loading}
-        rowSelection={rowSelection}
+        // rowSelection={rowSelection}
         rowKey={
           record => (`${record.arecCode},${record.itemName},${record.propertyType},${record.quantity}`)
         }

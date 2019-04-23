@@ -1,8 +1,13 @@
 import { Modal, message } from 'antd';
 import { take, put, takeLatest } from 'redux-saga/effects';
-import { searchSuccess, openModalSuccess, queryTaskDetailSuccess, createTaskSuccess } from './action';
+import { searchSuccess, openModalSuccess, queryTaskDetailSuccess, createTaskSuccess, initSuccess } from './action';
 import * as types from './types';
-import { searchSer, changePageSer, changePageSizeSer, openModalSer, queryTaskDetailSer, createTaskSer } from './server';
+import { initSer, searchSer, changePageSer, changePageSizeSer, openModalSer, queryTaskDetailSer, createTaskSer, updateSer } from './server';
+
+function* initSaga(action) {
+  const data = yield initSer(action);
+  return yield put(initSuccess(data));
+}
 
 function* searchSaga(action) {
   const { props } = action;
@@ -42,13 +47,19 @@ function* createTaskSaga(action) {
 }
 
 
+function* updateSaga(action) {
+  const data = yield updateSer(action);
+}
+
 function* mainSaga() {
+  yield takeLatest(types.init, initSaga);
   yield takeLatest(types.search, searchSaga);
   yield takeLatest(types.changePage, changePageSaga);
   yield takeLatest(types.changePageSize, changePageSizeSaga);
   yield takeLatest(types.openModal, openModalSaga);
   yield takeLatest(types.queryTaskDetail, queryTaskDetailSaga);
   yield takeLatest(types.createTask, createTaskSaga);
+  yield takeLatest(types.update, updateSaga);
 }
 
 export default mainSaga;
