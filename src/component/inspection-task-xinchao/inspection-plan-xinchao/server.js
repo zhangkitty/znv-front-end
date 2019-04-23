@@ -25,7 +25,7 @@ export const initSer = (props) => {
       url: `/srm/user/query/list${getParam(data)}`,
     }),
     request({
-      url: `/wgs/xc/task/title/list/query${getParam(data1)}`,
+      url: `/ods/api/task/title/list/query${getParam(data1)}`,
     }),
   ]).then(res => res);
 };

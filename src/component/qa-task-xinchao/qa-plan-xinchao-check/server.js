@@ -19,11 +19,12 @@ export const searchSer = (props) => {
 
 export const changePageSer = (action) => {
   const { props, current } = action;
-  const { formData: { pageSize, projectName } } = props;
+  const { formData: { pageSize, projectName }, params } = props;
   const data = {
     pageSize,
     pageNum: current,
     itemName: projectName,
+    taskId: params.taskId,
   };
   return request({
     url: `/ods/api/patrol/item/query${getParam(data)}`,
@@ -32,12 +33,12 @@ export const changePageSer = (action) => {
 
 export const changePageSizeSer = (action) => {
   const { props, current, size } = action;
-  const { formData: { pageSize, pageNum, projectName } } = props;
+  const { formData: { pageSize, pageNum, projectName }, params } = props;
   const data = {
     pageSize: size,
     pageNum: current,
     itemName: projectName,
-
+    taskId: params.taskId,
   };
   return request({
     url: `/ods/api/patrol/item/query${getParam(data)}`,
