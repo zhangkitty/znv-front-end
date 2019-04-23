@@ -10,87 +10,87 @@ const List = (props) => {
   const columns = [
     {
       title: '任务周期',
-      dataIndex: 'inStorageNo',
-      width: 100,
+      dataIndex: 'createTime',
+      align: 'center',
     },
     {
       title: '质检人员',
-      dataIndex: 'produceOrderId',
-      width: 100,
+      dataIndex: 'staffName',
+      align: 'center',
     },
     {
       title: '省市区',
       dataIndex: 'productionGroup',
-      width: 100,
+      align: 'center',
     },
     {
       title: '项目名称',
       dataIndex: 'inStorageNo',
-      width: 100,
+      align: 'center',
     },
     {
       title: '物业类型',
       dataIndex: 'produceOrderId',
-      width: 100,
+      align: 'center',
     },
     {
       title: '设备编号',
       dataIndex: 'productionGroup',
-      width: 100,
+      align: 'center',
     },
     {
       title: '任务周期',
       dataIndex: 'inStorageNo',
-      width: 100,
+      align: 'center',
     },
     {
       title: '状态',
       dataIndex: 'produceOrderId',
-      width: 100,
+      align: 'center',
     },
     {
       title: '错漏刊指标',
       dataIndex: 'produceOrderId',
-      width: 100,
+      align: 'center',
     },
     {
       title: '屏幕清洁度指标',
       dataIndex: 'produceOrderId',
-      width: 100,
+      align: 'center',
     },
     {
       title: '形象品质指标',
       dataIndex: 'produceOrderId',
-      width: 100,
+      align: 'center',
     },
     {
       title: '设备声音指标',
       dataIndex: 'produceOrderId',
-      width: 100,
+      align: 'center',
     },
     {
       title: '广告播放同步',
       dataIndex: 'produceOrderId',
-      width: 100,
+      align: 'center',
     },
     {
       title: '照片',
       dataIndex: 'produceOrderId',
-      width: 100,
+      align: 'center',
     },
     {
       title: '故障指标',
       dataIndex: 'produceOrderId',
-      width: 100,
+      align: 'center',
     },
     {
       title: '完成时间',
       dataIndex: 'produceOrderId',
-      width: 100,
+      align: 'center',
     },
   ];
   return (
-    <div>
+    <div style={{ marginTop: 10, marginRight: 10 }}>
       <Table
         bordered
         rowKey="id"

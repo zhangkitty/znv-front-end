@@ -41,11 +41,6 @@ const List = (props) => {
       dataIndex: 'quantity',
       align: 'center',
     },
-    {
-      title: '质检人员',
-      dataIndex: 'staffName',
-      align: 'center',
-    },
   ];
 
   const rowSelection = {
