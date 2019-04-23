@@ -52,6 +52,7 @@ const List = (props) => {
 
   const rowSelection = {
     onChange: (a, b) => {
+      debugger;
       dispatch(changeTableValue('selectedRowKeys', a));
     },
     getCheckboxProps: record => ({

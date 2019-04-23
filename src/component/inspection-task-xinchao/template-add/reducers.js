@@ -123,13 +123,16 @@ const reducer = (state = defaultState, action) => {
         create: assign({}, state.create, {
           buttonLoading: false,
         }),
+        table: assign({}, state.table, {
+          selectedRowKeys: [],
+        }),
       });
 
 
     case types.changeTableValue:
       return assign({}, state, {
         table: assign({}, state.table, {
-          [action.key]: [...new Set([...action.value, ...state.table.selectedRowKeys])],
+          [action.key]: [...new Set([...action.value])],
         }),
       });
 

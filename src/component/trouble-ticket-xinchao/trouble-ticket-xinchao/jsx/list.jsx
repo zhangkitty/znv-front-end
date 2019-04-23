@@ -81,6 +81,11 @@ const List = (props) => {
         dataSource={dataSource}
         loading={loading}
         columns={columns}
+        onRow={record => ({
+            onClick: (event) => {
+              console.log(record, event);
+            },
+          })}
       />
     </div>
   );
