@@ -4,6 +4,7 @@ import { Spin } from 'antd';
 import { connect } from 'react-redux';
 import { init } from './action';
 import Header from './jsx/header';
+import List from './jsx/list';
 
 class Container extends React.Component {
   componentWillMount() {
@@ -15,6 +16,7 @@ class Container extends React.Component {
       return (
         <div>
           <Header {...this.props} />
+          <List {...this.props} />
         </div>
       );
     }
