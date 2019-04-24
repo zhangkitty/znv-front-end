@@ -14,16 +14,29 @@ export const initSer = (props) => {
   });
 };
 
+export const choooseSer = (action) => {
+  const { v } = action;
+
+  const data = {
+    taskType: '15', // 13：巡检 14：质检 15:故障
+    colType: v,
+  };
+  return request({
+    url: `/wgs/xc/rqs/tasktitle/query${getParam(data)}`,
+  });
+};
+
 
 export const searchSer = (props) => {
-  const { formData } = props;
+  const { formData, monthOrWeekValue } = props;
 
   const data = {
     taskId: formData.selectValue,
+    colType: monthOrWeekValue,
   };
 
   return request({
-    url: `/rqs/xc/patrolrate${getParam(data)}`,
+    url: `/rqs/xc/faultrate${getParam(data)}`,
   });
 };
 

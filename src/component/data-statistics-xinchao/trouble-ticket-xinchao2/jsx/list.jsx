@@ -4,27 +4,20 @@ import { Button } from 'shineout';
 import { Link } from 'react-router-dom';
 
 const list = (props) => {
-  const {
-    dataSource, loading, formData: { selectValue }, monthOrWeekValue,
-  } = props;
+  const { dataSource, loading, formData: { selectValue } } = props;
   console.log(dataSource);
 
   const columns = [
     {
       title: '产品中心',
-      dataIndex: 'groupName',
-      key: 'groupName',
+      dataIndex: 'colName',
+      key: 'colName',
       render: (text, record, index) => {
         console.log(text, record, index);
-        if (index !== 0) {
-          return <Link to={`/data-statistics-xinchao/trouble-ticket-xinchao1/${monthOrWeekValue}/${selectValue}/${record.groupCode}`}>{text}</Link>;
+        if (1 === 2) {
+          return <Link to={`/data-statistics-xinchao/inspection-order-xinchao1/${selectValue}/${record.colCode}`}>{text}</Link>;
         } return text;
       },
-    },
-    {
-      title: '新增故障工单数',
-      dataIndex: 'totalNum',
-      key: 'totalNum',
     },
     {
       title: '未关闭工单数',
@@ -46,12 +39,8 @@ const list = (props) => {
       dataIndex: 'avgExecuteTime',
       key: 'avgExecuteTime',
     },
-    {
-      title: '故障率',
-      dataIndex: 'faultRate',
-      key: 'faultRate',
-    },
   ];
+
 
   return (
     <div>

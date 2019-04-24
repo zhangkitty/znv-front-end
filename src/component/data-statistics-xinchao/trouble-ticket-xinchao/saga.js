@@ -1,8 +1,8 @@
 import { Modal, message } from 'antd';
 import { take, put, fork, takeLatest } from 'redux-saga/effects';
-import { initSuccess, searchSuccess } from './action';
+import { initSuccess, searchSuccess, chooseSuccess } from './action';
 import * as types from './types';
-import { initSer, searchSer, exportExcelSer } from './server';
+import { initSer, searchSer, exportExcelSer, choooseSer } from './server';
 
 function* initSaga(action) {
   const { props } = action;
@@ -22,11 +22,17 @@ function* exportExcelSaga(action) {
   return null;
 }
 
+function* chooseSaga(action) {
+  const data = yield choooseSer(action);
+  return yield put(chooseSuccess(data));
+}
+
 
 function* mainSaga() {
   yield takeLatest(types.init, initSaga);
   yield takeLatest(types.search, searchSaga);
   yield takeLatest(types.exportExcel, exportExcelSaga);
+  yield takeLatest(types.choose, chooseSaga);
 }
 
 export default mainSaga;

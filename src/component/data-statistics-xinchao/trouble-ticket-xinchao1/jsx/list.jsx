@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 
 const list = (props) => {
   const {
-    dataSource, loading, formData: { selectValue }, monthOrWeekValue,
+    params: { taskId, regionCode, colType }, dataSource, loading, formData: { selectValue },
   } = props;
-  console.log(dataSource);
+
 
   const columns = [
     {
@@ -17,7 +17,7 @@ const list = (props) => {
       render: (text, record, index) => {
         console.log(text, record, index);
         if (index !== 0) {
-          return <Link to={`/data-statistics-xinchao/trouble-ticket-xinchao1/${monthOrWeekValue}/${selectValue}/${record.groupCode}`}>{text}</Link>;
+          return <Link to={`/data-statistics-xinchao/trouble-ticket-xinchao2/${colType}/${taskId}/${regionCode}/${record.groupCode}`}>{text}</Link>;
         } return text;
       },
     },
@@ -52,6 +52,7 @@ const list = (props) => {
       key: 'faultRate',
     },
   ];
+
 
   return (
     <div>
