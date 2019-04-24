@@ -83,7 +83,7 @@ module.exports = Object.assign({},config, {
 
 
       '/ods':{
-        target:'http:// 10.45.146.127:9005',
+        target:'http://10.45.146.127:9005',
         secure: false,
         changeOrigin: true
       },
