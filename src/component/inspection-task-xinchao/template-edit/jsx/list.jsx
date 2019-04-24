@@ -93,7 +93,7 @@ const List = (props) => {
       />
 
 
-      <Popconfirm title="是否要确认" onConfirm={() => dispatch(create(props))} okText="Yes" >
+      <Popconfirm title="是否要确认" onConfirm={() => dispatch(create(props))} okText="确认">
         <Button>
           确定
         </Button>
