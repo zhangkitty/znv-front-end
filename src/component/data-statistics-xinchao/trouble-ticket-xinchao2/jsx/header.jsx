@@ -8,7 +8,7 @@ const Option = Select.Option;
 
 const header = (props) => {
   const {
-    selectData, formData, dispatch, params: { taskId, regionCode,colType },monthOrWeek
+    selectData, formData, dispatch, params: { taskId, regionCode, colType }, monthOrWeek,
   } = props;
   return (
     <div>
@@ -43,7 +43,7 @@ const header = (props) => {
         </Button>
       </div>
       <hr style={{ marginRight: 10 }} />
-      <Link to={`/data-statistics-xinchao/qa-order-xinchao1/${taskId}/${regionCode}`}>
+      <Link to={`/data-statistics-xinchao/trouble-ticket-xinchao1/${taskId}/${regionCode}`}>
         返回上一级
       </Link>
 

@@ -10,14 +10,8 @@ const list = (props) => {
   const columns = [
     {
       title: '产品中心',
-      dataIndex: 'colName',
-      key: 'colName',
-      render: (text, record, index) => {
-        console.log(text, record, index);
-        if (1 === 2) {
-          return <Link to={`/data-statistics-xinchao/inspection-order-xinchao1/${selectValue}/${record.colCode}`}>{text}</Link>;
-        } return text;
-      },
+      dataIndex: 'groupName',
+      key: 'groupName',
     },
     {
       title: '未关闭工单数',

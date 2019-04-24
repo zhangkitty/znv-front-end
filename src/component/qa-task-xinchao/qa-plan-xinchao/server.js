@@ -40,7 +40,7 @@ export const searchSer = (action) => {
     pageNum,
     taskType: 14,
     taskMode: 1,
-    staffName: choosePerson ? person.filter(v => v.userId === choosePerson)[0].userName : '',
+    staffId: choosePerson,
   };
   return request({
     url: `/ods/api/task/list/query${getParam(data)}`,
