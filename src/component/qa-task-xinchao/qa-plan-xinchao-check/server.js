@@ -27,7 +27,7 @@ export const changePageSer = (action) => {
     taskId: params.taskId,
   };
   return request({
-    url: `/ods/api/patrol/item/query${getParam(data)}`,
+    url: `/ods/api/inspect/item/query${getParam(data)}`,
   });
 };
 
@@ -41,7 +41,7 @@ export const changePageSizeSer = (action) => {
     taskId: params.taskId,
   };
   return request({
-    url: `/ods/api/patrol/item/query${getParam(data)}`,
+    url: `/ods/api/inspect/item/query${getParam(data)}`,
   });
 };
 
