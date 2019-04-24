@@ -35,7 +35,7 @@ export const searchSer = (action) => {
   const {
     props: {
       formData: {
-        choosePerson, pageSize, pageNum, projectName, date,
+        choosePerson, pageSize, pageNum, projectName, date, chooseState,
       },
     },
   } = action;
@@ -43,9 +43,9 @@ export const searchSer = (action) => {
     pageNum,
     pageSize,
     taskType: 14,
-    statusCodes: [1],
-    beginTime: moment(date[0]).format('YYYY-MM-DD'),
-    endTime: moment(date[1]).format('YYYY-MM-DD'),
+    statusCodes: [chooseState],
+    beginTime: date[0] && moment(date[0]).format('YYYY-MM-DD'),
+    endTime: date[1] && moment(date[1]).format('YYYY-MM-DD'),
     loginStaffId: localStorage.getItem('userId'),
     staffId: choosePerson,
     itemName: projectName,

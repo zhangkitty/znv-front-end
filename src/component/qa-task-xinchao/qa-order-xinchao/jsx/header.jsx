@@ -18,6 +18,8 @@ const header = (props) => {
     <div>
       <div style={{ marginTop: 10 }}>
         <Select
+          placeholder="状态"
+          allowClear
           style={{ width: 200, marginRight: 10 }}
           data-bind="formData.chooseState"
         >
@@ -27,6 +29,7 @@ const header = (props) => {
         </Select>
 
         <RangePicker
+          allowClear
           style={{ marginRight: 10 }}
           showTime={{ format: 'HH:mm' }}
           format="YYYY-MM-DD HH:mm"
@@ -40,6 +43,7 @@ const header = (props) => {
 
       <div style={{ marginTop: 10 }}>
         <TreeSelect
+          allowClear
           style={{ width: 200, marginRight: 10 }}
           treeData={dept}
           dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
@@ -49,8 +53,9 @@ const header = (props) => {
         />
 
         <Select
-          style={{ width: 200, marginRight: 10 }}
           allowClear
+          placeholder="人员"
+          style={{ width: 200, marginRight: 10 }}
           data-bind="formData.choosePerson"
         >
           {
@@ -62,6 +67,7 @@ const header = (props) => {
 
 
         <Input
+          allowClear
           style={{ width: 200, marginRight: 10 }}
           placeholder="项目名称"
           data-bind="formData.projectName"
