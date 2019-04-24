@@ -7,6 +7,8 @@ export const defaultState = {
   dept: [],
   person: [],
   title: [],
+  total: '',
+  dataSource: [],
   status: [
     {
       id: 1,
@@ -92,6 +94,11 @@ const reducer = (state = defaultState, action) => {
     case types.changeDeptSuccess:
       return assign({}, state, {
         person: action.data.data.list,
+      });
+
+    case types.searchSuccess:
+      return assign({}, state, {
+        dataSource: action.data,
       });
     default:
       return state;

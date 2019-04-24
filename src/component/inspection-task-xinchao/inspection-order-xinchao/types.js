@@ -5,3 +5,4 @@ export let changeDept;
 export let changeDeptSuccess;
 
 export let search;
+export let searchSuccess;

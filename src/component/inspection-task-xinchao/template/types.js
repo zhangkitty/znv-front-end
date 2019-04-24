@@ -9,3 +9,9 @@ export let choseModal;
 export let update;
 export let updateSuccess;
 
+export let changePage;
+export let changePageSuccess;
+
+export let changePageSize;
+export let changePageSizeSuccess;
+

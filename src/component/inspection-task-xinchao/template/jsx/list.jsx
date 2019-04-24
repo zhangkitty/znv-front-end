@@ -1,13 +1,21 @@
 import React from 'react';
+import Page from 'shein-lib/pagination';
 import { Table, Button } from 'antd';
 import { Button as SheinButton } from 'shineout';
 import { Link } from 'react-router-dom';
-import { openModal } from '../action';
+import { openModal, changePage, changePageSize } from '../action';
+
 
 const List = (props) => {
   const {
     dataSource,
     dispatch,
+    total,
+    formData: {
+      pageNum,
+      pageSize,
+    },
+
   } = props;
   const columns = [
     {
@@ -63,6 +71,19 @@ const List = (props) => {
         rowKey="id"
         dataSource={dataSource}
         columns={columns}
+        pagination={false}
+      />
+
+      <Page
+        total={total}
+        onChange={(current) => {
+          dispatch(changePage(props, current));
+        }}
+        onShowSizeChange={(current, size) => {
+          dispatch(changePageSize(props, current, size));
+        }}
+        current={pageNum}
+        pageSize={pageSize}
       />
     </div>
   );

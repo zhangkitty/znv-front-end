@@ -4,14 +4,42 @@ import getParam from 'utils/getParam';
 
 export const initSer = (props) => {
   console.log(props);
+  const { formData: { pageSize, pageNum } } = props;
 
   const data = {
-    pageSize: 100000000,
-    pageNum: 1,
+    pageSize,
+    pageNum,
     taskType: 13,
     taskMode: 1,
   };
 
+  return request({
+    url: `/ods/api/task/list/query${getParam(data)}`,
+  });
+};
+
+export const changePageSer = (action) => {
+  const { props, current } = action;
+  const { formData: { pageSize } } = props;
+  const data = {
+    pageSize,
+    pageNum: current,
+    taskType: 13,
+    taskMode: 1,
+  };
+  return request({
+    url: `/ods/api/task/list/query${getParam(data)}`,
+  });
+};
+
+export const changePageSizeSer = (action) => {
+  const { props, current, size } = action;
+  const data = {
+    pageSize: size,
+    pageNum: current,
+    taskType: 13,
+    taskMode: 1,
+  };
   return request({
     url: `/ods/api/task/list/query${getParam(data)}`,
   });

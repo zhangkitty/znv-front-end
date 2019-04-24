@@ -13,3 +13,9 @@ export const choseModal = makeActionCreator(types.choseModal, 'props');
 
 export const update = makeActionCreator(types.update, 'props');
 export const updateSuccess = makeActionCreator(types.updateSuccess, 'data');
+
+export const changePage = makeActionCreator(types.changePage, 'props', 'current');
+export const changePageSuccess = makeActionCreator(types.changePageSuccess, 'data');
+
+export const changePageSize = makeActionCreator(types.changePageSize, 'props', 'current', 'size');
+export const changePageSizeSuccess = makeActionCreator(types.changePageSizeSuccess, 'data');

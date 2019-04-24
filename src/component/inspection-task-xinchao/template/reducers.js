@@ -5,6 +5,7 @@ import * as types from './types';
 export const defaultState = {
   ready: true,
   dataSource: [],
+  total: '',
 
   modal: {
     visiable: false,
@@ -12,6 +13,10 @@ export const defaultState = {
     chooseItem: '',
     personList: [],
     chooseUser: '',
+  },
+  formData: {
+    pageNum: 1,
+    pageSize: 10,
   },
 };
 
@@ -27,7 +32,26 @@ const reducer = (state = defaultState, action) => {
       return assign({}, state, {
         ready: true,
         dataSource: action.data.data.list,
+        total: action.data.data.total,
       });
+
+    case types.changePage:
+      return assign({}, state, {
+        ready: false,
+        formData: assign({}, state.formData, {
+          pageNum: action.current,
+        }),
+      });
+
+    case types.changePageSize:
+      return assign({}, state, {
+        ready: false,
+        formData: assign({}, state.formData, {
+          pageNum: action.current,
+          pageSize: action.size,
+        }),
+      });
+
 
     case types.openModal:
       return assign({}, state, {

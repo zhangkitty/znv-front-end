@@ -53,7 +53,7 @@ export const searchSer = (action) => {
   const data = {
     pageNum,
     pageSize,
-    taskId: '',
+    taskIdStr: '1',
     taskType: 13,
     statusCodes: [1],
     beginTime: date[0],
