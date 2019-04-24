@@ -1,52 +1,59 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Table } from 'antd';
+import { Button } from 'shineout';
+import { Link } from 'react-router-dom';
 
-const List = (props) => {
+const list = (props) => {
+  const { dataSource, loading, formData: { selectValue } } = props;
+  console.log(dataSource);
+
   const columns = [
     {
-      title: '新增故障工单数',
-      dataIndex: 'inStorageNo',
-      textAlign: 'center',
+      title: '产品中心',
+      dataIndex: 'colName',
+      key: 'colName',
+      render: (text, record, index) => {
+        console.log(text, record, index);
+        if (index !== 0) {
+          return <Link to={`/data-statistics-xinchao/inspection-order-xinchao1/${selectValue}/${record.colCode}`}>{text}</Link>;
+        } return text;
+      },
     },
     {
-      title: '未关闭数',
-      dataIndex: 'produceOrderId',
-      textAlign: 'center',
+      title: '计划完成',
+      dataIndex: 'totalNum',
+      key: 'totalNum',
     },
     {
-      title: '关闭数',
-      dataIndex: 'productionGroup',
-      textAlign: 'center',
+      title: '实际完成',
+      dataIndex: 'finishNum',
+      key: 'finishNum',
     },
     {
-      title: '超时数',
-      dataIndex: 'productionGroup',
-      textAlign: 'center',
+      title: '完成率',
+      dataIndex: 'finishRate',
+      key: 'finishRate',
     },
     {
-      title: '平均处理时长(h)',
-      dataIndex: 'productionGroup',
-      textAlign: 'center',
-    },
-    {
-      title: '故障率',
-      dataIndex: 'productionGroup',
-      textAlign: 'center',
+      title: '人均工作量',
+      dataIndex: 'staffAvgNum',
+      key: 'staffAvgNum',
     },
   ];
+
+
   return (
     <div>
       <Table
-        bordered
-        rowKey="id"
-        dataSource={[]}
-        loading={false}
+        style={{ marginRight: 10 }}
+        pagination={false}
+        dataSource={dataSource}
         columns={columns}
+        loading={loading}
       />
     </div>
   );
 };
 
+export default list;
 
-export default List;

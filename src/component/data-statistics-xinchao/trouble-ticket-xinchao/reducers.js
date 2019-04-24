@@ -1,33 +1,16 @@
 import assign from 'object-assign';
-import { getSize } from 'shein-middlewares/pagesize';
 import * as types from './types';
 
 export const defaultState = {
   ready: true,
-  dept: [],
-  clickId: 11000008,
+  loading: false,
+  selectData: [],
+  dataSource: [],
   formData: {
-    chooseDept: 11000008,
-    choosePerson: '',
-    date: [],
+    selectValue: '',
   },
 };
 
-const trans = arr => arr.map((v) => {
-  if (v.children == null) {
-    return {
-      title: v.name,
-      value: v.id,
-      key: v.id,
-    };
-  }
-  return {
-    title: v.name,
-    value: v.id,
-    key: v.id,
-    children: trans(v.children),
-  };
-});
 
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
@@ -39,22 +22,25 @@ const reducer = (state = defaultState, action) => {
     case types.initSuccess:
       return assign({}, state, {
         ready: true,
-        dept: trans(action.data.data),
-      });
-
-
-    case types.changeDept:
-      return assign({}, state, {
+        selectData: action.data.data.list,
         formData: assign({}, state.formData, {
-          chooseDept: action.v,
-          choosePerson: '',
+          selectValue: action.props.params.taskId || action.data.data.list[0].taskId,
         }),
       });
 
-    case types.changeDeptSuccess:
+    case types.search:
       return assign({}, state, {
-        person: action.data.data.list,
+        loading: true,
+
       });
+
+    case types.searchSuccess:
+      return assign({}, state, {
+        loading: false,
+        dataSource: action.data.data.list,
+      });
+
+
     default:
       return state;
   }

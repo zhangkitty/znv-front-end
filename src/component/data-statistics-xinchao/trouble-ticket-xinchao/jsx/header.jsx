@@ -1,33 +1,40 @@
 import React from 'react';
-import { DatePicker, Button } from 'antd';
+import { Select, Button } from 'antd';
+import { search,exportExcel } from '../action';
 
-const RangePicker = DatePicker.RangePicker;
+const Option = Select.Option;
 
 
-const Header = (props) => {
-  console.log(1);
+const header = (props) => {
+  const { selectData, formData, dispatch } = props;
   return (
-    <div style={{ marginTop: 20 }}>
+    <div>
       <div>
-        <span style={{ marginRight: 10 }}>统计周期</span>
-        <RangePicker
-          style={{ marginRight: 10 }}
-          showTime={{ format: 'HH:mm' }}
-          format="YYYY-MM-DD HH:mm"
-          placeholder={['Start Time', 'End Time']}
-          data-bind="formData.date"
-        />
+        <span style={{ marginRight: 10 }}>统计周期:</span>
+        <Select data-bind="formData.selectValue">
+          {
+            selectData.map(v => (
+              <Option value={v.taskId}>{v.taskName}</Option>
+            ))
+          }
+        </Select>
       </div>
-
       <div style={{ marginTop: 10 }}>
-        <Button>
-          查询
+        <Button
+          onClick={() => dispatch(search(props))}
+        >查询
+        </Button>
+        <Button
+          onClick={()=>dispatch(exportExcel(props))}
+        >
+          导出
         </Button>
       </div>
-
-
+      <hr style={{ marginRight: 10 }} />
     </div>
+
   );
 };
 
-export default Header;
+
+export default header;

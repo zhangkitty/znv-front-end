@@ -70,7 +70,7 @@ module.exports = Object.assign({},config, {
       '/rqs': {
         // target: 'http://47.107.237.125:8012',
         //测试站
-        target: 'http://10.45.156.186:9008',
+        target: 'http://10.45.148.173:9018',
         //朱文钧电脑
         // target: 'http://10.45.148.82:9001',
         //本地
@@ -107,7 +107,8 @@ module.exports = Object.assign({},config, {
       },
 
       '/wgs':{
-        target:'http://10.45.156.221:9017',
+        // target:'http://10.45.156.221:9017',
+        target:'http://10.45.148.173:9017',
         secure: false,
         changeOrigin: true
       },
@@ -144,7 +145,7 @@ module.exports = Object.assign({},config, {
       },
 
       '/srm':{
-        target:'http://10.45.156.171:9012',
+        target:'http://10.45.148.173:9012',
         secure: false,
         changeOrigin: true
       },
