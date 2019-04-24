@@ -23,7 +23,7 @@ const header = (props) => {
         >
           {
             title.map(v => (
-              <Option value={v}>{v}</Option>
+              <Option value={v.taskIdList.join(',')}>{v.taskName}</Option>
             ))
           }
         </Select>

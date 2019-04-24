@@ -26,7 +26,7 @@ export const initSer = (props) => {
     }),
 
     request({
-      url: `/wgs/xc/task/title/list/query${getParam(data1)}`,
+      url: `/ods/api/task/title/list/query${getParam(data1)}`,
     }),
   ]).then(res => res);
 };
