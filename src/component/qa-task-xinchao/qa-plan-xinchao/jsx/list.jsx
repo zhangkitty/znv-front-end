@@ -42,12 +42,22 @@ const List = (props) => {
     {
       title: '操作',
       align: 'center',
-      render: v => (
-        <div style={{ display: 'flex' }}>
-          <Link style={{ width: '50%' }} to={`/qa-task-xinchao/qa-plan-xinchao-check/${v.id}`}>查看</Link>
-          <Link to={`/qa-task-xinchao/qa-plan-xinchao-edit/${v.id}/${v.taskName}`}>编辑</Link>
-        </div>
-      ),
+      render: (v) => {
+        if (v.status == 2) {
+          return (
+            <div>
+              <Link to={`/qa-task-xinchao/qa-plan-xinchao-check/${v.id}`}>查看</Link>
+            </div>
+          );
+        }
+        return (
+          <div style={{ display: 'flex' }}>
+            <Link style={{ width: '50%' }} to={`/qa-task-xinchao/qa-plan-xinchao-check/${v.id}`}>查看</Link>
+            <Link to={`/qa-task-xinchao/qa-plan-xinchao-edit/${v.id}/${v.taskName}`}>编辑</Link>
+          </div>
+
+        );
+      },
     },
   ];
   return (
