@@ -10,7 +10,6 @@ export const defaultState = {
   total: [],
   formData: {
     chooseDept: 11000008,
-    choosePerson: '',
     date: [],
     projectName: '',
     pageSize: 10,

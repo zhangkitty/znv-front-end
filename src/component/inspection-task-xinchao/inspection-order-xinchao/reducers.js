@@ -27,16 +27,16 @@ export const defaultState = {
       name: '处理中',
     },
     {
-      id: 5,
-      name: '完成',
+      id: 65,
+      name: '完成关闭',
     },
     {
-      id: 6,
-      name: '关闭',
+      id: 67,
+      name: '取消关闭',
     },
     {
-      id: 7,
-      name: '取消',
+      id: 68,
+      name: '删除',
     },
   ],
   formData: {

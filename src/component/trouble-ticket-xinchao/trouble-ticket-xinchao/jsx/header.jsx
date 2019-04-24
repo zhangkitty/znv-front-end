@@ -1,6 +1,6 @@
 import React from 'react';
 import { TreeSelect, Select, DatePicker, Button, Input } from 'antd';
-import { changeDept,search } from '../action';
+import { changeDept, search } from '../action';
 
 const TreeNode = TreeSelect.TreeNode;
 const Option = Select.Option;
@@ -28,32 +28,32 @@ const header = (props) => {
       <Select
         style={{ width: 200, marginRight: 10 }}
         allowClear
+        placeholder="人员"
         data-bind="formData.choosePerson"
       >
         {
           person.map(v => (
-            <Option value={v.userId}>{v.userName}</Option>
+            <Option value={v.userId}>{`${v.fullName}(${v.empNo})`}</Option>
             ))
         }
       </Select>
 
       <RangePicker
         style={{ marginRight: 10 }}
-        showTime={{ format: 'HH:mm' }}
-        format="YYYY-MM-DD HH:mm"
-        placeholder={['Start Time', 'End Time']}
+        placeholder={['开始时间', '结束时间']}
         data-bind="formData.date"
         // onChange={onChange}
         // onOk={onOk}
       />
 
       <Input
+        placeholder="项目名称"
         style={{ width: 200, marginRight: 10 }}
         data-bind="formData.projectName"
       />
 
       <Button
-        onClick={()=>dispatch(search(props))}
+        onClick={() => dispatch(search(props))}
       >
         查询
       </Button>
