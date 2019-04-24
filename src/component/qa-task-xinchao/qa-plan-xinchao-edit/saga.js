@@ -49,6 +49,13 @@ function* createTaskSaga(action) {
 
 function* updateSaga(action) {
   const data = yield updateSer(action);
+  if (data.errCode == 0) {
+    message.success('成功');
+  }
+  if (data.errCode != 0) {
+    return message.error(data.msg);
+  }
+  return null;
 }
 
 function* mainSaga() {

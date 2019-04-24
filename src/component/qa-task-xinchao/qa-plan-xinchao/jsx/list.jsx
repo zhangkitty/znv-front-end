@@ -36,7 +36,7 @@ const List = (props) => {
     },
     {
       title: '状态',
-      dataIndex: 'status',
+      dataIndex: 'statusName',
       align: 'center',
     },
     {

@@ -128,7 +128,7 @@ const reducer = (state = defaultState, action) => {
     case types.changeTableValue:
       return assign({}, state, {
         table: assign({}, state.table, {
-          [action.key]: [...new Set([...state.table.selectedRowKeys, ...action.value])],
+          [action.key]: [...new Set([...action.value])],
         }),
       });
 
