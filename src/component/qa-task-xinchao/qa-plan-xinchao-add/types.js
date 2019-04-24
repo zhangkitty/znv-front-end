@@ -21,6 +21,7 @@ export let queryTaskDetailSuccess;
 
 export let createTask;
 export let createTaskSuccess;
+export let createTaskError;
 
 export let changeTableValue;
 

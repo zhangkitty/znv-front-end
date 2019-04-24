@@ -1,6 +1,6 @@
 import { Modal, message } from 'antd';
 import { take, put, takeLatest } from 'redux-saga/effects';
-import { searchSuccess, openModalSuccess, queryTaskDetailSuccess, createTaskSuccess } from './action';
+import { searchSuccess, openModalSuccess, queryTaskDetailSuccess, createTaskSuccess ,createTaskError} from './action';
 import * as types from './types';
 import { searchSer, changePageSer, changePageSizeSer, openModalSer, queryTaskDetailSer, createTaskSer } from './server';
 
@@ -36,7 +36,8 @@ function* createTaskSaga(action) {
     message.success('成功');
   }
   if (data.errCode != 0) {
-    return message.error(data.msg);
+    message.error(data.msg);
+    return yield put(createTaskError(data));
   }
   return yield put(createTaskSuccess(data));
 }

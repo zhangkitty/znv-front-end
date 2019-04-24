@@ -25,6 +25,7 @@ export const queryTaskDetailSuccess = makeActionCreator(types.queryTaskDetailSuc
 
 export const createTask = makeActionCreator(types.createTask, 'props');
 export const createTaskSuccess = makeActionCreator(types.createTaskSuccess, 'data');
+export const createTaskError = makeActionCreator(types.createTaskError,'data');
 
 export const changeTableValue = makeActionCreator(types.changeTableValue, 'key', 'value');
 

@@ -27,7 +27,7 @@ const tmp = (props) => {
       confirmLoading={buttonLoading}
     >
       <div style={{ display: 'flex', marginBottom: 10 }}>
-        <span style={{ flexBasis: 200 }}>巡检人员：</span>
+        <span style={{ flexBasis: 200 }}>质检人员：</span>
         <Select
           style={{ width: 300, lineHeight: 32 }}
           onChange={v => dispatch(queryTaskDetail(props, v))}
@@ -39,7 +39,7 @@ const tmp = (props) => {
 
       </div>
       <div style={{ display: 'flex' }}>
-        <span style={{ flexBasis: 200 }}>模板标题：</span>
+        <span style={{ flexBasis: 200 }}>质检时间：</span>
         <RangePicker
           style={{ width: 300, lineHeight: 32 }}
           data-bind="modal.date"
