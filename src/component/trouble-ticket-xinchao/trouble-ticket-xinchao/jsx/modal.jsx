@@ -1,8 +1,8 @@
 import React from 'react';
-import { Modal, Input } from 'antd';
-import { queryDeviceDetail, closeModal,create } from '../action';
+import { Modal, Input, Select } from 'antd';
+import { queryDeviceDetail, closeModal, create } from '../action';
 
-
+const { Option } = Select;
 const { TextArea } = Input;
 const tmp = (props) => {
   const { formData, dispatch, modal: { visiable } } = props;
@@ -52,6 +52,16 @@ const tmp = (props) => {
           data-bind="modal.address"
           style={{ width: '200px' }}
         />
+      </div>
+      <div style={{ display: 'flex', margin: 5 }}>
+        <span style={{ flexBasis: '100px' }}>故障类型:</span>
+        <Select
+          style={{ width: '200px' }}
+          value={1}
+        >
+          <Option value={1}>1</Option>
+          <Option value={2}>2</Option>
+        </Select>
       </div>
       <div style={{ display: 'flex', margin: 5 }}>
         <span style={{ flexBasis: '100px' }}>问题描述:</span>

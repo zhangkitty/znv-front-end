@@ -16,6 +16,7 @@ function* submitSaga(action) {
   localStorage.setItem('userName', data.data.userName);
   localStorage.setItem('topOrgId', data.data.custId);
   localStorage.setItem('userId', data.data.userId);
+  localStorage.setItem('areaCode', data.data.areaCode);
   data.data.custId ? localStorage.setItem('type', data.data.custId) : localStorage.setItem('type', '11000002');
   data.data.custId ? localStorage.setItem('isAdmin', false) : localStorage.setItem('isAdmin', true);
   return yield put(push('/dashboard/index'));

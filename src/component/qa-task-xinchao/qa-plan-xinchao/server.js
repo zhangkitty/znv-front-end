@@ -41,6 +41,7 @@ export const searchSer = (action) => {
     taskType: 14,
     taskMode: 1,
     staffId: choosePerson,
+    staffIdListStr: !choosePerson ? person.map(v => v.userId) : null,
   };
   return request({
     url: `/ods/api/task/list/query${getParam(data)}`,
