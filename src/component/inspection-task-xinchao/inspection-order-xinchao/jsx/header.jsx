@@ -20,6 +20,7 @@ const header = (props) => {
         <Select
           style={{ width: 200, marginRight: 10 }}
           data-bind="formData.chooseTitle"
+          placeholder="巡检标题"
         >
           {
             title.map(v => (
@@ -31,6 +32,7 @@ const header = (props) => {
         <Select
           style={{ width: 200, marginRight: 10 }}
           data-bind="formData.chooseState"
+          placeholder="状态"
         >
           {
             status.map(v => <Option value={v.id}>{v.name}</Option>)
@@ -61,6 +63,7 @@ const header = (props) => {
           style={{ width: 200, marginRight: 10 }}
           allowClear
           data-bind="formData.choosePerson"
+          placeholder="人员"
         >
           {
             person.map(v => (

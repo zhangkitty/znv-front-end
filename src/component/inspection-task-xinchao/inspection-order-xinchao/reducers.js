@@ -19,14 +19,6 @@ export const defaultState = {
       name: '待受理',
     },
     {
-      id: 3,
-      name: '待处理',
-    },
-    {
-      id: 4,
-      name: '处理中',
-    },
-    {
       id: 65,
       name: '完成关闭',
     },
@@ -34,19 +26,12 @@ export const defaultState = {
       id: 67,
       name: '取消关闭',
     },
-    {
-      id: 68,
-      name: '删除',
-    },
   ],
   formData: {
     pageNum: 1,
     pageSize: 10,
     chooseDept: 11000008,
-    choosePerson: '',
     date: [],
-    chooseTitle: '',
-    chooseState: '',
     projectName: '',
   },
 };
