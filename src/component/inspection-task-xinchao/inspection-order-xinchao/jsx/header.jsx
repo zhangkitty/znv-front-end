@@ -39,9 +39,7 @@ const header = (props) => {
 
         <RangePicker
           style={{ marginRight: 10 }}
-          showTime={{ format: 'HH:mm' }}
-          format="YYYY-MM-DD HH:mm"
-          placeholder={['Start Time', 'End Time']}
+          placeholder={['开始时间', '结束时间']}
           data-bind="formData.date"
           // onChange={onChange}
           // onOk={onOk}

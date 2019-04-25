@@ -1,5 +1,6 @@
 import { request } from 'utils/index';
 import getParam from 'utils/getParam';
+import moment from 'moment';
 
 
 export const initSer = (props) => {
@@ -46,18 +47,18 @@ export const searchSer = (action) => {
   const {
     props: {
       formData: {
-        choosePerson, pageSize, pageNum, projectName, date,
+        choosePerson, pageSize, pageNum, projectName, date, chooseState, chooseTitle,
       },
     },
   } = action;
   const data = {
     pageNum,
     pageSize,
-    taskIdStr: '1',
+    // taskIdStr: chooseTitle,
     taskType: 13,
-    statusCodes: [1],
-    beginTime: date[0],
-    endTime: date[1],
+    statusCodes: chooseState && [chooseState],
+    beginTime: date[0] && moment(date[0]).format('YYYY-MM-DD'),
+    endTime: date[1] && moment(date[1]).format('YYYY-MM-DD'),
     loginStaffId: localStorage.getItem('userId'),
     staffId: choosePerson,
     itemName: projectName,
