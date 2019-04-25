@@ -49,8 +49,8 @@ export const searchSer = (action) => {
     staffId: choosePerson,
     loginStaffId: localStorage.getItem('userId'),
     taskType: 15,
-    beginTime: moment(date[0]).format('YYYY-MM-DD'),
-    endTime: moment(date[1]).format('YYYY-MM-DD'),
+    beginTime: date[0] && `${moment(date[0]).format('YYYY-MM-DD')} 00:00:00`,
+    endTime: date[1] && `${moment(date[1]).format('YYYY-MM-DD')} 23:59:59`,
   };
   return request({
     url: `/wgs/xc/workorder/list/query${getParam(data)}`,
