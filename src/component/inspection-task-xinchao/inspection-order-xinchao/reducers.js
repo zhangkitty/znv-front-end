@@ -7,8 +7,11 @@ export const defaultState = {
   dept: [],
   person: [],
   title: [],
-  total: '',
-  dataSource: [],
+  table: {
+    total: '',
+    loading: false,
+    dataSource: [],
+  },
   status: [
     {
       id: 1,
@@ -29,7 +32,7 @@ export const defaultState = {
   ],
   formData: {
     pageNum: 1,
-    pageSize: 10,
+    pageSize: 100000,
     chooseDept: 11000008,
     date: [],
     projectName: '',
@@ -83,7 +86,10 @@ const reducer = (state = defaultState, action) => {
 
     case types.searchSuccess:
       return assign({}, state, {
-        dataSource: action.data,
+        table: assign({}, state.table, {
+          total: action.data.data.total,
+          dataSource: action.data.data.list,
+        }),
       });
     default:
       return state;

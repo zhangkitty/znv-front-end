@@ -4,73 +4,102 @@ import { Table } from 'antd';
 
 const List = (props) => {
   const {
-    list,
-    dataLoading,
+    table: { loading, dataSource, total },
   } = props;
   const columns = [
     {
       title: '巡检计划标题',
-      dataIndex: 'inStorageNo',
+      dataIndex: 'taskName',
       align: 'center',
     },
     {
       title: '巡检人员',
-      dataIndex: 'produceOrderId',
+      dataIndex: 'staffName',
       align: 'center',
     },
     {
       title: '省市区',
-      dataIndex: 'productionGroup',
+      render: v => (`${v.region}${v.city}${v.area}`),
       align: 'center',
     },
     {
       title: '项目名称',
-      dataIndex: 'inStorageNo',
+      dataIndex: 'itemName',
       align: 'center',
     },
     {
       title: '物业类型',
-      dataIndex: 'produceOrderId',
+      dataIndex: 'propertyName',
       align: 'center',
     },
     {
       title: '状态',
-      dataIndex: 'productionGroup',
+      dataIndex: 'statusName',
       align: 'center',
     },
     {
       title: '屏幕清洁度指标',
-      dataIndex: 'inStorageNo',
+      render: (v) => {
+        if (v.detail && v.detailDto.cleanness.name) {
+          return v.detailDto.cleanness.name;
+        }
+        return '';
+      },
       align: 'center',
     },
     {
       title: '设备声音指标',
-      dataIndex: 'produceOrderId',
+      render: (v) => {
+        if (v.detail && v.detailDto.sound.name) {
+          return v.detailDto.sound.name;
+        }
+        return '';
+      },
       align: 'center',
     },
     {
       title: '设备标签指标',
-      dataIndex: 'productionGroup',
+      render: (v) => {
+        if (v.detail && v.detailDto.label.name) {
+          return v.detailDto.label.name;
+        }
+        return '';
+      },
       align: 'center',
     },
     {
       title: '广告播放同步',
-      dataIndex: 'inStorageNo',
+      render: (v) => {
+        if (v.detail && v.detailDto.playSync.name) {
+          return v.detailDto.playSync.name;
+        }
+        return '';
+      },
       align: 'center',
     },
     {
       title: '声音同步指标',
-      dataIndex: 'produceOrderId',
+      render: (v) => {
+        if (v.detail && v.detailDto.soundSync.name) {
+          return v.detailDto.soundSync.name;
+        }
+        return '';
+      },
       align: 'center',
     },
     {
       title: '故障指标',
-      dataIndex: 'productionGroup',
+      render: (v) => {
+        if (v.detail && v.detailDto.fault.name) {
+          return v.detailDto.fault.name;
+        }
+        return '';
+      },
       align: 'center',
     },
     {
       title: '完成时间',
-      dataIndex: 'productionGroup',
+      dataIndex: 'finishTime',
       align: 'center',
     },
   ];
@@ -79,17 +108,13 @@ const List = (props) => {
       <Table
         bordered
         rowKey="id"
-        dataSource={list}
-        loading={dataLoading}
+        dataSource={dataSource}
+        loading={loading}
         columns={columns}
       />
     </div>
   );
 };
 
-List.propTypes = {
-  dataLoading: PropTypes.bool.isRequired,
-  list: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-};
 
 export default List;
