@@ -83,7 +83,8 @@ module.exports = Object.assign({},config, {
 
 
       '/ods':{
-        target:'http://10.45.146.127:9005',
+        // target:'http://10.45.146.127:9005',
+        target:'http://10.45.156.171:9005',
         secure: false,
         changeOrigin: true
       },
@@ -105,8 +106,8 @@ module.exports = Object.assign({},config, {
       },
 
       '/wgs':{
-        // target:'http://10.45.156.221:9017',
-        target:'http://10.45.148.173:9017',
+        // target:'http://10.45.148.173:9017',
+        target:'http://10.45.156.221:9017',
         secure: false,
         changeOrigin: true
       },
@@ -143,7 +144,8 @@ module.exports = Object.assign({},config, {
       },
 
       '/srm':{
-        target:'http://10.45.148.173:9012',
+        // target:'http://10.45.148.173:9012',
+        target:'htttp://10.45.156.171:9012',
         secure: false,
         changeOrigin: true
       },

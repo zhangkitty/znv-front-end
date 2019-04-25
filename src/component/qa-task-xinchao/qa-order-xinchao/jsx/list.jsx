@@ -10,8 +10,12 @@ const List = (props) => {
   const columns = [
     {
       title: '任务周期',
-      dataIndex: 'createTime',
       align: 'center',
+      render: v => (
+        <div>
+            `${v.startTime}-{v.endTime}`
+        </div>
+      ),
     },
     {
       title: '质检人员',
