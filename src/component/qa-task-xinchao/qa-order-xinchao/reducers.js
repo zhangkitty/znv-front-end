@@ -42,7 +42,7 @@ export const defaultState = {
   ],
   formData: {
     pageNum: 1,
-    pageSize: 10,
+    pageSize: 10000000,
     chooseDept: 11000008,
     date: [],
     chooseTitle: '',
@@ -97,7 +97,7 @@ const reducer = (state = defaultState, action) => {
     case types.searchSuccess:
       return assign({}, state, {
         table: assign({}, state.table, {
-          dataSouce: action.data.data.list,
+          dataSource: action.data.data.list,
           total: action.data.data.total,
         }),
       });
