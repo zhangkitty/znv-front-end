@@ -37,6 +37,7 @@ export const changeDeptSer = (props, v) => {
 export const searchSer = (action) => {
   const {
     props: {
+      person,
       formData: {
         projectName, pageNum, pageSize, choosePerson, date,
       },
@@ -51,6 +52,7 @@ export const searchSer = (action) => {
     taskType: 15,
     beginTime: date[0] && `${moment(date[0]).format('YYYY-MM-DD')} 00:00:00`,
     endTime: date[1] && `${moment(date[1]).format('YYYY-MM-DD')} 23:59:59`,
+    staffIdListStr: !choosePerson ? person.map(v => v.userId).toLocaleString() : null,
   };
   return request({
     url: `/wgs/xc/workorder/list/query${getParam(data)}`,

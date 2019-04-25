@@ -34,6 +34,7 @@ export const changeDeptSer = (props, v) => {
 export const searchSer = (action) => {
   const {
     props: {
+      person,
       formData: {
         choosePerson, pageSize, pageNum, projectName, date, chooseState,
       },
@@ -49,6 +50,7 @@ export const searchSer = (action) => {
     loginStaffId: localStorage.getItem('userId'),
     staffId: choosePerson,
     itemName: projectName,
+    staffIdListStr: !choosePerson ? person.map(v => v.userId).toLocaleString() : null,
   };
   return request({
     method: 'post',
