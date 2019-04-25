@@ -12,7 +12,7 @@ export const defaultState = {
     chooseDept: 11000008,
     choosePerson: '',
     date: [],
-    pageSize: 10,
+    pageSize: 100000,
     pageNum: 1,
   },
 };
