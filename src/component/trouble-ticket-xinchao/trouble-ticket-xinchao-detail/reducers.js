@@ -3,7 +3,7 @@ import { getSize } from 'shein-middlewares/pagesize';
 import * as types from './types';
 
 export const defaultState = {
-  ready: true,
+  ready: false,
   dataSource: '',
 
 };
@@ -19,7 +19,7 @@ const reducer = (state = defaultState, action) => {
     case types.initSuccess:
       return assign({}, state, {
         ready: true,
-        dataSource: action.dataSource,
+        dataSource: action.data.data,
       });
     default:
       return state;
