@@ -88,9 +88,13 @@ const reducer = (state = defaultState, action) => {
       });
 
     case types.changeInspectPersonSuccess:
+      debugger;
       return assign({}, state, {
         modal: assign({}, state.modal, {
-          tempTitle: action.data.data.total === 1 ? action.data.data.list[0].taskName : state.modal.tempTitle,
+          tempTitle: action.data.data.total === 1 ?
+            action.data.data.list[0].taskName
+            :
+            state.modal.personList.filter(v => v.userId === state.modal.chooseUser).map(t => `${t.fullName}(${t.empNo})`)[0],
         }),
       });
 
