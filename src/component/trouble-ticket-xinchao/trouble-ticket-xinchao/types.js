@@ -19,3 +19,6 @@ export let closeModal;
 
 export let create;
 export let createSuccess;
+
+export let changePage;
+export let changePageSize;

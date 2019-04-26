@@ -73,3 +73,69 @@ export const searchSer = (action) => {
     data,
   });
 };
+
+export const changePageSer = (action) => {
+  const {
+    current,
+    props: {
+      person,
+      formData: {
+        choosePerson, pageSize, pageNum, projectName, date, chooseState, chooseTitle,
+      },
+    },
+  } = action;
+  const data = {
+    pageNum: current,
+    pageSize,
+    // taskIdStr: chooseTitle,
+    taskType: 13,
+    statusCodes: chooseState && [chooseState],
+    beginTime: date[0] && `${moment(date[0]).format('YYYY-MM-DD')} 00:00:00`,
+    endTime: date[1] && `${moment(date[1]).format('YYYY-MM-DD')} 23:59:59`,
+    loginStaffId: localStorage.getItem('userId'),
+    staffId: choosePerson,
+    itemName: projectName,
+    staffIdListStr: !choosePerson ? person.map(v => v.userId).toLocaleString() : null,
+
+
+  };
+  return request({
+    method: 'post',
+    url: '/wgs/xc/workorder/list/query',
+    data,
+  });
+};
+
+export const changePageSizeSer = (action) => {
+  const {
+    size,
+    current,
+    props: {
+      person,
+      formData: {
+        choosePerson, pageSize, pageNum, projectName, date, chooseState, chooseTitle,
+      },
+    },
+  } = action;
+  const data = {
+    pageNum: current,
+    pageSize: size,
+    // taskIdStr: chooseTitle,
+    taskType: 13,
+    statusCodes: chooseState && [chooseState],
+    beginTime: date[0] && `${moment(date[0]).format('YYYY-MM-DD')} 00:00:00`,
+    endTime: date[1] && `${moment(date[1]).format('YYYY-MM-DD')} 23:59:59`,
+    loginStaffId: localStorage.getItem('userId'),
+    staffId: choosePerson,
+    itemName: projectName,
+    staffIdListStr: !choosePerson ? person.map(v => v.userId).toLocaleString() : null,
+
+
+  };
+  return request({
+    method: 'post',
+    url: '/wgs/xc/workorder/list/query',
+    data,
+  });
+};
+

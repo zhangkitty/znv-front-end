@@ -1,12 +1,21 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import Page from 'shein-lib/pagination';
+
 import { Table } from 'antd';
+import { changePage, changePageSize } from '../action';
+
 
 const List = (props) => {
   const {
+    dispatch,
     table: {
       dataSource,
       loading,
+      total,
+    },
+    formData: {
+      pageNum,
+      pageSize,
     },
   } = props;
   const columns = [
@@ -54,11 +63,24 @@ const List = (props) => {
         dataSource={dataSource}
         loading={loading}
         columns={columns}
+        pagination={false}
         // onRow={record => ({
         //   onClick: (event) => {
         //     window.location.hash = `/inspection-task-xinchao/inspection-order-xinchao/${record.id}/${record.staffId}`;
         //   },
         // })}
+      />
+
+      <Page
+        total={total}
+        onChange={(pageValue) => {
+          dispatch(changePage(props, pageValue));
+        }}
+        onShowSizeChange={(current, size) => {
+          dispatch(changePageSize(props, current, size));
+        }}
+        current={pageNum}
+        pageSize={pageSize}
       />
     </div>
   );

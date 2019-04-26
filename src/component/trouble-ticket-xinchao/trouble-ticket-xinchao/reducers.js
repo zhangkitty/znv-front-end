@@ -7,7 +7,7 @@ export const defaultState = {
   dept: [],
   person: [],
   dataSource: [],
-  total: [],
+  total: '',
   formData: {
     chooseDept: 11000008,
     date: [],
@@ -132,6 +132,21 @@ const reducer = (state = defaultState, action) => {
           region: '',
           address: '',
           description: '',
+        }),
+      });
+
+    case types.changePage:
+      return assign({}, state, {
+        formData: assign({}, state.formData, {
+          pageNum: action.current,
+        }),
+      });
+
+    case types.changePageSize:
+      return assign({}, state, {
+        formData: assign({}, state.formData, {
+          pageNum: action.current,
+          pageSize: action.size,
         }),
       });
     default:

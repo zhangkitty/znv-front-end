@@ -1,7 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Page from 'shein-lib/pagination';
+
 import { Table, Button } from 'antd';
 import { openModal } from '../action';
+import {
+  changePage,
+  changePageSize,
+} from '../action';
 
 const List = (props) => {
   const {
@@ -9,6 +15,10 @@ const List = (props) => {
     total,
     dispatch,
     table: { loading },
+    formData: {
+      pageNum,
+      pageSize,
+    },
   } = props;
   const columns = [
     {
@@ -83,6 +93,7 @@ const List = (props) => {
         bordered
         rowKey="id"
         dataSource={dataSource}
+        pagination={false}
         loading={loading}
         columns={columns}
         onRow={record => ({
@@ -90,6 +101,17 @@ const List = (props) => {
               window.location.hash = `/trouble-ticket-xinchao/trouble-ticket-xinchao-detail/${record.workOrderId}`;
             },
           })}
+      />
+      <Page
+        total={total}
+        onChange={(pageValue) => {
+          dispatch(changePage(props, pageValue));
+        }}
+        onShowSizeChange={(current, size) => {
+          dispatch(changePageSize(props, current, size));
+        }}
+        current={pageNum}
+        pageSize={pageSize}
       />
     </div>
   );

@@ -32,7 +32,7 @@ export const defaultState = {
   ],
   formData: {
     pageNum: 1,
-    pageSize: 100000,
+    pageSize: 10,
     chooseDept: 11000008,
     date: [],
     projectName: '',
@@ -89,6 +89,21 @@ const reducer = (state = defaultState, action) => {
         table: assign({}, state.table, {
           total: action.data.data.total,
           dataSource: action.data.data.list,
+        }),
+      });
+
+    case types.changePage:
+      return assign({}, state, {
+        formData: assign({}, state.formData, {
+          pageNum: action.current,
+        }),
+      });
+
+    case types.changePageSize:
+      return assign({}, state, {
+        formData: assign({}, state.formData, {
+          pageNum: action.current,
+          pageSize: action.size,
         }),
       });
     default:
