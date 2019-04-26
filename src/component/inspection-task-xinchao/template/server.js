@@ -88,6 +88,7 @@ export const updateSer = (action) => {
     staffName,
     toStaffId: chooseUser,
     toStaffName: personList.filter(v => v.userId == chooseUser)[0].fullName,
+    toStaffNo: personList.filter(v => v.userId == chooseUser)[0].empNo,
   };
   return request({
     url: '/ods/api/task/update',
