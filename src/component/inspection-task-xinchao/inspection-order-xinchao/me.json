@@ -1,4 +1,5 @@
 {
   "description": "",
-  "crumb": []
+  "crumb": [],
+  "router":"/:taskId?/staffId?"
 }

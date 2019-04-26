@@ -5,7 +5,7 @@ import { queryDeviceDetail, closeModal, create } from '../action';
 const { Option } = Select;
 const { TextArea } = Input;
 const tmp = (props) => {
-  const { formData, dispatch, modal: { visiable } } = props;
+  const { formData, dispatch, modal: { visiable ,xc_fault_type} } = props;
   return (
     <Modal
       title="创建工单"
@@ -57,10 +57,11 @@ const tmp = (props) => {
         <span style={{ flexBasis: '100px' }}>故障类型:</span>
         <Select
           style={{ width: '200px' }}
-          value={1}
+          data-bind="modal.select_fault_type"
         >
-          <Option value={1}>1</Option>
-          <Option value={2}>2</Option>
+          {
+            xc_fault_type.map(v=><Option value={v.dictCode}>{v.dictNote}</Option>)
+          }
         </Select>
       </div>
       <div style={{ display: 'flex', margin: 5 }}>

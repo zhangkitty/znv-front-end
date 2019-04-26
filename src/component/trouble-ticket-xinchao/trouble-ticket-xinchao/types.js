@@ -13,6 +13,8 @@ export let queryDeviceDetail;
 export let queryDeviceDetailSuccess;
 
 export let openModal;
+export let openModalSuccess;
+
 export let closeModal;
 
 export let create;

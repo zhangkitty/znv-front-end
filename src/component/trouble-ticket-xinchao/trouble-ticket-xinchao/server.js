@@ -83,6 +83,7 @@ export const createSer = (action) => {
         region,
         address,
         description,
+        select_fault_type,
       },
     },
   } = action;
@@ -91,14 +92,26 @@ export const createSer = (action) => {
     woType: 15,
     deviceId,
     detailObject: {
-      faultType: 2001,
       question: description,
       itemName: projectName,
       propertyName: tenementType,
+      faultType: select_fault_type,
     },
   };
   return request({
     url: '/ods/workorder/create',
+    method: 'post',
+    data,
+  });
+};
+
+export const openModalSer = (action) => {
+  const { props } = action;
+  const data = {
+    colName: 'xc_fault_type',
+  };
+  return request({
+    url: '/wgs/xc/dict/list/query',
     method: 'post',
     data,
   });

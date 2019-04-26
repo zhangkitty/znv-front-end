@@ -15,7 +15,9 @@ export const queryDeviceDetail = makeActionCreator(types.queryDeviceDetail, 'pro
 export const queryDeviceDetailSuccess = makeActionCreator(types.queryDeviceDetailSuccess, 'data');
 
 export const openModal = makeActionCreator(types.openModal, 'props');
+export const openModalSuccess = makeActionCreator(types.openModalSuccess, 'data');
+
 export const closeModal = makeActionCreator(types.closeModal, 'props');
 
 export const create = makeActionCreator(types.create, 'props');
-export const createSuccess = makeActionCreator(types.createSuccess,'data');
+export const createSuccess = makeActionCreator(types.createSuccess, 'data');

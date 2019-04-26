@@ -26,6 +26,8 @@ export const defaultState = {
     region: '',
     address: '',
     description: '',
+    xc_fault_type: [],
+    select_fault_type: '',
   },
 };
 
@@ -103,6 +105,13 @@ const reducer = (state = defaultState, action) => {
       return assign({}, state, {
         modal: assign({}, state.modal, {
           visiable: true,
+        }),
+      });
+
+    case types.openModalSuccess:
+      return assign({}, state, {
+        modal: assign({}, state.modal, {
+          xc_fault_type: action.data.data,
         }),
       });
 

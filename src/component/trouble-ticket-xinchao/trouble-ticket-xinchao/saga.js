@@ -1,8 +1,8 @@
 import { Modal, message } from 'antd';
 import { take, put, fork, takeLatest } from 'redux-saga/effects';
-import { initSuccess, changeDeptSuccess, searchSuccess, queryDeviceDetailSuccess, createSuccess } from './action';
+import { initSuccess, changeDeptSuccess, searchSuccess, queryDeviceDetailSuccess, createSuccess, openModalSuccess } from './action';
 import * as types from './types';
-import { initSer, changeDeptSer, searchSer, queryDeviceDetailSer, createSer } from './server';
+import { initSer, changeDeptSer, searchSer, queryDeviceDetailSer, createSer, openModalSer } from './server';
 
 function* initSaga(action) {
   const { props } = action;
@@ -42,6 +42,11 @@ function* createSaga(action) {
   return yield put(createSuccess(data));
 }
 
+function* openModalSaga(action) {
+  const data = yield openModalSer(action);
+  return yield put(openModalSuccess(data));
+}
+
 
 function* mainSaga() {
   yield takeLatest(types.init, initSaga);
@@ -49,6 +54,7 @@ function* mainSaga() {
   yield takeLatest(types.search, searchSaga);
   yield takeLatest(types.queryDeviceDetail, queryDeviceDetailSaga);
   yield takeLatest(types.create, createSaga);
+  yield takeLatest(types.openModal, openModalSaga);
 }
 
 export default mainSaga;
