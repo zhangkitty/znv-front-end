@@ -50,9 +50,9 @@ const List = (props) => {
       align: 'center',
     },
     {
-      title: '错漏刊指标',
+      title: '错漏刊',
       render: (v) => {
-        if (v.detail && v.detailDto.publish.name) {
+        if (v.detailDto && v.detailDto.publish.name) {
           return v.detailDto.publish.name;
         }
         return '';
@@ -60,9 +60,9 @@ const List = (props) => {
       align: 'center',
     },
     {
-      title: '屏幕清洁度指标',
+      title: '屏幕清洁度超标',
       render: (v) => {
-        if (v.detail && v.detailDto.cleanness.name) {
+        if (v.detailDto && v.detailDto.cleanness.name) {
           return v.detailDto.cleanness.name;
         }
         return '';
@@ -70,9 +70,9 @@ const List = (props) => {
       align: 'center',
     },
     {
-      title: '形象品质指标',
+      title: '形象品质超标',
       render: (v) => {
-        if (v.detail && v.detailDto.quality.name) {
+        if (v.detailDto && v.detailDto.quality.name) {
           return v.detailDto.quality.name;
         }
         return '';
@@ -80,9 +80,9 @@ const List = (props) => {
       align: 'center',
     },
     {
-      title: '设备声音指标',
+      title: '声音检测超标',
       render: (v) => {
-        if (v.detail && v.detailDto.sound.name) {
+        if (v.detailDto && v.detailDto.sound.name) {
           return v.detailDto.sound.name;
         }
         return '';
@@ -92,7 +92,7 @@ const List = (props) => {
     {
       title: '广告播放同步',
       render: (v) => {
-        if (v.detail && v.detailDto.playSync.name) {
+        if (v.detailDto && v.detailDto.playSync.name) {
           return v.detailDto.playSync.name;
         }
         return '';
@@ -102,17 +102,17 @@ const List = (props) => {
     {
       title: '照片',
       render: (v) => {
-        if (v.detail && v.detailDto.photo.name) {
-          return v.detailDto.photo.name;
+        if (v.detailDto && v.detailDto.photo.url) {
+          return v.detailDto.photo.url;
         }
         return '';
       },
       align: 'center',
     },
     {
-      title: '故障指标',
+      title: '故障',
       render: (v) => {
-        if (v.detail && v.detailDto.fault.name) {
+        if (v.detailDto && v.detailDto.fault.name) {
           return v.detailDto.fault.name;
         }
         return '';
