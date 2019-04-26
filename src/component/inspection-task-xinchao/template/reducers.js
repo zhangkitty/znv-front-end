@@ -56,7 +56,7 @@ const reducer = (state = defaultState, action) => {
     case types.openModal:
       return assign({}, state, {
         modal: assign({}, state.modal, {
-          tempTitle: action.v.taskName,
+          // tempTitle: action.v.taskName,
           chooseItem: action.v,
         }),
       });

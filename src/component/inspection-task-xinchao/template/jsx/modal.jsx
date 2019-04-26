@@ -23,22 +23,7 @@ const tmp = (props) => {
       onOk={() => dispatch(update(props))}
     >
 
-      <div style={{
-        display: 'flex',
-        marginBottom: 10,
-      }}
-      >
-        <span style={{ flexBasis: 200 }}>模板标题：</span>
-        <Input
-          data-bind="modal.tempTitle"
-          style={{
-            width: 200,
-            lineHeight: 32,
-          }}
-        />
-      </div>
-
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', marginBottom: 10 }}>
         <span style={{ flexBasis: 200 }}>巡检人员：</span>
         <Select
           onChange={v => dispatch(changeInspectPerson(props, v))}
@@ -54,6 +39,21 @@ const tmp = (props) => {
         </Select>
 
       </div>
+
+      <div style={{
+        display: 'flex',
+      }}
+      >
+        <span style={{ flexBasis: 200 }}>模板标题：</span>
+        <Input
+          data-bind="modal.tempTitle"
+          style={{
+            width: 200,
+            lineHeight: 32,
+          }}
+        />
+      </div>
+
 
     </Modal>
   );
