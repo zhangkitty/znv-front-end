@@ -79,7 +79,7 @@ export const createTaskSer = (action) => {
     taskMode: 1,
     taskName: tempTitle,
     staffId: chooseUserId,
-    toStaffNo: (personList.filter(v => chooseUserId === v.staffId)[0]).empNo,
+    toStaffNo: (personList.filter(v => chooseUserId === v.userId)[0]).empNo,
     beginTime: `${moment(date[0]).format('YYYY-MM-DD')} 00:00:00`,
     endTime: `${moment(date[1]).format('YYYY-MM-DD')} 23:59:59 `,
     staffName: (personList.filter(v => chooseUserId === v.userId)[0]).fullName,
