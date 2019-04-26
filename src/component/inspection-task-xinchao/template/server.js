@@ -18,6 +18,20 @@ export const initSer = (props) => {
   });
 };
 
+export const changeInspectPersonSer = (action) => {
+  const { props, v } = action;
+  const data = {
+    pageSize: 1,
+    pageNum: 1,
+    taskType: 13,
+    taskMode: 1,
+    staffId: v,
+  };
+  return request({
+    url: `/ods/api/task/list/query${getParam(data)}`,
+  });
+};
+
 export const changePageSer = (action) => {
   const { props, current } = action;
   const { formData: { pageSize } } = props;

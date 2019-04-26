@@ -1,7 +1,7 @@
 import React from 'react';
 import assign from 'object-assign';
 import { Modal, Select, Input } from 'antd';
-import { choseModal, update } from '../action';
+import { choseModal, update, changeInspectPerson } from '../action';
 
 
 const Option = Select.Option;
@@ -11,6 +11,7 @@ const tmp = (props) => {
     dispatch, modal: {
       visiable,
       personList,
+      chooseUser,
     },
 
   } = props;
@@ -29,7 +30,6 @@ const tmp = (props) => {
       >
         <span style={{ flexBasis: 200 }}>模板标题：</span>
         <Input
-          disabled
           data-bind="modal.tempTitle"
           style={{
             width: 200,
@@ -41,11 +41,12 @@ const tmp = (props) => {
       <div style={{ display: 'flex' }}>
         <span style={{ flexBasis: 200 }}>巡检人员：</span>
         <Select
-          data-bind="modal.chooseUser"
+          onChange={v => dispatch(changeInspectPerson(props, v))}
           style={{
             width: 200,
             lineHeight: 32,
           }}
+          value={chooseUser}
         >
           {
             personList.map(v => <Option value={v.userId}>{v.fullName}</Option>)

@@ -19,3 +19,6 @@ export const changePageSuccess = makeActionCreator(types.changePageSuccess, 'dat
 
 export const changePageSize = makeActionCreator(types.changePageSize, 'props', 'current', 'size');
 export const changePageSizeSuccess = makeActionCreator(types.changePageSizeSuccess, 'data');
+
+export const changeInspectPerson = makeActionCreator(types.changeInspectPerson, 'props', 'v');
+export const changeInspectPersonSuccess = makeActionCreator(types.changeInspectPersonSuccess, 'data');

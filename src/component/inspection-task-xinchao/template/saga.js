@@ -1,9 +1,9 @@
 import { Modal, message } from 'antd';
 import assign from 'object-assign';
 import { take, put, takeLatest } from 'redux-saga/effects';
-import { initSuccess, openModalSuccess, updateSuccess } from './action';
+import { initSuccess, openModalSuccess, updateSuccess, changeInspectPersonSuccess } from './action';
 import * as types from './types';
-import { initSer, openModalSer, updateSer, changePageSer, changePageSizeSer } from './server';
+import { initSer, openModalSer, updateSer, changePageSer, changePageSizeSer, changeInspectPersonSer } from './server';
 
 function* initSaga(action) {
   const { props } = action;
@@ -35,6 +35,11 @@ function* changePageSizeSaga(action) {
   return yield put(initSuccess(data));
 }
 
+function* changeInspectPersonSaga(action) {
+  const data = yield changeInspectPersonSer(action);
+  return yield put(changeInspectPersonSuccess(data));
+}
+
 
 function* mainSaga() {
   yield takeLatest(types.init, initSaga);
@@ -42,6 +47,7 @@ function* mainSaga() {
   yield takeLatest(types.update, updateSaga);
   yield takeLatest(types.changePage, changePageSaga);
   yield takeLatest(types.changePageSize, changePageSizeSaga);
+  yield takeLatest(types.changeInspectPerson, changeInspectPersonSaga);
 }
 
 export default mainSaga;

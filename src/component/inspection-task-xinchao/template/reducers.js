@@ -80,6 +80,20 @@ const reducer = (state = defaultState, action) => {
         visiable: false,
       });
 
+    case types.changeInspectPerson:
+      return assign({}, state, {
+        modal: assign({}, state.modal, {
+          chooseUser: action.v,
+        }),
+      });
+
+    case types.changeInspectPersonSuccess:
+      return assign({}, state, {
+        modal: assign({}, state.modal, {
+          tempTitle: action.data.data.total === 1 ? action.data.data.list[0].taskName : state.modal.tempTitle,
+        }),
+      });
+
 
     default:
       return state;

@@ -15,3 +15,6 @@ export let changePageSuccess;
 export let changePageSize;
 export let changePageSizeSuccess;
 
+export let changeInspectPerson;
+export let changeInspectPersonSuccess;
+
