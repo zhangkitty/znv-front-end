@@ -47,3 +47,33 @@ export const searchSer = (action) => {
     url: `/ods/api/task/list/query${getParam(data)}`,
   });
 };
+
+export const changePageSer = (action) => {
+  const { props: { person, formData: { pageSize, choosePerson } }, current } = action;
+  const data = {
+    pageSize,
+    pageNum: current,
+    taskType: 14,
+    taskMode: 1,
+    staffId: choosePerson,
+    staffIdListStr: !choosePerson ? person.map(v => v.userId) : null,
+  };
+  return request({
+    url: `/ods/api/task/list/query${getParam(data)}`,
+  });
+};
+
+export const changePageSizeSer = (action) => {
+  const { props: { person, formData: { choosePerson } }, current, size } = action;
+  const data = {
+    pageSize: size,
+    pageNum: current,
+    taskType: 14,
+    taskMode: 1,
+    staffId: choosePerson,
+    staffIdListStr: !choosePerson ? person.map(v => v.userId) : null,
+  };
+  return request({
+    url: `/ods/api/task/list/query${getParam(data)}`,
+  });
+};

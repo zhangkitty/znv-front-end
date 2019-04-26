@@ -8,5 +8,11 @@ export const initSuccess = makeActionCreator(types.initSuccess, 'data');
 export const changeDept = makeActionCreator(types.changeDept, 'props', 'v');
 export const changeDeptSuccess = makeActionCreator(types.changeDeptSuccess, 'data');
 
-export const search = makeActionCreator(types.search,'props');
-export const searchSuccess = makeActionCreator(types.searchSuccess,'data');
+export const search = makeActionCreator(types.search, 'props');
+export const searchSuccess = makeActionCreator(types.searchSuccess, 'data');
+
+export const changePage = makeActionCreator(types.changePage, 'props', 'current');
+export const changePageSuccess = makeActionCreator(types.changePageSuccess, 'data');
+
+export const changePageSize = makeActionCreator(types.changePageSize, 'props', 'current', 'size');
+export const changePageSizeSuccess = makeActionCreator(types.changePageSizeSuccess, 'data');

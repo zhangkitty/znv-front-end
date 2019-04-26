@@ -1,12 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import Page from 'shein-lib/pagination';
 import { Table } from 'antd';
 import { Link } from 'react-router-dom';
+import { changePage, changePageSize } from '../action';
 
 
 const List = (props) => {
   const {
     dataSource,
+    dispatch,
+    total,
+    formData: {
+      pageSize,
+      pageNum,
+    },
   } = props;
   const columns = [
     {
@@ -69,6 +76,19 @@ const List = (props) => {
         rowKey="id"
         dataSource={dataSource}
         columns={columns}
+        pagination={false}
+      />
+
+      <Page
+        total={total}
+        onChange={(pageValue) => {
+          dispatch(changePage(props, pageValue));
+        }}
+        onShowSizeChange={(current, size) => {
+          dispatch(changePageSize(props, current, size));
+        }}
+        current={pageNum}
+        pageSize={pageSize}
       />
     </div>
   );
