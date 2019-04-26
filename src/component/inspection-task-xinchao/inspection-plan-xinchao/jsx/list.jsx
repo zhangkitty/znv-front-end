@@ -54,11 +54,11 @@ const List = (props) => {
         dataSource={dataSource}
         loading={loading}
         columns={columns}
-        onRow={record => ({
-          onClick: (event) => {
-            window.location.hash = `/inspection-task-xinchao/inspection-order-xinchao/${record.id}/${record.staffId}`;
-          },
-        })}
+        // onRow={record => ({
+        //   onClick: (event) => {
+        //     window.location.hash = `/inspection-task-xinchao/inspection-order-xinchao/${record.id}/${record.staffId}`;
+        //   },
+        // })}
       />
     </div>
   );
