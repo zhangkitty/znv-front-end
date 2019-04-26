@@ -91,6 +91,7 @@ export const createSer = (action) => {
     sourceId: 3003,
     woType: 15,
     deviceId,
+    staffId: localStorage.getItem('userId'),
     detailObject: {
       question: description,
       itemName: projectName,
