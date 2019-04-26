@@ -75,15 +75,16 @@ export const updateSer = (action) => {
       modal: {
         chooseUser,
         personList,
+        tempTitle,
         chooseItem: {
-          id, taskName, staffId, staffName,
+          id, staffId, staffName,
         },
       },
     },
   } = action;
   const data = {
     taskId: id,
-    taskName,
+    taskName: tempTitle,
     staffId,
     staffName,
     toStaffId: chooseUser,
