@@ -20,7 +20,10 @@ function* openModalSaga(action) {
 function* updateSaga(action) {
   const data = yield updateSer(action);
   if (data.errCode == 0) {
-    return message.success('成功');
+    message.success('成功');
+  }
+  if (data.errCode !== 0) {
+    return message.error(`${data.msg}`);
   }
   return yield put(updateSuccess(data));
 }
