@@ -51,7 +51,12 @@ const List = (props) => {
     },
     {
       title: '是否超时',
-      dataIndex: 'expiredFlag',
+      render: (v) => {
+        if (v.expiredFlag == 0) {
+          return '否';
+        }
+        return '是';
+      },
       align: 'center',
     },
     {
