@@ -19,6 +19,7 @@ const header = (props) => {
       <div style={{ marginTop: 10 }}>
         <Select
           style={{ width: 200, marginRight: 10 }}
+          allowClear
           data-bind="formData.chooseTitle"
           placeholder="巡检标题"
         >
@@ -30,6 +31,7 @@ const header = (props) => {
         </Select>
 
         <Select
+          allowClear
           style={{ width: 200, marginRight: 10 }}
           data-bind="formData.chooseState"
           placeholder="状态"
@@ -40,11 +42,10 @@ const header = (props) => {
         </Select>
 
         <RangePicker
+          allowClear
           style={{ marginRight: 10 }}
           placeholder={['开始时间', '结束时间']}
           data-bind="formData.date"
-          // onChange={onChange}
-          // onOk={onOk}
         />
 
       </div>

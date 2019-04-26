@@ -88,7 +88,6 @@ const reducer = (state = defaultState, action) => {
       });
 
     case types.changeInspectPersonSuccess:
-      debugger;
       return assign({}, state, {
         modal: assign({}, state.modal, {
           tempTitle: action.data.data.total === 1 ?

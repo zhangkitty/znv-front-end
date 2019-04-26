@@ -38,9 +38,9 @@ const List = (props) => {
       align: 'center',
     },
     {
-      title: '屏幕清洁度指标',
+      title: '屏幕清洁度超标',
       render: (v) => {
-        if (v.detail && v.detailDto.cleanness.name) {
+        if (v.detailDto && v.detailDto.cleanness.name) {
           return v.detailDto.cleanness.name;
         }
         return '';
@@ -48,9 +48,9 @@ const List = (props) => {
       align: 'center',
     },
     {
-      title: '设备声音指标',
+      title: '声音检测超标',
       render: (v) => {
-        if (v.detail && v.detailDto.sound.name) {
+        if (v.detailDto && v.detailDto.sound.name) {
           return v.detailDto.sound.name;
         }
         return '';
@@ -58,9 +58,9 @@ const List = (props) => {
       align: 'center',
     },
     {
-      title: '设备标签指标',
+      title: '设备标签超标',
       render: (v) => {
-        if (v.detail && v.detailDto.label.name) {
+        if (v.detailDto && v.detailDto.label.name) {
           return v.detailDto.label.name;
         }
         return '';
@@ -70,7 +70,7 @@ const List = (props) => {
     {
       title: '广告播放同步',
       render: (v) => {
-        if (v.detail && v.detailDto.playSync.name) {
+        if (v.detailDto && v.detailDto.playSync.name) {
           return v.detailDto.playSync.name;
         }
         return '';
@@ -78,9 +78,9 @@ const List = (props) => {
       align: 'center',
     },
     {
-      title: '声音同步指标',
+      title: '声音同步',
       render: (v) => {
-        if (v.detail && v.detailDto.soundSync.name) {
+        if (v.detailDto && v.detailDto.soundSync.name) {
           return v.detailDto.soundSync.name;
         }
         return '';
@@ -88,9 +88,9 @@ const List = (props) => {
       align: 'center',
     },
     {
-      title: '故障指标',
+      title: '故障',
       render: (v) => {
-        if (v.detail && v.detailDto.fault.name) {
+        if (v.detailDto && v.detailDto.fault.name) {
           return v.detailDto.fault.name;
         }
         return '';
