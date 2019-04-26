@@ -102,8 +102,12 @@ const List = (props) => {
     {
       title: '照片',
       render: (v) => {
-        if (v.detailDto && v.detailDto.photo.url) {
-          return v.detailDto.photo.url;
+        if (v.detailDto && v.detailDto.photo.url && v.detailDto.photo.url.faultphoto) {
+          return (<img
+            style={{ width: 100 }}
+            src={v.detailDto.photo.url.faultphoto}
+            alt=""
+          />);
         }
         return '';
       },
