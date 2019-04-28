@@ -149,7 +149,7 @@ export const createSer = (action) => {
     woType: 15,
     deviceId,
     staffId: localStorage.getItem('userId'),
-    staffName: localStorage.getItem('userName'),
+    staffName: localStorage.getItem('fullName'),
     detailObject: {
       question: description,
       itemName: projectName,
