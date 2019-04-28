@@ -3,6 +3,16 @@ import getParam from 'utils/getParam';
 import moment from 'moment';
 
 
+function trans(data) {
+  if (!data) {
+    return null;
+  }
+  if (typeof data === 'string') {
+    return data.split(',').map(v => parseInt(v));
+  }
+  return [data];
+}
+
 export const initSer = (props) => {
   console.log(props);
 
@@ -39,7 +49,7 @@ export const searchSer = (action) => {
     props: {
       person,
       formData: {
-        projectName, pageNum, pageSize, choosePerson, date,
+        projectName, pageNum, pageSize, choosePerson, date, chooseStatus,
       },
     },
   } = action;
@@ -47,6 +57,7 @@ export const searchSer = (action) => {
     itemName: projectName,
     pageNum,
     pageSize,
+    statusCodes: trans(chooseStatus),
     staffId: choosePerson,
     loginStaffId: localStorage.getItem('userId'),
     taskType: 15,

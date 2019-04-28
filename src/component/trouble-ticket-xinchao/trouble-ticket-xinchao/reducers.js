@@ -6,6 +6,20 @@ export const defaultState = {
   ready: true,
   dept: [],
   person: [],
+  status: [
+    {
+      id: 1,
+      name: '待分配',
+    },
+    {
+      id: '2,3,4',
+      name: '待受理',
+    },
+    {
+      id: '5,65',
+      name: '已完成',
+    },
+  ],
   dataSource: [],
   total: '',
   formData: {

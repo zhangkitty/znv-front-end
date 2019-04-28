@@ -10,7 +10,7 @@ const { RangePicker } = DatePicker;
 const header = (props) => {
   console.log(1);
   const {
-    dispatch, dept, person, formData: { chooseDept, choosePerson },
+    dispatch, dept, person, formData: { chooseDept, choosePerson }, status,
   } = props;
 
 
@@ -38,6 +38,22 @@ const header = (props) => {
           person.map(v => (
             <Option value={v.userId}>{`${v.fullName}(${v.empNo})`}</Option>
             ))
+        }
+      </Select>
+
+      <Select
+        style={{ width: 200, marginRight: 10 }}
+        allowClear
+        placeholder="状态"
+        data-bind="formData.chooseStatus"
+        showSearch
+        optionFilterProp="children"
+        filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+      >
+        {
+          status.map(v => (
+            <Option value={v.id}>{v.name}</Option>
+          ))
         }
       </Select>
 

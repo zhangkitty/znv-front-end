@@ -44,6 +44,11 @@ const List = (props) => {
       align: 'center',
     },
     {
+      title: '设备编号',
+      dataIndex: 'deviceId',
+      align: 'center',
+    },
+    {
       title: '状态',
       dataIndex: 'statusName',
       align: 'center',
