@@ -4,6 +4,8 @@ import { searchSuccess, changePageSuccess, changePageSizeSuccess } from './actio
 import * as types from './types';
 import { changePageSer, changePageSizeSer, searchSer, createSer } from './server';
 
+const ExportJsonExcel = require('js-export-excel');
+
 
 function* searchSaga(action) {
   const { props } = action;
@@ -24,6 +26,25 @@ function* changePageSizeSaga(action) {
 function* createSaga(action) {
   const data = yield createSer(action);
   if (data.errCode == 0) {
+    if (data.data && data.data.length > 0) {
+      const option = {};
+      option.fileName = 'excel';
+      option.datas = [
+        {
+          sheetData: data.data,
+          sheetName: 'sheet',
+          sheetFilter: ['itemName', 'propertyType', 'quantity'],
+          sheetHeader: ['项目名称', '物业类型', '终端数'],
+        },
+        {
+          sheetData: [{ one: '一行一列', two: '一行二列' }, { one: '二行一列', two: '二行二列' }],
+        },
+      ];
+
+      const toExcel = new ExportJsonExcel(option); // new
+      toExcel.saveExcel(); // 保存
+      return message.error('部分失败的放入Excel');
+    }
     return message.success('编辑成功');
   }
   return message.error(`${data.msg}`);
