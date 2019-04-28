@@ -27,6 +27,9 @@ const tmp = (props) => {
         <span style={{ flexBasis: 200 }}>巡检人员：</span>
         <Select
           style={{ width: 200, lineHeight: 32 }}
+          showSearch
+          optionFilterProp="children"
+          filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
           onChange={v => dispatch(queryTaskDetail(props, v))}
         >
           {

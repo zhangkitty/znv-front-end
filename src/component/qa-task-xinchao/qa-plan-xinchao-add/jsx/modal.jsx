@@ -31,6 +31,9 @@ const tmp = (props) => {
         <Select
           style={{ width: 300, lineHeight: 32 }}
           onChange={v => dispatch(queryTaskDetail(props, v))}
+          showSearch
+          optionFilterProp="children"
+          filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
         >
           {
            personList.map(v => <Option value={v.userId}>{`${v.fullName}(${v.empNo})`}</Option>)

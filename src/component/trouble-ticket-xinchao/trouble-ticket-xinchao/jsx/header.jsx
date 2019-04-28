@@ -30,6 +30,9 @@ const header = (props) => {
         allowClear
         placeholder="人员"
         data-bind="formData.choosePerson"
+        showSearch
+        optionFilterProp="children"
+        filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
       >
         {
           person.map(v => (
