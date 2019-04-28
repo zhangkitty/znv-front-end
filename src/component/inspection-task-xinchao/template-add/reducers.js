@@ -50,6 +50,11 @@ const reducer = (state = defaultState, action) => {
         dataSource: action.data.data.list,
       });
 
+    case types.searchError:
+      return assign({}, state, {
+        loading: false,
+      });
+
     case types.changePage:
       return assign({}, state, {
         dataSource: [],

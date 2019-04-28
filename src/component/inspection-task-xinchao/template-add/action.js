@@ -7,6 +7,7 @@ export const initSuccess = makeActionCreator(types.initSuccess, 'data');
 
 export const search = makeActionCreator(types.search, 'props');
 export const searchSuccess = makeActionCreator(types.searchSuccess, 'data');
+export const searchError = makeActionCreator(types.searchError, 'data');
 
 export const changePage = makeActionCreator(types.changePage, 'props', 'current');
 export const changePageSuccess = makeActionCreator(types.changePageSuccess, 'data');

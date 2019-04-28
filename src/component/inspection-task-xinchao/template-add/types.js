@@ -3,6 +3,7 @@ export let initSuccess;
 
 export let search;
 export let searchSuccess;
+export let searchError;
 
 export let changePage;
 export let changePageSuccess;
