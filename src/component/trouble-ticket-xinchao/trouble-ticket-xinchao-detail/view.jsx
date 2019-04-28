@@ -22,7 +22,7 @@ class Container extends React.Component {
             address,
             area,
             city,
-            faultType,
+            faultDesc,
             resultDesc,
           },
         },
@@ -66,7 +66,7 @@ class Container extends React.Component {
           </div>
           <div style={{ display: 'flex' }}>
             <span style={{ flexBasis: 100, textAlign: 'right', marginRight: 10 }}>故障类型:</span>
-            <span>{faultType}</span>
+            <span>{faultDesc}</span>
           </div>
           <div style={{ display: 'flex' }}>
             <span style={{ flexBasis: 100, textAlign: 'right', marginRight: 10 }}>处理结果:</span>
