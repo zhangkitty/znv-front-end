@@ -3,6 +3,16 @@ import getParam from 'utils/getParam';
 import moment from 'moment';
 
 
+function trans(data) {
+  if (!data) {
+    return null;
+  }
+  if (typeof data === 'string') {
+    return data.split(',').map(v => parseInt(v));
+  }
+  return [data];
+}
+
 export const initSer = (props) => {
   console.log(props);
 
@@ -57,7 +67,7 @@ export const searchSer = (action) => {
     pageSize,
     // taskIdStr: chooseTitle,
     taskType: 13,
-    statusCodes: chooseState && [chooseState],
+    statusCodes: trans(chooseState),
     beginTime: date[0] && `${moment(date[0]).format('YYYY-MM-DD')} 00:00:00`,
     endTime: date[1] && `${moment(date[1]).format('YYYY-MM-DD')} 23:59:59`,
     loginStaffId: localStorage.getItem('userId'),
@@ -89,7 +99,7 @@ export const changePageSer = (action) => {
     pageSize,
     // taskIdStr: chooseTitle,
     taskType: 13,
-    statusCodes: chooseState && [chooseState],
+    statusCodes: trans(chooseState),
     beginTime: date[0] && `${moment(date[0]).format('YYYY-MM-DD')} 00:00:00`,
     endTime: date[1] && `${moment(date[1]).format('YYYY-MM-DD')} 23:59:59`,
     loginStaffId: localStorage.getItem('userId'),
@@ -122,7 +132,7 @@ export const changePageSizeSer = (action) => {
     pageSize: size,
     // taskIdStr: chooseTitle,
     taskType: 13,
-    statusCodes: chooseState && [chooseState],
+    statusCodes: trans(chooseState),
     beginTime: date[0] && `${moment(date[0]).format('YYYY-MM-DD')} 00:00:00`,
     endTime: date[1] && `${moment(date[1]).format('YYYY-MM-DD')} 23:59:59`,
     loginStaffId: localStorage.getItem('userId'),

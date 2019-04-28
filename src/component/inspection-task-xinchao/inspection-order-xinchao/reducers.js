@@ -14,20 +14,16 @@ export const defaultState = {
   },
   status: [
     {
-      id: 1,
-      name: '待分配',
-    },
-    {
-      id: 2,
-      name: '待受理',
+      id: '1,2',
+      name: '处理中',
     },
     {
       id: 65,
-      name: '完成关闭',
+      name: '已完成',
     },
     {
       id: 67,
-      name: '取消关闭',
+      name: '过期未完成',
     },
   ],
   formData: {

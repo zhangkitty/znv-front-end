@@ -11,6 +11,7 @@ export const searchSer = (props) => {
     pageNum,
     itemName: projectName,
     taskId: params.taskId,
+    areaCode: localStorage.getItem('areaCode'),
   };
 
   const data1 = {
@@ -35,6 +36,7 @@ export const changePageSer = (action) => {
     pageNum: current,
     itemName: projectName,
     taskId: params.taskId,
+    areaCode: localStorage.getItem('areaCode'),
   };
   return request({
     url: `/ods/api/patrol/item/query${getParam(data)}`,
@@ -49,6 +51,7 @@ export const changePageSizeSer = (action) => {
     pageNum: current,
     itemName: projectName,
     taskId: params.taskId,
+    areaCode: localStorage.getItem('areaCode'),
 
   };
   return request({
