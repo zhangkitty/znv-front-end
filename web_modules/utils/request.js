@@ -84,14 +84,14 @@ const fetch = async (options) => {
           `${url}&token=${token}`,
           {
             headers: {
-              token,
+              accessToken: token,
             },
           },
         );
       }
       return axios.get(`${url}?token=${token}`, {
         headers: {
-          token,
+          accessToken: token,
         },
       });
     case 'delete':
@@ -104,8 +104,8 @@ const fetch = async (options) => {
         params.append(key, data[key]);
       }
       return axios.post(`${url}?token=${token}`, data, Object.assign(authHeader, _options, {
-        header: {
-          token,
+        headers: {
+          accessToken: token,
         },
       }));
     }
