@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import Zmage from 'react-zmage';
 import { Table } from 'antd';
 import Page from 'shein-lib/pagination';
 import {
@@ -114,7 +114,7 @@ const List = (props) => {
       title: '照片',
       render: (v) => {
         if (v.detailDto && v.detailDto.photo.url && v.detailDto.photo.url.faultphoto) {
-          return (<img
+          return (<Zmage
             style={{ width: 100 }}
             src={v.detailDto.photo.url.faultphoto}
             alt=""
