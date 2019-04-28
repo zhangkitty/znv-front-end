@@ -35,34 +35,35 @@ class NormalLoginForm extends Component {
     const userNameError = isFieldTouched('userName') && getFieldError('userName');
     const passwordError = isFieldTouched('password') && getFieldError('password');
     return (
-      <Form className={styles["login-form"]}
+      <Form
+        className={styles['login-form']}
         onSubmit={e => this.handleSubmit(e)}
       >
-        <h3 className={styles["login-form-title"]}>系统登录</h3>
+        <h3 className={styles['login-form-title']}>系统登录</h3>
         <FormItem
           validateStatus={userNameError ? 'error' : ''}
           help={userNameError || ''}
         >
           {getFieldDecorator('userName', {
-              rules: [{ required: true, message: 'Please input your username!' }],
-            })(<Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />)}
+              rules: [{ required: true, message: '请输入你的工号!' }],
+            })(<Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="请输入工号" />)}
         </FormItem>
         <FormItem
           validateStatus={passwordError ? 'error' : ''}
           help={passwordError || ''}
         >
           {getFieldDecorator('password', {
-              rules: [{ required: true, message: 'Please input your Password!' }],
-            })(<Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />)}
+              rules: [{ required: true, message: '请输入你的密码!' }],
+            })(<Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="请输入密码" />)}
         </FormItem>
         <FormItem>
           <Button
             type="primary"
             htmlType="submit"
-            className={styles["login-form-button"]}
+            className={styles['login-form-button']}
             disabled={hasErrors(getFieldsError())}
           >
-              Log in
+              登 录
           </Button>
         </FormItem>
       </Form>
