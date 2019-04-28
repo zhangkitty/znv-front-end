@@ -20,6 +20,16 @@ export const defaultState = {
       name: '已完成',
     },
   ],
+  expiredFlagTable: [
+    {
+      id: 0,
+      name: '未超期',
+    },
+    {
+      id: 1,
+      name: '已超期',
+    },
+  ],
   dataSource: [],
   total: '',
   formData: {

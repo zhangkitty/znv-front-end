@@ -49,7 +49,7 @@ export const searchSer = (action) => {
     props: {
       person,
       formData: {
-        projectName, pageNum, pageSize, choosePerson, date, chooseStatus,
+        projectName, pageNum, pageSize, choosePerson, date, chooseStatus, expiredFlag,
       },
     },
   } = action;
@@ -57,6 +57,7 @@ export const searchSer = (action) => {
     itemName: projectName,
     pageNum,
     pageSize,
+    expiredFlag,
     statusCodes: trans(chooseStatus),
     staffId: choosePerson,
     loginStaffId: localStorage.getItem('userId'),

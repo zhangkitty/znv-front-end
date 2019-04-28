@@ -10,72 +10,94 @@ const { RangePicker } = DatePicker;
 const header = (props) => {
   console.log(1);
   const {
-    dispatch, dept, person, formData: { chooseDept, choosePerson }, status,
+    dispatch, dept, person, formData: { chooseDept, choosePerson }, status, expiredFlagTable,
   } = props;
 
 
   return (
     <div style={{ marginTop: 10 }}>
-      <TreeSelect
-        style={{ width: 200, marginRight: 10 }}
-        treeData={dept}
-        dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
-        treeDefaultExpandAll
-        value={chooseDept}
-        onChange={v => dispatch(changeDept(props, v))}
-      />
+      <div>
+        <TreeSelect
+          style={{ width: 200, marginRight: 10 }}
+          treeData={dept}
+          dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
+          treeDefaultExpandAll
+          value={chooseDept}
+          onChange={v => dispatch(changeDept(props, v))}
+        />
 
-      <Select
-        style={{ width: 200, marginRight: 10 }}
-        allowClear
-        placeholder="人员"
-        data-bind="formData.choosePerson"
-        showSearch
-        optionFilterProp="children"
-        filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
-      >
-        {
-          person.map(v => (
-            <Option value={v.userId}>{`${v.fullName}(${v.empNo})`}</Option>
+        <Select
+          style={{ width: 200, marginRight: 10 }}
+          allowClear
+          placeholder="人员"
+          data-bind="formData.choosePerson"
+          showSearch
+          optionFilterProp="children"
+          filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+        >
+          {
+            person.map(v => (
+              <Option value={v.userId}>{`${v.fullName}(${v.empNo})`}</Option>
             ))
-        }
-      </Select>
+          }
+        </Select>
 
-      <Select
-        style={{ width: 200, marginRight: 10 }}
-        allowClear
-        placeholder="状态"
-        data-bind="formData.chooseStatus"
-        showSearch
-        optionFilterProp="children"
-        filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
-      >
-        {
-          status.map(v => (
-            <Option value={v.id}>{v.name}</Option>
-          ))
-        }
-      </Select>
+        <Select
+          style={{ width: 200, marginRight: 10 }}
+          allowClear
+          placeholder="状态"
+          data-bind="formData.chooseStatus"
+          showSearch
+          optionFilterProp="children"
+          filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+        >
+          {
+            status.map(v => (
+              <Option value={v.id}>{v.name}</Option>
+            ))
+          }
+        </Select>
+      </div>
 
-      <RangePicker
-        style={{ marginRight: 10 }}
-        placeholder={['开始时间', '结束时间']}
-        data-bind="formData.date"
-        // onChange={onChange}
-        // onOk={onOk}
-      />
+      <div style={{ marginTop: 10 }}>
+        <Select
+          style={{ width: 200, marginRight: 10 }}
+          allowClear
+          placeholder="是否超期"
+          data-bind="formData.expiredFlag"
+          showSearch
+          optionFilterProp="children"
+          filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+        >
+          {
+            expiredFlagTable.map(v => (
+              <Option value={v.id}>{v.name}</Option>
+            ))
+          }
+        </Select>
 
-      <Input
-        placeholder="项目名称"
-        style={{ width: 200, marginRight: 10 }}
-        data-bind="formData.projectName"
-      />
+        <Input
+          placeholder="项目名称"
+          style={{ width: 200, marginRight: 10 }}
+          data-bind="formData.projectName"
+        />
 
-      <Button
-        onClick={() => dispatch(search(props))}
-      >
-        查询
-      </Button>
+        <RangePicker
+          style={{ marginRight: 10 }}
+          placeholder={['开始时间', '结束时间']}
+          data-bind="formData.date"
+          // onChange={onChange}
+          // onOk={onOk}
+        />
+
+        <Button
+          onClick={() => dispatch(search(props))}
+        >
+          查询
+        </Button>
+      </div>
+
+
     </div>
   );
 };
