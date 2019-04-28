@@ -89,7 +89,11 @@ const fetch = async (options) => {
           },
         );
       }
-      return axios.get(`${url}?token=${token}`);
+      return axios.get(`${url}?token=${token}`, {
+        headers: {
+          token,
+        },
+      });
     case 'delete':
       return axios.delete(url, { data, ...authHeader });
     case 'head':
