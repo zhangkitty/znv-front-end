@@ -93,7 +93,7 @@ const List = (props) => {
                 <div>
                   <Zmage
                     style={{ width: 100, height: 20 }}
-                    src={v.detailDto.cleanness.url.cleanness}
+                    src={v.detailDto.sound.url.sound}
                     alt=""
                   />
                 </div>
