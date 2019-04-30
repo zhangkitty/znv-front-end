@@ -18,7 +18,7 @@ function* submitSaga(action) {
   localStorage.setItem('userId', data.data.userId);
   localStorage.setItem('areaCode', data.data.areaCode);
   localStorage.setItem('fullName', data.data.fullName);
-  localStorage.setItem('areaCodeStr', data.data.authority);
+  localStorage.setItem('areaCodeStr', data.data.authority ? data.data.authority : null);
 
   data.data.custId ? localStorage.setItem('type', data.data.custId) : localStorage.setItem('type', '11000002');
   data.data.custId ? localStorage.setItem('isAdmin', false) : localStorage.setItem('isAdmin', true);
