@@ -11,6 +11,7 @@ export const searchSer = (props) => {
     pageNum,
     itemName: projectName,
     areaCode: localStorage.getItem('areaCode'),
+    areaCodeStr: localStorage.getItem('areaCodeStr'),
   };
   return request({
     url: `/ods/api/patrol/item/query${getParam(data)}`,
@@ -25,6 +26,7 @@ export const changePageSer = (action) => {
     pageNum: current,
     itemName: projectName,
     areaCode: localStorage.getItem('areaCode'),
+    areaCodeStr: localStorage.getItem('areaCodeStr'),
   };
   return request({
     url: `/ods/api/patrol/item/query${getParam(data)}`,
@@ -39,6 +41,7 @@ export const changePageSizeSer = (action) => {
     pageNum: current,
     itemName: projectName,
     areaCode: localStorage.getItem('areaCode'),
+    areaCodeStr: localStorage.getItem('areaCodeStr'),
   };
   return request({
     url: `/ods/api/patrol/item/query${getParam(data)}`,
