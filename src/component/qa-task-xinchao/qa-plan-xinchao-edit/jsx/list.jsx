@@ -88,7 +88,7 @@ const List = (props) => {
         pageSize={pageSize}
       />
 
-      <Popconfirm title="是否要确认" onConfirm={() => dispatch(update(props))} okText="Yes" >
+      <Popconfirm title="是否要确认" onConfirm={() => dispatch(update(props))} okText="确认">
         <Button>
           确定
         </Button>

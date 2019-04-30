@@ -28,6 +28,7 @@ export const defaultState = {
   },
 
   checkedRoleIds: [],
+  checkedCityIds: [],
 
   editOrgModal: {
     visible: false,
@@ -176,7 +177,7 @@ const reducer = (state = defaultState, action) => {
 
     case types.getCityTreeSuccess:
       return assign({}, state, {
-        cityTreeData: action.data.data,
+        cityTreeData: transformRoleTreeData(action.data.data),
       });
     default:
       return state;

@@ -68,6 +68,7 @@ export const addUserSer = props => request({
     phone: props.phone,
     email: props.email,
     roleList: props.checkedRoleIds,
+    authority: Array.isArray(props.checkedCityIds) ? props.checkedCityIds.join(',') : '',
   },
 });
 

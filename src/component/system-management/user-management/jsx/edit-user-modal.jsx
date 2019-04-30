@@ -43,6 +43,11 @@ class EditUserForm extends React.Component {
     this.props.dispatch(changeValue('checkedRoleIds', value));
   }
 
+  changeCityIds = (value) => {
+    this.props.dispatch(changeValue('checkedCityIds', value));
+  }
+
+
   // 自定义校验用户名方法
   checkUserName = (rule, value, callback) => {
     if (value) {
@@ -95,7 +100,7 @@ class EditUserForm extends React.Component {
 
   render() {
     const {
-      dispatch, editUserModal: { visible, destroy }, topOrgId, orgId, resetPwdDisable
+      dispatch, editUserModal: { visible, destroy }, topOrgId, orgId, resetPwdDisable,
     } = this.props;
     const { getFieldDecorator } = this.props.form;
     const formItemLayout = {
@@ -205,7 +210,7 @@ class EditUserForm extends React.Component {
                   { this.props.userId === '' ? '' :
                   <Button
                     type="primary"
-                    disabled={this.props.resetPwdDisable }
+                    disabled={this.props.resetPwdDisable}
                     onClick={() => {
                       let tmpPhone = this.props.phone;
                       if (this.props.phone === undefined || this.props.phone === '') {
@@ -223,6 +228,24 @@ class EditUserForm extends React.Component {
               </Form.Item>
             </Col>
           </Row>
+
+          <Row>
+            <Col span={24}>
+              <Form.Item {...formItemLayout} label="城市">
+                {(<TreeSelect
+                  style={{ width: 340 }}
+                  value={this.props.checkedCityIds}
+                  treeData={this.props.cityTreeData}
+                  dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
+                  placeholder="请选择城市"
+                  allowClear
+                  multiple
+                  onChange={this.changeCityIds}
+                />)}
+              </Form.Item>
+            </Col>
+          </Row>
+
           <Row>
             <Col span={24}>
               <Form.Item {...formItemLayout} label="角色">
