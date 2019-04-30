@@ -28,5 +28,9 @@ export const createTaskSuccess = makeActionCreator(types.createTaskSuccess, 'dat
 
 export const changeTableValue = makeActionCreator(types.changeTableValue, 'key', 'value');
 
-export const update =makeActionCreator(types.update,'props');
+export const update = makeActionCreator(types.update, 'props');
+
+export const changeErrorModal = makeActionCreator(types.changeErrorModal, 'key', 'value');
+
+export const openErrorModal = makeActionCreator(types.openErrorModal, 'data');
 

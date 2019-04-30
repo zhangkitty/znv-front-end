@@ -26,6 +26,11 @@ export const defaultState = {
   table: {
     selectedRowKeys: [],
   },
+
+  errorModal: {
+    dataSource: [],
+    visiable: false,
+  },
 };
 
 
@@ -129,6 +134,21 @@ const reducer = (state = defaultState, action) => {
       return assign({}, state, {
         table: assign({}, state.table, {
           [action.key]: [...new Set([...action.value])],
+        }),
+      });
+
+    case types.changeErrorModal:
+      return assign({}, state, {
+        errorModal: assign({}, state.errorModal, {
+          [action.key]: action.value,
+        }),
+      });
+
+    case types.openErrorModal:
+      return assign({}, state, {
+        errorModal: assign({}, state.errorModal, {
+          dataSource: action.data.data,
+          visiable: true,
         }),
       });
 
