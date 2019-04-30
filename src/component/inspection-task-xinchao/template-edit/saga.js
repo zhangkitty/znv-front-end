@@ -27,7 +27,7 @@ function* createSaga(action) {
   const data = yield createSer(action);
   if (data.errCode == 0) {
     if (data.data && data.data.length > 0) {
-      return put(openErrorModal(data));
+      return yield put(openErrorModal(data));
       const option = {};
       option.fileName = 'excel';
       option.datas = [

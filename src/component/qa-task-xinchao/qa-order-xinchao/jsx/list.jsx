@@ -115,7 +115,7 @@ const List = (props) => {
       render: (v) => {
         if (v.detailDto && v.detailDto.photo.url && v.detailDto.photo.url.faultphoto) {
           return (<Zmage
-            style={{ width: 100 }}
+            style={{ width: 50, height: 10 }}
             src={v.detailDto.photo.url.faultphoto}
             alt=""
           />);

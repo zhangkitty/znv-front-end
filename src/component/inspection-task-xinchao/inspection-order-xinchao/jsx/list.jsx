@@ -66,7 +66,7 @@ const List = (props) => {
                 </div>
                 <div>
                   <Zmage
-                    style={{ width: 100, height: 20 }}
+                    style={{ width: 50, height: 10 }}
                     src={v.detailDto.cleanness.url.cleanness}
                     alt=""
                   />
@@ -92,7 +92,7 @@ const List = (props) => {
                 </div>
                 <div>
                   <Zmage
-                    style={{ width: 100, height: 20 }}
+                    style={{ width: 50, height: 10 }}
                     src={v.detailDto.sound.url.sound}
                     alt=""
                   />
@@ -118,7 +118,7 @@ const List = (props) => {
                 </div>
                 <div>
                   <Zmage
-                    style={{ width: 100, height: 20 }}
+                    style={{ width: 50, height: 10 }}
                     src={v.detailDto.label.url.label}
                     alt=""
                   />
@@ -144,7 +144,7 @@ const List = (props) => {
                 </div>
                 <div>
                   <Zmage
-                    style={{ width: 100, height: 20 }}
+                    style={{ width: 50, height: 10 }}
                     src={v.detailDto.playSync.url.playSync}
                     alt=""
                   />
@@ -170,7 +170,7 @@ const List = (props) => {
                 </div>
                 <div>
                   <Zmage
-                    style={{ width: 100, height: 20 }}
+                    style={{ width: 50, height: 10 }}
                     src={v.detailDto.soundSync.url.soundSync}
                     alt=""
                   />

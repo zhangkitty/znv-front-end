@@ -1,9 +1,29 @@
 import React from 'react';
-import { Modal, Table } from 'antd';
+import { Modal, Table, Button } from 'antd';
 import { changeErrorModal } from '../action';
+
+const ExportJsonExcel = require('js-export-excel');
+
+
+const exportExcel = (data) => {
+  const option = {};
+  option.fileName = 'excel';
+  option.datas = [
+    {
+      sheetData: data,
+      sheetName: 'sheet',
+      sheetFilter: ['itemName', 'propertyType', 'quantity'],
+      sheetHeader: ['项目名称', '物业类型', '终端数'],
+    },
+  ];
+
+  const toExcel = new ExportJsonExcel(option); // new
+  toExcel.saveExcel(); // 保存
+};
 
 const tmp = (props) => {
   const { dispatch, errorModal: { visiable, dataSource } } = props;
+
 
   const columns = [
     {
@@ -32,6 +52,14 @@ const tmp = (props) => {
         onCancel={() => dispatch(changeErrorModal('visiable', false))}
         footer={null}
       >
+        <Button
+          style={{ marginBottom: 5 }}
+          onClick={() => {
+            exportExcel(dataSource);
+          }}
+        >
+          导出失败的条目
+        </Button>
         <Table dataSource={dataSource} columns={columns} />
       </Modal>
     </div>
