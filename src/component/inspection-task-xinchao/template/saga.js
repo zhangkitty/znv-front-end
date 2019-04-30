@@ -1,7 +1,7 @@
 import { Modal, message } from 'antd';
 import assign from 'object-assign';
 import { take, put, takeLatest } from 'redux-saga/effects';
-import { initSuccess, openModalSuccess, updateSuccess, changeInspectPersonSuccess } from './action';
+import { initSuccess, openModalSuccess, updateSuccess, changeInspectPersonSuccess, openErrorModal } from './action';
 import * as types from './types';
 import { initSer, openModalSer, updateSer, changePageSer, changePageSizeSer, changeInspectPersonSer } from './server';
 
@@ -20,12 +20,13 @@ function* openModalSaga(action) {
 function* updateSaga(action) {
   const data = yield updateSer(action);
   if (data.errCode == 0) {
-    message.success('成功');
+    yield put(updateSuccess(data));
+    if (data.data && data.data.length > 0) {
+      return yield put(openErrorModal(data));
+    }
+    return message.success('编辑成功');
   }
-  if (data.errCode !== 0) {
-    return message.error(`${data.msg}`);
-  }
-  return yield put(updateSuccess(data));
+  return message.error(`${data.msg}`);
 }
 
 function* changePageSaga(action) {

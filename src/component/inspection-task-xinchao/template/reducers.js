@@ -18,6 +18,11 @@ export const defaultState = {
     pageNum: 1,
     pageSize: 10,
   },
+
+  errorModal: {
+    dataSource: [],
+    visiable: false,
+  },
 };
 
 
@@ -77,7 +82,9 @@ const reducer = (state = defaultState, action) => {
 
     case types.updateSuccess:
       return assign({}, state, {
-        visiable: false,
+        modal: assign({}, state.modal, {
+          visiable: false,
+        }),
       });
 
     case types.changeInspectPerson:
@@ -94,6 +101,21 @@ const reducer = (state = defaultState, action) => {
             action.data.data.list[0].taskName
             :
             state.modal.personList.filter(v => v.userId === state.modal.chooseUser).map(t => `${t.fullName}(${t.empNo})`)[0],
+        }),
+      });
+
+    case types.changeErrorModal:
+      return assign({}, state, {
+        errorModal: assign({}, state.errorModal, {
+          [action.key]: action.value,
+        }),
+      });
+
+    case types.openErrorModal:
+      return assign({}, state, {
+        errorModal: assign({}, state.errorModal, {
+          dataSource: action.data.data,
+          visiable: true,
         }),
       });
 

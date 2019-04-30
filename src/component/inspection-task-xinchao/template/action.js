@@ -22,3 +22,6 @@ export const changePageSizeSuccess = makeActionCreator(types.changePageSizeSucce
 
 export const changeInspectPerson = makeActionCreator(types.changeInspectPerson, 'props', 'v');
 export const changeInspectPersonSuccess = makeActionCreator(types.changeInspectPersonSuccess, 'data');
+
+export const openErrorModal = makeActionCreator(types.openErrorModal, 'data');
+

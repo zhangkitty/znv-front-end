@@ -18,3 +18,5 @@ export let changePageSizeSuccess;
 export let changeInspectPerson;
 export let changeInspectPersonSuccess;
 
+
+export let openErrorModal;
