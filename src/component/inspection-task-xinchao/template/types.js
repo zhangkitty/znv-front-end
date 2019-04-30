@@ -20,3 +20,4 @@ export let changeInspectPersonSuccess;
 
 
 export let openErrorModal;
+export let changeErrorModal;

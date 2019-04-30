@@ -24,4 +24,5 @@ export const changeInspectPerson = makeActionCreator(types.changeInspectPerson, 
 export const changeInspectPersonSuccess = makeActionCreator(types.changeInspectPersonSuccess, 'data');
 
 export const openErrorModal = makeActionCreator(types.openErrorModal, 'data');
+export const changeErrorModal = makeActionCreator(types.changeErrorModal, 'key', 'value');
 
