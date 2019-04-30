@@ -38,6 +38,19 @@ function* queryTaskDetailSaga(action) {
 function* createTaskSaga(action) {
   const data = yield createTaskSer(action);
   if (data.errCode == 0) {
+    message.success('成功');
+  }
+  if (data.errCode != 0) {
+    return message.error(data.msg);
+  }
+  return null;
+}
+
+
+function* updateSaga(action) {
+  const data = yield updateSer(action);
+
+  if (data.errCode == 0) {
     yield put(createTaskSuccess(data));
     if (data.data && data.data.length > 0) {
       return yield put(openErrorModal(data));
@@ -45,18 +58,6 @@ function* createTaskSaga(action) {
     return message.success('编辑成功');
   }
   return message.error(`${data.msg}`);
-}
-
-
-function* updateSaga(action) {
-  const data = yield updateSer(action);
-  if (data.errCode == 0) {
-    message.success('成功');
-  }
-  if (data.errCode != 0) {
-    return message.error(data.msg);
-  }
-  return null;
 }
 
 function* mainSaga() {

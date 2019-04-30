@@ -39,4 +39,6 @@ export const deleteUser = makeActionCreator(types.deleteUser, 'props', 'userId')
 export const chgUserStatus = makeActionCreator(types.chgUserStatus, 'props', 'userId', 'status');
 export const resetPwd = makeActionCreator(types.resetPwd, 'props', 'phone');
 
+export const getCityTree = makeActionCreator(types.getCityTree, 'props');
+export const getCityTreeSuccess = makeActionCreator(types.getCityTreeSuccess, 'data');
 

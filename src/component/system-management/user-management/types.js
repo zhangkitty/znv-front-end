@@ -33,4 +33,6 @@ export let closeEditUser;
 export let chgUserStatus;
 export let resetPwd;
 
+export let getCityTree;
+export let getCityTreeSuccess;
 

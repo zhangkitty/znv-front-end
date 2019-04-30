@@ -10,6 +10,7 @@ export const defaultState = {
   orgTree: [],
   editOrgTreeData: [],
   roleTreeData: [],
+  cityTreeData: [],
   user: {
     userId: '',
     userName: '',
@@ -171,6 +172,11 @@ const reducer = (state = defaultState, action) => {
         },
         checkedRoleIds: [],
         phone: '',
+      });
+
+    case types.getCityTreeSuccess:
+      return assign({}, state, {
+        cityTreeData: action.data.data,
       });
     default:
       return state;

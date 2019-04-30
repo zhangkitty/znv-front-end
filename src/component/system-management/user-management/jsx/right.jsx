@@ -14,6 +14,7 @@ import {
   changePage,
   changePageSize,
   getUsers,
+  getCityTree,
 } from '../action';
 
 export default class RightUserList extends React.Component {
@@ -28,9 +29,9 @@ export default class RightUserList extends React.Component {
 
   render() {
     const {
-        dataSource, dispatch, total, page, pageSize,
-        topOrgId, orgId, userId, phone, queryUserFormData,
-      } = this.props;
+      dataSource, dispatch, total, page, pageSize,
+      topOrgId, orgId, userId, phone, queryUserFormData,
+    } = this.props;
 
     const uploadProps = {
       name: 'template',
@@ -45,7 +46,7 @@ export default class RightUserList extends React.Component {
             message.success(content);
             if (info.file.response.data.failed > 0) {
               const size = `${info.file.response.data.failedList.length}`;
-              for (var i=0; i< size; i++) {
+              for (let i = 0; i < size; i++) {
                 content = `${content}<br>第${info.file.response.data.failedList[i].index}条失败，
                            原因：${info.file.response.data.failedList[i].reason}`;
               }
@@ -105,6 +106,7 @@ export default class RightUserList extends React.Component {
                 const { userId } = record;
                 dispatch(changeValue('user', dispatch(getUserDetail(this.props, userId))));
                 dispatch(openEditUser(this.props));
+                dispatch(getCityTree(this.props));
               }}
               >编辑
               </a>
@@ -150,6 +152,7 @@ export default class RightUserList extends React.Component {
               dispatch(changeValue('userId', ''));
               dispatch(clearUserDetail());
               dispatch(openEditUser(this.props));
+              dispatch(getCityTree(this.props));
             }}
           >添加
           </Button>
@@ -171,8 +174,7 @@ export default class RightUserList extends React.Component {
         <div className={styles.flexBox} style={{ paddingTop: 0 }}>
           <div className={styles.all}>
             <span className={styles.one}>姓名</span>
-            <Input data-bind="queryUserFormData.fullName" className={styles.two}>
-            </Input>
+            <Input data-bind="queryUserFormData.fullName" className={styles.two} />
           </div>
           <div className={styles.all}>
             <span className={styles.one}>手机号码</span>
@@ -196,10 +198,10 @@ export default class RightUserList extends React.Component {
                 let tmpTopOrgId = '';
                 if (this.props.clickedId === '') {
                   return message.warn('请先选择左侧部门!');
-                } else {
+                }
                   tmpOrgId = this.props.clickedId.split('.')[0];
                   tmpTopOrgId = this.props.clickedId.split('.')[1];
-                }
+
                 dispatch(getUsers(this.props, tmpOrgId, tmpTopOrgId));
               }}
             >查询

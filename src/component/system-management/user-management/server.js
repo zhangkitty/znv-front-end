@@ -124,3 +124,7 @@ export const getRoleTreeSer = topOrgId => request({
   url: `/srm/role/query/tree?topOrgId=${topOrgId}`,
   method: 'get',
 });
+
+export const getCityTreeSer = props => request({
+  url: '/srm/area/query/tree',
+});

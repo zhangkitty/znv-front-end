@@ -1,10 +1,10 @@
 import { message } from 'antd';
 import { put, takeLatest } from 'redux-saga/effects';
 import { getOrgTreeSuccess, closeEditOrg, openEditOrgSuccess, getUsersSuccess, getUserDetailSuccess,
-  openEditUserSuccess, closeEditUser, getRoleTreeSuccess } from './action';
+  openEditUserSuccess, closeEditUser, getRoleTreeSuccess, getCityTreeSuccess } from './action';
 import * as types from './types';
 import { getOrgTreeSer, addOrgSer, editOrgSer, deleteOrgSer, getUsersSer, addUserSer, editUserSer,
-  deleteUserSer, chgUserStatusSer, getUserDetailSer, resetPwdSer, getRoleTreeSer } from './server';
+  deleteUserSer, chgUserStatusSer, getUserDetailSer, resetPwdSer, getRoleTreeSer, getCityTreeSer } from './server';
 
 function* getOrgTreeSaga(action) {
   const { props } = action;
@@ -97,7 +97,7 @@ function* changePageSaga(action) {
   const { props, current } = action;
   const orgId = props.clickedId === '' ? props.orgId : props.clickedId.split('.')[0];
   const topOrgId = props.clickedId === '' ? props.topOrgId : props.clickedId.split('.')[1];
-  const data = yield getUsersSer(Object.assign({}, props, { page: current, }), orgId, topOrgId);
+  const data = yield getUsersSer(Object.assign({}, props, { page: current }), orgId, topOrgId);
   if (data.success !== true) {
     return message.error(data.msg);
   }
@@ -110,9 +110,9 @@ function* changePageSizeSaga(action) {
   const orgId = props.clickedId === '' ? props.orgId : props.clickedId.split('.')[0];
   const topOrgId = props.clickedId === '' ? props.topOrgId : props.clickedId.split('.')[1];
   const data = yield getUsersSer(Object.assign({}, props, {
-      pageSize: size,
-      page: current,
-    }), orgId, topOrgId);
+    pageSize: size,
+    page: current,
+  }), orgId, topOrgId);
   if (data.success !== true) {
     return message.error(data.msg);
   }
@@ -191,7 +191,9 @@ function* chgUserStatusSaga(action) {
   const { props, userId, status } = action;
   const orgId = props.clickedId.split('.')[0];
   const topOrgId = props.clickedId.split('.')[1];
-  const data = yield chgUserStatusSer({props, userId, status, topOrgId});
+  const data = yield chgUserStatusSer({
+    props, userId, status, topOrgId,
+  });
   if (data.success !== true) {
     return message.error(data.msg);
   }
@@ -220,9 +222,15 @@ function* resetPwdSaga(action) {
   const data = yield resetPwdSer(props, phone);
   if (data.success === true) {
     return message.success('重置密码成功');
-  } else {
-    return message.error(data.msg);
   }
+  return message.error(data.msg);
+}
+
+
+function* getCityTreeSaga(action) {
+  const { props } = action;
+  const data = yield getCityTreeSer(action);
+  return yield put(getCityTreeSuccess(data));
 }
 
 function* mainSaga() {
@@ -245,6 +253,7 @@ function* mainSaga() {
   yield takeLatest(types.resetPwd, resetPwdSaga);
 
   yield takeLatest(types.getRoleTree, getRoleTreeSaga);
+  yield takeLatest(types.getCityTree, getCityTreeSaga);
 }
 
 export default mainSaga;
