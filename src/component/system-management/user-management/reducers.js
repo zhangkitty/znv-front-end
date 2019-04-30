@@ -161,7 +161,7 @@ const reducer = (state = defaultState, action) => {
       return assign({}, state, {
         user: action.data,
         checkedRoleIds: action.data.roleList.map(v => (`${v.roleId}`)),
-        checkedCityIds: action.data.authority.split(','),
+        checkedCityIds: action.data.authority ? action.data.authority.split(',') : [],
       });
     case types.clearUserDetail:
       return assign({}, state, {
