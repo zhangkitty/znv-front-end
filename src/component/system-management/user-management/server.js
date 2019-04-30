@@ -84,6 +84,7 @@ export const editUserSer = props => request({
     orgId: props.orgId,
     topOrgId: props.topOrgId,
     roleList: props.checkedRoleIds,
+    authority: Array.isArray(props.checkedCityIds) ? props.checkedCityIds.join(',') : '',
   },
 });
 
