@@ -134,6 +134,7 @@ const reducer = (state = defaultState, action) => {
           destroy: true,
         }),
         phone: '',
+        checkedCityIds: [],
       });
     case types.getRoleTreeSuccess:
       return assign({}, state, {
@@ -160,6 +161,7 @@ const reducer = (state = defaultState, action) => {
       return assign({}, state, {
         user: action.data,
         checkedRoleIds: action.data.roleList.map(v => (`${v.roleId}`)),
+        checkedCityIds: action.data.authority.split(','),
       });
     case types.clearUserDetail:
       return assign({}, state, {
