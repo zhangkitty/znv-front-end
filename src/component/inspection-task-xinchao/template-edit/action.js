@@ -17,3 +17,7 @@ export const changeTableValue = makeActionCreator(types.changeTableValue, 'key',
 
 export const create = makeActionCreator(types.create, 'props');
 
+export const changeErrorModal = makeActionCreator(types.changeErrorModal, 'key', 'value');
+
+export const openErrorModal = makeActionCreator(types.openErrorModal,'data');
+

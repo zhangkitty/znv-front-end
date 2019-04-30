@@ -16,6 +16,15 @@ function trans(data) {
 export const initSer = (props) => {
   console.log(props);
 
+  const
+    {
+      person,
+      formData: {
+        projectName, pageNum, pageSize, choosePerson, date, chooseStatus, expiredFlag,
+      },
+    } = props;
+
+
   const data = {
     pageSize: 1000,
     pageNo: 1,
@@ -26,7 +35,6 @@ export const initSer = (props) => {
     request({
       url: '/srm/org/query/tree',
     }),
-
     request({
       url: `/srm/user/query/list${getParam(data)}`,
     }),
@@ -67,7 +75,7 @@ export const searchSer = (action) => {
     staffIdListStr: !choosePerson ? person.map(v => v.userId).toLocaleString() : null,
   };
   return request({
-    url: `/wgs/xc/workorder/list/query${getParam(data)}`,
+    url: '/wgs/xc/workorder/list/query',
     method: 'post',
     data,
   });
@@ -79,7 +87,7 @@ export const changePageSer = (action) => {
     props: {
       person,
       formData: {
-        projectName, pageNum, pageSize, choosePerson, date,
+        projectName, pageNum, pageSize, choosePerson, date, chooseStatus,
       },
     },
   } = action;
@@ -109,7 +117,7 @@ export const changePageSizeSer = (action) => {
     props: {
       person,
       formData: {
-        projectName, pageNum, pageSize, choosePerson, date,
+        projectName, pageNum, pageSize, choosePerson, date, chooseStatus,
       },
     },
   } = action;

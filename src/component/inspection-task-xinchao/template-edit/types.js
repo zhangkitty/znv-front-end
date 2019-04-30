@@ -13,3 +13,8 @@ export let changePageSizeSuccess;
 export let changeTableValue;
 
 export let create;
+
+
+export let changeErrorModal;
+
+export let openErrorModal;

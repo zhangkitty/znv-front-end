@@ -1,6 +1,6 @@
 import { Modal, message } from 'antd';
 import { take, put, takeLatest } from 'redux-saga/effects';
-import { searchSuccess, changePageSuccess, changePageSizeSuccess } from './action';
+import { searchSuccess, changePageSuccess, changePageSizeSuccess, openErrorModal } from './action';
 import * as types from './types';
 import { changePageSer, changePageSizeSer, searchSer, createSer } from './server';
 
@@ -27,6 +27,7 @@ function* createSaga(action) {
   const data = yield createSer(action);
   if (data.errCode == 0) {
     if (data.data && data.data.length > 0) {
+      return put(openErrorModal(data));
       const option = {};
       option.fileName = 'excel';
       option.datas = [

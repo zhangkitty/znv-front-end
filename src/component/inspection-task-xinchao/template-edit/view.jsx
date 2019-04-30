@@ -3,6 +3,7 @@ import { Spin } from 'antd';
 import { connect } from 'react-redux';
 import { init, search } from './action';
 import List from './jsx/list';
+import ModalError from './jsx/modal-error';
 
 class Container extends React.Component {
   componentWillMount() {
@@ -15,6 +16,7 @@ class Container extends React.Component {
     return (
       <div>
         <List {...this.props} />
+        <ModalError {...this.props} />
       </div>
     );
   }
