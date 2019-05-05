@@ -70,7 +70,7 @@ module.exports = Object.assign({},config, {
       '/rqs': {
         // target: 'http://47.107.237.125:8012',
         //测试站
-        target: 'http://10.45.148.173:9018',
+        target: 'http://10.45.156.186:9008',
         //朱文钧电脑
         // target: 'http://10.45.148.82:9001',
         //本地

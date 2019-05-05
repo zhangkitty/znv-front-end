@@ -65,7 +65,7 @@ export const searchSer = (action) => {
   const data = {
     pageNum,
     pageSize,
-    // taskIdStr: chooseTitle,
+    taskIdStr: chooseTitle,
     taskType: 13,
     statusCodes: trans(chooseState),
     beginTime: date[0] && `${moment(date[0]).format('YYYY-MM-DD')} 00:00:00`,
@@ -97,7 +97,7 @@ export const changePageSer = (action) => {
   const data = {
     pageNum: current,
     pageSize,
-    // taskIdStr: chooseTitle,
+    taskIdStr: chooseTitle,
     taskType: 13,
     statusCodes: trans(chooseState),
     beginTime: date[0] && `${moment(date[0]).format('YYYY-MM-DD')} 00:00:00`,
@@ -130,7 +130,7 @@ export const changePageSizeSer = (action) => {
   const data = {
     pageNum: current,
     pageSize: size,
-    // taskIdStr: chooseTitle,
+    taskIdStr: chooseTitle,
     taskType: 13,
     statusCodes: trans(chooseState),
     beginTime: date[0] && `${moment(date[0]).format('YYYY-MM-DD')} 00:00:00`,
