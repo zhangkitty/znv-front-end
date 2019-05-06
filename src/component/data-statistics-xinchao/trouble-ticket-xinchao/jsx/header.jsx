@@ -1,13 +1,13 @@
 import React from 'react';
 import { Select, Button } from 'antd';
-import { search, exportExcel, choose } from '../action';
+import { search, choose, exportExcel } from '../action';
 
 const Option = Select.Option;
 
 
 const header = (props) => {
   const {
-    selectData, formData, dispatch, monthOrWeek, monthOrWeekValue,
+    selectData, formData, dispatch, monthOrWeek, monthOrWeekValue, dataSource,
   } = props;
   return (
     <div>

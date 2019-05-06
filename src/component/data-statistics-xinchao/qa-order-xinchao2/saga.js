@@ -5,6 +5,8 @@ import { initSuccess, searchSuccess } from './action';
 import * as types from './types';
 import { initSer, searchSer } from './server';
 
+const ExportJsonExcel = require('js-export-excel');
+
 
 function* initSaga(action) {
   const { props } = action;
@@ -12,17 +14,45 @@ function* initSaga(action) {
   return yield put(initSuccess(data));
 }
 
-function* exportExcelSaga(action) {
-  const { props } = action;
-  const { formData, selectData } = props;
-  const data = {
-    taskId: props.params.taskId,
-    taskName: (selectData.filter(v => v.taskId === formData.selectValue)[0]).taskName,
-    regionCode: props.params.regionCode,
-    companyCode: props.params.companyCode,
+function exportExcelSaga(action) {
+  const { props: { dataSource } } = action;
+  const columns = [
+    {
+      title: '产品中心',
+      dataIndex: 'colName',
+    },
+    {
+      title: '计划完成',
+      dataIndex: 'totalNum',
+    },
+    {
+      title: '实际完成',
+      dataIndex: 'finishNum',
+    },
+    {
+      title: '完成率',
+      dataIndex: 'finishRate',
+    },
+    {
+      title: '人均工作量',
+      dataIndex: 'staffAvgNum',
+    },
+  ];
+  const exportExcel = () => {
+    const option = {};
+    option.fileName = 'excel';
+    option.datas = [
+      {
+        sheetData: dataSource,
+        sheetName: 'sheet',
+        sheetFilter: columns.map(v => v.dataIndex),
+        sheetHeader: columns.map(v => v.title),
+      },
+    ];
+    const toExcel = new ExportJsonExcel(option);
+    toExcel.saveExcel();
   };
-  console.log(`${process.env.BASE_URI}/rqs/xc/inspectrate/download${getParam(data)}`, '[]');
-  window.location.href = `${process.env.BASE_URI}/rqs/xc/inspectrate/download${getParam(data)}`;
+  exportExcel(dataSource);
   return null;
 }
 
