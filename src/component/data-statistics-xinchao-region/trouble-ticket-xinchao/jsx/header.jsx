@@ -25,7 +25,6 @@ const header = (props) => {
           }
         </Select>
         <Select
-          style={{ width: 200 }}
           data-bind="formData.selectValue"
         >
           {

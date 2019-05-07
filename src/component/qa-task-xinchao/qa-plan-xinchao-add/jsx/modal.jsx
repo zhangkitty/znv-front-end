@@ -1,5 +1,6 @@
 import React from 'react';
 import assign from 'object-assign';
+import moment from 'moment';
 import { Modal, Select, Input, DatePicker, message } from 'antd';
 import { closeModal, queryTaskDetail, createTask } from '../action';
 
@@ -46,6 +47,7 @@ const tmp = (props) => {
         <RangePicker
           style={{ width: 300, lineHeight: 32 }}
           data-bind="modal.date"
+          disabledDate={current => current && current < moment().subtract(1, 'days').endOf('day')}
         />
       </div>
     </Modal>
