@@ -40,7 +40,7 @@ function exportExcelSaga(action) {
   ];
   const exportExcel = () => {
     const option = {};
-    option.fileName = (selectData.filter(v => v.taskId === selectValue)[0]).taskName;
+    option.fileName = `质检工单报表${(selectData.filter(v => v.taskId === selectValue)[0]).taskName}`;
     option.datas = [
       {
         sheetData: dataSource,
