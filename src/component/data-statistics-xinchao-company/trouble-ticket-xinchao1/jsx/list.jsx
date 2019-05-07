@@ -5,16 +5,15 @@ import { Link } from 'react-router-dom';
 
 const list = (props) => {
   const {
-    dataSource, loading, formData: { selectValue }, monthOrWeekValue,
+    params: { taskId, regionCode, colType }, dataSource, loading, formData: { selectValue },
   } = props;
-  console.log(dataSource);
+
 
   const columns = [
     {
       title: '产品中心',
       dataIndex: 'groupName',
       key: 'groupName',
-      render: (text, record, index) => <Link to={`/data-statistics-xinchao-company/trouble-ticket-xinchao1/${monthOrWeekValue}/${selectValue}/${record.groupCode}`}>{text}</Link>,
     },
     {
       title: '新增故障工单数',
@@ -47,6 +46,7 @@ const list = (props) => {
       key: 'faultRate',
     },
   ];
+
 
   return (
     <div>

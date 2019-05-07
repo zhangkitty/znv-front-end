@@ -12,6 +12,7 @@ const list = (props) => {
       title: '产品中心',
       dataIndex: 'colName',
       key: 'colName',
+      render: (text, record, index) => <Link to={`/data-statistics-xinchao-company/inspection-order-xinchao1/${selectValue}/${record.colCode}`}>{text}</Link>,
     },
     {
       title: '计划完成',

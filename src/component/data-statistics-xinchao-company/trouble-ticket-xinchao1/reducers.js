@@ -6,6 +6,15 @@ export const defaultState = {
   loading: false,
   selectData: [],
   dataSource: [],
+  monthOrWeek: [
+    {
+      id: '1', name: '周',
+    },
+    {
+      id: '2', name: '月',
+    },
+  ],
+
   formData: {
     selectValue: '',
   },
@@ -17,32 +26,16 @@ const reducer = (state = defaultState, action) => {
     case types.init:
       return assign({}, state, {
         ready: false,
+        formData: assign({}, state.formData, {
+          selectValue: action.props.params.taskId,
+        }),
       });
 
     case types.initSuccess:
       return assign({}, state, {
         ready: true,
-        selectData: action.data.data.list,
-        formData: assign({}, state.formData, {
-          selectValue: action.props.params.taskId || action.data.data.list[0].taskId,
-        }),
-      });
-
-    case types.initError:
-      return assign({}, state, {
-        ready: true,
-      });
-
-    case types.search:
-      return assign({}, state, {
-        loading: true,
-
-      });
-
-    case types.searchSuccess:
-      return assign({}, state, {
-        loading: false,
-        dataSource: action.data.data.list,
+        selectData: (action.data)[0].data.list,
+        dataSource: (action.data)[1].data.list,
       });
 
 

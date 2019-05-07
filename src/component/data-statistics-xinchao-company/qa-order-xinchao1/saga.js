@@ -1,8 +1,9 @@
 import { Modal, message } from 'antd';
 import { take, put, fork, takeLatest } from 'redux-saga/effects';
-import { initSuccess, searchSuccess, chooseSuccess } from './action';
+import { initSuccess, searchSuccess } from './action';
 import * as types from './types';
-import { initSer, searchSer, choooseSer } from './server';
+import { initSer, searchSer } from './server';
+import getParam from 'utils/getParam';
 
 const ExportJsonExcel = require('js-export-excel');
 
@@ -10,51 +11,32 @@ const ExportJsonExcel = require('js-export-excel');
 function* initSaga(action) {
   const { props } = action;
   const data = yield initSer(props);
-  return yield put(initSuccess(data, props));
+  return yield put(initSuccess(data));
 }
 
-function* searchSaga(action) {
-  const { props } = action;
-  const data = yield searchSer(props);
-  return yield put(searchSuccess(data));
-}
-
-
-function* chooseSaga(action) {
-  const data = yield choooseSer(action);
-  return yield put(chooseSuccess(data));
-}
 
 function exportExcelSaga(action) {
   const { props: { dataSource, selectData, formData: { selectValue } } } = action;
   const columns = [
     {
       title: '产品中心',
-      dataIndex: 'groupName',
+      dataIndex: 'colName',
     },
     {
-      title: '新增故障工单数',
+      title: '计划完成',
       dataIndex: 'totalNum',
     },
     {
-      title: '未关闭工单数',
-      dataIndex: 'notClosedNum',
+      title: '实际完成',
+      dataIndex: 'finishNum',
     },
     {
-      title: '关闭工单数',
-      dataIndex: 'closedNum',
+      title: '完成率',
+      dataIndex: 'finishRate',
     },
     {
-      title: '超时工单数',
-      dataIndex: 'expiredNum',
-    },
-    {
-      title: '平均处理时长',
-      dataIndex: 'avgExecuteTime',
-    },
-    {
-      title: '故障率',
-      dataIndex: 'faultRate',
+      title: '人均工作量',
+      dataIndex: 'staffAvgNum',
     },
   ];
   const exportExcel = () => {
@@ -78,8 +60,6 @@ function exportExcelSaga(action) {
 
 function* mainSaga() {
   yield takeLatest(types.init, initSaga);
-  yield takeLatest(types.search, searchSaga);
-  yield takeLatest(types.choose, chooseSaga);
   yield takeLatest(types.exportExcel, exportExcelSaga);
 }
 

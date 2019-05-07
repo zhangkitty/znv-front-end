@@ -4,15 +4,16 @@ import { Button } from 'shineout';
 import { Link } from 'react-router-dom';
 
 const list = (props) => {
-  const { dataSource, loading, formData: { selectValue } } = props;
-  console.log(dataSource);
+  const {
+    params: { taskId, regionCode }, dataSource, loading, formData: { selectValue },
+  } = props;
+
 
   const columns = [
     {
       title: '产品中心',
       dataIndex: 'colName',
       key: 'colName',
-      render: (text, record, index) => <Link to={`/data-statistics-xinchao-company/qa-order-xinchao1/${selectValue}/${record.colCode}`}>{text}</Link>,
     },
     {
       title: '计划完成',

@@ -40,12 +40,3 @@ export const searchSer = (props) => {
   });
 };
 
-export const exportExcelSer = (props) => {
-  const { formData, selectData } = props;
-  const data = {
-    taskId: formData.selectValue,
-    taskName: (selectData.filter(v => v.taskId === formData.selectValue)[0]).taskName,
-  };
-  window.location.href = `${process.env.BASE_URI}/rqs/xc/patrolrate/download${getParam(data)}}`;
-};
-

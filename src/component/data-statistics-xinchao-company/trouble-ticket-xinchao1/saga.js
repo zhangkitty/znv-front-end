@@ -1,28 +1,16 @@
 import { Modal, message } from 'antd';
 import { take, put, fork, takeLatest } from 'redux-saga/effects';
-import { initSuccess, searchSuccess, chooseSuccess } from './action';
+import { initSuccess, searchSuccess } from './action';
 import * as types from './types';
-import { initSer, searchSer, choooseSer } from './server';
+import { initSer, searchSer } from './server';
+import getParam from 'utils/getParam';
 
 const ExportJsonExcel = require('js-export-excel');
-
 
 function* initSaga(action) {
   const { props } = action;
   const data = yield initSer(props);
-  return yield put(initSuccess(data, props));
-}
-
-function* searchSaga(action) {
-  const { props } = action;
-  const data = yield searchSer(props);
-  return yield put(searchSuccess(data));
-}
-
-
-function* chooseSaga(action) {
-  const data = yield choooseSer(action);
-  return yield put(chooseSuccess(data));
+  return yield put(initSuccess(data));
 }
 
 function exportExcelSaga(action) {
@@ -78,8 +66,6 @@ function exportExcelSaga(action) {
 
 function* mainSaga() {
   yield takeLatest(types.init, initSaga);
-  yield takeLatest(types.search, searchSaga);
-  yield takeLatest(types.choose, chooseSaga);
   yield takeLatest(types.exportExcel, exportExcelSaga);
 }
 
