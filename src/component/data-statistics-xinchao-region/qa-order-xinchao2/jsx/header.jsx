@@ -32,7 +32,7 @@ const header = (props) => {
         </Button>
       </div>
       <hr style={{ marginRight: 10 }} />
-      <Link to={`/data-statistics-xinchao/qa-order-xinchao1/${taskId}/${regionCode}`}>
+      <Link to={`/data-statistics-xinchao-region/qa-order-xinchao1/${taskId}/${regionCode}`}>
         返回上一级
       </Link>
 

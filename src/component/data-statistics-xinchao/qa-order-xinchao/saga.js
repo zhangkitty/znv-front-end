@@ -1,6 +1,6 @@
 import { Modal, message } from 'antd';
 import { take, put, fork, takeLatest } from 'redux-saga/effects';
-import { initSuccess, searchSuccess } from './action';
+import { initSuccess, searchSuccess, initError } from './action';
 import * as types from './types';
 import { initSer, searchSer, exportExcelSer } from './server';
 
@@ -9,6 +9,10 @@ const ExportJsonExcel = require('js-export-excel');
 function* initSaga(action) {
   const { props } = action;
   const data = yield initSer(props);
+  if (data.data.list.length == 0) {
+    message.error('没有数据');
+    return put(initError());
+  }
   return yield put(initSuccess(data, props));
 }
 
@@ -19,7 +23,7 @@ function* searchSaga(action) {
 }
 
 function exportExcelSaga(action) {
-  const { props: { dataSource } } = action;
+  const { props: { dataSource, selectData, formData: { selectValue } } } = action;
   const columns = [
     {
       title: '产品中心',
@@ -44,7 +48,7 @@ function exportExcelSaga(action) {
   ];
   const exportExcel = () => {
     const option = {};
-    option.fileName = 'excel';
+    option.fileName = (selectData.filter(v => v.taskId === selectValue)[0]).taskName;
     option.datas = [
       {
         sheetData: dataSource,

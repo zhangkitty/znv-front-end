@@ -43,7 +43,7 @@ const header = (props) => {
         </Button>
       </div>
       <hr style={{ marginRight: 10 }} />
-      <Link to={`/data-statistics-xinchao/trouble-ticket-xinchao1/${taskId}/${regionCode}`}>
+      <Link to={`/data-statistics-xinchao-region/trouble-ticket-xinchao1/${colType}/${taskId}/${regionCode}`}>
         返回上一级
       </Link>
 

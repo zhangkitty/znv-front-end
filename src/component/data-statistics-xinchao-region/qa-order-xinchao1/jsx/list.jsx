@@ -16,8 +16,8 @@ const list = (props) => {
       key: 'colName',
       render: (text, record, index) => {
         console.log(text, record, index);
-        if (index !== 0 && index !== 1) {
-          return <Link to={`/data-statistics-xinchao/qa-order-xinchao2/${taskId}/${regionCode}/${record.colCode}`}>{text}</Link>;
+        if (index !== 0) {
+          return <Link to={`/data-statistics-xinchao-region/qa-order-xinchao2/${taskId}/${regionCode}/${record.colCode}`}>{text}</Link>;
         } return text;
       },
     },

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Select, Button } from 'antd';
-import { search,exportExcel } from '../action';
+import { search, exportExcel } from '../action';
 
 const Option = Select.Option;
 
@@ -25,7 +25,7 @@ const header = (props) => {
         >查询
         </Button>
         <Button
-          onClick={()=>dispatch(exportExcel(props))}
+          onClick={() => dispatch(exportExcel(props))}
         >
           导出
         </Button>

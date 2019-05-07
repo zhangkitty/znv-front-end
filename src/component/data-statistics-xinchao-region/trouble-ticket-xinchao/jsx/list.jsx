@@ -14,12 +14,7 @@ const list = (props) => {
       title: '产品中心',
       dataIndex: 'groupName',
       key: 'groupName',
-      render: (text, record, index) => {
-        console.log(text, record, index);
-        if (index !== 0) {
-          return <Link to={`/data-statistics-xinchao/trouble-ticket-xinchao1/${monthOrWeekValue}/${selectValue}/${record.groupCode}`}>{text}</Link>;
-        } return text;
-      },
+      render: (text, record, index) => <Link to={`/data-statistics-xinchao-region/trouble-ticket-xinchao1/${monthOrWeekValue}/${selectValue}/${record.groupCode}`}>{text}</Link>,
     },
     {
       title: '新增故障工单数',

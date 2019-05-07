@@ -12,12 +12,7 @@ const list = (props) => {
       title: '产品中心',
       dataIndex: 'colName',
       key: 'colName',
-      render: (text, record, index) => {
-        console.log(text, record, index);
-        if (index !== 0) {
-          return <Link to={`/data-statistics-xinchao/qa-order-xinchao1/${selectValue}/${record.colCode}`}>{text}</Link>;
-        } return text;
-      },
+      render: (text, record, index) => <Link to={`/data-statistics-xinchao-region/qa-order-xinchao1/${selectValue}/${record.colCode}`}>{text}</Link>,
     },
     {
       title: '计划完成',

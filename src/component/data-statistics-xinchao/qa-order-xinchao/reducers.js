@@ -28,6 +28,11 @@ const reducer = (state = defaultState, action) => {
         }),
       });
 
+    case types.initError:
+      return assign({}, state, {
+        ready: true,
+      });
+
     case types.search:
       return assign({}, state, {
         loading: true,

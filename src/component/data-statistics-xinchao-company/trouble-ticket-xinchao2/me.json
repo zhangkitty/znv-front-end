@@ -1,5 +1,0 @@
-{
-  "description": "",
-  "crumb": [],
-  "route": "/:colType?/:taskId?/:regionCode?/:companyCode?/"
-}

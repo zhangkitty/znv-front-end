@@ -14,7 +14,7 @@ function* initSaga(action) {
 }
 
 function exportExcelSaga(action) {
-  const { props: { dataSource } } = action;
+  const { props: { dataSource, selectData, formData: { selectValue } } } = action;
   const columns = [
     {
       title: '产品中心',
@@ -47,7 +47,7 @@ function exportExcelSaga(action) {
   ];
   const exportExcel = () => {
     const option = {};
-    option.fileName = 'excel';
+    option.fileName = (selectData.filter(v => v.taskId === selectValue)[0]).taskName;
     option.datas = [
       {
         sheetData: dataSource,

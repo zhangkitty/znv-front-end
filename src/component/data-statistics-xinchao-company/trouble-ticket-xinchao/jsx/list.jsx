@@ -1,7 +1,5 @@
 import React from 'react';
 import { Table } from 'antd';
-import { Button } from 'shineout';
-import { Link } from 'react-router-dom';
 
 const list = (props) => {
   const {
@@ -14,12 +12,6 @@ const list = (props) => {
       title: '产品中心',
       dataIndex: 'groupName',
       key: 'groupName',
-      render: (text, record, index) => {
-        console.log(text, record, index);
-        if (index !== 0) {
-          return <Link to={`/data-statistics-xinchao/trouble-ticket-xinchao1/${monthOrWeekValue}/${selectValue}/${record.groupCode}`}>{text}</Link>;
-        } return text;
-      },
     },
     {
       title: '新增故障工单数',

@@ -15,7 +15,7 @@ const list = (props) => {
       render: (text, record, index) => {
         console.log(text, record, index);
         if (1 === 2) {
-          return <Link to={`/data-statistics-xinchao/inspection-order-xinchao1/${selectValue}/${record.colCode}`}>{text}</Link>;
+          return <Link to={`/data-statistics-xinchao-region/inspection-order-xinchao1/${selectValue}/${record.colCode}`}>{text}</Link>;
         } return text;
       },
     },
