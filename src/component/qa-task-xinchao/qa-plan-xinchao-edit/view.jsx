@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import List from './jsx/list';
 import { init } from './action';
+import ErrorModal from './jsx/error-modal';
 
 class Container extends React.Component {
   componentWillMount() {
@@ -12,6 +13,7 @@ class Container extends React.Component {
     return (
       <div>
         <List {...this.props} />
+        <ErrorModal {...this.props} />
       </div>
     );
   }
