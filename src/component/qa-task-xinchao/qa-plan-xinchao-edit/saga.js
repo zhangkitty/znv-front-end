@@ -52,7 +52,6 @@ function* updateSaga(action) {
   if (data.errCode == 0) {
     yield put(createTaskSuccess(data));
     if (data.data && data.data.length > 0) {
-      debugger;
       return yield put(openErrorModal(data));
     }
     return message.success('编辑成功');
