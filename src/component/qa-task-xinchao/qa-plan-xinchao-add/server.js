@@ -11,6 +11,7 @@ export const searchSer = (props) => {
     pageSize,
     pageNum,
     itemName: projectName,
+    areaCodeStr: localStorage.getItem('areaCodeStr'),
   };
   return request({
     url: `/ods/api/inspect/item/query${getParam(data)}`,
@@ -24,6 +25,7 @@ export const changePageSer = (action) => {
     pageSize,
     pageNum: current,
     itemName: projectName,
+    areaCodeStr: localStorage.getItem('areaCodeStr'),
   };
   return request({
     url: `/ods/api/inspect/item/query${getParam(data)}`,
@@ -37,6 +39,7 @@ export const changePageSizeSer = (action) => {
     pageSize: size,
     pageNum: current,
     itemName: projectName,
+    areaCodeStr: localStorage.getItem('areaCodeStr'),
   };
   return request({
     url: `/ods/api/inspect/item/query${getParam(data)}`,
