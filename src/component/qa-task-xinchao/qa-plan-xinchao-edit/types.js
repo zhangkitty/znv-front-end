@@ -25,3 +25,7 @@ export let createTaskSuccess;
 export let changeTableValue;
 
 export let update;
+
+
+export let openErrorModal;
+export let changeErrorModal;
