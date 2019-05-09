@@ -27,6 +27,7 @@ const reducer = (state = defaultState, action) => {
     case types.init:
       return assign({}, state, {
         ready: false,
+        monthOrWeekValue: 1,
       });
 
 
