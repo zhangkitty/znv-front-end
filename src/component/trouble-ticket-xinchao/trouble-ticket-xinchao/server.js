@@ -1,7 +1,7 @@
 import { request } from 'utils/index';
 import getParam from 'utils/getParam';
 import moment from 'moment';
-
+import choose from 'utils/choose';
 
 function trans(data) {
   if (!data) {
@@ -13,12 +13,6 @@ function trans(data) {
   return [data];
 }
 
-function choose(a, b, c) {
-  if (a == 11000008) {
-    return b;
-  }
-  return c;
-}
 
 export const initSer = (props) => {
   console.log(props);
