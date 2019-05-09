@@ -13,6 +13,13 @@ function trans(data) {
   return [data];
 }
 
+function choose(a, b, c) {
+  if (a == 11000008) {
+    return b;
+  }
+  return c;
+}
+
 export const initSer = (props) => {
   console.log(props);
 
@@ -57,7 +64,7 @@ export const searchSer = (action) => {
     props: {
       person,
       formData: {
-        projectName, pageNum, pageSize, choosePerson, date, chooseStatus, expiredFlag,
+        projectName, pageNum, pageSize, choosePerson, date, chooseStatus, expiredFlag, chooseDept,
       },
     },
   } = action;
@@ -72,7 +79,7 @@ export const searchSer = (action) => {
     taskType: 15,
     beginTime: date[0] && `${moment(date[0]).format('YYYY-MM-DD')} 00:00:00`,
     endTime: date[1] && `${moment(date[1]).format('YYYY-MM-DD')} 23:59:59`,
-    staffIdListStr: !choosePerson ? person.map(v => v.userId).toLocaleString() : null,
+    staffIdListStr: choose(chooseDept, '', !choosePerson ? person.map(v => v.userId).toLocaleString() : null),
   };
   return request({
     url: '/wgs/xc/workorder/list/query',
