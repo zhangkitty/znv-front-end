@@ -5,7 +5,7 @@ import { queryDeviceDetail, closeModal, create } from '../action';
 const { Option } = Select;
 const { TextArea } = Input;
 const tmp = (props) => {
-  const { formData, dispatch, modal: { visiable, xc_fault_type } } = props;
+  const { formData, dispatch, modal: { visiable, xc_fault_type, deviceId } } = props;
   return (
     <Modal
       title="创建工单"
@@ -17,7 +17,11 @@ const tmp = (props) => {
         <span style={{ flexBasis: '100px' }}>设备编号:</span>
         <Input
           data-bind="modal.deviceId"
-          onBlur={() => dispatch(queryDeviceDetail(props))}
+          onBlur={() => {
+            if (deviceId) {
+              dispatch(queryDeviceDetail(props));
+            }
+          }}
           style={{ width: '200px' }}
         />
       </div>
