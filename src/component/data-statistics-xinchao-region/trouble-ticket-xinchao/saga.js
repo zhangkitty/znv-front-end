@@ -16,6 +16,9 @@ function* initSaga(action) {
 function* searchSaga(action) {
   const { props } = action;
   const data = yield searchSer(props);
+  if (data.errCode !== 0) {
+    return message.error(data.msg);
+  }
   return yield put(searchSuccess(data));
 }
 
@@ -59,7 +62,7 @@ function exportExcelSaga(action) {
   ];
   const exportExcel = () => {
     const option = {};
-    option.fileName = (selectData.filter(v => v.taskId === selectValue)[0]).taskName;
+    option.fileName = `故障工单报表${(selectData.filter(v => v.taskId === selectValue)[0]).taskName}`;
     option.datas = [
       {
         sheetData: dataSource,

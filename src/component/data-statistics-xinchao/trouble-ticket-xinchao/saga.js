@@ -16,6 +16,9 @@ function* initSaga(action) {
 function* searchSaga(action) {
   const { props } = action;
   const data = yield searchSer(props);
+  if (data.errCode !== 0) {
+    return message.error(data.msg);
+  }
   return yield put(searchSuccess(data));
 }
 

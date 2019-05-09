@@ -55,7 +55,7 @@ const reducer = (state = defaultState, action) => {
 
     case types.search:
       return assign({}, state, {
-        loading: true,
+        loading: false,
 
       });
 
