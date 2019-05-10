@@ -31,46 +31,78 @@ class Container extends React.Component {
         title: '时间',
         dataIndex: 'transTime',
         key: 'transTime',
+        width: 200,
       }, {
         title: '操作用户',
         dataIndex: 'staffName',
         key: 'staffName',
+        width: 200,
       }, {
         title: '操作内容',
         dataIndex: 'busiNodeDesc',
         key: 'busiNodeDesc',
+        width: 200,
       }];
 
       return (
         <div>
           <h1>工单信息</h1>
-          <div style={{ display: 'flex' }}>
-            <span style={{ flexBasis: 100, textAlign: 'right', marginRight: 10 }}>设备编码:</span>
-            <span>{deviceId}</span>
+          <div style={{ display: 'flex', marginBottom: 5 }}>
+            <span
+              style={{
+ flexBasis: 100, textAlign: 'left', marginRight: 20, marginLeft: 20,
+}}
+            >设备编码:
+            </span>
+            <span style={{ fontWeight: 'bold' }}>{deviceId}</span>
           </div>
-          <div style={{ display: 'flex' }}>
-            <span style={{ flexBasis: 100, textAlign: 'right', marginRight: 10 }}>项目名称:</span>
-            <span>{itemName}</span>
+          <div style={{ display: 'flex', marginBottom: 5 }}>
+            <span style={{
+ flexBasis: 100, textAlign: 'left', marginRight: 20, marginLeft: 20,
+}}
+            >项目名称:
+            </span>
+            <span style={{ fontWeight: 'bold' }}>{itemName}</span>
           </div>
-          <div style={{ display: 'flex' }}>
-            <span style={{ flexBasis: 100, textAlign: 'right', marginRight: 10 }}>物业类型:</span>
-            <span>{propertyName}</span>
+          <div style={{ display: 'flex', marginBottom: 5 }}>
+            <span style={{
+ flexBasis: 100, textAlign: 'left', marginRight: 20, marginLeft: 20,
+}}
+            >物业类型:
+            </span>
+            <span style={{ fontWeight: 'bold' }}>{propertyName}</span>
           </div>
-          <div style={{ display: 'flex' }}>
-            <span style={{ flexBasis: 100, textAlign: 'right', marginRight: 10 }}>省市区:</span>
-            <span>{`${city}${area}`}</span>
+          <div style={{ display: 'flex', marginBottom: 5 }}>
+            <span style={{
+ flexBasis: 100, textAlign: 'left', marginRight: 20, marginLeft: 20,
+}}
+            >省市区:
+            </span>
+            <span style={{ fontWeight: 'bold' }}>{`${city}${area}`}</span>
           </div>
-          <div style={{ display: 'flex' }}>
-            <span style={{ flexBasis: 100, textAlign: 'right', marginRight: 10 }}>详细地址:</span>
-            <span>{address}</span>
+          <div style={{ display: 'flex', marginBottom: 5 }}>
+            <span style={{
+ flexBasis: 100, textAlign: 'left', marginRight: 20, marginLeft: 20,
+}}
+            >详细地址:
+            </span>
+            <span style={{ fontWeight: 'bold' }}>{address}</span>
           </div>
-          <div style={{ display: 'flex' }}>
-            <span style={{ flexBasis: 100, textAlign: 'right', marginRight: 10 }}>故障类型:</span>
-            <span>{faultDesc}</span>
+          <div style={{ display: 'flex', marginBottom: 5 }}>
+            <span style={{
+ flexBasis: 100, textAlign: 'left', marginRight: 20, marginLeft: 20,
+}}
+            >故障类型:
+            </span>
+            <span style={{ fontWeight: 'bold' }}>{faultDesc}</span>
           </div>
-          <div style={{ display: 'flex' }}>
-            <span style={{ flexBasis: 100, textAlign: 'right', marginRight: 10 }}>处理结果:</span>
-            <span>{resultDesc}</span>
+          <div style={{ display: 'flex', marginBottom: 5 }}>
+            <span style={{
+ flexBasis: 100, textAlign: 'left', marginRight: 20, marginLeft: 20,
+}}
+            >处理结果:
+            </span>
+            <span style={{ fontWeight: 'bold' }}>{resultDesc}</span>
           </div>
           <hr />
           <h1>操作日志</h1>
