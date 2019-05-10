@@ -90,8 +90,11 @@ class EditUserForm extends React.Component {
           }
           this.props.dispatch(addUser(this.props));
         } else {
-          this.props.dispatch(changeValue('orgId', this.props.clickedId.split('.')[0]));
-          this.props.dispatch(changeValue('topOrgId', this.props.clickedId.split('.')[1]));
+          if (this.props.orgId === undefined || this.props.orgId === '') {
+            this.props.dispatch(changeValue('orgId', this.props.user.orgId));
+            this.props.dispatch(changeValue('topOrgId', this.props.clickedId.split('.')[1]));
+          }
+
           this.props.dispatch(editUser(this.props));
         }
       }
