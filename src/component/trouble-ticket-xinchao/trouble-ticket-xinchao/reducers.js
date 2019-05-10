@@ -115,12 +115,14 @@ const reducer = (state = defaultState, action) => {
         }),
       });
 
+      // `${v.city}${v.area}`,
+
     case types.queryDeviceDetailSuccess:
       return assign({}, state, {
         modal: assign({}, state.modal, {
           projectName: action.data.data.itemName,
           tenementType: action.data.data.propertyType,
-          region: action.data.data.region,
+          region: `${action.data.data.region}${action.data.data.city}${action.data.data.area}`,
           address: action.data.data.address,
         }),
       });
