@@ -64,6 +64,9 @@ const reducer = (state = defaultState, action) => {
         dept: trans(action.data[0].data),
         person: action.data[1].data.list,
         title: action.data[2].data,
+        formData: assign({}, state.formData, {
+          chooseTitle: (action.data[2].data).length > 0 ? (action.data[2].data)[0].taskIdList.toLocaleString() : null,
+        }),
       });
 
 
