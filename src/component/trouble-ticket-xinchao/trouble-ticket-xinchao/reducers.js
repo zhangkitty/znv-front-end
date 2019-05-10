@@ -122,7 +122,7 @@ const reducer = (state = defaultState, action) => {
         modal: assign({}, state.modal, {
           projectName: action.data.data.itemName,
           tenementType: action.data.data.propertyType,
-          region: `${action.data.data.region}${action.data.data.city}${action.data.data.area}`,
+          region: `${action.data.data.city}${action.data.data.area}`,
           address: action.data.data.address,
         }),
       });
