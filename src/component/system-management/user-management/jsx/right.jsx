@@ -103,6 +103,7 @@ export default class RightUserList extends React.Component {
               <a onClick={() => {
                 dispatch(changeValue('title', '编辑用户'));
                 dispatch(changeValue('userId', record.userId));
+                dispatch(changeValue('topOrgId', this.props.clickedId.split('.')[1]));
                 const { userId } = record;
                 dispatch(changeValue('user', dispatch(getUserDetail(this.props, userId))));
                 dispatch(openEditUser(this.props));

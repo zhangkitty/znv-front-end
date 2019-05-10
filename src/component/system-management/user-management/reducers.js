@@ -160,6 +160,7 @@ const reducer = (state = defaultState, action) => {
     case types.getUserDetailSuccess:
       return assign({}, state, {
         user: action.data,
+        orgId: action.data.orgId,
         checkedRoleIds: action.data.roleList.map(v => (`${v.roleId}`)),
         checkedCityIds: action.data.authority ? action.data.authority.split(',') : [],
       });
