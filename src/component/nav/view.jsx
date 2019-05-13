@@ -112,10 +112,7 @@ class MainPage extends React.PureComponent {
       .sort((item1, item2) => item1.link.length > item2.link.length);
 
 
-    document.title = [...routerMatchList].reverse()[0]
-      ?
-      [...routerMatchList].reverse()[0].title : '';
-
+    document.title = '智能运维平台';
 
     const crumbList = pathList.map((v, i) => (
       <span key={i} style={{ fontSize: '13px' }}>
