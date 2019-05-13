@@ -4,6 +4,8 @@ import * as types from './types';
 
 export const changeValue = makeActionCreator(types.changeValue, 'key', 'value');
 
+export const changeUserValue = makeActionCreator(types.changeUserValue, 'key', 'value');
+
 export const getOrgTree = makeActionCreator(types.getOrgTree, 'props');
 
 export const getOrgTreeSuccess = makeActionCreator(types.getOrgTreeSuccess, 'data');

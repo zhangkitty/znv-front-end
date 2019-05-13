@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal } from 'shineout';
 import { Form, Input, TreeSelect, Row, Col, Button } from 'antd';
 import styles from './style.css';
-import { closeEditUser, addUser, editUser, resetPwd, changeValue, getRoleTree } from '../action';
+import { closeEditUser, addUser, editUser, resetPwd, changeValue, changeUserValue, getRoleTree } from '../action';
 
 class EditUserForm extends React.Component {
   onChange = (value) => {
@@ -24,19 +24,19 @@ class EditUserForm extends React.Component {
   }
 
   changeFullName = (e) => {
-    this.props.dispatch(changeValue('fullName', e.target.value));
+    this.props.dispatch(changeUserValue('fullName', e.target.value));
   }
 
   changePhone = (e) => {
-    this.props.dispatch(changeValue('phone', e.target.value));
+    this.props.dispatch(changeUserValue('phone', e.target.value));
   }
 
   changeUserName = (e) => {
-    this.props.dispatch(changeValue('userName', e.target.value));
+    this.props.dispatch(changeUserValue('userName', e.target.value));
   }
 
   changeEmail = (e) => {
-    this.props.dispatch(changeValue('email', e.target.value));
+    this.props.dispatch(changeUserValue('email', e.target.value));
   }
 
   changeRoleIds = (value) => {
