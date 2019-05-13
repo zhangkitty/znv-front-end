@@ -100,6 +100,10 @@ const reducer = (state = defaultState, action) => {
       return assign({}, state, {
         [action.key]: action.value,
       });
+    case types.changeUserValue:
+      return assign({}, state.user, {
+        [action.key]: action.value,
+      });
     case types.getOrgTreeSuccess:
       return assign({}, state, {
         orgTree: transform(action.data.data),

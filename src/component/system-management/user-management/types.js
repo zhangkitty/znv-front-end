@@ -1,4 +1,5 @@
 export let changeValue;
+export let changeUserValue;
 export let getOrgTree;
 export let getOrgTreeSuccess;
 export let addOrg;
