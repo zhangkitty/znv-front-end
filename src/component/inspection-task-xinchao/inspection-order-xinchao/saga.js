@@ -3,6 +3,8 @@ import { take, put, fork, takeLatest } from 'redux-saga/effects';
 import { initSuccess, changeDeptSuccess, searchSuccess } from './action';
 import * as types from './types';
 import { initSer, changeDeptSer, searchSer, changePageSer, changePageSizeSer } from './server';
+import { searchError } from '../../trouble-ticket-xinchao/trouble-ticket-xinchao/action';
+import { message } from 'antd/lib/index';
 
 
 function* initSaga(action) {
@@ -20,16 +22,25 @@ function* changeDeptSaga(action) {
 
 function* searchSaga(action) {
   const data = yield searchSer(action);
+  if (data.errCode !== 0) {
+    return message.error(`${data.msg}`);
+  }
   return yield put(searchSuccess(data));
 }
 
 function* changePageSaga(action) {
   const data = yield changePageSer(action);
+  if (data.errCode !== 0) {
+    return message.error(`${data.msg}`);
+  }
   return yield put(searchSuccess(data));
 }
 
 function* changePageSizeSaga(action) {
   const data = yield changePageSizeSer(action);
+  if (data.errCode !== 0) {
+    return message.error(`${data.msg}`);
+  }
   return yield put(searchSuccess(data));
 }
 

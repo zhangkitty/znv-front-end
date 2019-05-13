@@ -1,6 +1,6 @@
 import { Modal, message } from 'antd';
 import { take, put, fork, takeLatest } from 'redux-saga/effects';
-import { initSuccess, changeDeptSuccess, searchSuccess, queryDeviceDetailSuccess, createSuccess, openModalSuccess } from './action';
+import { initSuccess, changeDeptSuccess, searchSuccess, queryDeviceDetailSuccess, createSuccess, openModalSuccess, searchError } from './action';
 import * as types from './types';
 import { initSer, changeDeptSer, searchSer, queryDeviceDetailSer, createSer, openModalSer, changePageSer, changePageSizeSer } from './server';
 
@@ -20,7 +20,8 @@ function* changeDeptSaga(action) {
 function* searchSaga(action) {
   const data = yield searchSer(action);
   if (data.errCode !== 0) {
-    return message.error(`${data.msg}`);
+    message.error(`${data.msg}`);
+    return yield put(searchError());
   }
   return yield put(searchSuccess(data));
 }

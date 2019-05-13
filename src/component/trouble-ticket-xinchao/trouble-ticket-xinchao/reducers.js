@@ -115,6 +115,13 @@ const reducer = (state = defaultState, action) => {
         }),
       });
 
+    case types.searchError:
+      return assign({}, state, {
+        table: assign({}, state.table, {
+          loading: false,
+        }),
+      });
+
       // `${v.city}${v.area}`,
 
     case types.queryDeviceDetailSuccess:
