@@ -37,7 +37,7 @@ const List = (props) => {
     },
     {
       title: '省市区',
-      render: v => `${v.region}${v.city}${v.area}`,
+      render: v => `${v.city}${v.area}`,
       align: 'center',
     },
     {
