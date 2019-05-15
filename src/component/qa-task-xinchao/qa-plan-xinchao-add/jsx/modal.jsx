@@ -47,7 +47,7 @@ const tmp = (props) => {
         <RangePicker
           style={{ width: 300, lineHeight: 32 }}
           data-bind="modal.date"
-          disabledDate={current => current && current < moment().subtract(1, 'days').endOf('day')}
+          // disabledDate={current => current && current < moment().subtract(1, 'days').endOf('day')}
         />
       </div>
     </Modal>
