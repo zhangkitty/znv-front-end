@@ -62,8 +62,6 @@ export const searchSer = (action) => {
       },
     },
   } = action;
-  console.log("searchSer");
-  console.log(choosePerson);
   const data = {
     pageNum,
     pageSize,
@@ -96,8 +94,6 @@ export const changePageSer = (action) => {
       },
     },
   } = action;
-  console.log("changePageSer");
-  console.log(choosePerson);
   const data = {
     pageNum: current,
     pageSize,
@@ -131,8 +127,6 @@ export const changePageSizeSer = (action) => {
       },
     },
   } = action;
-  console.log("changePageSizeSer");
-  console.log(choosePerson);
   const data = {
     pageNum: current,
     pageSize: size,
