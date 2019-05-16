@@ -73,7 +73,7 @@ export const searchSer = (action) => {
     loginStaffId: localStorage.getItem('userId'),
     staffId: choosePerson,
     itemName: projectName,
-    staffIdListStr: !choosePerson ? person.map(v => v.userId).toLocaleString() : null,
+    staffIdListStr: !choosePerson ? person.map(v => v.userId).join(',')() : null,
 
 
   };
@@ -105,7 +105,7 @@ export const changePageSer = (action) => {
     loginStaffId: localStorage.getItem('userId'),
     staffId: choosePerson,
     itemName: projectName,
-    staffIdListStr: !choosePerson ? person.map(v => v.userId).toLocaleString() : null,
+    staffIdListStr: !choosePerson ? person.map(v => v.userId).join(',')() : null,
 
 
   };
@@ -138,7 +138,7 @@ export const changePageSizeSer = (action) => {
     loginStaffId: localStorage.getItem('userId'),
     staffId: choosePerson,
     itemName: projectName,
-    staffIdListStr: !choosePerson ? person.map(v => v.userId).toLocaleString() : null,
+    staffIdListStr: !choosePerson ? person.map(v => v.userId).join(',')() : null,
 
 
   };
