@@ -1,9 +1,11 @@
 import React from 'react';
 import { Modal } from 'shineout';
-import { Form, Input, TreeSelect, Row, Col, Button } from 'antd';
+import { Form, Input, TreeSelect, Row, Col, Button, Select } from 'antd';
 import styles from './style.css';
 import { closeEditUser, addUser, editUser, resetPwd, changeValue, changeUserValue, getRoleTree } from '../action';
 
+
+const { Option, OptGroup } = Select;
 class EditUserForm extends React.Component {
   onChange = (value) => {
     if (value === undefined || value === '' || value.split('.').length < 2) {
@@ -232,19 +234,49 @@ class EditUserForm extends React.Component {
             </Col>
           </Row>
 
+          {/* <Row> */}
+          {/* <Col span={24}> */}
+          {/* <Form.Item {...formItemLayout} label="城市"> */}
+          {/* {(<TreeSelect */}
+          {/* style={{ width: 340 }} */}
+          {/* value={this.props.checkedCityIds} */}
+          {/* treeData={this.props.cityTreeData} */}
+          {/* dropdownStyle={{ maxHeight: 400, overflow: 'auto' }} */}
+          {/* placeholder="请选择城市" */}
+          {/* allowClear */}
+          {/* showSearch */}
+          {/* optionFilterProp="children" */}
+          {/* filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0} */}
+          {/* multiple */}
+          {/* onChange={this.changeCityIds} */}
+          {/* />)} */}
+          {/* </Form.Item> */}
+          {/* </Col> */}
+          {/* </Row> */}
+
           <Row>
             <Col span={24}>
               <Form.Item {...formItemLayout} label="城市">
-                {(<TreeSelect
-                  style={{ width: 340 }}
-                  value={this.props.checkedCityIds}
-                  treeData={this.props.cityTreeData}
-                  dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
-                  placeholder="请选择城市"
-                  allowClear
-                  multiple
-                  onChange={this.changeCityIds}
-                />)}
+                {
+                  <Select
+                    style={{ width: 340 }}
+                    showSearch
+                    placeholder="请选择城市"
+                    optionFilterProp="children"
+                    data-bind="checkedCityIds"
+                    mode="multiple"
+                    filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+                  >
+                    {
+                      this.props.cityTreeData.map(v => (
+                        <OptGroup label={v.name}>
+                          {
+                          v.children.map(t => <Option value={t.id}>{t.name}</Option>)
+                        }
+                        </OptGroup>))
+                    }
+                  </Select>
+                }
               </Form.Item>
             </Col>
           </Row>
