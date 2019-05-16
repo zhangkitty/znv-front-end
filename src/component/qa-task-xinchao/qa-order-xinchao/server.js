@@ -50,7 +50,6 @@ export const searchSer = (action) => {
       },
     },
   } = action;
-  debugger;
   const data = {
     pageNum,
     pageSize,
@@ -61,7 +60,7 @@ export const searchSer = (action) => {
     loginStaffId: localStorage.getItem('userId'),
     staffId: choosePerson,
     itemName: projectName,
-    staffIdListStr: !choosePerson ? person.map(v => v.userId).join(',')() : null,
+    staffIdListStr: !choosePerson ? person.map(v => v.userId).join(',') : null,
   };
   return request({
     method: 'post',
@@ -90,7 +89,7 @@ export const changePageSer = (action) => {
     loginStaffId: localStorage.getItem('userId'),
     staffId: choosePerson,
     itemName: projectName,
-    staffIdListStr: !choosePerson ? person.map(v => v.userId).join(',')() : null,
+    staffIdListStr: !choosePerson ? person.map(v => v.userId).join(',') : null,
   };
   return request({
     method: 'post',
@@ -120,7 +119,7 @@ export const changePageSizeSer = (action) => {
     loginStaffId: localStorage.getItem('userId'),
     staffId: choosePerson,
     itemName: projectName,
-    staffIdListStr: !choosePerson ? person.map(v => v.userId).join(',')() : null,
+    staffIdListStr: !choosePerson ? person.map(v => v.userId).join(',') : null,
   };
   return request({
     method: 'post',
