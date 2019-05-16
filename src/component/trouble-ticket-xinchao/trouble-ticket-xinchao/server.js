@@ -88,7 +88,7 @@ export const changePageSer = (action) => {
     props: {
       person,
       formData: {
-        projectName, pageNum, pageSize, choosePerson, date, chooseStatus,
+        projectName, pageNum, pageSize, choosePerson, date, chooseStatus,chooseDept
       },
     },
   } = action;
@@ -118,7 +118,7 @@ export const changePageSizeSer = (action) => {
     props: {
       person,
       formData: {
-        projectName, pageNum, pageSize, choosePerson, date, chooseStatus,
+        projectName, pageNum, pageSize, choosePerson, date, chooseStatus,chooseDept
       },
     },
   } = action;
