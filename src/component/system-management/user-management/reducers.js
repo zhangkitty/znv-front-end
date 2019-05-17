@@ -104,7 +104,7 @@ const reducer = (state = defaultState, action) => {
       return assign({}, state, {
         user: assign({}, state.user, {
           [action.key]: action.value,
-        })
+        }),
       });
     case types.getOrgTreeSuccess:
       return assign({}, state, {
@@ -168,7 +168,7 @@ const reducer = (state = defaultState, action) => {
         user: action.data,
         orgId: action.data.orgId,
         checkedRoleIds: action.data.roleList.map(v => (`${v.roleId}`)),
-        checkedCityIds: action.data.authority ? action.data.authority.split(',') : [],
+        checkedCityIds: action.data.authority ? action.data.authority.split(',').map(v => Number(v)) : [],
       });
     case types.clearUserDetail:
       return assign({}, state, {
